@@ -87,20 +87,45 @@ git init && git add . && git commit -m "Carta digital de Caché Restaurante"
 git remote add origin git@github.com:USUARIO/cache-menu.git && git branch -M main && git push -u origin main
 ```
 
-### 2. Conectar Cloudflare Pages
+### 2. Deploy automático con GitHub Actions
 
-En el panel de Cloudflare: **Workers & Pages → Create → Pages → Connect to Git**, se elige
-el repositorio y se configura:
+El repositorio ya trae el workflow **`.github/workflows/deploy.yml`**. En cada push:
 
-| Campo                  | Valor          |
-| ---------------------- | -------------- |
-| Framework preset       | `Astro`        |
-| Build command          | `npm run build`|
-| Build output directory | `dist`         |
-| Node version           | 20 o superior  |
+1. instala dependencias con `npm ci`,
+2. revisa tipos con `astro check`,
+3. compila con `npm run build`,
+4. publica `dist/` en Cloudflare Pages con `wrangler`.
 
-Cada push a `main` publica de nuevo. Las ramas distintas de `main` generan una vista previa
-con su propia URL.
+Push a **`main` → producción** (`cache.soyshua.dev`). Push a **cualquier otra rama →
+vista previa** con su propia URL, útil para revisar un cambio de precios antes de que lo
+vea un cliente.
+
+Hace falta configurarlo **una sola vez**:
+
+**a) Crear el proyecto de Pages** (tipo _Direct Upload_, no conectado a Git):
+
+```bash
+npx wrangler pages project create menu-cache --production-branch=main
+```
+
+**b) Crear el API token** en [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/profile/api-tokens)
+→ **Create Token → Custom token**, con el permiso **Account · Cloudflare Pages · Edit**.
+
+**c) Guardar los dos secrets** en GitHub: **Settings → Secrets and variables → Actions →
+New repository secret**:
+
+| Secret                 | De dónde sale                                            |
+| ---------------------- | -------------------------------------------------------- |
+| `CLOUDFLARE_API_TOKEN` | el token del paso (b)                                    |
+| `CLOUDFLARE_ACCOUNT_ID`| panel de Cloudflare, barra lateral derecha de la cuenta  |
+
+Mientras falten los secrets el workflow **compila igual pero no publica**, y deja un aviso
+en el log en lugar de fallar.
+
+> **No conectes además la integración de Git de Cloudflare Pages.** Con las dos activas cada
+> push se publicaría dos veces. Se elige una: o este workflow, o
+> _Workers & Pages → Create → Pages → Connect to Git_ (que no necesita secrets ni workflow,
+> pero sí acceso de Cloudflare al repositorio).
 
 ### 3. Apuntar el subdominio `cache.soyshua.dev`
 

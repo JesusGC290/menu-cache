@@ -1,0 +1,60 @@
+name: Deploy a producción
+
+# Cada push a main publica la carta en https://cache.soyshua.dev
+# Las demás ramas generan una vista previa con su propia URL, para revisar
+# cambios de precios antes de que los vea un cliente.
+on:
+  push:
+    branches: ['**']
+  workflow_dispatch:
+
+concurrency:
+  # Si llegan dos pushes seguidos, sólo se publica el último
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    env:
+      # Se copian a env para poder preguntar si existen: el contexto `secrets`
+      # no se puede evaluar directamente en un `if`.
+      CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Revisar tipos
+        run: npx astro check
+
+      - name: Compilar el sitio
+        run: npm run build
+
+      - name: Avisar si faltan los secrets
+        if: env.CF_TOKEN == '' || env.CF_ACCOUNT == ''
+        run: |
+          echo "::warning title=Deploy omitido::Faltan CLOUDFLARE_API_TOKEN o CLOUDFLARE_ACCOUNT_ID en Settings → Secrets and variables → Actions. El sitio compiló bien, pero no se publicó."
+
+      - name: Publicar en Cloudflare Pages
+        if: env.CF_TOKEN != '' && env.CF_ACCOUNT != ''
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ env.CF_TOKEN }}
+          accountId: ${{ env.CF_ACCOUNT }}
+          command: >-
+            pages deploy dist
+            --project-name=menu-cache
+            --branch=${{ github.ref_name }}
