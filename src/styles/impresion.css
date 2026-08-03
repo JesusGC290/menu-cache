@@ -1,0 +1,465 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Carta de impresión · doble carta (11×17 in) plana, dos caras
+   ───────────────────────────────────────────────────────────────────────
+   Medidas de imprenta:
+     · Corte final (trim) ....... 11 × 17 in
+     · Sangrado (bleed) ......... 0.125 in por lado  →  media 11.25 × 17.25 in
+     · Zona segura .............. 0.5 in dentro del corte
+   El fondo llega hasta la orilla del sangrado; las marcas de corte se
+   dibujan en el sangrado, que es justo la parte que la guillotina retira.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@import './fuentes.css';
+
+@page {
+  size: 11.25in 17.25in;
+  margin: 0;
+}
+
+:root {
+  --trim-w: 11in;
+  --trim-h: 17in;
+  --bleed: 0.125in;
+  --media-w: 11.25in;
+  --media-h: 17.25in;
+  --segura: 0.35in;
+}
+
+/* ── Paleta clara: marfil con tinta vino y oro ───────────────────────── */
+.tema-claro {
+  --papel: #f7efe0;
+  --papel-veladura: #efe3cd;
+  --tinta: #2b1530;
+  --tinta-suave: #6b5566;
+  --oro: #8a6014;
+  --oro-claro: #b8873a;
+  --filete: #b9985a;
+  --talavera-turquesa: #1f7f74;
+  --talavera-coral: #b4402c;
+  --talavera-verde: #55803a;
+  --talavera-ambar: #b06f18;
+}
+
+/* ── Paleta oscura: fiel a la web y al logotipo ──────────────────────── */
+.tema-oscuro {
+  --papel: #1c0d20;
+  --papel-veladura: #2c1631;
+  --tinta: #f6ecd8;
+  --tinta-suave: #c3b0c0;
+  --oro: #d4a437;
+  --oro-claro: #f4dc9a;
+  --filete: #a5761f;
+  --talavera-turquesa: #2fa89b;
+  --talavera-coral: #d9563f;
+  --talavera-verde: #6fa544;
+  --talavera-ambar: #e0902e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Jost Variable', ui-sans-serif, system-ui, sans-serif;
+  background: #6b6b6b; /* sólo se ve en pantalla, alrededor de las hojas */
+}
+
+/* Fuerza a que se impriman fondos y colores tal cual */
+.hoja,
+.hoja * {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── La hoja ─────────────────────────────────────────────────────────── */
+.hoja {
+  position: relative;
+  width: var(--media-w);
+  height: var(--media-h);
+  background: var(--papel);
+  color: var(--tinta);
+  overflow: hidden;
+  page-break-after: always;
+  break-after: page;
+}
+
+.hoja:last-of-type {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+/* Veladura de talavera: en el impreso va aún más tenue que en la web */
+.hoja::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-repeat: repeat;
+  background-size: 1.05in 1.05in;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='112' viewBox='0 0 112 112'%3E%3Cg fill='none' stroke='%23a5761f' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M56 0l56 56-56 56L0 56z' opacity='0.5'/%3E%3Cpath d='M56 22l34 34-34 34-34-34z' opacity='0.3'/%3E%3Cpath d='M56 44c3.4 5 3.4 8.8 0 8.8s-3.4-3.8 0-8.8zM56 68c-3.4-5-3.4-8.8 0-8.8s3.4 3.8 0 8.8zM44 56c5-3.4 8.8-3.4 8.8 0s-3.8 3.4-8.8 0zM68 56c-5 3.4-8.8 3.4-8.8 0s3.8-3.4 8.8 0z'/%3E%3Ccircle cx='56' cy='56' r='2.4'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Contenido dentro de la zona segura */
+.lienzo {
+  position: absolute;
+  top: calc(var(--bleed) + var(--segura));
+  left: calc(var(--bleed) + var(--segura));
+  width: calc(var(--trim-w) - var(--segura) * 2);
+  height: calc(var(--trim-h) - var(--segura) * 2);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Marcas de corte ─────────────────────────────────────────────────── */
+.marcas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.marcas span {
+  position: absolute;
+  background: var(--tinta);
+  opacity: 0.85;
+}
+
+.marcas .h {
+  width: 0.09in;
+  height: 0.4pt;
+}
+.marcas .v {
+  width: 0.4pt;
+  height: 0.09in;
+}
+
+/* esquina superior izquierda */
+.marcas .h1 {
+  top: var(--bleed);
+  left: 0;
+}
+.marcas .v1 {
+  top: 0;
+  left: var(--bleed);
+}
+/* superior derecha */
+.marcas .h2 {
+  top: var(--bleed);
+  right: 0;
+}
+.marcas .v2 {
+  top: 0;
+  right: var(--bleed);
+}
+/* inferior izquierda */
+.marcas .h3 {
+  bottom: var(--bleed);
+  left: 0;
+}
+.marcas .v3 {
+  bottom: 0;
+  left: var(--bleed);
+}
+/* inferior derecha */
+.marcas .h4 {
+  bottom: var(--bleed);
+  right: 0;
+}
+.marcas .v4 {
+  bottom: 0;
+  right: var(--bleed);
+}
+
+/* ── Cabeceras de la hoja ────────────────────────────────────────────── */
+.cabecera {
+  text-align: center;
+  flex: 0 0 auto;
+  margin-bottom: 0.11in;
+}
+
+.marca-nombre {
+  font-family: 'Cormorant Garamond Variable', Georgia, serif;
+  font-size: 25pt;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0;
+  color: var(--oro);
+}
+
+.marca-bajada {
+  font-size: 7pt;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  margin: 0.07in 0 0;
+}
+
+/* El logotipo es un PNG de 760 px de ancho: a 300 DPI (lo que pide imprenta)
+   sólo alcanza para 2.53 in. Más grande sale suave o pixeleado. Para usarlo
+   en tamaño mayor hace falta el original vectorial o un PNG de 2000 px+. */
+.placa {
+  display: block;
+  margin: 0 auto;
+  width: 2.5in;
+  height: auto;
+  border: 0.5pt solid var(--filete);
+}
+
+.lema {
+  font-family: 'Cormorant Garamond Variable', Georgia, serif;
+  font-style: italic;
+  font-size: 13pt;
+  color: var(--tinta-suave);
+  margin: 0.1in 0 0;
+}
+
+/* ── Bloque de menú: su banda de título y su propia retícula ──────────
+   Cada bloque recibe `flex-grow` proporcional a su número de productos,
+   así el reparto vertical entre menús sale de los datos y no a ojo. */
+.bloque {
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* sin esto el flex se estira y arruina la multicolumna */
+  flex-shrink: 1;
+  flex-basis: 0;
+}
+
+.bloque + .bloque {
+  margin-top: 0.15in;
+}
+
+/* ── Banda de título de menú ─────────────────────────────────────────── */
+.banda {
+  flex: 0 0 auto;
+  text-align: center;
+  margin: 0 0 0.12in;
+}
+
+.banda h2 {
+  font-family: 'Cormorant Garamond Variable', Georgia, serif;
+  font-size: 19pt;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin: 0.06in 0 0.05in;
+  line-height: 1;
+}
+
+/* ── Flujo en tres columnas ──────────────────────────────────────────── */
+.columnas {
+  flex: 1 1 auto;
+  min-height: 0; /* imprescindible: da altura definida a la multicolumna */
+  column-count: 3;
+  column-gap: 0.26in;
+  column-fill: balance;
+  /* Separador vertical, como en carta impresa clásica */
+  column-rule: 0.4pt solid color-mix(in srgb, var(--filete) 45%, transparent);
+}
+
+/* ── Categorías ──────────────────────────────────────────────────────── */
+/* La categoría SÍ puede partirse entre columnas: si se prohíbe, los bloques
+   quedan atómicos, no empaquetan parejo y el contenido se desborda. Lo que
+   nunca se permite es un encabezado suelto al final de una columna, ni un
+   producto cortado a la mitad. */
+.categoria {
+  break-inside: auto;
+  margin-bottom: 0.11in;
+}
+
+.categoria h3 {
+  font-family: 'Cormorant Garamond Variable', Georgia, serif;
+  font-size: 10.5pt;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--oro);
+  margin: 0 0 0.02in;
+  line-height: 1.1;
+  /* nunca un encabezado huérfano al pie de la columna */
+  break-after: avoid;
+  break-inside: avoid;
+}
+
+.categoria-nota {
+  font-size: 6pt;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--oro-claro);
+  margin: 0 0 0.05in;
+}
+
+/* ── Producto ────────────────────────────────────────────────────────── */
+.producto {
+  break-inside: avoid;
+  margin-bottom: 0.045in;
+}
+
+.renglon {
+  display: flex;
+  align-items: baseline;
+  gap: 0.03in;
+}
+
+.producto-nombre {
+  font-family: 'Cormorant Garamond Variable', Georgia, serif;
+  font-size: 9pt;
+  font-weight: 600;
+  line-height: 1.14;
+  margin: 0;
+  color: var(--tinta);
+}
+
+.guia {
+  flex: 1 1 auto;
+  min-width: 0.08in;
+  margin-bottom: 0.035in;
+  border-bottom: 0.4pt dotted color-mix(in srgb, var(--filete) 75%, transparent);
+}
+
+.precio {
+  font-size: 8pt;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--oro);
+  white-space: nowrap;
+}
+
+.producto-desc {
+  font-size: 6.5pt;
+  font-weight: 300;
+  line-height: 1.26;
+  color: var(--tinta-suave);
+  margin: 0.01in 0 0;
+}
+
+.producto-nota {
+  font-size: 6.4pt;
+  font-style: italic;
+  line-height: 1.3;
+  color: var(--oro);
+  margin: 0.012in 0 0;
+}
+
+/* La vuelta lleva menos contenido (72 bebidas, de descripción corta). A tres
+   columnas quedaba un tercio de hoja en blanco, así que va a dos: la medida
+   se ensancha, se lee mejor y el texto llena la hoja. */
+.hoja[data-cara='vuelta'] .columnas {
+  column-count: 2;
+  column-gap: 0.4in;
+}
+
+/* ── Pie de hoja ─────────────────────────────────────────────────────── */
+.pie {
+  flex: 0 0 auto;
+  margin-top: 0.11in;
+  text-align: center;
+  font-size: 6.4pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+
+.pie strong {
+  color: var(--oro);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+}
+
+/* ── Filetes y florones ──────────────────────────────────────────────── */
+.filete {
+  height: 0.4pt;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--filete) 22%,
+    var(--oro) 50%,
+    var(--filete) 78%,
+    transparent 100%
+  );
+  margin: 0;
+}
+
+.floron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.06in;
+}
+
+.floron .filete {
+  flex: 1 1 auto;
+  max-width: 1.1in;
+}
+
+.floron svg {
+  flex: 0 0 auto;
+}
+
+/* ── Sólo en pantalla: separación entre hojas y sombra ───────────────── */
+@media screen {
+  body {
+    padding: 0.4in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4in;
+  }
+
+  .hoja {
+    box-shadow: 0 0.1in 0.4in rgb(0 0 0 / 0.45);
+  }
+
+  .aviso {
+    max-width: var(--media-w);
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #fff;
+    background: #3a3a3a;
+    border-left: 3pt solid #d4a437;
+    padding: 0.16in 0.2in;
+  }
+
+  .aviso h1 {
+    font-size: 13pt;
+    margin: 0 0 0.06in;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .aviso p {
+    margin: 0.05in 0;
+  }
+
+  .aviso code {
+    background: #1f1f1f;
+    padding: 0.01in 0.05in;
+    border-radius: 2pt;
+    font-size: 10pt;
+  }
+
+  .aviso a {
+    color: #f4dc9a;
+  }
+}
+
+@media print {
+  body {
+    background: none;
+    padding: 0;
+  }
+
+  .aviso {
+    display: none;
+  }
+}

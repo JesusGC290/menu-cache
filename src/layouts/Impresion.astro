@@ -1,0 +1,25 @@
+---
+/**
+ * Layout mínimo para las cartas de imprenta: sin navegación, sin JavaScript
+ * y sin el CSS del sitio, para que nada interfiera con las medidas de la hoja.
+ */
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <!-- Es material interno de producción: no debe aparecer en buscadores -->
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

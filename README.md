@@ -158,6 +158,66 @@ Para un QR de una sección específica se le agrega el ancla de la categoría, p
 
 ---
 
+## Carta para imprenta
+
+Además de la web hay dos páginas que generan la carta impresa, **desde el mismo
+`menu.ts`**: si cambia un precio, cambian el QR y el PDF a la vez.
+
+| Ruta                 | Paleta                                  |
+| -------------------- | --------------------------------------- |
+| `/impresion/claro`   | Marfil con tinta vino y oro             |
+| `/impresion/oscuro`  | Morado, igual que la web                |
+
+**Formato:** doble carta plana, dos caras.
+
+- Corte final **11 × 17 in**, sangrado **0.125 in** por lado (archivo de 11.25 × 17.25 in).
+- Marcas de corte en las cuatro esquinas, dentro del sangrado.
+- Zona segura de 0.35 in dentro del corte.
+- Frente: Desayunos y Comidas a tres columnas. Vuelta: logotipo y Bebidas a dos columnas.
+
+### Generar el PDF
+
+```bash
+npm run dev
+```
+
+Se abre `http://localhost:4321/impresion/claro` y se imprime con **Cmd + P**:
+
+| Opción             | Valor              |
+| ------------------ | ------------------ |
+| Destino            | Guardar como PDF   |
+| Tamaño de papel    | 11.25 × 17.25 in   |
+| Márgenes           | Ninguno            |
+| Escala             | 100 %              |
+| Gráficos de fondo  | **Activado**       |
+
+Sin *Gráficos de fondo* no salen el papel, los filetes ni la veladura de talavera.
+
+### Cómo se reparte el espacio
+
+El alto de cada bloque no se ajusta a ojo: `pesoDeMenu()` en
+`src/components/CartaImpresa.astro` estima los renglones que genera cada menú (nombre,
+líneas de descripción y notas) y ese peso se convierte en `flex-grow`. Así, al agregar
+productos, la retícula se reacomoda sola.
+
+Dos reglas de composición que conviene no romper:
+
+- Una **categoría sí puede partirse** entre columnas. Si se prohíbe, los bloques quedan
+  atómicos, no empaquetan parejo y el contenido se desborda fuera de la hoja.
+- Un **encabezado de categoría nunca queda huérfano** al pie de una columna
+  (`break-after: avoid`), ni se corta un producto a la mitad.
+
+### Pendientes de producción
+
+- **El logotipo va limitado a 2.5 in.** El PNG disponible tiene 760 px de ancho: a 300 DPI
+  eso da 2.53 in como máximo. Con el original vectorial (AI, EPS o SVG) o un PNG de 2000 px
+  se puede usar mucho más grande.
+- **El PDF sale en RGB.** El dorado `#d4a437` y el morado se van a correr un poco al
+  convertirse a CMYK en imprenta. Si el color importa, conviene pedirle a la imprenta la
+  conversión con perfil, o una prueba de color antes del tiraje.
+- **Para la versión oscura**, papel couché con laminado mate: es mucha cobertura de tinta y
+  en impresión digital barata el morado sale manchado.
+
 ## Notas sobre el contenido
 
 - Los precios y textos salieron de los documentos `MENU DESAYUNOS`, `MENU COMIDAS` y

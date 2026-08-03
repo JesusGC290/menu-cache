@@ -1,0 +1,193 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/cache-logo.png';
+import { menus } from '../data/menu';
+import '../styles/impresion.css';
+
+interface Props {
+  /** Paleta de impresión: marfil con tinta vino, u oscura como la web. */
+  tema: 'claro' | 'oscuro';
+}
+const { tema } = Astro.props;
+
+const porId = (id: string) => menus.find((m) => m.id === id)!;
+const desayunos = porId('desayunos');
+const comidas = porId('comidas');
+const bebidas = porId('bebidas');
+
+// Cara 1: desayunos + comidas · Cara 2: portada + bebidas
+const caras = [
+  { id: 'frente', menus: [desayunos, comidas] },
+  { id: 'vuelta', menus: [bebidas] },
+];
+
+const totalProductos = menus.reduce(
+  (n, m) => n + m.categories.reduce((k, c) => k + c.products.length, 0),
+  0,
+);
+
+/**
+ * Estima cuánto alto ocupa un menú, para repartir el espacio vertical entre
+ * los bloques de una misma cara. Contar productos no sirve: una descripción
+ * de tres líneas ocupa el triple que un producto sin descripción, y esa
+ * diferencia descuadraba la retícula. Aquí se pesa cada pieza por los
+ * renglones que genera, contra un ancho de columna de ~55 caracteres.
+ */
+const CARACTERES_POR_RENGLON = 55;
+
+const pesoDeMenu = (menu: (typeof menus)[number]) =>
+  menu.categories.reduce((total, categoria) => {
+    // Encabezado de la categoría, su nota y los márgenes del bloque
+    let peso = 1.9 + (categoria.note ? 0.6 : 0);
+
+    for (const p of categoria.products) {
+      peso += 1; // el renglón de nombre y precio
+      if (p.description) {
+        peso += Math.ceil(p.description.length / CARACTERES_POR_RENGLON) * 0.85;
+      }
+      if (p.note) peso += 0.8;
+    }
+    return total + peso;
+  }, 0);
+---
+
+{/* Marcas de corte: 4 esquinas, dos trazos cada una, dibujados en el sangrado */}
+{
+  (
+    <Fragment>
+      <div class="aviso">
+        <h1>Carta para imprenta · paleta {tema}</h1>
+        <p>
+          Doble carta plana, dos caras. Corte final <strong>11 × 17 in</strong> con
+          <strong> 0.125 in de sangrado</strong> (archivo de 11.25 × 17.25 in) y marcas de
+          corte en las esquinas. {totalProductos} productos, los mismos de la carta web.
+        </p>
+        <p>
+          Para generar el PDF: <code>Cmd + P</code> → Destino{' '}
+          <em>Guardar como PDF</em> → Márgenes <em>Ninguno</em> → y hay que activar{' '}
+          <strong>Gráficos de fondo</strong>, si no el fondo y los filetes no salen.
+        </p>
+      </div>
+    </Fragment>
+  )
+}
+
+{
+  caras.map((cara) => (
+    <section class={`hoja tema-${tema}`} data-cara={cara.id}>
+      <div class="marcas" aria-hidden="true">
+        <span class="h h1" />
+        <span class="v v1" />
+        <span class="h h2" />
+        <span class="v v2" />
+        <span class="h h3" />
+        <span class="v v3" />
+        <span class="h h4" />
+        <span class="v v4" />
+      </div>
+
+      <div class="lienzo">
+        {/* ── Cabecera ── */}
+        <header class="cabecera">
+          {cara.id === 'vuelta' ? (
+            <Fragment>
+              {/* PNG sin recomprimir y a resolución nativa: es material de imprenta */}
+              <Image
+                src={logo}
+                alt="Caché Restaurante"
+                widths={[760]}
+                sizes="2.5in"
+                format="png"
+                quality={100}
+                class="placa"
+              />
+              <p class="marca-bajada" style="margin-top:0.12in">
+                Cocina Mexicana
+              </p>
+              <p class="lema">«De caché, como debe ser»</p>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <p class="marca-nombre">Caché</p>
+              <p class="marca-bajada">Restaurante · Cocina Mexicana</p>
+              <div class="floron" style="margin-top:0.1in">
+                <hr class="filete" />
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                  <g stroke="var(--oro)" stroke-width="1.2" stroke-linecap="round">
+                    <path
+                      d="M12 3.2c2.1 3.1 2.1 5.9 0 5.9s-2.1-2.8 0-5.9z"
+                      fill="var(--talavera-coral)"
+                      fill-opacity="0.45"
+                    />
+                    <path
+                      d="M12 20.8c-2.1-3.1-2.1-5.9 0-5.9s2.1 2.8 0 5.9z"
+                      fill="var(--talavera-turquesa)"
+                      fill-opacity="0.45"
+                    />
+                    <path
+                      d="M3.2 12c3.1-2.1 5.9-2.1 5.9 0s-2.8 2.1-5.9 0z"
+                      fill="var(--talavera-verde)"
+                      fill-opacity="0.45"
+                    />
+                    <path
+                      d="M20.8 12c-3.1 2.1-5.9 2.1-5.9 0s2.8-2.1 5.9 0z"
+                      fill="var(--talavera-ambar)"
+                      fill-opacity="0.45"
+                    />
+                    <circle cx="12" cy="12" r="2.1" fill="var(--oro)" fill-opacity="0.3" />
+                  </g>
+                </svg>
+                <hr class="filete" />
+              </div>
+            </Fragment>
+          )}
+        </header>
+
+        {/* ── Cuerpo: un bloque de 3 columnas por menú ── */}
+        {
+          cara.menus.map((menu) => (
+            <section class="bloque" style={`flex-grow:${pesoDeMenu(menu).toFixed(1)}`}>
+              <div class="banda">
+                <hr class="filete" />
+                <h2>{menu.title}</h2>
+                <hr class="filete" />
+              </div>
+
+              <div class="columnas">
+                {menu.categories.map((categoria) => (
+                <div class="categoria">
+                  <h3>{categoria.title}</h3>
+                  {categoria.note && <p class="categoria-nota">{categoria.note}</p>}
+
+                  {categoria.products.map((p) => (
+                    <div class="producto">
+                      <div class="renglon">
+                        <p class="producto-nombre">{p.name}</p>
+                        <span class="guia" />
+                        {p.price && <span class="precio">${p.price}</span>}
+                      </div>
+                      {p.description && <p class="producto-desc">{p.description}</p>}
+                      {p.note && <p class="producto-nota">{p.note}</p>}
+                    </div>
+                  ))}
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+
+        {/* ── Pie ── */}
+        <footer class="pie">
+          <hr class="filete" style="margin-bottom:0.08in" />
+          <p style="margin:0">
+            Precios en pesos mexicanos · IVA incluido · Sujetos a cambio sin previo aviso
+          </p>
+          <p style="margin:0.04in 0 0">
+            <strong>Caché Restaurante</strong>
+          </p>
+        </footer>
+      </div>
+    </section>
+  ))
+}
