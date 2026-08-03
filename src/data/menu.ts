@@ -633,7 +633,7 @@ const bebidas: Menu = {
         { name: 'Espresso Doble', description: '2 cargas de café.', price: '59' },
         {
           name: 'Café de Olla',
-          description: 'Café, pimienta, canela, anís y piloncillo.',
+          description: 'Café, canela, anís y piloncillo.',
           price: '59',
         },
         { name: 'Latte', price: '79' },
@@ -657,7 +657,7 @@ const bebidas: Menu = {
         { name: 'Topo Chico Sangría', price: '55' },
         { name: 'Tonicol', price: '55' },
         { name: 'Fuze Tea', description: 'Durazno o limón.', price: '55' },
-        { name: 'Agua Mineralizada', price: '55' },
+        { name: 'Agua Mineralizada (Ciel)', price: '55' },
         { name: 'Jugo del Valle Manzana Kids', price: '25' },
         { name: 'Agua Ciel Natural', price: '35' },
       ],
@@ -721,7 +721,7 @@ const bebidas: Menu = {
       products: [
         {
           name: 'Copa de Vino de la Casa',
-          description: 'Lacetto, Cabernet Sauvignon.',
+          description: 'La Cetto, Cabernet Sauvignon.',
           price: '89',
         },
       ],
@@ -733,7 +733,7 @@ const bebidas: Menu = {
         {
           name: 'Clericot',
           description:
-            'Jugo de naranja, limón, soda de manzana y un toque de vino tinto. Decorado con nuez.',
+            'Jugo de naranja, limón, soda de manzana y un toque de vino tinto, decorado con nuez y fruta de temporada.',
           price: '79',
         },
         {
@@ -832,13 +832,12 @@ const bebidas: Menu = {
       products: [
         {
           name: 'Carajilla',
-          description: 'Carga de espresso y licor Baileys.',
+          description: 'Licor Baileys y 1 carga de espresso.',
           price: '159',
         },
         {
           name: 'Carajillo',
-          description:
-            'Licor 43 y 1 carga de espresso. Decorado con granos de café.',
+          description: 'Licor 43 y 1 carga de espresso.',
           price: '159',
         },
       ],
@@ -923,14 +922,12 @@ const bebidas: Menu = {
         },
         {
           name: '43 Spritz',
-          description:
-            'Vino espumoso, agua mineral, limón y Licor 43. Limón deshidratado.',
+          description: 'Vino espumoso, agua mineral, limón y Licor 43.',
           price: '159',
         },
         {
           name: 'Hugo Spritz',
-          description:
-            'Licor de flor de saúco, agua mineral y vino espumoso. Hojas de menta.',
+          description: 'Licor de flor de saúco, agua mineral y vino espumoso.',
           price: '169',
         },
       ],
