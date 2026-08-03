@@ -1,0 +1,65 @@
+---
+import Floron from './Floron.astro';
+import type { Category } from '../data/menu';
+
+interface Props {
+  categoria: Category;
+}
+const { categoria } = Astro.props;
+
+const precio = (valor: string) => `$${valor}`;
+---
+
+<section
+  id={categoria.id}
+  data-categoria={categoria.id}
+  class="scroll-mt-[var(--nav-h)] pt-9 first:pt-4"
+>
+  <header class="mb-5 text-center">
+    <Floron class="mb-3" />
+    <h2
+      class="font-display text-oro-degradado text-[1.6rem] leading-tight font-medium tracking-[0.14em] uppercase sm:text-3xl"
+    >
+      {categoria.title}
+    </h2>
+    {
+      categoria.note && (
+        <p class="text-oro/85 mt-1.5 text-[0.7rem] tracking-[0.16em] uppercase">
+          {categoria.note}
+        </p>
+      )
+    }
+  </header>
+
+  <ul class="divide-oro/12 divide-y">
+    {
+      categoria.products.map((p) => (
+        <li class="py-3.5 first:pt-0">
+          <div class="flex items-baseline gap-1.5">
+            <h3 class="font-display text-crema text-[1.15rem] leading-snug font-medium sm:text-xl">
+              {p.name}
+            </h3>
+            <span class="guia-puntos"></span>
+            {p.price && (
+              <span class="text-oro font-sans text-[0.95rem] font-medium tabular-nums sm:text-base">
+                {precio(p.price)}
+              </span>
+            )}
+          </div>
+
+          {p.description && (
+            <p class="text-lino/85 mt-1 max-w-[46ch] text-[0.82rem] leading-relaxed font-light">
+              {p.description}
+            </p>
+          )}
+
+          {p.note && (
+            <p class="text-oro/80 mt-1.5 text-[0.74rem] leading-snug tracking-wide italic">
+              {p.note}
+            </p>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</section>

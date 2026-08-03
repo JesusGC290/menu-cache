@@ -1,0 +1,16 @@
+# Cloudflare Pages · reglas de caché
+# Las tipografías y los assets con hash no cambian nunca: se cachean un año.
+# Así el menú abre casi instantáneo cuando el mismo cliente vuelve a escanear el QR.
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.svg
+  Cache-Control: public, max-age=604800
+
+# El HTML sí se revalida, para que un cambio de precios se vea de inmediato.
+/
+  Cache-Control: public, max-age=0, must-revalidate

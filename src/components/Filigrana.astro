@@ -1,0 +1,47 @@
+---
+/**
+ * Esquinas de filigrana dorada, inspiradas en el marco del logotipo.
+ * Se dibujan las 4 esquinas espejeando una sola pieza.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+
+const esquinas = [
+  'top-0 left-0',
+  'top-0 right-0 -scale-x-100',
+  'bottom-0 left-0 -scale-y-100',
+  'bottom-0 right-0 -scale-x-100 -scale-y-100',
+];
+---
+
+<div class={`pointer-events-none absolute inset-0 ${className}`} aria-hidden="true">
+  {
+    esquinas.map((pos) => (
+      <svg
+        class={`absolute ${pos} h-14 w-14 text-oro/70 sm:h-16 sm:w-16`}
+        viewBox="0 0 64 64"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.15"
+        stroke-linecap="round"
+      >
+        {/* Ángulo del marco */}
+        <path d="M2 14V2h12" />
+        <path d="M6 20V6h14" opacity="0.55" />
+        {/* Voluta vegetal */}
+        <path d="M20 6c8 0 13 3 16 7" opacity="0.8" />
+        <path d="M6 20c0 8 3 13 7 16" opacity="0.8" />
+        <path d="M36 13c3 0 5 2 5 4s-2 3-4 2-2-4 1-5" />
+        <path d="M13 36c0 3 2 5 4 5s3-2 2-4-4-2-5 1" />
+        {/* Flor de talavera en la esquina */}
+        <circle cx="10" cy="10" r="2.6" />
+        <path d="M10 4.5c1.8 2.6 1.8 4.9 0 4.9s-1.8-2.3 0-4.9zM4.5 10c2.6-1.8 4.9-1.8 4.9 0s-2.3 1.8-4.9 0z" opacity="0.9" />
+        {/* Gotas del remate */}
+        <circle cx="27" cy="9" r="1.1" fill="currentColor" stroke="none" opacity="0.7" />
+        <circle cx="9" cy="27" r="1.1" fill="currentColor" stroke="none" opacity="0.7" />
+      </svg>
+    ))
+  }
+</div>

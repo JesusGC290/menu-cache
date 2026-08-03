@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#120a12" />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+
+    <!-- Las dos tipografías de la carta se piden desde el primer momento -->
+    <link
+      rel="preload"
+      href="/fonts/cormorant-garamond-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/jost-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL('/cache-logo.jpg', Astro.site)} />
+    <meta property="og:locale" content="es_MX" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Sin JavaScript se muestra la carta completa, los tres menús seguidos -->
+    <noscript>
+      <style>
+        [data-panel][hidden],
+        [data-carrusel][hidden] {
+          display: block !important;
+        }
+      </style>
+    </noscript>
+  </head>
+
+  <body class="fondo-terciopelo fondo-talavera fondo-vineta min-h-dvh">
+    <div class="relative z-10">
+      <slot />
+    </div>
+  </body>
+</html>
