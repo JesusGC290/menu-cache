@@ -2,22 +2,28 @@
 
 @import './fuentes.css';
 
-@theme {
-  /* Morados del logotipo (el fondo de la placa del logo es #24131a) */
-  --color-noche: #120a12;
-  --color-vino: #1e1020;
-  --color-uva: #2c1631;
-  --color-uva-claro: #3d2044;
+/* ═══════════════════════════════════════════════════════════════════════
+   Sistema de color en dos temas
+   ───────────────────────────────────────────────────────────────────────
+   Hay dos familias de tokens y la diferencia importa:
 
-  /* Dorados */
+   · MARCA (fijos)      no cambian nunca, son del logotipo: el degradado
+                        dorado del botón principal y los colores talavera.
+   · SEMÁNTICOS (giran) fondo, superficie, texto, suave, tenue y acento.
+                        Su valor depende del tema.
+
+   El oscuro es la base, porque es la identidad del logotipo. El claro usa
+   la MISMA paleta marfil que la carta impresa (`impresion.css`), así el
+   modo claro de la web y el papel son el mismo diseño.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Marca: fijos en ambos temas ── */
   --color-oro: #d4a437;
   --color-oro-claro: #f4dc9a;
   --color-oro-hondo: #96691a;
-
-  /* Neutros cálidos */
-  --color-crema: #f6ecd8;
-  --color-lino: #cbb9c9;
-  --color-humo: #9c8ba3;
+  /* Tinta sobre el botón dorado: el dorado es claro en los dos temas */
+  --color-vino: #1e1020;
 
   /* Acentos talavera (tomados de las flores del logotipo) */
   --color-talavera-turquesa: #2fa89b;
@@ -25,8 +31,96 @@
   --color-talavera-verde: #6fa544;
   --color-talavera-ambar: #e0902e;
 
+  /* ── Semánticos: estos valores son el TEMA OSCURO ── */
+  --color-fondo: #120a12;
+  --color-superficie: #2c1631;
+  --color-barra: #1e1020;
+  --color-texto: #f6ecd8;
+  --color-suave: #cbb9c9;
+  --color-tenue: #9c8ba3;
+  --color-acento: #d4a437;
+  /* Dorado de alto contraste: texto sobre superficie con tinte dorado */
+  --color-acento-alto: #f4dc9a;
+
   --font-display: 'Cormorant Garamond Variable', 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Jost Variable', 'Jost', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Piezas del fondo que no son colores planos, para el tema oscuro */
+:root {
+  color-scheme: dark;
+  --terciopelo-1: #3d2044;
+  --terciopelo-2: #2c1631;
+  --terciopelo-3: #1e1020;
+  --veladura: 0.07;
+  --vineta-media: rgb(9 4 13 / 0.55);
+  --vineta-orilla: rgb(9 4 13 / 0.85);
+  /* Sombras: en papel una sombra negra al 95% se ve como mugre */
+  --sombra-placa: 0 18px 45px -18px rgb(0 0 0 / 0.95);
+  --sombra-placa-alta: 0 22px 55px -20px rgb(0 0 0 / 0.95);
+  --sombra-barra: 0 12px 28px -16px rgb(0 0 0 / 0.95);
+  /* Stops del degradado dorado de los títulos */
+  --deg-1: #f4dc9a;
+  --deg-2: #d4a437;
+  --deg-3: #96691a;
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   TEMA CLARO · marfil con tinta vino, igual que la carta impresa.
+   Se aplica en dos casos, y por eso el bloque va dos veces:
+     1) el sistema pide claro y el usuario no forzó oscuro
+     2) el usuario eligió claro con el botón
+   ───────────────────────────────────────────────────────────────────── */
+@media (prefers-color-scheme: light) {
+  :root:not([data-tema='oscuro']) {
+    color-scheme: light;
+    --color-fondo: #f7efe0;
+    --color-superficie: #e8dcc4;
+    --color-barra: #f7efe0;
+    --color-texto: #2b1530;
+    --color-suave: #6b5566;
+    --color-tenue: #775f7b;
+    --color-acento: #8a6014;
+    --color-acento-alto: #6b4a10;
+
+    --terciopelo-1: #fffaf0;
+    --terciopelo-2: #f1e3c9;
+    --terciopelo-3: #faf3e6;
+    --veladura: 0.1;
+    --vineta-media: rgb(140 110 60 / 0.05);
+    --vineta-orilla: rgb(120 92 48 / 0.12);
+    --sombra-placa: 0 14px 38px -16px rgb(92 68 34 / 0.3);
+    --sombra-placa-alta: 0 18px 46px -18px rgb(92 68 34 / 0.32);
+    --sombra-barra: 0 10px 24px -18px rgb(92 68 34 / 0.28);
+    --deg-1: #b8873a;
+    --deg-2: #8a6014;
+    --deg-3: #6b4a10;
+  }
+}
+
+:root[data-tema='claro'] {
+  color-scheme: light;
+  --color-fondo: #f7efe0;
+  --color-superficie: #e8dcc4;
+  --color-barra: #f7efe0;
+  --color-texto: #2b1530;
+  --color-suave: #6b5566;
+  --color-tenue: #775f7b;
+  --color-acento: #8a6014;
+  --color-acento-alto: #6b4a10;
+
+  --terciopelo-1: #fffaf0;
+  --terciopelo-2: #f1e3c9;
+  --terciopelo-3: #faf3e6;
+  --veladura: 0.1;
+  --vineta-media: rgb(140 110 60 / 0.05);
+  --vineta-orilla: rgb(120 92 48 / 0.12);
+  --sombra-placa: 0 14px 38px -16px rgb(92 68 34 / 0.3);
+  --sombra-placa-alta: 0 18px 46px -18px rgb(92 68 34 / 0.32);
+  --sombra-barra: 0 10px 24px -18px rgb(92 68 34 / 0.28);
+  --deg-1: #b8873a;
+  --deg-2: #8a6014;
+  --deg-3: #6b4a10;
 }
 
 @layer base {
@@ -35,7 +129,7 @@
     /* Altura del navegador fijo: las anclas de categoría se detienen debajo de él.
        Medido en móvil: pestañas + carrusel de categorías ≈ 101px */
     --nav-h: 6.4rem;
-    background-color: var(--color-noche);
+    background-color: var(--color-fondo);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -46,7 +140,7 @@
 
   body {
     font-family: var(--font-sans);
-    color: var(--color-crema);
+    color: var(--color-texto);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     /* Evita el rebote horizontal en móvil */
@@ -64,12 +158,7 @@
 }
 
 @utility text-oro-degradado {
-  background-image: linear-gradient(
-    180deg,
-    var(--color-oro-claro) 0%,
-    var(--color-oro) 45%,
-    var(--color-oro-hondo) 100%
-  );
+  background-image: linear-gradient(180deg, var(--deg-1) 0%, var(--deg-2) 45%, var(--deg-3) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -79,11 +168,11 @@
 
 /* Capa 1: profundidad de terciopelo morado */
 .fondo-terciopelo {
-  background-color: var(--color-noche);
+  background-color: var(--color-fondo);
   background-image:
-    radial-gradient(120% 70% at 50% -10%, var(--color-uva-claro) 0%, transparent 60%),
-    radial-gradient(90% 55% at 50% 105%, var(--color-uva) 0%, transparent 65%),
-    linear-gradient(180deg, var(--color-vino) 0%, var(--color-noche) 55%, var(--color-vino) 100%);
+    radial-gradient(120% 70% at 50% -10%, var(--terciopelo-1) 0%, transparent 60%),
+    radial-gradient(90% 55% at 50% 105%, var(--terciopelo-2) 0%, transparent 65%),
+    linear-gradient(180deg, var(--terciopelo-3) 0%, var(--color-fondo) 55%, var(--terciopelo-3) 100%);
 }
 
 /* Capa 2: celosía de talavera calada en oro, apenas perceptible.
@@ -94,7 +183,7 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.07;
+  opacity: var(--veladura);
   background-repeat: repeat;
   background-size: 112px 112px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='112' viewBox='0 0 112 112'%3E%3Cg fill='none' stroke='%23d4a437' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M56 0l56 56-56 56L0 56z' opacity='0.5'/%3E%3Cpath d='M56 22l34 34-34 34-34-34z' opacity='0.3'/%3E%3Cg%3E%3Cpath d='M56 44c3.4 5 3.4 8.8 0 8.8s-3.4-3.8 0-8.8zM56 68c-3.4-5-3.4-8.8 0-8.8s3.4 3.8 0 8.8zM44 56c5-3.4 8.8-3.4 8.8 0s-3.8 3.4-8.8 0zM68 56c-5 3.4-8.8 3.4-8.8 0s3.8-3.4 8.8 0z'/%3E%3Ccircle cx='56' cy='56' r='2.4'/%3E%3C/g%3E%3Cg opacity='0.75'%3E%3Cpath d='M0 0c3.4 5 3.4 8.8 0 8.8M0 0c5 3.4 8.8 3.4 8.8 0M112 0c-3.4 5-3.4 8.8 0 8.8M112 0c-5 3.4-8.8 3.4-8.8 0M0 112c3.4-5 3.4-8.8 0-8.8M0 112c5-3.4 8.8-3.4 8.8 0M112 112c-3.4-5-3.4-8.8 0-8.8M112 112c-5-3.4-8.8-3.4-8.8 0'/%3E%3C/g%3E%3Ccircle cx='56' cy='4' r='1.4' fill='%23d4a437' stroke='none' opacity='0.6'/%3E%3Ccircle cx='4' cy='56' r='1.4' fill='%23d4a437' stroke='none' opacity='0.6'/%3E%3Ccircle cx='108' cy='56' r='1.4' fill='%23d4a437' stroke='none' opacity='0.6'/%3E%3Ccircle cx='56' cy='108' r='1.4' fill='%23d4a437' stroke='none' opacity='0.6'/%3E%3C/g%3E%3C/svg%3E");
@@ -110,8 +199,8 @@
   background: radial-gradient(
     115% 80% at 50% 45%,
     transparent 35%,
-    rgb(9 4 13 / 0.55) 80%,
-    rgb(9 4 13 / 0.85) 100%
+    var(--vineta-media) 80%,
+    var(--vineta-orilla) 100%
   );
 }
 
@@ -122,9 +211,9 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--color-oro-hondo) 20%,
-    var(--color-oro) 50%,
-    var(--color-oro-hondo) 80%,
+    var(--deg-3) 20%,
+    var(--deg-2) 50%,
+    var(--deg-3) 80%,
     transparent 100%
   );
 }
@@ -134,5 +223,5 @@
   flex: 1 1 auto;
   min-width: 0.75rem;
   margin-bottom: 0.28rem;
-  border-bottom: 1px dotted color-mix(in srgb, var(--color-oro) 38%, transparent);
+  border-bottom: 1px dotted color-mix(in srgb, var(--color-acento) 42%, transparent);
 }

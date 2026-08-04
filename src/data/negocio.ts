@@ -13,7 +13,7 @@ export const negocio = {
   descripcionCorta: 'Cocina mexicana en Guadalajara',
 
   direccion: {
-    calle: 'C. Agustín de la Rosa',
+    calle: 'Manuel Acuña 1846',
     colonia: 'Ladrón de Guevara',
     cp: '44600',
     ciudad: 'Guadalajara',
@@ -46,7 +46,7 @@ export const negocio = {
   },
 
   /** Búsqueda en Google Maps por nombre y dirección: abre la app en el celular. */
-  mapa: 'https://www.google.com/maps/search/?api=1&query=Cach%C3%A9%20Restaurante%2C%20C.%20Agust%C3%ADn%20de%20la%20Rosa%2C%20Ladr%C3%B3n%20de%20Guevara%2C%2044600%20Guadalajara%2C%20Jal.',
+  mapa: 'https://www.google.com/maps/search/?api=1&query=Cach%C3%A9%20Restaurante%2C%20Manuel%20Acu%C3%B1a%201846%2C%20Ladr%C3%B3n%20de%20Guevara%2C%2044600%20Guadalajara%2C%20Jal.',
 } as const;
 
 export const direccionUnaLinea = [

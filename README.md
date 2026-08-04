@@ -21,6 +21,43 @@ Hecho con **Astro + Tailwind CSS**. Sitio 100 % estático, listo para GitHub + C
 inmediato. La portada existe para el tráfico de Google e Instagram, y desde el pie de la
 carta hay un enlace de vuelta para horario y teléfono.
 
+### Tema claro y oscuro
+
+El sitio **respeta la preferencia del sistema**: un celular en modo claro a mediodía abre en
+marfil, y de noche en morado. El botón de la barra sólo sirve para forzar lo contrario, y la
+elección se guarda en `localStorage`.
+
+El modo claro **es la misma paleta marfil de la carta impresa**, así que la web clara y el
+papel son el mismo diseño.
+
+Hay dos familias de tokens de color y la diferencia importa:
+
+| Familia | Ejemplos | Comportamiento |
+| ------- | -------- | -------------- |
+| **Marca** | `oro`, `oro-claro`, `oro-hondo`, `vino`, `talavera-*` | fijos, son del logotipo |
+| **Semánticos** | `fondo`, `superficie`, `barra`, `texto`, `suave`, `tenue`, `acento` | giran con el tema |
+
+Al escribir una clase de color, la regla es: **si el color debe seguir siendo legible en los
+dos temas, va un token semántico** (`text-texto`, `border-acento/35`). Los fijos sólo para el
+botón dorado y los pétalos de talavera, que funcionan igual sobre papel y sobre terciopelo.
+
+Cosas que **no** son colores planos y también giran: la veladura de talavera, la viñeta y las
+sombras (`--sombra-placa`, `--sombra-barra`). Una sombra negra al 95 % sobre marfil se ve
+como mugre, por eso en claro son cafés y más suaves.
+
+El tema se aplica con un script *inline* en el `<head>`, antes de pintar. Si fuera diferido,
+la página aparecería un instante en el tema equivocado.
+
+#### Contraste verificado
+
+Se auditaron los colores calculados de cada elemento con texto, contra el fondo del tema, en
+los dos temas: **231 elementos (44 en la portada + 187 en la carta), 0 por debajo de WCAG AA.**
+Dos cosas salieron de ahí:
+
+- `tenue` en claro empezó en `#857089` y daba 3.93 — reprobado. Quedó en `#775f7b` (4.96).
+- A `tenue` **no se le baja la opacidad**. Ya es el nivel apagado; con `/50` o `/60` el texto
+  legal quedaba ilegible en papel. La jerarquía la da el tamaño, no más transparencia.
+
 ### Datos del negocio
 
 Todo lo de contacto vive en `src/data/negocio.ts`, y de ahí salen la portada, el pie, los

@@ -3,9 +3,12 @@ import { Image } from 'astro:assets';
 import logo from '../../assets/cache-logo.png';
 import Floron from '../Floron.astro';
 import { negocio } from '../../data/negocio';
+import BotonTema from '../BotonTema.astro';
 ---
 
 <header class="relative mx-auto flex min-h-[100svh] max-w-xl flex-col justify-center px-5 py-12">
+  <BotonTema class="absolute top-5 right-5" />
+
   <div class="text-center">
     <Image
       src={logo}
@@ -15,21 +18,21 @@ import { negocio } from '../../data/negocio';
       format="webp"
       quality={86}
       loading="eager"
-      class="ring-oro/25 mx-auto h-auto w-full max-w-[19rem] rounded-lg ring-1 shadow-[0_22px_55px_-20px_rgb(0_0_0/0.95)] sm:max-w-[26rem]"
+      class="ring-acento/25 mx-auto h-auto w-full max-w-[19rem] rounded-lg ring-1 shadow-[var(--sombra-placa-alta)] sm:max-w-[26rem]"
     />
 
-    <p class="text-oro/90 mt-6 text-[0.7rem] tracking-[0.34em] uppercase sm:text-xs">
+    <p class="text-acento/90 mt-6 text-[0.7rem] tracking-[0.34em] uppercase sm:text-xs">
       {negocio.descripcionCorta}
     </p>
 
     <h1
-      class="font-display text-crema mt-4 text-[1.75rem] leading-[1.15] font-medium sm:text-4xl"
+      class="font-display text-texto mt-4 text-[1.75rem] leading-[1.15] font-medium sm:text-4xl"
     >
       Lo de siempre,<br />
       <span class="text-oro-degradado italic">servido de caché.</span>
     </h1>
 
-    <p class="text-lino/85 mx-auto mt-4 max-w-[30ch] text-sm leading-relaxed font-light sm:text-base">
+    <p class="text-suave/85 mx-auto mt-4 max-w-[30ch] text-sm leading-relaxed font-light sm:text-base">
       Desayunos, comidas y una barra que no tiene prisa. En Ladrón de Guevara,
       todos los días.
     </p>
@@ -48,7 +51,7 @@ import { negocio } from '../../data/negocio';
       <div class="flex items-center gap-2.5">
         <a
           href={`tel:${negocio.telefono.marcar}`}
-          class="border-oro/35 text-lino hover:border-oro/70 hover:text-crema inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[0.76rem] tracking-[0.1em] uppercase transition-colors duration-200"
+          class="border-acento/35 text-suave hover:border-acento/70 hover:text-texto inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[0.76rem] tracking-[0.1em] uppercase transition-colors duration-200"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-4 w-4">
             <path
@@ -62,7 +65,7 @@ import { negocio } from '../../data/negocio';
 
         <a
           href="#visitanos"
-          class="border-oro/35 text-lino hover:border-oro/70 hover:text-crema inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[0.76rem] tracking-[0.1em] uppercase transition-colors duration-200"
+          class="border-acento/35 text-suave hover:border-acento/70 hover:text-texto inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[0.76rem] tracking-[0.1em] uppercase transition-colors duration-200"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-4 w-4">
             <path
@@ -77,7 +80,7 @@ import { negocio } from '../../data/negocio';
       </div>
     </div>
 
-    <p class="text-humo mt-7 text-[0.7rem] tracking-[0.16em] uppercase">
+    <p class="text-tenue mt-7 text-[0.7rem] tracking-[0.16em] uppercase">
       {negocio.horario.textoCorto}
     </p>
   </div>
@@ -86,7 +89,7 @@ import { negocio } from '../../data/negocio';
   <a
     href="#la-casa"
     aria-label="Seguir leyendo"
-    class="text-oro/50 hover:text-oro absolute bottom-5 left-1/2 -translate-x-1/2 transition-colors"
+    class="text-acento/50 hover:text-acento absolute bottom-5 left-1/2 -translate-x-1/2 transition-colors"
   >
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="h-5 w-5">
       <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />

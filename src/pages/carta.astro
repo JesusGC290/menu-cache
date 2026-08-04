@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import Categoria from '../components/Categoria.astro';
 import Filigrana from '../components/Filigrana.astro';
 import Floron from '../components/Floron.astro';
+import BotonTema from '../components/BotonTema.astro';
 import { menus } from '../data/menu';
 import { negocio } from '../data/negocio';
 
@@ -26,15 +27,15 @@ const anio = new Date().getFullYear();
       format="webp"
       quality={84}
       loading="eager"
-      class="ring-oro/25 mx-auto h-auto w-full max-w-[17.5rem] rounded-lg ring-1 shadow-[0_18px_45px_-18px_rgb(0_0_0/0.95)] sm:max-w-[22rem]"
+      class="ring-acento/25 mx-auto h-auto w-full max-w-[17.5rem] rounded-lg ring-1 shadow-[var(--sombra-placa)] sm:max-w-[22rem]"
     />
 
     <p
-      class="text-oro/90 mt-4 text-[0.68rem] tracking-[0.34em] uppercase sm:text-[0.74rem]"
+      class="text-acento/90 mt-4 text-[0.68rem] tracking-[0.34em] uppercase sm:text-[0.74rem]"
     >
       Cocina mexicana
     </p>
-    <p class="font-display text-lino mt-2.5 text-lg leading-snug italic sm:text-xl">
+    <p class="font-display text-suave mt-2.5 text-lg leading-snug italic sm:text-xl">
       «De caché, como debe ser»
     </p>
     <Floron class="mt-5" color />
@@ -43,13 +44,13 @@ const anio = new Date().getFullYear();
   <!-- ═══════════ Navegación fija: menús + categorías ═══════════ -->
   <nav
     id="nav"
-    class="border-oro/22 bg-vino/88 sticky top-0 z-40 border-b shadow-[0_12px_28px_-16px_rgb(0_0_0/0.95)] backdrop-blur-lg"
+    class="border-acento/22 bg-barra/88 sticky top-0 z-40 border-b shadow-[var(--sombra-barra)] backdrop-blur-lg"
     aria-label="Navegación de la carta"
   >
     <!-- Pestañas de menú -->
-    <div class="mx-auto max-w-lg px-4 pt-2.5 pb-2">
+    <div class="mx-auto flex max-w-lg items-center gap-2 px-4 pt-2.5 pb-2">
       <div
-        class="border-oro/30 bg-uva/45 flex gap-1 rounded-full border p-1"
+        class="border-acento/30 bg-superficie/45 flex flex-1 gap-1 rounded-full border p-1"
         role="tablist"
         aria-label="Menús"
       >
@@ -70,6 +71,8 @@ const anio = new Date().getFullYear();
           ))
         }
       </div>
+
+      <BotonTema />
     </div>
 
     <!-- Carruseles de categorías (uno por menú) -->
@@ -81,7 +84,7 @@ const anio = new Date().getFullYear();
               {menu.categories.map((c) => (
                 <a
                   href={`#${c.id}`}
-                  class="chip text-lino/85 border-oro/22 hover:border-oro/50 hover:text-crema shrink-0 rounded-full border px-3 py-1 text-[0.72rem] tracking-[0.05em] whitespace-nowrap transition-colors duration-200"
+                  class="chip text-suave/85 border-acento/22 hover:border-acento/50 hover:text-texto shrink-0 rounded-full border px-3 py-1 text-[0.72rem] tracking-[0.05em] whitespace-nowrap transition-colors duration-200"
                   data-chip={c.id}
                 >
                   {c.title}
@@ -113,7 +116,7 @@ const anio = new Date().getFullYear();
             <h1 class="font-display text-oro-degradado text-[2.1rem] leading-none font-medium tracking-[0.08em] uppercase sm:text-4xl">
               {menu.title}
             </h1>
-            <p class="text-humo mt-2 text-[0.72rem] tracking-[0.2em] uppercase">
+            <p class="text-tenue mt-2 text-[0.72rem] tracking-[0.2em] uppercase">
               {menu.subtitle}
             </p>
           </div>
@@ -130,16 +133,16 @@ const anio = new Date().getFullYear();
       <Floron class="mb-7" color />
       <div class="relative px-8 py-7 text-center">
         <Filigrana />
-        <p class="text-humo text-[0.72rem] leading-relaxed tracking-[0.12em] uppercase">
+        <p class="text-tenue text-[0.72rem] leading-relaxed tracking-[0.12em] uppercase">
           Precios en pesos mexicanos · IVA incluido
         </p>
-        <p class="text-humo/70 mt-2 text-[0.68rem] leading-relaxed">
+        <p class="text-tenue mt-2 text-[0.68rem] leading-relaxed">
           Los precios y platillos están sujetos a cambio sin previo aviso.
         </p>
         <p class="font-display text-oro-degradado mt-5 text-lg tracking-[0.22em] uppercase">
           Caché
         </p>
-        <p class="text-humo/60 mt-1 text-[0.65rem] tracking-[0.2em] uppercase">
+        <p class="text-tenue mt-1 text-[0.65rem] tracking-[0.2em] uppercase">
           Restaurante · {anio}
         </p>
 
@@ -147,13 +150,13 @@ const anio = new Date().getFullYear();
         <div class="mt-6 flex flex-col items-center gap-2.5">
           <a
             href={`tel:${negocio.telefono.marcar}`}
-            class="border-oro/35 text-lino hover:border-oro/70 hover:text-crema inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[0.76rem] tracking-[0.1em] transition-colors duration-200"
+            class="border-acento/35 text-suave hover:border-acento/70 hover:text-texto inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[0.76rem] tracking-[0.1em] transition-colors duration-200"
           >
             {negocio.telefono.mostrar}
           </a>
           <a
             href="/"
-            class="text-oro/85 hover:text-oro text-[0.72rem] tracking-[0.14em] uppercase transition-colors"
+            class="text-acento/85 hover:text-acento text-[0.72rem] tracking-[0.14em] uppercase transition-colors"
           >
             Horario, ubicación y contacto →
           </a>
@@ -166,7 +169,7 @@ const anio = new Date().getFullYear();
   <button
     type="button"
     id="volver-arriba"
-    class="border-oro/40 bg-uva/90 text-oro pointer-events-none fixed right-4 bottom-4 z-40 flex h-11 w-11 items-center justify-center rounded-full border opacity-0 shadow-lg backdrop-blur-md transition-opacity duration-300"
+    class="border-acento/40 bg-superficie/90 text-acento pointer-events-none fixed right-4 bottom-4 z-40 flex h-11 w-11 items-center justify-center rounded-full border opacity-0 shadow-lg backdrop-blur-md transition-opacity duration-300"
     aria-label="Volver arriba"
   >
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5">
@@ -178,7 +181,7 @@ const anio = new Date().getFullYear();
 <style>
   /* Pestaña de menú activa: placa dorada */
   .boton-menu {
-    color: color-mix(in srgb, var(--color-lino) 88%, transparent);
+    color: color-mix(in srgb, var(--color-suave) 88%, transparent);
   }
   .boton-menu[aria-selected='true'] {
     background-image: linear-gradient(
@@ -204,11 +207,11 @@ const anio = new Date().getFullYear();
   }
   .desvanecido-izq {
     left: 0;
-    background: linear-gradient(90deg, var(--color-vino) 15%, transparent 100%);
+    background: linear-gradient(90deg, var(--color-barra) 15%, transparent 100%);
   }
   .desvanecido-der {
     right: 0;
-    background: linear-gradient(270deg, var(--color-vino) 15%, transparent 100%);
+    background: linear-gradient(270deg, var(--color-barra) 15%, transparent 100%);
   }
   [data-desplazable-izq='true'] .desvanecido-izq,
   [data-desplazable-der='true'] .desvanecido-der {
@@ -217,9 +220,9 @@ const anio = new Date().getFullYear();
 
   /* Categoría visible en pantalla */
   .chip[data-activo='true'] {
-    border-color: color-mix(in srgb, var(--color-oro) 85%, transparent);
-    background-color: color-mix(in srgb, var(--color-oro) 15%, transparent);
-    color: var(--color-oro-claro);
+    border-color: color-mix(in srgb, var(--color-acento) 85%, transparent);
+    background-color: color-mix(in srgb, var(--color-acento) 15%, transparent);
+    color: var(--color-acento-alto);
   }
 
   #volver-arriba[data-visible='true'] {

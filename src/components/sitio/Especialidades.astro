@@ -36,7 +36,7 @@ const destacados = [
 ---
 
 <section id="especialidades" class="scroll-mt-20 mx-auto max-w-xl px-5 py-16 sm:py-20">
-  <p class="text-oro/80 text-center text-[0.66rem] tracking-[0.34em] uppercase">
+  <p class="text-acento/80 text-center text-[0.66rem] tracking-[0.34em] uppercase">
     Lo que hay que pedir
   </p>
 
@@ -51,29 +51,29 @@ const destacados = [
   <ul class="mt-8 space-y-3.5">
     {
       destacados.map(({ etiqueta, producto, nota }) => (
-        <li class="border-oro/20 bg-uva/25 relative overflow-hidden rounded-lg border px-5 py-4">
-          <p class="text-oro/85 text-[0.62rem] tracking-[0.26em] uppercase">{etiqueta}</p>
+        <li class="border-acento/20 bg-superficie/25 relative overflow-hidden rounded-lg border px-5 py-4">
+          <p class="text-acento/85 text-[0.62rem] tracking-[0.26em] uppercase">{etiqueta}</p>
 
           <div class="mt-1.5 flex items-baseline gap-2">
-            <h3 class="font-display text-crema text-[1.15rem] leading-snug font-medium sm:text-xl">
+            <h3 class="font-display text-texto text-[1.15rem] leading-snug font-medium sm:text-xl">
               {producto.name}
             </h3>
-            <span class="border-oro/25 mb-1 flex-1 border-b border-dotted" />
+            <span class="border-acento/25 mb-1 flex-1 border-b border-dotted" />
             {producto.price && (
-              <span class="text-oro text-[0.92rem] font-medium tabular-nums">
+              <span class="text-acento text-[0.92rem] font-medium tabular-nums">
                 ${producto.price}
               </span>
             )}
           </div>
 
           {producto.description && (
-            <p class="text-lino/80 mt-1.5 text-[0.82rem] leading-relaxed font-light">
+            <p class="text-suave/80 mt-1.5 text-[0.82rem] leading-relaxed font-light">
               {producto.description}
             </p>
           )}
 
           {nota && producto.notaCategoria && (
-            <p class="text-oro/80 mt-2 text-[0.7rem] tracking-[0.14em] uppercase">
+            <p class="text-acento/80 mt-2 text-[0.7rem] tracking-[0.14em] uppercase">
               {producto.notaCategoria}
             </p>
           )}
@@ -85,7 +85,7 @@ const destacados = [
   <div class="mt-8 text-center">
     <a
       href="/carta"
-      class="border-oro/45 text-oro hover:bg-oro/10 hover:border-oro/75 inline-flex items-center gap-2 rounded-full border px-6 py-3 text-[0.78rem] tracking-[0.14em] uppercase transition-colors duration-200"
+      class="border-acento/45 text-acento hover:bg-acento/10 hover:border-acento/75 inline-flex items-center gap-2 rounded-full border px-6 py-3 text-[0.78rem] tracking-[0.14em] uppercase transition-colors duration-200"
     >
       Ver la carta completa
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-4 w-4">

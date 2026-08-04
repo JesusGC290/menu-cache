@@ -24,37 +24,37 @@ const precio = (valor: string) => `$${valor}`;
     </h2>
     {
       categoria.note && (
-        <p class="text-oro/85 mt-1.5 text-[0.7rem] tracking-[0.16em] uppercase">
+        <p class="text-acento/85 mt-1.5 text-[0.7rem] tracking-[0.16em] uppercase">
           {categoria.note}
         </p>
       )
     }
   </header>
 
-  <ul class="divide-oro/12 divide-y">
+  <ul class="divide-acento/12 divide-y">
     {
       categoria.products.map((p) => (
         <li class="py-3.5 first:pt-0">
           <div class="flex items-baseline gap-1.5">
-            <h3 class="font-display text-crema text-[1.15rem] leading-snug font-medium sm:text-xl">
+            <h3 class="font-display text-texto text-[1.15rem] leading-snug font-medium sm:text-xl">
               {p.name}
             </h3>
             <span class="guia-puntos"></span>
             {p.price && (
-              <span class="text-oro font-sans text-[0.95rem] font-medium tabular-nums sm:text-base">
+              <span class="text-acento font-sans text-[0.95rem] font-medium tabular-nums sm:text-base">
                 {precio(p.price)}
               </span>
             )}
           </div>
 
           {p.description && (
-            <p class="text-lino/85 mt-1 max-w-[46ch] text-[0.82rem] leading-relaxed font-light">
+            <p class="text-suave/85 mt-1 max-w-[46ch] text-[0.82rem] leading-relaxed font-light">
               {p.description}
             </p>
           )}
 
           {p.note && (
-            <p class="text-oro/80 mt-1.5 text-[0.74rem] leading-snug tracking-wide italic">
+            <p class="text-acento/80 mt-1.5 text-[0.74rem] leading-snug tracking-wide italic">
               {p.note}
             </p>
           )}

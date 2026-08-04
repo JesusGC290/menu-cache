@@ -6,6 +6,7 @@ import Especialidades from '../components/sitio/Especialidades.astro';
 import Visitanos from '../components/sitio/Visitanos.astro';
 import PieSitio from '../components/sitio/PieSitio.astro';
 import DatosEstructurados from '../components/sitio/DatosEstructurados.astro';
+import BotonTema from '../components/BotonTema.astro';
 ---
 
 <Layout
@@ -17,7 +18,7 @@ import DatosEstructurados from '../components/sitio/DatosEstructurados.astro';
   <!-- Barra que aparece al dejar la portada: siempre a un toque de la carta -->
   <div
     id="barra"
-    class="border-oro/20 bg-vino/92 pointer-events-none fixed inset-x-0 top-0 z-40 -translate-y-full border-b opacity-0 backdrop-blur-md transition-all duration-300"
+    class="border-acento/20 bg-barra/92 pointer-events-none fixed inset-x-0 top-0 z-40 -translate-y-full border-b opacity-0 backdrop-blur-md transition-all duration-300"
   >
     <div class="mx-auto flex max-w-xl items-center justify-between gap-3 px-5 py-2.5">
       <a
@@ -26,12 +27,15 @@ import DatosEstructurados from '../components/sitio/DatosEstructurados.astro';
       >
         Caché
       </a>
-      <a
-        href="/carta"
-        class="from-oro-claro via-oro to-oro-hondo text-vino inline-flex items-center rounded-full bg-gradient-to-b px-4 py-2 text-[0.7rem] font-medium tracking-[0.12em] uppercase"
-      >
-        Ver la carta
-      </a>
+      <div class="flex items-center gap-2">
+        <BotonTema />
+        <a
+          href="/carta"
+          class="from-oro-claro via-oro to-oro-hondo text-vino inline-flex items-center rounded-full bg-gradient-to-b px-4 py-2 text-[0.7rem] font-medium tracking-[0.12em] uppercase"
+        >
+          Ver la carta
+        </a>
+      </div>
     </div>
   </div>
 

@@ -15,7 +15,22 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#120a12" />
+    <meta name="theme-color" content="#120a12" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7efe0" media="(prefers-color-scheme: light)" />
+
+    <!--
+      Tema elegido por el usuario, aplicado ANTES de pintar. Si esto fuera un
+      script diferido, la página aparecería un instante en el tema equivocado.
+      Sin elección guardada no se toca nada y manda la preferencia del sistema.
+    -->
+    <script is:inline>
+      try {
+        const tema = localStorage.getItem('tema');
+        if (tema === 'claro' || tema === 'oscuro') {
+          document.documentElement.dataset.tema = tema;
+        }
+      } catch {}
+    </script>
     <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
