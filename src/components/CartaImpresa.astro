@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import logo from '../assets/cache-logo.png';
+// Asset propio de imprenta: 1194 px de ancho, recortado del logotipo en alta
+// resolución (cache-logo-h.jpeg). Da hasta 3.98 in a 300 DPI.
+import logo from '../assets/cache-logo-impresion.png';
 import { menus } from '../data/menu';
 import '../styles/impresion.css';
 
@@ -91,14 +93,18 @@ const pesoDeMenu = (menu: (typeof menus)[number]) =>
         <header class="cabecera">
           {cara.id === 'vuelta' ? (
             <Fragment>
-              {/* PNG sin recomprimir y a resolución nativa: es material de imprenta */}
+              {/* PNG sin recomprimir y a resolución nativa: es material de imprenta.
+                  `loading="eager"` es obligatorio aquí: con carga diferida el
+                  navegador puede mandar la hoja a imprimir antes de bajar la
+                  imagen y el logotipo saldría en blanco en el PDF. */}
               <Image
                 src={logo}
                 alt="Caché Restaurante"
-                widths={[760]}
-                sizes="2.5in"
+                widths={[1194]}
+                sizes="3.5in"
                 format="png"
                 quality={100}
+                loading="eager"
                 class="placa"
               />
               <p class="marca-bajada" style="margin-top:0.12in">

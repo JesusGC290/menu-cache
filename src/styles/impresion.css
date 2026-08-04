@@ -201,13 +201,13 @@ body {
   margin: 0.07in 0 0;
 }
 
-/* El logotipo es un PNG de 760 px de ancho: a 300 DPI (lo que pide imprenta)
-   sólo alcanza para 2.53 in. Más grande sale suave o pixeleado. Para usarlo
-   en tamaño mayor hace falta el original vectorial o un PNG de 2000 px+. */
+/* El asset de imprenta tiene 1194 px de ancho: a 3.5 in queda en 341 DPI, con
+   holgura sobre los 300 que pide imprenta. El techo son 3.98 in (justo 300),
+   pero a partir de 3.6 in la vuelta se queda sin aire para las bebidas. */
 .placa {
   display: block;
   margin: 0 auto;
-  width: 2.5in;
+  width: 3.5in;
   height: auto;
   border: 0.5pt solid var(--filete);
 }

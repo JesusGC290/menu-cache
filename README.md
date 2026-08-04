@@ -163,10 +163,10 @@ Para un QR de una sección específica se le agrega el ancla de la categoría, p
 Además de la web hay dos páginas que generan la carta impresa, **desde el mismo
 `menu.ts`**: si cambia un precio, cambian el QR y el PDF a la vez.
 
-| Ruta                 | Paleta                                  |
-| -------------------- | --------------------------------------- |
-| `/impresion/claro`   | Marfil con tinta vino y oro             |
-| `/impresion/oscuro`  | Morado, igual que la web                |
+| Ruta                 | Paleta                                  |                      |
+| -------------------- | --------------------------------------- | -------------------- |
+| `/impresion/claro`   | Marfil con tinta vino y oro             | **la que se trabaja** |
+| `/impresion/oscuro`  | Morado, igual que la web                | alterna              |
 
 **Formato:** doble carta plana, dos caras.
 
@@ -207,11 +207,21 @@ Dos reglas de composición que conviene no romper:
 - Un **encabezado de categoría nunca queda huérfano** al pie de una columna
   (`break-after: avoid`), ni se corta un producto a la mitad.
 
+### El logotipo de la vuelta
+
+Sale de `cache-logo-h.jpeg` (1206 × 818). Se le recortó el marco negro analizando el brillo
+de cada fila y columna, y se guardó como PNG sin pérdida en
+`src/assets/cache-logo-impresion.png` (**1194 × 789**), para no recomprimir un JPEG en
+material de imprenta.
+
+- Se imprime a **3.5 in → 341 DPI**, con holgura sobre los 300 que pide imprenta.
+- El techo son **3.98 in** (justo 300 DPI). Pero de 3.6 in en adelante la vuelta se queda
+  sin aire para las bebidas, así que 3.5 in es el tope práctico.
+- Lleva `loading="eager"` a propósito: con carga diferida el navegador puede mandar la hoja
+  a imprimir antes de bajar la imagen y **el logotipo saldría en blanco en el PDF**.
+
 ### Pendientes de producción
 
-- **El logotipo va limitado a 2.5 in.** El PNG disponible tiene 760 px de ancho: a 300 DPI
-  eso da 2.53 in como máximo. Con el original vectorial (AI, EPS o SVG) o un PNG de 2000 px
-  se puede usar mucho más grande.
 - **El PDF sale en RGB.** El dorado `#d4a437` y el morado se van a correr un poco al
   convertirse a CMYK en imprenta. Si el color importa, conviene pedirle a la imprenta la
   conversión con perfil, o una prueba de color antes del tiraje.
