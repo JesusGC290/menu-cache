@@ -884,8 +884,7 @@ const bebidas: Menu = {
         },
         {
           name: 'Vaso Tejuichela',
-          description:
-            'Preparación de tejuino, limón y sal. Cerveza a elección.',
+          description: 'Preparación de tejuino, limón y sal.',
           price: '39',
         },
         {
