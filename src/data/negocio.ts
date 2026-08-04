@@ -37,8 +37,19 @@ export const negocio = {
     mostrar: '382 690 8583',
   },
 
-  /** Aún no existe la línea de WhatsApp: mientras sea null, no se dibuja el botón. */
-  whatsapp: null as null | { numero: string; mensaje: string },
+  /**
+   * WhatsApp. `wa.me` exige el número con lada de país y sin signos ni espacios:
+   * 52 + 3319116034. El mensaje va precargado en el chat para que el comensal
+   * no tenga que escribir nada.
+   *
+   * Si algún día se cae la línea, se pone en `null` y el botón desaparece solo,
+   * en lugar de quedar un enlace que no contesta.
+   */
+  whatsapp: {
+    numero: '523319116034',
+    mostrar: '33 1911 6034',
+    mensaje: 'Hola, quiero hacer una reservación en Caché.',
+  } as { numero: string; mostrar: string; mensaje: string } | null,
 
   instagram: {
     usuario: 'cache.restaurante',
