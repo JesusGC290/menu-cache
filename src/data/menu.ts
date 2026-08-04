@@ -129,7 +129,7 @@ const desayunos: Menu = {
       products: [
         {
           name: 'Omelette al Gusto',
-          description: 'Mexicana, salchicha, jamón, chorizo y tocino.',
+          description: 'Mexicana, salchicha, jamón, chorizo o tocino.',
           price: '149',
           note: 'Con espinaca, flor de calabaza o panela asada: más $10',
         },
