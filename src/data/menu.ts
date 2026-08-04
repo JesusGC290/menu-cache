@@ -644,6 +644,7 @@ const bebidas: Menu = {
           description: 'Especialidad de la casa.',
           price: '79',
         },
+        { name: 'Chocolate Caliente', price: '59' },
       ],
     },
     {
