@@ -1,336 +1,67 @@
 ---
-import { Image } from 'astro:assets';
-import logo from '../assets/cache-logo.png';
 import Layout from '../layouts/Layout.astro';
-import Categoria from '../components/Categoria.astro';
-import Filigrana from '../components/Filigrana.astro';
-import Floron from '../components/Floron.astro';
-import { menus } from '../data/menu';
-
-const anio = new Date().getFullYear();
+import Portada from '../components/sitio/Portada.astro';
+import Historia from '../components/sitio/Historia.astro';
+import Especialidades from '../components/sitio/Especialidades.astro';
+import Visitanos from '../components/sitio/Visitanos.astro';
+import PieSitio from '../components/sitio/PieSitio.astro';
+import DatosEstructurados from '../components/sitio/DatosEstructurados.astro';
 ---
 
 <Layout
-  title="Caché Restaurante · Carta"
-  description="Carta completa de Caché Restaurante: desayunos, comidas y bebidas. Cocina mexicana de caché."
+  title="Caché Restaurante · Cocina mexicana en Guadalajara"
+  description="Cocina mexicana en Ladrón de Guevara, Guadalajara. Desayunos, comidas y bebidas todos los días de 8 am a 10 pm. Vea la carta completa."
 >
-  <!-- ═══════════ Portada ═══════════ -->
-  <header class="mx-auto max-w-lg px-5 pt-8 pb-6 text-center sm:pt-12">
-    <!-- La placa del logotipo trae su propio marco de filigrana -->
-    <Image
-      src={logo}
-      alt="Caché Restaurante"
-      widths={[320, 560, 760]}
-      sizes="(min-width: 640px) 22rem, 17.5rem"
-      format="webp"
-      quality={84}
-      loading="eager"
-      class="ring-oro/25 mx-auto h-auto w-full max-w-[17.5rem] rounded-lg ring-1 shadow-[0_18px_45px_-18px_rgb(0_0_0/0.95)] sm:max-w-[22rem]"
-    />
+  <DatosEstructurados slot="head" />
 
-    <p
-      class="text-oro/90 mt-4 text-[0.68rem] tracking-[0.34em] uppercase sm:text-[0.74rem]"
-    >
-      Cocina mexicana
-    </p>
-    <p class="font-display text-lino mt-2.5 text-lg leading-snug italic sm:text-xl">
-      «De caché, como debe ser»
-    </p>
-    <Floron class="mt-5" color />
-  </header>
-
-  <!-- ═══════════ Navegación fija: menús + categorías ═══════════ -->
-  <nav
-    id="nav"
-    class="border-oro/22 bg-vino/88 sticky top-0 z-40 border-b shadow-[0_12px_28px_-16px_rgb(0_0_0/0.95)] backdrop-blur-lg"
-    aria-label="Navegación de la carta"
+  <!-- Barra que aparece al dejar la portada: siempre a un toque de la carta -->
+  <div
+    id="barra"
+    class="border-oro/20 bg-vino/92 pointer-events-none fixed inset-x-0 top-0 z-40 -translate-y-full border-b opacity-0 backdrop-blur-md transition-all duration-300"
   >
-    <!-- Pestañas de menú -->
-    <div class="mx-auto max-w-lg px-4 pt-2.5 pb-2">
-      <div
-        class="border-oro/30 bg-uva/45 flex gap-1 rounded-full border p-1"
-        role="tablist"
-        aria-label="Menús"
+    <div class="mx-auto flex max-w-xl items-center justify-between gap-3 px-5 py-2.5">
+      <a
+        href="#"
+        class="font-display text-oro-degradado text-base tracking-[0.2em] uppercase"
       >
-        {
-          menus.map((menu, i) => (
-            <button
-              type="button"
-              role="tab"
-              id={`tab-${menu.id}`}
-              class="boton-menu font-sans flex-1 rounded-full px-2 py-2 text-[0.78rem] font-medium tracking-[0.1em] uppercase transition-colors duration-200"
-              data-menu={menu.id}
-              aria-selected={i === 0 ? 'true' : 'false'}
-              aria-controls={`panel-${menu.id}`}
-              tabindex={i === 0 ? 0 : -1}
-            >
-              {menu.tab}
-            </button>
-          ))
-        }
-      </div>
+        Caché
+      </a>
+      <a
+        href="/carta"
+        class="from-oro-claro via-oro to-oro-hondo text-vino inline-flex items-center rounded-full bg-gradient-to-b px-4 py-2 text-[0.7rem] font-medium tracking-[0.12em] uppercase"
+      >
+        Ver la carta
+      </a>
     </div>
+  </div>
 
-    <!-- Carruseles de categorías (uno por menú) -->
-    {
-      menus.map((menu, i) => (
-        <div class="relative" data-carrusel={menu.id} hidden={i !== 0}>
-          <div class="carrusel-categorias no-scrollbar overflow-x-auto">
-            <div class="mx-auto flex w-max gap-1.5 px-4 pb-2.5">
-              {menu.categories.map((c) => (
-                <a
-                  href={`#${c.id}`}
-                  class="chip text-lino/85 border-oro/22 hover:border-oro/50 hover:text-crema shrink-0 rounded-full border px-3 py-1 text-[0.72rem] tracking-[0.05em] whitespace-nowrap transition-colors duration-200"
-                  data-chip={c.id}
-                >
-                  {c.title}
-                </a>
-              ))}
-            </div>
-          </div>
-          {/* Insinúa que la fila de categorías sigue hacia los lados */}
-          <span class="desvanecido-izq" aria-hidden="true"></span>
-          <span class="desvanecido-der" aria-hidden="true"></span>
-        </div>
-      ))
-    }
-  </nav>
-
-  <!-- ═══════════ Paneles de la carta ═══════════ -->
-  <main class="mx-auto max-w-lg px-5 pb-24">
-    {
-      menus.map((menu, i) => (
-        <div
-          class="panel-menu"
-          id={`panel-${menu.id}`}
-          data-panel={menu.id}
-          role="tabpanel"
-          aria-labelledby={`tab-${menu.id}`}
-          hidden={i !== 0}
-        >
-          <div class="pt-7 pb-1 text-center">
-            <h1 class="font-display text-oro-degradado text-[2.1rem] leading-none font-medium tracking-[0.08em] uppercase sm:text-4xl">
-              {menu.title}
-            </h1>
-            <p class="text-humo mt-2 text-[0.72rem] tracking-[0.2em] uppercase">
-              {menu.subtitle}
-            </p>
-          </div>
-
-          {menu.categories.map((categoria) => (
-            <Categoria categoria={categoria} />
-          ))}
-        </div>
-      ))
-    }
-
-    <!-- ═══════════ Cierre ═══════════ -->
-    <footer class="mt-16">
-      <Floron class="mb-7" color />
-      <div class="relative px-8 py-7 text-center">
-        <Filigrana />
-        <p class="text-humo text-[0.72rem] leading-relaxed tracking-[0.12em] uppercase">
-          Precios en pesos mexicanos · IVA incluido
-        </p>
-        <p class="text-humo/70 mt-2 text-[0.68rem] leading-relaxed">
-          Los precios y platillos están sujetos a cambio sin previo aviso.
-        </p>
-        <p class="font-display text-oro-degradado mt-5 text-lg tracking-[0.22em] uppercase">
-          Caché
-        </p>
-        <p class="text-humo/60 mt-1 text-[0.65rem] tracking-[0.2em] uppercase">
-          Restaurante · {anio}
-        </p>
-      </div>
-    </footer>
-  </main>
-
-  <!-- Volver arriba -->
-  <button
-    type="button"
-    id="volver-arriba"
-    class="border-oro/40 bg-uva/90 text-oro pointer-events-none fixed right-4 bottom-4 z-40 flex h-11 w-11 items-center justify-center rounded-full border opacity-0 shadow-lg backdrop-blur-md transition-opacity duration-300"
-    aria-label="Volver arriba"
-  >
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-5 w-5">
-      <path d="M12 19V5M6 11l6-6 6 6" stroke-linecap="round" stroke-linejoin="round" />
-    </svg>
-  </button>
+  <Portada />
+  <Historia />
+  <Especialidades />
+  <Visitanos />
+  <PieSitio />
 </Layout>
 
 <style>
-  /* Pestaña de menú activa: placa dorada */
-  .boton-menu {
-    color: color-mix(in srgb, var(--color-lino) 88%, transparent);
-  }
-  .boton-menu[aria-selected='true'] {
-    background-image: linear-gradient(
-      180deg,
-      var(--color-oro-claro) 0%,
-      var(--color-oro) 55%,
-      var(--color-oro-hondo) 100%
-    );
-    color: var(--color-vino);
-    box-shadow: 0 1px 10px -2px color-mix(in srgb, var(--color-oro) 55%, transparent);
-  }
-
-  /* Degradados laterales del carrusel de categorías */
-  .desvanecido-izq,
-  .desvanecido-der {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1.75rem;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 200ms ease;
-  }
-  .desvanecido-izq {
-    left: 0;
-    background: linear-gradient(90deg, var(--color-vino) 15%, transparent 100%);
-  }
-  .desvanecido-der {
-    right: 0;
-    background: linear-gradient(270deg, var(--color-vino) 15%, transparent 100%);
-  }
-  [data-desplazable-izq='true'] .desvanecido-izq,
-  [data-desplazable-der='true'] .desvanecido-der {
+  #barra[data-visible='true'] {
     opacity: 1;
-  }
-
-  /* Categoría visible en pantalla */
-  .chip[data-activo='true'] {
-    border-color: color-mix(in srgb, var(--color-oro) 85%, transparent);
-    background-color: color-mix(in srgb, var(--color-oro) 15%, transparent);
-    color: var(--color-oro-claro);
-  }
-
-  #volver-arriba[data-visible='true'] {
-    opacity: 1;
+    transform: translateY(0);
     pointer-events: auto;
   }
 </style>
 
 <script>
-  // ── Estado: qué menú se está viendo ──────────────────────────────
-  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[data-menu]')];
-  const paneles = [...document.querySelectorAll<HTMLElement>('[data-panel]')];
-  const carruseles = [...document.querySelectorAll<HTMLElement>('[data-carrusel]')];
-  const scrollers = [...document.querySelectorAll<HTMLElement>('.carrusel-categorias')];
-  const nav = document.getElementById('nav');
+  // La barra aparece cuando la portada sale de pantalla
+  const barra = document.getElementById('barra');
+  const portada = document.querySelector('header');
 
-  // Degradados laterales: sólo se pintan si de verdad hay más categorías
-  const marcarDesvanecidos = (scroller: HTMLElement) => {
-    const envoltura = scroller.parentElement;
-    if (!envoltura) return;
-    const sobra = scroller.scrollWidth - scroller.clientWidth;
-    envoltura.dataset.desplazableIzq = String(scroller.scrollLeft > 4);
-    envoltura.dataset.desplazableDer = String(scroller.scrollLeft < sobra - 4);
-  };
-
-  const activarMenu = (id: string, irArriba = true) => {
-    tabs.forEach((t) => {
-      const activo = t.dataset.menu === id;
-      t.setAttribute('aria-selected', String(activo));
-      t.tabIndex = activo ? 0 : -1;
-    });
-    paneles.forEach((p) => (p.hidden = p.dataset.panel !== id));
-    carruseles.forEach((c) => (c.hidden = c.dataset.carrusel !== id));
-
-    // Un carrusel oculto mide 0: se recalcula ya que está visible
-    scrollers.forEach(marcarDesvanecidos);
-
-    if (irArriba && nav) {
-      // Deja el navegador pegado al borde superior tras cambiar de menú
-      const y = nav.offsetTop;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-  };
-
-  tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => activarMenu(tab.dataset.menu!));
-
-    // Navegación con flechas, como se espera de un role="tablist"
-    tab.addEventListener('keydown', (e) => {
-      const paso = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-      if (!paso) return;
-      e.preventDefault();
-      const siguiente = tabs[(i + paso + tabs.length) % tabs.length];
-      activarMenu(siguiente.dataset.menu!);
-      siguiente.focus();
-    });
-  });
-
-  // ── Enlace directo: #categoria abre el menú que la contiene ──────
-  const menuDeCategoria = (idCategoria: string) =>
-    paneles.find((p) => p.querySelector(`[data-categoria="${idCategoria}"]`))?.dataset.panel;
-
-  const abrirDesdeHash = () => {
-    const id = decodeURIComponent(location.hash.replace('#', ''));
-    if (!id) return;
-
-    const idMenu = paneles.some((p) => p.dataset.panel === id) ? id : menuDeCategoria(id);
-    if (!idMenu) return;
-
-    activarMenu(idMenu, false);
-    // El panel ya está visible: ahora sí se puede medir el destino
-    requestAnimationFrame(() =>
-      document.getElementById(id)?.scrollIntoView({ block: 'start' }),
+  if (barra && portada) {
+    const observador = new IntersectionObserver(
+      ([entrada]) => {
+        barra.dataset.visible = String(!entrada.isIntersecting);
+      },
+      { rootMargin: '-70% 0px 0px 0px', threshold: 0 },
     );
-  };
-
-  abrirDesdeHash();
-  window.addEventListener('hashchange', abrirDesdeHash);
-
-  // ── Categoría activa mientras se hace scroll ─────────────────────
-  const chips = [...document.querySelectorAll<HTMLAnchorElement>('[data-chip]')];
-  const secciones = [...document.querySelectorAll<HTMLElement>('[data-categoria]')];
-
-  const marcarChip = (idCategoria: string) => {
-    chips.forEach((chip) => {
-      const activo = chip.dataset.chip === idCategoria;
-      chip.dataset.activo = String(activo);
-
-      // Mantiene el chip activo a la vista sin mover la página
-      if (activo) {
-        const carrusel = chip.closest<HTMLElement>('.carrusel-categorias');
-        if (!carrusel) return;
-        const destino =
-          chip.offsetLeft - carrusel.clientWidth / 2 + chip.clientWidth / 2;
-        carrusel.scrollTo({ left: Math.max(0, destino), behavior: 'smooth' });
-      }
-    });
-  };
-
-  // Se observa una banda delgada justo debajo del navegador fijo
-  const observador = new IntersectionObserver(
-    (entradas) => {
-      const visibles = entradas
-        .filter((e) => e.isIntersecting)
-        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-
-      if (visibles[0]) marcarChip((visibles[0].target as HTMLElement).dataset.categoria!);
-    },
-    { rootMargin: '-30% 0px -60% 0px', threshold: 0 },
-  );
-
-  secciones.forEach((s) => observador.observe(s));
-
-  scrollers.forEach((s) => {
-    marcarDesvanecidos(s);
-    s.addEventListener('scroll', () => marcarDesvanecidos(s), { passive: true });
-  });
-  window.addEventListener('resize', () => scrollers.forEach(marcarDesvanecidos));
-
-  // ── Volver arriba ────────────────────────────────────────────────
-  const botonArriba = document.getElementById('volver-arriba');
-  botonArriba?.addEventListener('click', () =>
-    window.scrollTo({ top: 0, behavior: 'smooth' }),
-  );
-
-  const alternarBoton = () => {
-    if (botonArriba) botonArriba.dataset.visible = String(window.scrollY > 600);
-  };
-  alternarBoton();
-  window.addEventListener('scroll', alternarBoton, { passive: true });
+    observador.observe(portada);
+  }
 </script>

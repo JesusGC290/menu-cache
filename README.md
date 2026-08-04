@@ -8,6 +8,31 @@ Hecho con **Astro + Tailwind CSS**. Sitio 100 % estático, listo para GitHub + C
 
 ---
 
+## Estructura del sitio
+
+| Ruta                | Qué es                                                          |
+| ------------------- | --------------------------------------------------------------- |
+| `/`                 | Presentación: portada, la casa, especialidades, horario y contacto |
+| `/carta`            | **La carta completa. Es el destino del QR.**                     |
+| `/impresion/claro`  | Carta para imprenta, paleta marfil (la que se trabaja)          |
+| `/impresion/oscuro` | Carta para imprenta, paleta morada                              |
+
+**El QR apunta a `/carta`**, no a la portada: quien escanea en la mesa quiere la carta de
+inmediato. La portada existe para el tráfico de Google e Instagram, y desde el pie de la
+carta hay un enlace de vuelta para horario y teléfono.
+
+### Datos del negocio
+
+Todo lo de contacto vive en `src/data/negocio.ts`, y de ahí salen la portada, el pie, los
+botones y los datos estructurados de Google. **Regla: nada de marcadores de plantilla en
+producción.** Si un dato no existe se deja en `null` y la sección no se dibuja — por eso hoy
+no hay botón de WhatsApp. En cuanto exista la línea se llena `whatsapp` y el botón aparece
+solo, sin tocar código.
+
+Las especialidades de la portada **se leen de `menu.ts`**, no se teclean aparte: así la
+portada no puede anunciar un precio que la carta ya cambió. Si un platillo se renombra, el
+build truena en lugar de dejar el hueco en silencio.
+
 ## Cómo está armada
 
 | Menú          | Categorías | Productos |
@@ -150,11 +175,12 @@ site: 'https://cache.soyshua.dev',
 
 ### 4. Generar el QR
 
-Ya con `https://cache.soyshua.dev` en línea, el QR se apunta a esa URL. Al vivir en un
-dominio propio, el QR impreso **no se vuelve a imprimir** aunque cambie el hosting.
+Ya con el sitio en línea, el QR se apunta a **`https://cache.soyshua.dev/carta`** (la carta,
+no la portada). Al vivir en un dominio propio, el QR impreso **no se vuelve a imprimir**
+aunque cambie el hosting.
 
 Para un QR de una sección específica se le agrega el ancla de la categoría, por ejemplo
-`https://cache.soyshua.dev/#micheladas`.
+`https://cache.soyshua.dev/carta#micheladas`.
 
 ---
 

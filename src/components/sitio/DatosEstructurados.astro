@@ -1,0 +1,44 @@
+---
+import { negocio } from '../../data/negocio';
+
+/**
+ * Datos estructurados schema.org/Restaurant. Es lo que le permite a Google
+ * mostrar horario, teléfono y ubicación directamente en los resultados y en
+ * Maps. Sale de `negocio.ts`, así que no puede contradecir al sitio.
+ */
+const sitio = Astro.site?.toString().replace(/\/$/, '') ?? '';
+
+const datos = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: negocio.nombre,
+  description:
+    'Cocina mexicana en Guadalajara. Desayunos, comidas y bebidas, todos los días.',
+  servesCuisine: 'Mexicana',
+  priceRange: '$$',
+  url: sitio || undefined,
+  hasMenu: sitio ? `${sitio}/carta` : undefined,
+  image: sitio ? `${sitio}/cache-logo.jpg` : undefined,
+  telephone: negocio.telefono.marcar,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `${negocio.direccion.calle}, ${negocio.direccion.colonia}`,
+    postalCode: negocio.direccion.cp,
+    addressLocality: negocio.direccion.ciudad,
+    addressRegion: negocio.direccion.estado,
+    addressCountry: negocio.direccion.pais,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: negocio.horario.dias,
+      opens: negocio.horario.abre,
+      closes: negocio.horario.cierra,
+    },
+  ],
+  sameAs: [negocio.instagram.url],
+  acceptsReservations: true,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(datos)} is:inline />

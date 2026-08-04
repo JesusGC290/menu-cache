@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../assets/cache-logo.png';
+import Floron from '../Floron.astro';
+import { negocio } from '../../data/negocio';
+---
+
+<header class="relative mx-auto flex min-h-[100svh] max-w-xl flex-col justify-center px-5 py-12">
+  <div class="text-center">
+    <Image
+      src={logo}
+      alt="Caché Restaurante"
+      widths={[360, 640, 1194]}
+      sizes="(min-width: 640px) 26rem, 19rem"
+      format="webp"
+      quality={86}
+      loading="eager"
+      class="ring-oro/25 mx-auto h-auto w-full max-w-[19rem] rounded-lg ring-1 shadow-[0_22px_55px_-20px_rgb(0_0_0/0.95)] sm:max-w-[26rem]"
+    />
+
+    <p class="text-oro/90 mt-6 text-[0.7rem] tracking-[0.34em] uppercase sm:text-xs">
+      {negocio.descripcionCorta}
+    </p>
+
+    <h1
+      class="font-display text-crema mt-4 text-[1.75rem] leading-[1.15] font-medium sm:text-4xl"
+    >
+      Lo de siempre,<br />
+      <span class="text-oro-degradado italic">servido de caché.</span>
+    </h1>
+
+    <p class="text-lino/85 mx-auto mt-4 max-w-[30ch] text-sm leading-relaxed font-light sm:text-base">
+      Desayunos, comidas y una barra que no tiene prisa. En Ladrón de Guevara,
+      todos los días.
+    </p>
+
+    <Floron class="mt-7" color />
+
+    <!-- Acción principal: la carta. Es lo que la gente viene a buscar. -->
+    <div class="mt-7 flex flex-col items-center gap-3">
+      <a
+        href="/carta"
+        class="from-oro-claro via-oro to-oro-hondo text-vino focus-visible:outline-oro inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-gradient-to-b px-7 py-3.5 text-[0.82rem] font-medium tracking-[0.14em] uppercase shadow-[0_6px_22px_-6px_rgb(212_164_55/0.6)] transition-transform duration-200 hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-4"
+      >
+        Ver la carta
+      </a>
+
+      <div class="flex items-center gap-2.5">
+        <a
+          href={`tel:${negocio.telefono.marcar}`}
+          class="border-oro/35 text-lino hover:border-oro/70 hover:text-crema inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[0.76rem] tracking-[0.1em] uppercase transition-colors duration-200"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-4 w-4">
+            <path
+              d="M6.6 3h3l1.5 4-2 1.4a12 12 0 0 0 5.5 5.5l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Llamar
+        </a>
+
+        <a
+          href="#visitanos"
+          class="border-oro/35 text-lino hover:border-oro/70 hover:text-crema inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[0.76rem] tracking-[0.1em] uppercase transition-colors duration-200"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-4 w-4">
+            <path
+              d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle cx="12" cy="10" r="2.4" />
+          </svg>
+          Cómo llegar
+        </a>
+      </div>
+    </div>
+
+    <p class="text-humo mt-7 text-[0.7rem] tracking-[0.16em] uppercase">
+      {negocio.horario.textoCorto}
+    </p>
+  </div>
+
+  <!-- Insinúa que hay más abajo -->
+  <a
+    href="#la-casa"
+    aria-label="Seguir leyendo"
+    class="text-oro/50 hover:text-oro absolute bottom-5 left-1/2 -translate-x-1/2 transition-colors"
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="h-5 w-5">
+      <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </a>
+</header>
