@@ -14,8 +14,12 @@ Hecho con **Astro + Tailwind CSS**. Sitio 100 % estático, listo para GitHub + C
 | ------------------- | --------------------------------------------------------------- |
 | `/`                 | Presentación: portada, la casa, especialidades, horario y contacto |
 | `/carta`            | **La carta completa. Es el destino del QR.**                     |
+| `/carta-impresa`    | **Muestra del pliego impreso, para compartir por enlace**        |
 | `/impresion/claro`  | Carta para imprenta, paleta marfil (la que se trabaja)          |
 | `/impresion/oscuro` | Carta para imprenta, paleta morada                              |
+
+Las tres versiones salen del mismo `menu.ts`, así que un cambio de precio entra a las tres
+a la vez.
 
 **El QR apunta a `/carta`**, no a la portada: quien escanea en la mesa quiere la carta de
 inmediato. La portada existe para el tráfico de Google e Instagram, y desde el pie de la
@@ -237,6 +241,34 @@ Además de la web hay dos páginas que generan la carta impresa, **desde el mism
 - Marcas de corte en las cuatro esquinas, dentro del sangrado.
 - Zona segura de 0.35 in dentro del corte.
 - Frente: Desayunos y Comidas a tres columnas. Vuelta: logotipo y Bebidas a dos columnas.
+
+### Muestra para compartir: `/carta-impresa`
+
+Es **el mismo pliego que va a imprenta**, en paleta marfil, para verse en pantalla y
+compartirse por enlace. No se descarga: se ve. Sin el letrero de producción y **sin un solo
+botón ni enlace** (verificado en el HTML compilado: 0 de cada uno).
+
+El problema a resolver era el tamaño: el pliego mide 1080 px de ancho y un celular tiene 390.
+
+- La hoja se **escala al ancho disponible** (0.34 en un celular de 390 px) y nunca se agranda
+  más allá de 1:1 en escritorio.
+- El `viewport` **no lleva `user-scalable=no`**, así que para leer un precio se acerca con los
+  dedos, igual que en un PDF.
+- El contenedor de cada hoja se encoge al alto ya escalado; si no, quedaría un hueco enorme
+  debajo.
+- Se recalcula cuando cargan las tipografías y al girar el teléfono, porque el alto cambia.
+
+Sobre la legibilidad, para tenerlo claro: a 0.34 **se ve la composición completa, pero para
+leer hay que acercar**. Eso es inherente a mostrar una hoja de 11 × 17 in en un celular, y es
+como se comporta cualquier PDF. Para leer la carta en el teléfono sin acercar está `/carta`,
+que es justo para eso.
+
+La hoja va envuelta en `.encuadre`, que es `display: contents` por omisión: no altera ni el
+impreso ni las páginas de producción, y sólo la muestra lo convierte en caja para escalar.
+
+`noindex` a propósito: repetiría el contenido de `/carta` y las dos competirían por la misma
+búsqueda. No impide compartir el enlace, y sí lleva metadatos de Open Graph para que se vea
+bien al pegarlo en WhatsApp.
 
 ### Generar el PDF
 

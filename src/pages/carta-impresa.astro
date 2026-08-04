@@ -1,0 +1,91 @@
+---
+import Impresion from '../layouts/Impresion.astro';
+import CartaImpresa from '../components/CartaImpresa.astro';
+
+/**
+ * Muestra digital de la carta impresa, para compartir por enlace.
+ *
+ * Es exactamente el mismo pliego que va a imprenta (paleta marfil), sin el
+ * letrero de producción y sin un solo botón. No se descarga: se ve.
+ *
+ * El reto es el tamaño: el pliego mide 11.25 × 17.25 in, o sea 1080 px de
+ * ancho, y un celular tiene 390. Se escala para que quepa a lo ancho, y como
+ * el viewport no lleva `user-scalable=no`, quien quiera leer un precio puede
+ * acercar con los dedos, igual que en un PDF.
+ */
+---
+
+<Impresion
+  title="Caché Restaurante · Carta"
+  description="La carta completa de Caché Restaurante: desayunos, comidas y bebidas."
+  compartible
+>
+  <main class="muestra">
+    <CartaImpresa tema="claro" conAviso={false} />
+  </main>
+</Impresion>
+
+<style>
+  /* Fondo cálido y oscuro para que el papel marfil se lea como papel */
+  :global(body.tiene-muestra) {
+    background: #241d22;
+    padding: 0;
+    display: block;
+  }
+
+  .muestra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.75rem, 3vw, 2rem);
+    padding: clamp(0.75rem, 3vw, 2rem);
+  }
+
+  /* El contenedor deja de ser transparente y recorta la hoja escalada */
+  .muestra :global(.encuadre) {
+    display: block;
+    width: 100%;
+    max-width: 11.25in; /* nunca se agranda más allá del tamaño real */
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 0.4rem 2rem rgb(0 0 0 / 0.5);
+  }
+
+  .muestra :global(.hoja) {
+    transform-origin: top left;
+    /* Valor inicial por si el script no alcanza a correr: en pantallas de
+       menos de 1080 px se verá con corte horizontal, nunca en blanco. */
+    transform: scale(var(--escala, 1));
+  }
+
+  /* La sombra la pone el contenedor, no la hoja */
+  .muestra :global(.hoja) {
+    box-shadow: none;
+  }
+</style>
+
+<script>
+  // Ajusta la hoja al ancho disponible. No agranda por encima de 1:1.
+  const encuadres = [...document.querySelectorAll<HTMLElement>('.encuadre')];
+
+  const ajustar = () => {
+    for (const enc of encuadres) {
+      const hoja = enc.querySelector<HTMLElement>('.hoja');
+      if (!hoja) continue;
+
+      // offsetWidth/Height ignoran el transform, así que dan la medida real
+      const escala = Math.min(1, enc.clientWidth / hoja.offsetWidth);
+      hoja.style.setProperty('--escala', String(escala));
+      // El contenedor se encoge al alto ya escalado: si no, deja un hueco enorme
+      enc.style.height = `${hoja.offsetHeight * escala}px`;
+    }
+  };
+
+  document.body.classList.add('tiene-muestra');
+  ajustar();
+
+  // Las tipografías cambian el alto al cargar: se recalcula cuando terminan
+  document.fonts?.ready.then(ajustar);
+  addEventListener('resize', ajustar);
+  addEventListener('orientationchange', ajustar);
+</script>

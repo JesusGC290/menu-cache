@@ -9,8 +9,13 @@ import '../styles/impresion.css';
 interface Props {
   /** Paleta de impresión: marfil con tinta vino, u oscura como la web. */
   tema: 'claro' | 'oscuro';
+  /**
+   * Letrero con las medidas e instrucciones para generar el PDF. Va sólo en
+   * las páginas de producción; en la muestra pública estorba.
+   */
+  conAviso?: boolean;
 }
-const { tema } = Astro.props;
+const { tema, conAviso = true } = Astro.props;
 
 const porId = (id: string) => menus.find((m) => m.id === id)!;
 const desayunos = porId('desayunos');
@@ -53,9 +58,8 @@ const pesoDeMenu = (menu: (typeof menus)[number]) =>
   }, 0);
 ---
 
-{/* Marcas de corte: 4 esquinas, dos trazos cada una, dibujados en el sangrado */}
 {
-  (
+  conAviso && (
     <Fragment>
       <div class="aviso">
         <h1>Carta para imprenta · paleta {tema}</h1>
@@ -76,6 +80,10 @@ const pesoDeMenu = (menu: (typeof menus)[number]) =>
 
 {
   caras.map((cara) => (
+    /* `.encuadre` es `display: contents` por omisión, así que no altera ni el
+       impreso ni la vista de producción. La muestra pública lo convierte en
+       caja para poder escalar la hoja y que quepa en un celular. */
+    <div class="encuadre">
     <section class={`hoja tema-${tema}`} data-cara={cara.id}>
       <div class="marcas" aria-hidden="true">
         <span class="h h1" />
@@ -195,5 +203,6 @@ const pesoDeMenu = (menu: (typeof menus)[number]) =>
         </footer>
       </div>
     </section>
+    </div>
   ))
 }

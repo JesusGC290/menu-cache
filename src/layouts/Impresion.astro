@@ -1,23 +1,52 @@
 ---
 /**
- * Layout mínimo para las cartas de imprenta: sin navegación, sin JavaScript
- * y sin el CSS del sitio, para que nada interfiera con las medidas de la hoja.
+ * Layout mínimo para las cartas en pliego: sin navegación ni CSS del sitio,
+ * para que nada interfiera con las medidas de la hoja.
+ *
+ * Lo usan las dos páginas de producción (`/impresion/*`, para generar el PDF)
+ * y la muestra pública (`/carta-impresa`), que es la misma hoja para verse en
+ * pantalla.
  */
 interface Props {
   title: string;
+  /** Descripción y vista previa al compartir el enlace (sólo la muestra). */
+  description?: string;
+  compartible?: boolean;
 }
-const { title } = Astro.props;
+const { title, description, compartible = false } = Astro.props;
+const og = Astro.site ? new URL('/cache-logo.jpg', Astro.site).toString() : undefined;
 ---
 
 <!doctype html>
 <html lang="es-MX">
   <head>
     <meta charset="UTF-8" />
+    {/* Sin `user-scalable=no`: en la muestra hace falta acercar con los dedos */}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <!-- Es material interno de producción: no debe aparecer en buscadores -->
+    {description && <meta name="description" content={description} />}
+
+    {/*
+      Fuera de buscadores. En las páginas de producción porque son material
+      interno; en la muestra porque repetiría el contenido de /carta y las dos
+      competirían por la misma búsqueda. Esto no impide compartir el enlace.
+    */}
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {
+      compartible && (
+        <Fragment>
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content={title} />
+          {description && <meta property="og:description" content={description} />}
+          {og && <meta property="og:image" content={og} />}
+          <meta property="og:locale" content="es_MX" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="theme-color" content="#241d22" />
+        </Fragment>
+      )
+    }
   </head>
   <body>
     <slot />

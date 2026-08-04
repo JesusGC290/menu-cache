@@ -77,6 +77,11 @@ body {
   print-color-adjust: exact;
 }
 
+/* Contenedor de la hoja: transparente salvo que la muestra pública lo active */
+.encuadre {
+  display: contents;
+}
+
 /* ── La hoja ─────────────────────────────────────────────────────────── */
 .hoja {
   position: relative;
