@@ -372,7 +372,7 @@ body {
    sólo el espacio; y como es una hoja plana de dos caras, nunca se ven juntas
    y la diferencia de espaciado no se percibe. */
 .hoja[data-cara='vuelta'] .producto {
-  margin-bottom: 0.148in;
+  margin-bottom: 0.139in;
 }
 
 .hoja[data-cara='vuelta'] .categoria {

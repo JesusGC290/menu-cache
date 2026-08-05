@@ -2,8 +2,8 @@
   "generado": "npm run exportar (no editar a mano)",
   "fuente": "src/data/menu.ts",
   "totales": {
-    "productos": 159,
-    "con_gramaje": 130,
+    "productos": 160,
+    "con_gramaje": 131,
     "categorias": 33
   },
   "menus": [
@@ -965,6 +965,13 @@
               "gramaje": "300 ml",
               "descripcion": "Fermento a base de piña, piloncillo y especias: clavo de olor, canela, pimienta gorda y anís.",
               "precio": 59,
+              "nota": null
+            },
+            {
+              "producto": "Cazuela",
+              "gramaje": "500 ml",
+              "descripcion": "Squirt, naranja, lima, toronja, limón y sal.",
+              "precio": 89,
               "nota": null
             }
           ]

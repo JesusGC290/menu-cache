@@ -889,6 +889,12 @@ const bebidas: Menu = {
             'Fermento a base de piña, piloncillo y especias: clavo de olor, canela, pimienta gorda y anís.',
           price: '59',
         },
+        {
+          name: 'Cazuela',
+          gramaje: '500 ml',
+          description: 'Squirt, naranja, lima, toronja, limón y sal.',
+          price: '89',
+        },
       ],
     },
     {

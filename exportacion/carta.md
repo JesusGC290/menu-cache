@@ -1,6 +1,6 @@
 # Caché Restaurante · Carta completa
 
-**159 productos** en 33 categorías · 130 con gramaje declarado.
+**160 productos** en 33 categorías · 131 con gramaje declarado.
 
 > Generado con `npm run exportar` desde `src/data/menu.ts`. No editar a mano.
 
@@ -221,7 +221,7 @@ _34 productos._
 
 ## Bebidas
 
-_73 productos._
+_74 productos._
 
 ### Café
 
@@ -266,6 +266,7 @@ _73 productos._
 | Canica | 350 ml | Soda lima limón con granadina. | $49 |  |
 | Tejuino | 400 ml | Fermento a base de maíz nixtamalizado, piloncillo y limón. | $65 |  |
 | Tepache | 300 ml | Fermento a base de piña, piloncillo y especias: clavo de olor, canela, pimienta gorda y anís. | $59 |  |
+| Cazuela | 500 ml | Squirt, naranja, lima, toronja, limón y sal. | $89 |  |
 
 ### Vino Tinto
 
@@ -364,7 +365,7 @@ _73 productos._
 
 ## Estado de las porciones
 
-- **130** con gramaje propio.
+- **131** con gramaje propio.
 - **5** sin campo propio, pero su categoría lo declara por todos.
 - **24** sin porción declarada en ningún lado.
 
