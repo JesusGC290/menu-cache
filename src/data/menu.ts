@@ -166,6 +166,7 @@ const desayunos: Menu = {
         },
         {
           name: 'Plato de Chilorio',
+          gramaje: '100 g de chilorio',
           description:
             'A la mexicana con huevo, acompañado de frijoles refritos, aguacate y queso fresco.',
           price: '149',
@@ -337,6 +338,7 @@ const desayunos: Menu = {
       products: [
         {
           name: 'Burrito de Machaca',
+          gramaje: '50 g de machaca',
           description:
             'Un burrito de tortilla de harina relleno de machaca a la mexicana, acompañado de papas fritas.',
           price: '179',
