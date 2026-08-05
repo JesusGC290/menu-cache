@@ -20,3 +20,4 @@ pnpm-debug.log*
 
 # documentos fuente de la carta (se quedan locales, no se publican)
 *.docx
+entrega/

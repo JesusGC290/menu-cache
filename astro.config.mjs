@@ -4,8 +4,11 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  // Dominio final del menú. Sólo afecta la URL canónica y la imagen para redes.
-  site: 'https://cache.soyshua.dev',
+  // Dominio del sitio. Afecta la URL canónica, la imagen para redes sociales y
+  // los datos estructurados de Google. Se cambia con la variable de entorno
+  // SITE_URL al compilar, sin tocar código:
+  //   SITE_URL=https://cacherestaurante.com npm run build
+  site: process.env.SITE_URL ?? 'https://cache.soyshua.dev',
   vite: {
     plugins: [tailwindcss()],
   },
