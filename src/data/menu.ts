@@ -80,7 +80,8 @@ const desayunos: Menu = {
         },
         {
           name: 'Plato de Fruta con Yogurt',
-          description: 'Con fruta del día.',
+          gramaje: '60 g de yogurt',
+          description: 'Con fruta del día y granola.',
           price: '109',
         },
       ],
