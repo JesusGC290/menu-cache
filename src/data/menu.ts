@@ -94,49 +94,42 @@ const desayunos: Menu = {
           description:
             'Tira de maíz frita bañada en salsa de jitomate y serrano. Coronados con cebolla, queso fresco, crema y cilantro.',
           price: '149',
-          note: 'Con huevo $169 o pollo $169',
         },
         {
           name: 'Verdes',
           description:
             'Tira de maíz frita bañada en salsa de tomate verde, chile serrano, cilantro, cebolla y epazote. Coronados con cebolla, queso fresco, crema y cilantro.',
           price: '149',
-          note: 'Con huevo $169 o pollo $169',
         },
         {
           name: 'Enchipotlados',
           description:
             'Tira de maíz frita bañada en salsa de jitomate, cebolla, chile chipotle y crema. Coronados con cebolla, queso fresco, crema y cilantro.',
           price: '149',
-          note: 'Con huevo $169 o pollo $169',
         },
         {
           name: 'Enmolados',
           description:
             'Tira de maíz frita bañada en mole de la casa, acompañados de queso fresco, cebolla morada y ajonjolí.',
           price: '169',
-          note: 'Con pollo $189 o huevo $189',
         },
         {
           name: 'Entre Chilaquiles',
           description:
             'Delicado omelette bañado en chilaquiles a elección. Coronados con cebolla, queso fresco, crema y cilantro.',
           price: '169',
-          note: 'Con pollo $189',
         },
         {
           name: 'Poblanos',
           description:
             'Tira de maíz frita bañada en salsa poblana, con elote, flor de calabaza, cebolla, queso fresco, crema y cilantro.',
           price: '169',
-          note: 'Con pollo o huevo $189',
         },
         {
           name: 'Tatemados',
           description:
             'Tira de maíz frita bañada en salsa tatemada de tomate verde y jitomate. Coronados con cebolla, queso fresco, crema y cilantro.',
           price: '149',
-          note: 'Con huevo $169 o pollo $169',
         },
         {
           name: 'Chilaquiles Caché',
@@ -151,7 +144,7 @@ const desayunos: Menu = {
           price: '190',
         },
       ],
-      note: 'Con chorizo, chicharrón, asada o suadero 80 g: más $60 · Huevo 1 pza · Pollo 80 g',
+      note: 'Con chorizo, chicharrón, asada o suadero 80 g: más $60 · Huevo 1 pza: más $20 · Pollo 80 g: más $40',
     },
     {
       id: 'huevos',
@@ -194,6 +187,7 @@ const desayunos: Menu = {
         },
         {
           name: 'Huevos con Machaca',
+          gramaje: '2 huevos',
           description:
             'Huevos revueltos con machaca, guisados a la mexicana. Acompañados de frijol con queso fresco, aguacate y tortillas de harina.',
           price: '169',
@@ -207,6 +201,7 @@ const desayunos: Menu = {
         },
         {
           name: 'Huevos Caché',
+          gramaje: '2 huevos',
           description:
             'Huevo pochado montado en nido de papa, bañado en crema de chipotle, tocino crujiente, espinaca y queso.',
           price: '169',
@@ -433,6 +428,7 @@ const desayunos: Menu = {
         },
         {
           name: 'Pechuga Empanizada',
+          gramaje: '140 g de pechuga, 100 g de papas',
           description: 'Con guarnición de papas fritas.',
           price: '119',
         },
