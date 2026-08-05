@@ -362,12 +362,21 @@ body {
   margin: 0.012in 0 0;
 }
 
-/* La vuelta lleva menos contenido (72 bebidas, de descripción corta). A tres
-   columnas quedaba un tercio de hoja en blanco, así que va a dos: la medida
-   se ensancha, se lee mejor y el texto llena la hoja. */
-.hoja[data-cara='vuelta'] .columnas {
-  column-count: 2;
-  column-gap: 0.4in;
+/* La vuelta iba a dos columnas cuando las bebidas no declaraban volumen. Al
+   entrar los mililitros creció 1.07 in por encima de la hoja —se caían siete
+   productos—, así que vuelve a tres, como el frente.
+
+   A tres columnas sobra hoja: quedaban 3 in de blanco abajo, que se leían
+   como que a la carta se le acabó el contenido. Se reparte ese aire entre los
+   renglones para que la mancha llene la hoja. El cuerpo de texto NO cambia,
+   sólo el espacio; y como es una hoja plana de dos caras, nunca se ven juntas
+   y la diferencia de espaciado no se percibe. */
+.hoja[data-cara='vuelta'] .producto {
+  margin-bottom: 0.148in;
+}
+
+.hoja[data-cara='vuelta'] .categoria {
+  margin-bottom: 0.3in;
 }
 
 /* ── Pie de hoja ─────────────────────────────────────────────────────── */

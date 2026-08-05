@@ -715,19 +715,48 @@ const bebidas: Menu = {
       id: 'cafe',
       title: 'Café',
       products: [
-        { name: 'Café Americano', description: 'Refill.', price: '59' },
-        { name: 'Espresso', description: '1 carga de café.', price: '45' },
-        { name: 'Espresso Doble', description: '2 cargas de café.', price: '59' },
+        {
+          name: 'Café Americano',
+          gramaje: '450 ml',
+          description: 'Refill.',
+          price: '59',
+        },
+        {
+          name: 'Espresso',
+          gramaje: '30 ml',
+          description: '1 carga de café.',
+          price: '45',
+        },
+        {
+          name: 'Espresso Doble',
+          gramaje: '60 ml',
+          description: '2 cargas de café.',
+          price: '59',
+        },
         {
           name: 'Café de Olla',
+          gramaje: '450 ml',
           description: 'Café, canela, anís y piloncillo.',
           price: '59',
         },
-        { name: 'Latte', price: '79' },
-        { name: 'Capuccino', price: '79' },
-        { name: 'Capuccino Baileys', price: '149' },
+        {
+          name: 'Latte',
+          gramaje: '220 ml',
+          price: '79',
+        },
+        {
+          name: 'Capuccino',
+          gramaje: '180 ml',
+          price: '79',
+        },
+        {
+          name: 'Capuccino Baileys',
+          gramaje: '180 ml',
+          price: '149',
+        },
         {
           name: 'Café Lechero',
+          gramaje: '400 ml',
           description: 'Especialidad de la casa.',
           price: '79',
         },
@@ -738,65 +767,120 @@ const bebidas: Menu = {
       id: 'refrescos',
       title: 'Refrescos',
       products: [
-        { name: 'Coca Cola', description: 'Regular, Zero o Light.', price: '55' },
-        { name: 'Fanta, Sprite o Manzanita', price: '55' },
-        { name: 'Squirt', price: '55' },
-        { name: 'Topo Chico', price: '55' },
-        { name: 'Topo Chico Sangría', price: '55' },
-        { name: 'Tonicol', price: '55' },
-        { name: 'Fuze Tea', description: 'Durazno o limón.', price: '55' },
-        { name: 'Agua Mineralizada (Ciel)', price: '55' },
-        { name: 'Jugo del Valle Manzana Kids', price: '25' },
-        { name: 'Agua Ciel Natural', price: '35' },
+        {
+          name: 'Coca Cola',
+          gramaje: '355 ml',
+          description: 'Regular, Zero o Light.',
+          price: '55',
+        },
+        {
+          name: 'Fanta, Sprite o Manzanita',
+          gramaje: '355 ml',
+          price: '55',
+        },
+        {
+          name: 'Squirt',
+          gramaje: '600 ml',
+          price: '55',
+        },
+        {
+          name: 'Topo Chico',
+          gramaje: '600 ml',
+          price: '55',
+        },
+        {
+          name: 'Topo Chico Sangría',
+          gramaje: '600 ml',
+          price: '55',
+        },
+        {
+          name: 'Tonicol',
+          gramaje: '600 ml',
+          price: '55',
+        },
+        {
+          name: 'Fuze Tea',
+          gramaje: '600 ml',
+          description: 'Durazno o limón.',
+          price: '55',
+        },
+        {
+          name: 'Agua Mineralizada (Ciel)',
+          gramaje: '350 ml',
+          price: '55',
+        },
+        {
+          name: 'Jugo del Valle Manzana Kids',
+          gramaje: '250 ml',
+          price: '25',
+        },
+        {
+          name: 'Agua Ciel Natural',
+          gramaje: '600 ml',
+          price: '35',
+        },
       ],
     },
     {
       id: 'sin-alcohol',
       title: 'Bebidas sin Alcohol',
       products: [
-        { name: 'Jugo Natural de Naranja', description: '350 ml.', price: '59' },
+        {
+          name: 'Jugo Natural de Naranja',
+          gramaje: '350 ml',
+          price: '59',
+        },
         {
           name: 'Jugo Verde Natural',
+          gramaje: '350 ml',
           description: 'Piña, naranja, perejil, apio y espinaca.',
           price: '69',
         },
         {
           name: 'Limonada',
+          gramaje: '350 ml',
           description: 'Mineral o natural, con jarabe natural.',
           price: '59',
         },
         {
           name: 'Naranjada',
+          gramaje: '350 ml',
           description: 'Mineral o natural, con jarabe natural.',
           price: '59',
         },
         {
           name: 'Aguas Frescas',
+          gramaje: '400 ml',
           description: 'Avena, jamaica, piña o pepino con hierbabuena.',
           price: '49',
         },
         {
           name: 'Piñada',
+          gramaje: '400 ml',
           description: 'Crema de coco, jugo de piña y leche evaporada.',
           price: '79',
         },
         {
           name: 'Pantera Rosa',
+          gramaje: '400 ml',
           description: 'Crema de coco, fresa y granadina.',
           price: '79',
         },
         {
           name: 'Canica',
+          gramaje: '350 ml',
           description: 'Soda lima limón con granadina.',
           price: '49',
         },
         {
           name: 'Tejuino',
+          gramaje: '400 ml',
           description: 'Fermento a base de maíz nixtamalizado, piloncillo y limón.',
           price: '65',
         },
         {
           name: 'Tepache',
+          gramaje: '300 ml',
           description:
             'Fermento a base de piña, piloncillo y especias: clavo de olor, canela, pimienta gorda y anís.',
           price: '59',
@@ -809,6 +893,7 @@ const bebidas: Menu = {
       products: [
         {
           name: 'Copa de Vino de la Casa',
+          gramaje: '50 ml',
           description: 'La Cetto, Cabernet Sauvignon.',
           price: '89',
         },
@@ -820,22 +905,26 @@ const bebidas: Menu = {
       products: [
         {
           name: 'Clericot',
+          gramaje: '300 ml',
           description:
             'Jugo de naranja, limón, soda de manzana y un toque de vino tinto, decorado con nuez y fruta de temporada.',
           price: '79',
         },
         {
           name: 'Sangría',
+          gramaje: '300 ml',
           description: 'Limón, jarabe, agua mineral y vino tinto.',
           price: '79',
         },
         {
           name: 'Tinto de Verano',
+          gramaje: '300 ml',
           description: 'Soda lima limón, vino tinto y jugo de limón.',
           price: '79',
         },
         {
           name: 'Mimosas',
+          gramaje: '180 ml',
           description:
             'Jugo a elección: naranja, arándano o piña, con vino espumoso.',
           price: '99',
@@ -849,26 +938,31 @@ const bebidas: Menu = {
       products: [
         {
           name: 'Mazapán',
+          gramaje: '400 ml',
           description: 'Pieza de mazapán, helado de vainilla y leche.',
           price: '89',
         },
         {
           name: 'Oreo',
+          gramaje: '400 ml',
           description: 'Galleta Oreo, helado de vainilla, chocolate y leche.',
           price: '89',
         },
         {
           name: 'Chocolate',
+          gramaje: '400 ml',
           description: 'Jarabe de chocolate, helado de chocolate y leche.',
           price: '89',
         },
         {
           name: 'Fresa',
+          gramaje: '400 ml',
           description: 'Fresa natural, helado de fresa y leche.',
           price: '89',
         },
         {
           name: 'Frappuccino',
+          gramaje: '400 ml',
           description: 'Carga de espresso, leche y chocolate.',
           price: '79',
         },
@@ -879,8 +973,18 @@ const bebidas: Menu = {
       title: 'Smoothies',
       note: 'Con agua o leche entera o deslactosada',
       products: [
-        { name: 'Mango', description: 'Mango natural y jarabe.', price: '69' },
-        { name: 'Fresa', description: 'Fresa natural y jarabe.', price: '69' },
+        {
+          name: 'Mango',
+          gramaje: '400 ml',
+          description: 'Mango natural y jarabe.',
+          price: '69',
+        },
+        {
+          name: 'Fresa',
+          gramaje: '400 ml',
+          description: 'Fresa natural y jarabe.',
+          price: '69',
+        },
       ],
     },
     {
@@ -889,26 +993,31 @@ const bebidas: Menu = {
       products: [
         {
           name: 'Manzana Muck',
+          gramaje: '350 ml',
           description: 'Jugo de manzana, jarabe, limón y ginger ale.',
           price: '79',
         },
         {
           name: 'Frutos Rojos Muck',
+          gramaje: '350 ml',
           description: 'Frutos rojos, jarabe, limón, arándano y ginger ale.',
           price: '79',
         },
         {
           name: 'Maracuyá Muck',
+          gramaje: '300 ml',
           description: 'Pulpa de maracuyá, jarabe, limón y piña.',
           price: '79',
         },
         {
           name: 'Pepino Muck',
+          gramaje: '300 ml',
           description: 'Pepino natural, jarabe, limón y jugo de piña.',
           price: '79',
         },
         {
           name: 'Tejuino Muck',
+          gramaje: '400 ml',
           description: 'Tejuino, limón, jugo de piña y agua mineral.',
           price: '79',
         },
@@ -920,11 +1029,13 @@ const bebidas: Menu = {
       products: [
         {
           name: 'Carajilla',
+          gramaje: '200 ml',
           description: 'Licor Baileys y 1 carga de espresso.',
           price: '159',
         },
         {
           name: 'Carajillo',
+          gramaje: '200 ml',
           description: 'Licor 43 y 1 carga de espresso.',
           price: '159',
         },
@@ -934,20 +1045,76 @@ const bebidas: Menu = {
       id: 'cerveza',
       title: 'Cerveza',
       products: [
-        { name: 'Tecate Roja', price: '49' },
-        { name: 'Tecate Light', price: '49' },
-        { name: 'Carta Blanca', price: '49' },
-        { name: 'Miller High Life', price: '69' },
-        { name: 'Heineken', price: '69' },
-        { name: 'Heineken Barril', price: '75' },
-        { name: 'Heineken 0.0', price: '49' },
-        { name: 'Bohemia Clara', price: '69' },
-        { name: 'Bohemia Cristal', price: '69' },
-        { name: 'Bohemia Obscura', price: '69' },
-        { name: 'Indio', price: '45' },
-        { name: 'XX Lager', price: '45' },
-        { name: 'XX Ámbar', price: '45' },
-        { name: 'Amstel Ultra', price: '69' },
+        {
+          name: 'Tecate Roja',
+          gramaje: '325 ml',
+          price: '49',
+        },
+        {
+          name: 'Tecate Light',
+          gramaje: '325 ml',
+          price: '49',
+        },
+        {
+          name: 'Carta Blanca',
+          gramaje: '300 ml',
+          price: '49',
+        },
+        {
+          name: 'Miller High Life',
+          gramaje: '355 ml',
+          price: '69',
+        },
+        {
+          name: 'Heineken',
+          gramaje: '355 ml',
+          price: '69',
+        },
+        {
+          name: 'Heineken Barril',
+          gramaje: '355 ml',
+          price: '75',
+        },
+        {
+          name: 'Heineken 0.0',
+          gramaje: '355 ml',
+          price: '49',
+        },
+        {
+          name: 'Bohemia Clara',
+          gramaje: '355 ml',
+          price: '69',
+        },
+        {
+          name: 'Bohemia Cristal',
+          gramaje: '355 ml',
+          price: '69',
+        },
+        {
+          name: 'Bohemia Obscura',
+          gramaje: '355 ml',
+          price: '69',
+        },
+        {
+          name: 'Indio',
+          gramaje: '325 ml',
+          price: '45',
+        },
+        {
+          name: 'XX Lager',
+          gramaje: '325 ml',
+          price: '45',
+        },
+        {
+          name: 'XX Ámbar',
+          gramaje: '325 ml',
+          price: '45',
+        },
+        {
+          name: 'Amstel Ultra',
+          gramaje: '355 ml',
+          price: '69',
+        },
       ],
     },
     {
@@ -956,43 +1123,51 @@ const bebidas: Menu = {
       products: [
         {
           name: 'Vaso Michelado',
+          gramaje: '90 ml',
           description:
             'Escarchado con Tajín, salsas negras, limón, sal y clamato.',
           price: '30',
         },
         {
           name: 'Vaso Ruso',
+          gramaje: '30 ml',
           description: 'Escarcha de sal y jugo de limón.',
           price: '15',
         },
         {
           name: 'Vaso Cubano',
+          gramaje: '45 ml',
           description: 'Escarchado con sal, jugo de limón y salsas negras.',
           price: '25',
         },
         {
           name: 'Vaso Tejuichela',
+          gramaje: '90 ml',
           description: 'Preparación de tejuino, limón y sal.',
           price: '39',
         },
         {
           name: 'Tejuichela Caché',
+          gramaje: '300 ml',
           description: 'Tejuino, sal de grano, limón y cerveza de la casa.',
           price: '119',
         },
         {
           name: 'Michelada de Fresa',
+          gramaje: '600 ml',
           description:
             'Limón, concentrado de fresa, cerveza, tamarindo y pica fresa.',
           price: '149',
         },
         {
           name: 'Michelada de Tamarindo',
+          gramaje: '600 ml',
           description: 'Limón, pulpa de tamarindo, cerveza y dulce de tamarindo.',
           price: '149',
         },
         {
           name: 'Michelada de Mango',
+          gramaje: '600 ml',
           description: 'Limón, pulpa de mango, cerveza y gomitas de mango.',
           price: '149',
         },
@@ -1004,16 +1179,19 @@ const bebidas: Menu = {
       products: [
         {
           name: 'Aperol Spritz',
+          gramaje: '250 ml',
           description: 'Vino espumoso, agua mineral y Aperol. Naranja fresca.',
           price: '149',
         },
         {
           name: '43 Spritz',
+          gramaje: '250 ml',
           description: 'Vino espumoso, agua mineral, limón y Licor 43.',
           price: '159',
         },
         {
           name: 'Hugo Spritz',
+          gramaje: '250 ml',
           description: 'Licor de flor de saúco, agua mineral y vino espumoso.',
           price: '169',
         },

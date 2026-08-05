@@ -82,11 +82,13 @@ const totalProductos = menus.reduce(
                   `loading="eager"` es obligatorio aquí: con carga diferida el
                   navegador puede mandar la hoja a imprimir antes de bajar la
                   imagen y el logotipo saldría en blanco en el PDF. */}
+              {/* Sin `widths` ni `sizes`: en una hoja impresa hay UNA resolución
+                  correcta, y dejar selección responsiva sólo abre la puerta a que
+                  el navegador elija una variante chica y el logotipo salga a 96 DPI.
+                  Así se sirve el PNG íntegro de 1194 px → 341 DPI a 3.5 in. */}
               <Image
                 src={logo}
                 alt="Caché Restaurante"
-                widths={[1194]}
-                sizes="3.5in"
                 format="png"
                 quality={100}
                 loading="eager"
