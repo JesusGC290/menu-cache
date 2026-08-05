@@ -166,9 +166,9 @@ const desayunos: Menu = {
         },
         {
           name: 'Plato de Chilorio',
-          gramaje: '100 g de chilorio',
+          gramaje: '100 g de chilorio, 1 pza de huevo',
           description:
-            'A la mexicana con huevo, acompañado de frijoles refritos, aguacate y queso fresco.',
+            'A la mexicana, acompañado de frijoles refritos, aguacate y queso fresco.',
           price: '149',
         },
         {
@@ -188,9 +188,9 @@ const desayunos: Menu = {
         },
         {
           name: 'Huevos con Machaca',
-          gramaje: '2 huevos',
+          gramaje: '2 huevos, 50 g de machaca',
           description:
-            'Huevos revueltos con machaca, guisados a la mexicana. Acompañados de frijol con queso fresco, aguacate y tortillas de harina.',
+            'Revueltos y guisados a la mexicana. Acompañados de frijol con queso fresco, aguacate y tortillas de harina.',
           price: '169',
         },
         {
@@ -222,20 +222,23 @@ const desayunos: Menu = {
       products: [
         {
           name: 'Toast de Jamón Serrano',
+          gramaje: '30 g de jamón serrano',
           description:
-            'Aguacate, jamón serrano y 1 huevo estrellado. Acompañado de ensalada dulce con espinaca.',
+            'Con aguacate y 1 huevo estrellado. Acompañado de ensalada dulce con espinaca.',
           price: '149',
         },
         {
           name: 'Toast de Salmón',
+          gramaje: '100 g de salmón',
           description:
-            'Salmón, aderezo de yogurt griego y pesto de finas hierbas. Acompañado de ensalada dulce con espinaca y plátano macho.',
+            'Con aderezo de yogurt griego y pesto de finas hierbas. Acompañado de ensalada dulce con espinaca y plátano macho.',
           price: '199',
         },
         {
           name: 'Toast de Aguacate',
+          gramaje: '50 g de tocino, 50 g de panela',
           description:
-            'Panela, tocino, aguacate y huevo. Acompañado de ensalada dulce con espinaca.',
+            'Con aguacate y huevo. Acompañado de ensalada dulce con espinaca.',
           price: '149',
         },
       ],
@@ -340,19 +343,21 @@ const desayunos: Menu = {
           name: 'Burrito de Machaca',
           gramaje: '50 g de machaca',
           description:
-            'Un burrito de tortilla de harina relleno de machaca a la mexicana, acompañado de papas fritas.',
+            'Tortilla de harina con machaca a la mexicana, acompañado de papas fritas.',
           price: '179',
         },
         {
           name: 'Burrito a la Mexicana',
+          gramaje: '2 huevos',
           description:
-            'Un burrito de tortilla de harina relleno de huevo a la mexicana, acompañado de frijoles.',
+            'Tortilla de harina con huevo a la mexicana, acompañado de frijoles.',
           price: '139',
         },
         {
           name: 'Burrito de Carne Asada',
+          gramaje: '100 g de carne',
           description:
-            'Un burrito de tortilla de harina relleno de carne asada, queso y frijoles.',
+            'Tortilla de harina con carne asada, queso y frijoles.',
           price: '169',
         },
       ],
