@@ -272,7 +272,7 @@ _74 productos._
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Copa de Vino de la Casa | 50 ml | La Cetto, Cabernet Sauvignon. | $89 |  |
+| Copa de Vino de la Casa | 150 ml | La Cetto, Cabernet Sauvignon. | $89 |  |
 
 ### Cócteles con Vino
 

@@ -903,7 +903,7 @@ const bebidas: Menu = {
       products: [
         {
           name: 'Copa de Vino de la Casa',
-          gramaje: '50 ml',
+          gramaje: '150 ml',
           description: 'La Cetto, Cabernet Sauvignon.',
           price: '89',
         },
