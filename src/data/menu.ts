@@ -145,7 +145,7 @@ const desayunos: Menu = {
           price: '190',
         },
       ],
-      note: 'Con chorizo, chicharrón, asada o suadero 80 g: más $60 · Huevo 1 pza: más $20 · Pollo 80 g: más $40',
+      note: 'Con chorizo, chicharrón o asada 80 g: más $60 · Huevo 1 pza: más $20 · Pollo 80 g: más $40',
     },
     {
       id: 'huevos',
@@ -156,7 +156,7 @@ const desayunos: Menu = {
           gramaje: '2 pzas de huevo, 60 g de proteína',
           description: 'Mexicana, salchicha, jamón, chorizo o tocino.',
           price: '149',
-          note: 'Con espinaca, flor de calabaza o panela asada: más $10',
+          note: 'Con espinaca, flor de calabaza o panela asada: más $30',
         },
         {
           name: 'Embarazada de Huevo',
@@ -167,18 +167,18 @@ const desayunos: Menu = {
         },
         {
           name: 'Plato de Chilorio',
-          gramaje: '100 g de chilorio, 1 pza de huevo',
+          gramaje: '100 g de chilorio, 2 pzas de huevo',
           description:
             'A la mexicana, acompañado de frijoles refritos, aguacate y queso fresco.',
-          price: '149',
+          price: '179',
         },
         {
           name: 'Huevos al Gusto',
           gramaje: '2 huevos',
           description:
-            'Estrellados o revueltos. A la mexicana, jamón, tocino, salchicha o chorizo.',
+            'Estrellados o revueltos. A la mexicana, jamón, tocino, salchicha o chorizo. Acompañados de frijoles refritos, aguacate y queso fresco.',
           price: '139',
-          note: 'Con espinaca, flor de calabaza o panela asada: más $10',
+          note: 'Con espinaca, flor de calabaza o panela asada: más $30',
         },
         {
           name: 'Huevos Rancheros',
@@ -192,7 +192,7 @@ const desayunos: Menu = {
           gramaje: '2 huevos, 50 g de machaca',
           description:
             'Revueltos y guisados a la mexicana. Acompañados de frijol con queso fresco, aguacate y tortillas de harina.',
-          price: '169',
+          price: '179',
         },
         {
           name: 'Tradicional Huevo Ahogado',
@@ -211,15 +211,14 @@ const desayunos: Menu = {
         {
           name: 'Desayuno Americano',
           gramaje: '2 huevos',
-          description: 'Al gusto, con tocino, hot cakes y 3 papas hash brown.',
-          price: '149',
+          description: 'Al gusto, con tocino, hot cakes, papa hash brown y café.',
+          price: '159',
         },
       ],
     },
     {
       id: 'toast',
       title: 'Toast',
-      note: 'Nuestros toast son de 3 panes',
       products: [
         {
           name: 'Toast de Jamón Serrano',
@@ -342,7 +341,7 @@ const desayunos: Menu = {
       products: [
         {
           name: 'Burrito de Machaca',
-          gramaje: '50 g de machaca',
+          gramaje: '50 g de machaca, 100 g de papas',
           description:
             'Tortilla de harina con machaca a la mexicana, acompañado de papas fritas.',
           price: '179',
@@ -380,9 +379,11 @@ const desayunos: Menu = {
       title: 'Quesadillas',
       products: [
         {
-          name: 'Quesadillas de Comal',
+          name: 'Quesadilla de Comal',
+          gramaje: '1 pza',
           description: 'Tortilla hecha a mano con queso.',
           price: '39',
+          note: 'Con chorizo, chicharrón o asada 80 g: más $60 · Pollo 80 g: más $40',
         },
       ],
     },
@@ -490,6 +491,7 @@ const comidas: Menu = {
         },
         {
           name: 'Taco de Chile Güero Empanizado',
+          gramaje: '30 g de asada',
           description: 'Relleno de asada.',
           price: '79',
         },
@@ -517,7 +519,7 @@ const comidas: Menu = {
           description:
             'Mix de lechugas con fresa, suprema de naranja, arándano y queso suizo, con vinagreta de fresa, vino tinto y miel.',
           price: '120',
-          note: 'Con pollo o peinecillo 100 g: $170',
+          note: 'Con pollo 80 g: $160 · Con peinecillo 80 g: $180',
         },
       ],
     },
