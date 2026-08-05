@@ -1,0 +1,1337 @@
+{
+  "generado": "npm run exportar (no editar a mano)",
+  "fuente": "src/data/menu.ts",
+  "totales": {
+    "productos": 159,
+    "con_gramaje": 130,
+    "categorias": 33
+  },
+  "menus": [
+    {
+      "menu": "Desayunos",
+      "categorias": [
+        {
+          "categoria": "Entradas",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Pan Dulce de Canasta",
+              "gramaje": "1 pza",
+              "descripcion": null,
+              "precio": 29,
+              "nota": null
+            },
+            {
+              "producto": "Plato de Jocoque",
+              "gramaje": "160 g",
+              "descripcion": "Acompañado de tortillas hechas a mano.",
+              "precio": 69,
+              "nota": null
+            },
+            {
+              "producto": "Hot Cakes con Fruta",
+              "gramaje": "3 pzas",
+              "descripcion": "Con fruta del día.",
+              "precio": 109,
+              "nota": null
+            },
+            {
+              "producto": "Pan Francés",
+              "gramaje": "2 pzas",
+              "descripcion": null,
+              "precio": 109,
+              "nota": null
+            },
+            {
+              "producto": "Plato de Fruta con Yogurt",
+              "gramaje": "60 g de yogurt",
+              "descripcion": "Con fruta del día y granola.",
+              "precio": 109,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Chilaquiles",
+          "nota": "Con chorizo, chicharrón o asada 80 g: más $60 · Huevo 1 pza: más $20 · Pollo 80 g: más $40",
+          "productos": [
+            {
+              "producto": "Rojos",
+              "gramaje": null,
+              "descripcion": "Tira de maíz frita bañada en salsa de jitomate y serrano. Coronados con cebolla, queso fresco, crema y cilantro.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Verdes",
+              "gramaje": null,
+              "descripcion": "Tira de maíz frita bañada en salsa de tomate verde, chile serrano, cilantro, cebolla y epazote. Coronados con cebolla, queso fresco, crema y cilantro.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Enchipotlados",
+              "gramaje": null,
+              "descripcion": "Tira de maíz frita bañada en salsa de jitomate, cebolla, chile chipotle y crema. Coronados con cebolla, queso fresco, crema y cilantro.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Enmolados",
+              "gramaje": null,
+              "descripcion": "Tira de maíz frita bañada en mole de la casa, acompañados de queso fresco, cebolla morada y ajonjolí.",
+              "precio": 169,
+              "nota": null
+            },
+            {
+              "producto": "Entre Chilaquiles",
+              "gramaje": null,
+              "descripcion": "Delicado omelette bañado en chilaquiles a elección. Coronados con cebolla, queso fresco, crema y cilantro.",
+              "precio": 169,
+              "nota": null
+            },
+            {
+              "producto": "Poblanos",
+              "gramaje": null,
+              "descripcion": "Tira de maíz frita bañada en salsa poblana, con elote, flor de calabaza, cebolla, queso fresco, crema y cilantro.",
+              "precio": 169,
+              "nota": null
+            },
+            {
+              "producto": "Tatemados",
+              "gramaje": null,
+              "descripcion": "Tira de maíz frita bañada en salsa tatemada de tomate verde y jitomate. Coronados con cebolla, queso fresco, crema y cilantro.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Chilaquiles Caché",
+              "gramaje": null,
+              "descripcion": "Tira de maíz frita bañada en salsa de frijol, acompañados de chorizo y espaldilla asada, salsa molcajeteada, crema y queso.",
+              "precio": 190,
+              "nota": null
+            },
+            {
+              "producto": "Chilaquitas",
+              "gramaje": null,
+              "descripcion": "Tira de maíz bañada en salsa roja o verde, acompañada de fajitas de pollo adobado, con cebolla, queso fresco, crema y cilantro.",
+              "precio": 190,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Omelette y Huevos",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Omelette al Gusto",
+              "gramaje": "2 pzas de huevo, 60 g de proteína",
+              "descripcion": "Mexicana, salchicha, jamón, chorizo o tocino.",
+              "precio": 149,
+              "nota": "Con espinaca, flor de calabaza o panela asada: más $30"
+            },
+            {
+              "producto": "Embarazada de Huevo",
+              "gramaje": "1 pza de huevo, 80 g de chicharrón",
+              "descripcion": "Tortilla hecha a mano rellena de huevo, bañada en chicharrón rojo o verde y frijoles.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Plato de Chilorio",
+              "gramaje": "100 g de chilorio, 2 pzas de huevo",
+              "descripcion": "A la mexicana, acompañado de frijoles refritos, aguacate y queso fresco.",
+              "precio": 179,
+              "nota": null
+            },
+            {
+              "producto": "Huevos al Gusto",
+              "gramaje": "2 huevos",
+              "descripcion": "Estrellados o revueltos. A la mexicana, jamón, tocino, salchicha o chorizo. Acompañados de frijoles refritos, aguacate y queso fresco.",
+              "precio": 139,
+              "nota": "Con espinaca, flor de calabaza o panela asada: más $30"
+            },
+            {
+              "producto": "Huevos Rancheros",
+              "gramaje": "2 huevos",
+              "descripcion": "Fritos y montados en tortillas doradas, bañados en salsa ranchera. Acompañados de frijol con queso fresco y aguacate.",
+              "precio": 139,
+              "nota": null
+            },
+            {
+              "producto": "Huevos con Machaca",
+              "gramaje": "2 huevos, 50 g de machaca",
+              "descripcion": "Revueltos y guisados a la mexicana. Acompañados de frijol con queso fresco, aguacate y tortillas de harina.",
+              "precio": 179,
+              "nota": null
+            },
+            {
+              "producto": "Tradicional Huevo Ahogado",
+              "gramaje": "2 huevos",
+              "descripcion": "Cocinados en cazuela de hierro en salsa de tomate verde y panela, acompañados de pan o tortilla.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Huevos Caché",
+              "gramaje": "2 huevos",
+              "descripcion": "Huevo pochado montado en nido de papa, bañado en crema de chipotle, tocino crujiente, espinaca y queso.",
+              "precio": 169,
+              "nota": null
+            },
+            {
+              "producto": "Desayuno Americano",
+              "gramaje": "2 huevos",
+              "descripcion": "Al gusto, con tocino, hot cakes, papa hash brown y café.",
+              "precio": 159,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Toast",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Toast de Jamón Serrano",
+              "gramaje": "30 g de jamón serrano",
+              "descripcion": "Con aguacate y 1 huevo estrellado. Acompañado de ensalada dulce con espinaca.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Toast de Salmón",
+              "gramaje": "100 g de salmón",
+              "descripcion": "Con aderezo de yogurt griego y pesto de finas hierbas. Acompañado de ensalada dulce con espinaca y plátano macho.",
+              "precio": 199,
+              "nota": null
+            },
+            {
+              "producto": "Toast de Aguacate",
+              "gramaje": "50 g de tocino, 50 g de panela",
+              "descripcion": "Con aguacate y huevo. Acompañado de ensalada dulce con espinaca.",
+              "precio": 149,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Molletes",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Molletes Tradicionales",
+              "gramaje": null,
+              "descripcion": "Bolillo con frijol y queso gratinado, acompañado de salsa mexicana.",
+              "precio": 99,
+              "nota": null
+            },
+            {
+              "producto": "Mollete de Chicharrón",
+              "gramaje": "80 g de chicharrón",
+              "descripcion": "Bolillo con frijoles, queso gratinado y chicharrón verde o rojo.",
+              "precio": 129,
+              "nota": null
+            },
+            {
+              "producto": "Mollete de Chilaquiles",
+              "gramaje": null,
+              "descripcion": "A su elección. Bolillo con frijoles, chilaquiles, queso fresco, crema, cebolla y cilantro.",
+              "precio": 129,
+              "nota": null
+            },
+            {
+              "producto": "Molletes Divorciados",
+              "gramaje": null,
+              "descripcion": "Mitad bolillo dulce a elección y mitad mollete salado con frijoles y queso gratinado.",
+              "precio": 99,
+              "nota": null
+            },
+            {
+              "producto": "Molletes Dulces",
+              "gramaje": null,
+              "descripcion": "Bolillo con mantequilla, mermelada, cajeta o lechera.",
+              "precio": 79,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Sandwich",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Club Sandwich",
+              "gramaje": "140 g de proteína, 100 g de papas",
+              "descripcion": "Pan tostado con queso, tocino, pollo y aguacate, acompañado de papas fritas.",
+              "precio": 169,
+              "nota": null
+            },
+            {
+              "producto": "Crispy Chicken Cesar Sandwich",
+              "gramaje": "200 g de proteína, 100 g de papas",
+              "descripcion": "Pan baguette tostado con pechuga empanizada, aderezo césar, lechuga y queso parmesano, acompañado de papas fritas.",
+              "precio": 179,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Enchiladas",
+          "nota": "Todas llevan 100 g de proteína",
+          "productos": [
+            {
+              "producto": "Suizas",
+              "gramaje": null,
+              "descripcion": "Cuatro enchiladas rellenas de pollo deshebrado, bañadas en salsa suiza, gratinadas.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Poblanas",
+              "gramaje": null,
+              "descripcion": "Cuatro enchiladas rellenas de diezmillo asado o pollo deshebrado, bañadas en salsa de chile poblano, gratinadas con crema y queso.",
+              "precio": 169,
+              "nota": null
+            },
+            {
+              "producto": "Entomatadas",
+              "gramaje": null,
+              "descripcion": "Cuatro enchiladas rellenas de pollo deshebrado, bañadas en salsa cremosa de jitomate. Gratinadas.",
+              "precio": 139,
+              "nota": null
+            },
+            {
+              "producto": "Enmoladas",
+              "gramaje": null,
+              "descripcion": "Cuatro enchiladas rellenas de pollo deshebrado, bañadas en mole de la casa, con cebolla morada desflemada y ajonjolí.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Enfrijoladas",
+              "gramaje": null,
+              "descripcion": "Cuatro enchiladas rellenas de pollo deshebrado, bañadas en salsa de frijoles de la casa, con queso fresco y crema.",
+              "precio": 139,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Burritos",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Burrito de Machaca",
+              "gramaje": "50 g de machaca, 100 g de papas",
+              "descripcion": "Tortilla de harina con machaca a la mexicana, acompañado de papas fritas.",
+              "precio": 179,
+              "nota": null
+            },
+            {
+              "producto": "Burrito a la Mexicana",
+              "gramaje": "2 huevos",
+              "descripcion": "Tortilla de harina con huevo a la mexicana, acompañado de frijoles.",
+              "precio": 139,
+              "nota": null
+            },
+            {
+              "producto": "Burrito de Carne Asada",
+              "gramaje": "100 g de carne",
+              "descripcion": "Tortilla de harina con carne asada, queso y frijoles.",
+              "precio": 169,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Birria",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Quesabirria Individual",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 49,
+              "nota": null
+            },
+            {
+              "producto": "Volteados con Queso",
+              "gramaje": "1 pza",
+              "descripcion": null,
+              "precio": 49,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Quesadillas",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Quesadilla de Comal",
+              "gramaje": "1 pza",
+              "descripcion": "Tortilla hecha a mano con queso.",
+              "precio": 39,
+              "nota": "Con chorizo, chicharrón o asada 80 g: más $60 · Pollo 80 g: más $40"
+            }
+          ]
+        },
+        {
+          "categoria": "Menudo",
+          "nota": "Solo sábados y domingos",
+          "productos": [
+            {
+              "producto": "Menudo",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 100,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Menú Fitness",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Panela Asada",
+              "gramaje": "180 g",
+              "descripcion": "Bañada en salsa verde, con guarnición de ensalada.",
+              "precio": 139,
+              "nota": null
+            },
+            {
+              "producto": "Rollo de Pollo",
+              "gramaje": "180 g",
+              "descripcion": "Relleno de panela y espinaca, bañado en salsa roja o verde, con guarnición de ensalada.",
+              "precio": 189,
+              "nota": null
+            },
+            {
+              "producto": "Omelette de Claras de Huevo",
+              "gramaje": "3 claras",
+              "descripcion": "Con panela asada y espinacas, acompañado de ensalada fresca y aguacate.",
+              "precio": 169,
+              "nota": null
+            },
+            {
+              "producto": "Hot Cakes de Avena",
+              "gramaje": "3 pzas",
+              "descripcion": "Acompañados de topping de fruta del día.",
+              "precio": 139,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Menú Infantil",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "3 Mini Hamburguesitas",
+              "gramaje": "140 g de carne, 100 g de papas",
+              "descripcion": "Con pan brioche, carne de res y queso, con papas fritas.",
+              "precio": 119,
+              "nota": null
+            },
+            {
+              "producto": "Pechuga Empanizada",
+              "gramaje": "140 g de pechuga, 100 g de papas",
+              "descripcion": "Con guarnición de papas fritas.",
+              "precio": 119,
+              "nota": null
+            },
+            {
+              "producto": "Mini Hot Cakes",
+              "gramaje": "4 pzas, 1 bola de nieve",
+              "descripcion": null,
+              "precio": 99,
+              "nota": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "menu": "Comidas",
+      "categorias": [
+        {
+          "categoria": "Entradas",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Chicharrón Duro",
+              "gramaje": "80 g",
+              "descripcion": "Con salsa martajada.",
+              "precio": 99,
+              "nota": null
+            },
+            {
+              "producto": "Panela Asada",
+              "gramaje": "180 g",
+              "descripcion": "Bañada en salsa verde.",
+              "precio": 139,
+              "nota": null
+            },
+            {
+              "producto": "Queso Fundido Natural",
+              "gramaje": "180 g",
+              "descripcion": null,
+              "precio": 139,
+              "nota": "Con chorizo, flor de calabaza o champiñón 80 g: $169"
+            },
+            {
+              "producto": "Manitas en Escabeche Frías",
+              "gramaje": "4 pzas, 500 g",
+              "descripcion": null,
+              "precio": 139,
+              "nota": null
+            },
+            {
+              "producto": "Guacamole con Totopos",
+              "gramaje": "180 g",
+              "descripcion": null,
+              "precio": 109,
+              "nota": null
+            },
+            {
+              "producto": "Taco de Chile Güero Empanizado",
+              "gramaje": "30 g de asada",
+              "descripcion": "Relleno de asada.",
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Chistorra Asada al Carbón",
+              "gramaje": "200 g",
+              "descripcion": "Acompañada de chiles toreados y cebolla.",
+              "precio": 129,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Ensaladas",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Ensalada César con Pollo",
+              "gramaje": "100 g de pollo",
+              "descripcion": "Corazón de lechuga bañado en aderezo césar, crotones y queso parmesano.",
+              "precio": 139,
+              "nota": null
+            },
+            {
+              "producto": "Ensalada de Frutos Rojos",
+              "gramaje": null,
+              "descripcion": "Mix de lechugas con fresa, suprema de naranja, arándano y queso suizo, con vinagreta de fresa, vino tinto y miel.",
+              "precio": 120,
+              "nota": "Con pollo 80 g: $160 · Con peinecillo 80 g: $180"
+            }
+          ]
+        },
+        {
+          "categoria": "Sopas",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Caldo Tlalpeño",
+              "gramaje": "70 g",
+              "descripcion": "Consomé con verduras, arroz, pollo, un toque de chipotle, garbanzos y aguacate.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Sopa de Fideo Seco o en Caldo",
+              "gramaje": null,
+              "descripcion": "Receta de la abuela, decorada con panela, aguacate y chipotle.",
+              "precio": 99,
+              "nota": null
+            },
+            {
+              "producto": "Sopa de Tortilla Azteca",
+              "gramaje": null,
+              "descripcion": "Salsa a base de jitomate y epazote con fritura de tortilla de maíz, decorada con panela, aguacate, chicharrón duro, crema y chile pasilla.",
+              "precio": 119,
+              "nota": null
+            },
+            {
+              "producto": "Crema del Día",
+              "gramaje": null,
+              "descripcion": "Preguntar al mesero.",
+              "precio": 99,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Platos Fuertes",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Pollo a la Plancha",
+              "gramaje": "180 g",
+              "descripcion": "Acompañado de arroz y ensalada.",
+              "precio": 190,
+              "nota": null
+            },
+            {
+              "producto": "Milanesa de Pollo",
+              "gramaje": "180 g",
+              "descripcion": "Acompañada de ensalada y papas fritas.",
+              "precio": 190,
+              "nota": null
+            },
+            {
+              "producto": "Chile en Nogada",
+              "gramaje": "100 g",
+              "descripcion": "Chile relleno de carne con un toque dulce, bañado en salsa nogada con nuez, perejil y granada.",
+              "precio": 259,
+              "nota": null
+            },
+            {
+              "producto": "Chiles Rellenos",
+              "gramaje": null,
+              "descripcion": "2 piezas rellenas de queso, bañadas en salsa roja y acompañadas de arroz.",
+              "precio": 180,
+              "nota": null
+            },
+            {
+              "producto": "Pollo en Mole",
+              "gramaje": "250 g",
+              "descripcion": "Pierna y muslo bañados en mole de la casa, espolvoreados con ajonjolí y acompañados de arroz.",
+              "precio": 240,
+              "nota": null
+            },
+            {
+              "producto": "Carne Asada",
+              "gramaje": "180 g",
+              "descripcion": "Carne en tasajo, quesadilla, nopal asado, cebolla cambray, guacamole y frijoles con queso fresco.",
+              "precio": 199,
+              "nota": null
+            },
+            {
+              "producto": "Chamorro",
+              "gramaje": "900 g",
+              "descripcion": "1 pieza de chamorro horneado lentamente, bañado con salsa de la casa y acompañado de frijoles y cebolla curtida.",
+              "precio": 189,
+              "nota": null
+            },
+            {
+              "producto": "Molcajete Mar y Tierra",
+              "gramaje": "100 g de picaña, 100 g de camarón",
+              "descripcion": "Picaña, camarón, nopal asado con cebolla cambray y panela asada, bañados en salsa de tomate, morrón y un toque de serrano.",
+              "precio": 299,
+              "nota": null
+            },
+            {
+              "producto": "Peinecillo",
+              "gramaje": "180 g",
+              "descripcion": "Acompañado de frijoles fritos, nopal y cebolla cambray asados, y guacamole.",
+              "precio": 199,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Del Mar",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Salmón al Gusto",
+              "gramaje": "200 g",
+              "descripcion": "A las finas hierbas, a la mantequilla o al limón. Acompañado de puré y ensalada.",
+              "precio": 259,
+              "nota": null
+            },
+            {
+              "producto": "Camarones al Gusto",
+              "gramaje": "180 g",
+              "descripcion": "A la diabla, al ajillo, a la momia, empanizados o al coco. Guarnición de arroz y ensalada.",
+              "precio": 259,
+              "nota": null
+            },
+            {
+              "producto": "Pescado al Gusto",
+              "gramaje": "180 g",
+              "descripcion": "A la plancha, al ajillo, a la diabla o empanizado. Guarnición de arroz y ensalada.",
+              "precio": 210,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Especialidades",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Plato Botanero",
+              "gramaje": "4 personas",
+              "descripcion": "2 jaladas de chile jalapeño con queso, chicharrón duro 100 g, chistorra 200 g, queso fundido natural 180 g, guacamole 180 g y frijoles fritos 180 g.",
+              "precio": 550,
+              "nota": null
+            },
+            {
+              "producto": "Parrillada",
+              "gramaje": "3 a 4 personas",
+              "descripcion": "Peinecillo 200 g, pollo adobado 200 g, espaldilla 200 g y panza de cerdo 200 g. Queso fundido con chorizo 250 g, guacamole 180 g y frijoles refritos con queso 180 g.",
+              "precio": 850,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Menú Infantil",
+          "nota": "Todo en cajitas",
+          "productos": [
+            {
+              "producto": "3 Mini Hamburguesas",
+              "gramaje": "140 g de carne, 100 g de papas",
+              "descripcion": "Carne de res, pan brioche y queso amarillo, con papas a la francesa.",
+              "precio": 119,
+              "nota": null
+            },
+            {
+              "producto": "Tiras de Pechuga de Pollo",
+              "gramaje": "140 g de pollo, 100 g de papas",
+              "descripcion": "Con papas a la francesa.",
+              "precio": 119,
+              "nota": null
+            },
+            {
+              "producto": "Camarones Empanizados",
+              "gramaje": "100 g",
+              "descripcion": "Con aderezo de la casa.",
+              "precio": 129,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Postres",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Jericallas",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Flan de Elote",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Carlota de Limón",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 69,
+              "nota": null
+            },
+            {
+              "producto": "Pan de Elote",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 69,
+              "nota": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "menu": "Bebidas",
+      "categorias": [
+        {
+          "categoria": "Café",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Café Americano",
+              "gramaje": "450 ml",
+              "descripcion": "Refill.",
+              "precio": 59,
+              "nota": null
+            },
+            {
+              "producto": "Espresso",
+              "gramaje": "30 ml",
+              "descripcion": "1 carga de café.",
+              "precio": 45,
+              "nota": null
+            },
+            {
+              "producto": "Espresso Doble",
+              "gramaje": "60 ml",
+              "descripcion": "2 cargas de café.",
+              "precio": 59,
+              "nota": null
+            },
+            {
+              "producto": "Café de Olla",
+              "gramaje": "450 ml",
+              "descripcion": "Café, canela, anís y piloncillo.",
+              "precio": 59,
+              "nota": null
+            },
+            {
+              "producto": "Latte",
+              "gramaje": "220 ml",
+              "descripcion": null,
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Capuccino",
+              "gramaje": "180 ml",
+              "descripcion": null,
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Capuccino Baileys",
+              "gramaje": "180 ml",
+              "descripcion": null,
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Café Lechero",
+              "gramaje": "400 ml",
+              "descripcion": "Especialidad de la casa.",
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Chocolate Caliente",
+              "gramaje": "220 ml",
+              "descripcion": null,
+              "precio": 59,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Refrescos",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Coca Cola",
+              "gramaje": "355 ml",
+              "descripcion": "Regular, Zero o Light.",
+              "precio": 55,
+              "nota": null
+            },
+            {
+              "producto": "Fanta, Sprite o Manzanita",
+              "gramaje": "355 ml",
+              "descripcion": null,
+              "precio": 55,
+              "nota": null
+            },
+            {
+              "producto": "Squirt",
+              "gramaje": "600 ml",
+              "descripcion": null,
+              "precio": 55,
+              "nota": null
+            },
+            {
+              "producto": "Topo Chico",
+              "gramaje": "600 ml",
+              "descripcion": null,
+              "precio": 55,
+              "nota": null
+            },
+            {
+              "producto": "Topo Chico Sangría",
+              "gramaje": "600 ml",
+              "descripcion": null,
+              "precio": 55,
+              "nota": null
+            },
+            {
+              "producto": "Tonicol",
+              "gramaje": "600 ml",
+              "descripcion": null,
+              "precio": 55,
+              "nota": null
+            },
+            {
+              "producto": "Fuze Tea",
+              "gramaje": "600 ml",
+              "descripcion": "Durazno o limón.",
+              "precio": 55,
+              "nota": null
+            },
+            {
+              "producto": "Agua Mineralizada (Ciel)",
+              "gramaje": "350 ml",
+              "descripcion": null,
+              "precio": 55,
+              "nota": null
+            },
+            {
+              "producto": "Jugo del Valle Manzana Kids",
+              "gramaje": "250 ml",
+              "descripcion": null,
+              "precio": 25,
+              "nota": null
+            },
+            {
+              "producto": "Agua Ciel Natural",
+              "gramaje": "600 ml",
+              "descripcion": null,
+              "precio": 35,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Bebidas sin Alcohol",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Jugo Natural de Naranja",
+              "gramaje": "350 ml",
+              "descripcion": null,
+              "precio": 59,
+              "nota": null
+            },
+            {
+              "producto": "Jugo Verde Natural",
+              "gramaje": "350 ml",
+              "descripcion": "Piña, naranja, perejil, apio y espinaca.",
+              "precio": 69,
+              "nota": null
+            },
+            {
+              "producto": "Limonada",
+              "gramaje": "350 ml",
+              "descripcion": "Mineral o natural, con jarabe natural.",
+              "precio": 59,
+              "nota": null
+            },
+            {
+              "producto": "Naranjada",
+              "gramaje": "350 ml",
+              "descripcion": "Mineral o natural, con jarabe natural.",
+              "precio": 59,
+              "nota": null
+            },
+            {
+              "producto": "Aguas Frescas",
+              "gramaje": "400 ml",
+              "descripcion": "Avena, jamaica, piña o pepino con hierbabuena.",
+              "precio": 49,
+              "nota": null
+            },
+            {
+              "producto": "Piñada",
+              "gramaje": "400 ml",
+              "descripcion": "Crema de coco, jugo de piña y leche evaporada.",
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Pantera Rosa",
+              "gramaje": "400 ml",
+              "descripcion": "Crema de coco, fresa y granadina.",
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Canica",
+              "gramaje": "350 ml",
+              "descripcion": "Soda lima limón con granadina.",
+              "precio": 49,
+              "nota": null
+            },
+            {
+              "producto": "Tejuino",
+              "gramaje": "400 ml",
+              "descripcion": "Fermento a base de maíz nixtamalizado, piloncillo y limón.",
+              "precio": 65,
+              "nota": null
+            },
+            {
+              "producto": "Tepache",
+              "gramaje": "300 ml",
+              "descripcion": "Fermento a base de piña, piloncillo y especias: clavo de olor, canela, pimienta gorda y anís.",
+              "precio": 59,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Vino Tinto",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Copa de Vino de la Casa",
+              "gramaje": "50 ml",
+              "descripcion": "La Cetto, Cabernet Sauvignon.",
+              "precio": 89,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Cócteles con Vino",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Clericot",
+              "gramaje": "300 ml",
+              "descripcion": "Jugo de naranja, limón, soda de manzana y un toque de vino tinto, decorado con nuez y fruta de temporada.",
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Sangría",
+              "gramaje": "300 ml",
+              "descripcion": "Limón, jarabe, agua mineral y vino tinto.",
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Tinto de Verano",
+              "gramaje": "300 ml",
+              "descripcion": "Soda lima limón, vino tinto y jugo de limón.",
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Mimosas",
+              "gramaje": "180 ml",
+              "descripcion": "Jugo a elección: naranja, arándano o piña, con vino espumoso.",
+              "precio": 99,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Malteadas y Frappés",
+          "nota": "Con leche entera o deslactosada",
+          "productos": [
+            {
+              "producto": "Mazapán",
+              "gramaje": "400 ml",
+              "descripcion": "Pieza de mazapán, helado de vainilla y leche.",
+              "precio": 89,
+              "nota": null
+            },
+            {
+              "producto": "Oreo",
+              "gramaje": "400 ml",
+              "descripcion": "Galleta Oreo, helado de vainilla, chocolate y leche.",
+              "precio": 89,
+              "nota": null
+            },
+            {
+              "producto": "Chocolate",
+              "gramaje": "400 ml",
+              "descripcion": "Jarabe de chocolate, helado de chocolate y leche.",
+              "precio": 89,
+              "nota": null
+            },
+            {
+              "producto": "Fresa",
+              "gramaje": "400 ml",
+              "descripcion": "Fresa natural, helado de fresa y leche.",
+              "precio": 89,
+              "nota": null
+            },
+            {
+              "producto": "Frappuccino",
+              "gramaje": "400 ml",
+              "descripcion": "Carga de espresso, leche y chocolate.",
+              "precio": 79,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Smoothies",
+          "nota": "Con agua o leche entera o deslactosada",
+          "productos": [
+            {
+              "producto": "Mango",
+              "gramaje": "400 ml",
+              "descripcion": "Mango natural y jarabe.",
+              "precio": 69,
+              "nota": null
+            },
+            {
+              "producto": "Fresa",
+              "gramaje": "400 ml",
+              "descripcion": "Fresa natural y jarabe.",
+              "precio": 69,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Mocktails",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Manzana Muck",
+              "gramaje": "350 ml",
+              "descripcion": "Jugo de manzana, jarabe, limón y ginger ale.",
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Frutos Rojos Muck",
+              "gramaje": "350 ml",
+              "descripcion": "Frutos rojos, jarabe, limón, arándano y ginger ale.",
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Maracuyá Muck",
+              "gramaje": "300 ml",
+              "descripcion": "Pulpa de maracuyá, jarabe, limón y piña.",
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Pepino Muck",
+              "gramaje": "300 ml",
+              "descripcion": "Pepino natural, jarabe, limón y jugo de piña.",
+              "precio": 79,
+              "nota": null
+            },
+            {
+              "producto": "Tejuino Muck",
+              "gramaje": "400 ml",
+              "descripcion": "Tejuino, limón, jugo de piña y agua mineral.",
+              "precio": 79,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Digestivos",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Carajilla",
+              "gramaje": "200 ml",
+              "descripcion": "Licor Baileys y 1 carga de espresso.",
+              "precio": 159,
+              "nota": null
+            },
+            {
+              "producto": "Carajillo",
+              "gramaje": "200 ml",
+              "descripcion": "Licor 43 y 1 carga de espresso.",
+              "precio": 159,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Cerveza",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Tecate Roja",
+              "gramaje": "325 ml",
+              "descripcion": null,
+              "precio": 49,
+              "nota": null
+            },
+            {
+              "producto": "Tecate Light",
+              "gramaje": "325 ml",
+              "descripcion": null,
+              "precio": 49,
+              "nota": null
+            },
+            {
+              "producto": "Carta Blanca",
+              "gramaje": "300 ml",
+              "descripcion": null,
+              "precio": 49,
+              "nota": null
+            },
+            {
+              "producto": "Miller High Life",
+              "gramaje": "355 ml",
+              "descripcion": null,
+              "precio": 69,
+              "nota": null
+            },
+            {
+              "producto": "Heineken",
+              "gramaje": "355 ml",
+              "descripcion": null,
+              "precio": 69,
+              "nota": null
+            },
+            {
+              "producto": "Heineken Barril",
+              "gramaje": "355 ml",
+              "descripcion": null,
+              "precio": 75,
+              "nota": null
+            },
+            {
+              "producto": "Heineken 0.0",
+              "gramaje": "355 ml",
+              "descripcion": null,
+              "precio": 49,
+              "nota": null
+            },
+            {
+              "producto": "Bohemia Clara",
+              "gramaje": "355 ml",
+              "descripcion": null,
+              "precio": 69,
+              "nota": null
+            },
+            {
+              "producto": "Bohemia Cristal",
+              "gramaje": "355 ml",
+              "descripcion": null,
+              "precio": 69,
+              "nota": null
+            },
+            {
+              "producto": "Bohemia Obscura",
+              "gramaje": "355 ml",
+              "descripcion": null,
+              "precio": 69,
+              "nota": null
+            },
+            {
+              "producto": "Indio",
+              "gramaje": "325 ml",
+              "descripcion": null,
+              "precio": 45,
+              "nota": null
+            },
+            {
+              "producto": "XX Lager",
+              "gramaje": "325 ml",
+              "descripcion": null,
+              "precio": 45,
+              "nota": null
+            },
+            {
+              "producto": "XX Ámbar",
+              "gramaje": "325 ml",
+              "descripcion": null,
+              "precio": 45,
+              "nota": null
+            },
+            {
+              "producto": "Amstel Ultra",
+              "gramaje": "355 ml",
+              "descripcion": null,
+              "precio": 69,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Micheladas y Especiales",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Vaso Michelado",
+              "gramaje": "90 ml",
+              "descripcion": "Escarchado con Tajín, salsas negras, limón, sal y clamato.",
+              "precio": 30,
+              "nota": null
+            },
+            {
+              "producto": "Vaso Ruso",
+              "gramaje": "30 ml",
+              "descripcion": "Escarcha de sal y jugo de limón.",
+              "precio": 15,
+              "nota": null
+            },
+            {
+              "producto": "Vaso Cubano",
+              "gramaje": "45 ml",
+              "descripcion": "Escarchado con sal, jugo de limón y salsas negras.",
+              "precio": 25,
+              "nota": null
+            },
+            {
+              "producto": "Vaso Tejuichela",
+              "gramaje": "90 ml",
+              "descripcion": "Preparación de tejuino, limón y sal.",
+              "precio": 39,
+              "nota": null
+            },
+            {
+              "producto": "Tejuichela Caché",
+              "gramaje": "300 ml",
+              "descripcion": "Tejuino, sal de grano, limón y cerveza de la casa.",
+              "precio": 119,
+              "nota": null
+            },
+            {
+              "producto": "Michelada de Fresa",
+              "gramaje": "600 ml",
+              "descripcion": "Limón, concentrado de fresa, cerveza, tamarindo y pica fresa.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Michelada de Tamarindo",
+              "gramaje": "600 ml",
+              "descripcion": "Limón, pulpa de tamarindo, cerveza y dulce de tamarindo.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Michelada de Mango",
+              "gramaje": "600 ml",
+              "descripcion": "Limón, pulpa de mango, cerveza y gomitas de mango.",
+              "precio": 149,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Spritz",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Aperol Spritz",
+              "gramaje": "250 ml",
+              "descripcion": "Vino espumoso, agua mineral y Aperol. Naranja fresca.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "43 Spritz",
+              "gramaje": "250 ml",
+              "descripcion": "Vino espumoso, agua mineral, limón y Licor 43.",
+              "precio": 159,
+              "nota": null
+            },
+            {
+              "producto": "Hugo Spritz",
+              "gramaje": "250 ml",
+              "descripcion": "Licor de flor de saúco, agua mineral y vino espumoso.",
+              "precio": 169,
+              "nota": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

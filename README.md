@@ -95,6 +95,33 @@ en lugar de repetirse en los otros dos menús.
   ahí. Útil si quieres un QR específico, por ejemplo sólo para la barra o para los postres.
 - Botón de **volver arriba** después de un rato de scroll.
 
+### Exportar la carta para el punto de venta
+
+```bash
+npm run exportar
+```
+
+Genera en **`exportacion/`** tres vistas de la misma carta, salidas de `menu.ts`:
+
+| Archivo      | Para qué                                                      |
+| ------------ | ------------------------------------------------------------- |
+| `carta.md`   | Leer y capturar a mano, categoría por categoría               |
+| `carta.csv`  | Importar o abrir en Excel · un renglón por producto, 9 columnas |
+| `carta.json` | Importar por sistema                                          |
+
+**Se regeneran, no se editan a mano.** Si se corrigen ahí, el siguiente
+`npm run exportar` los sobrescribe: la corrección va en `src/data/menu.ts`.
+
+El CSV trae dos columnas de descripción: `descripcion` sola y
+`descripcion_completa`, que es gramaje y descripción unidos como se ven en la carta,
+para cuando el punto de venta tiene un solo campo. Lleva BOM al inicio, o Excel en
+Windows abre los acentos como basura.
+
+`carta.md` cierra con el **estado de las porciones**, que distingue tres casos: con
+gramaje propio, declarado por la nota de su categoría (las enchiladas), y sin declarar.
+La distinción importa: contar sólo los que no tienen campo propio manda a perseguir
+datos que ya existen.
+
 ---
 
 ## Actualizar la carta
