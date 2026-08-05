@@ -66,9 +66,9 @@ Dos cosas salieron de ahí:
 
 Todo lo de contacto vive en `src/data/negocio.ts`, y de ahí salen la portada, el pie, los
 botones y los datos estructurados de Google. **Regla: nada de marcadores de plantilla en
-producción.** Si un dato no existe se deja en `null` y la sección no se dibuja — por eso hoy
-no hay botón de WhatsApp. En cuanto exista la línea se llena `whatsapp` y el botón aparece
-solo, sin tocar código.
+producción.** Si un dato no existe se deja en `null` y la sección no se dibuja. Así estuvo el
+botón de WhatsApp hasta que existió la línea: al llenar el dato apareció solo, sin tocar
+componentes.
 
 Las especialidades de la portada **se leen de `menu.ts`**, no se teclean aparte: así la
 portada no puede anunciar un precio que la carta ya cambió. Si un platillo se renombra, el
@@ -76,12 +76,12 @@ build truena en lugar de dejar el hueco en silencio.
 
 ## Cómo está armada
 
-| Menú          | Categorías | Productos |
-| ------------- | ---------: | --------: |
-| Desayunos     |         13 |        52 |
-| Comidas       |          8 |        32 |
-| Bebidas       |         12 |        72 |
-| **Total**     |     **33** |   **156** |
+| Menú          | Categorías | Productos | Con gramaje |
+| ------------- | ---------: | --------: | ----------: |
+| Desayunos     |         13 |        52 |          23 |
+| Comidas       |          8 |        34 |          24 |
+| Bebidas       |         12 |        73 |           0 |
+| **Total**     | **33** | **159** | **47** |
 
 Las **bebidas se comparten** entre desayunos y comidas, por eso viven en su propia pestaña
 en lugar de repetirse en los otros dos menús.
@@ -290,12 +290,20 @@ Sin *Gráficos de fondo* no salen el papel, los filetes ni la veladura de talave
 
 ### Cómo se reparte el espacio
 
-El alto de cada bloque no se ajusta a ojo: `pesoDeMenu()` en
-`src/components/CartaImpresa.astro` estima los renglones que genera cada menú (nombre,
-líneas de descripción y notas) y ese peso se convierte en `flex-grow`. Así, al agregar
-productos, la retícula se reacomoda sola.
+**Un solo flujo de columnas para todas las secciones.** Las bandas de título
+(`DESAYUNOS`, `COMIDAS`) cruzan el ancho con `column-span: all`, y el navegador balancea
+todo el contenido.
 
-Dos reglas de composición que conviene no romper:
+Antes cada menú tenía su propia retícula y el alto se repartía con un peso estimado desde
+los datos. Se eliminó porque el problema era de fondo: **cualquier estimación se desvía**, y
+al desviarse un menú acapara espacio mientras al otro se le desborda el contenido. Pasó
+exactamente eso al entrar los gramajes de Comidas: Desayunos se quedaba con 1.06 in de
+sobra mientras a Comidas se le caían dos postres fuera de la hoja. Con flujo único no hay
+reparto que calibrar.
+
+Tres reglas de composición que conviene no romper:
+
+- Las **bandas de título** llevan `column-span: all`. Es lo que permite el flujo único.
 
 - Una **categoría sí puede partirse** entre columnas. Si se prohíbe, los bloques quedan
   atómicos, no empaquetan parejo y el contenido se desborda fuera de la hoja.

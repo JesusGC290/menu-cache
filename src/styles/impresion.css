@@ -225,26 +225,18 @@ body {
   margin: 0.1in 0 0;
 }
 
-/* ── Bloque de menú: su banda de título y su propia retícula ──────────
-   Cada bloque recibe `flex-grow` proporcional a su número de productos,
-   así el reparto vertical entre menús sale de los datos y no a ojo. */
-.bloque {
-  display: flex;
-  flex-direction: column;
-  min-height: 0; /* sin esto el flex se estira y arruina la multicolumna */
-  flex-shrink: 1;
-  flex-basis: 0;
-}
-
-.bloque + .bloque {
-  margin-top: 0.15in;
-}
-
-/* ── Banda de título de menú ─────────────────────────────────────────── */
+/* ── Banda de título de menú ──────────────────────────────────────────
+   Cruza las columnas: es lo que permite meter varias secciones en un solo
+   flujo y dejar que el navegador balancee, sin repartir el alto a mano. */
 .banda {
-  flex: 0 0 auto;
+  column-span: all;
   text-align: center;
   margin: 0 0 0.12in;
+  break-after: avoid;
+}
+
+.banda:not(:first-child) {
+  margin-top: 0.2in;
 }
 
 .banda h2 {
@@ -263,7 +255,7 @@ body {
   flex: 1 1 auto;
   min-height: 0; /* imprescindible: da altura definida a la multicolumna */
   column-count: 3;
-  column-gap: 0.26in;
+  column-gap: 0.22in;
   column-fill: balance;
   /* Separador vertical, como en carta impresa clásica */
   column-rule: 0.4pt solid color-mix(in srgb, var(--filete) 45%, transparent);

@@ -33,31 +33,6 @@ const totalProductos = menus.reduce(
   0,
 );
 
-/**
- * Estima cuánto alto ocupa un menú, para repartir el espacio vertical entre
- * los bloques de una misma cara. Contar productos no sirve: una descripción
- * de tres líneas ocupa el triple que un producto sin descripción, y esa
- * diferencia descuadraba la retícula. Aquí se pesa cada pieza por los
- * renglones que genera, contra un ancho de columna de ~55 caracteres.
- */
-const CARACTERES_POR_RENGLON = 55;
-
-const pesoDeMenu = (menu: (typeof menus)[number]) =>
-  menu.categories.reduce((total, categoria) => {
-    // Encabezado de la categoría, su nota y los márgenes del bloque
-    let peso = 1.9 + (categoria.note ? 0.6 : 0);
-
-    for (const p of categoria.products) {
-      peso += 1; // el renglón de nombre y precio
-      // El gramaje va en el mismo párrafo que la descripción, más « · »
-      const largoDesc = (p.gramaje ? p.gramaje.length + 3 : 0) + (p.description?.length ?? 0);
-      if (largoDesc) {
-        peso += Math.ceil(largoDesc / CARACTERES_POR_RENGLON) * 0.85;
-      }
-      if (p.note) peso += 0.8;
-    }
-    return total + peso;
-  }, 0);
 ---
 
 {
@@ -159,18 +134,30 @@ const pesoDeMenu = (menu: (typeof menus)[number]) =>
           )}
         </header>
 
-        {/* ── Cuerpo: un bloque de 3 columnas por menú ── */}
-        {
+        {/*
+          ── Cuerpo: UN solo flujo de columnas para todas las secciones ──
+
+          Antes cada menú tenía su propia retícula y el alto se repartía con un
+          peso estimado desde los datos. El problema es de fondo: cualquier
+          estimación se desvía, y al desviarse un menú acapara espacio mientras
+          al otro se le desborda el contenido —fue exactamente lo que pasó al
+          entrar los gramajes de Comidas.
+
+          Con un flujo único y las bandas de título cruzando el ancho
+          (`column-span: all`), el navegador balancea todo el contenido y no
+          hay reparto que calibrar.
+        */}
+        <div class="columnas">
+          {
           cara.menus.map((menu) => (
-            <section class="bloque" style={`flex-grow:${pesoDeMenu(menu).toFixed(1)}`}>
+            <Fragment>
               <div class="banda">
                 <hr class="filete" />
                 <h2>{menu.title}</h2>
                 <hr class="filete" />
               </div>
 
-              <div class="columnas">
-                {menu.categories.map((categoria) => (
+              {menu.categories.map((categoria) => (
                 <div class="categoria">
                   <h3>{categoria.title}</h3>
                   {categoria.note && (
@@ -200,12 +187,12 @@ const pesoDeMenu = (menu: (typeof menus)[number]) =>
                       {p.note && <p class="producto-nota">{p.note}</p>}
                     </div>
                   ))}
-                  </div>
-                ))}
-              </div>
-            </section>
+                </div>
+              ))}
+            </Fragment>
           ))
-        }
+          }
+        </div>
 
         {/* ── Pie ── */}
         <footer class="pie">

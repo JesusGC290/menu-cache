@@ -454,21 +454,32 @@ const comidas: Menu = {
       products: [
         {
           name: 'Chicharrón Duro',
+          gramaje: '80 g',
           description: 'Con salsa martajada.',
           price: '99',
         },
         {
           name: 'Panela Asada',
+          gramaje: '180 g',
           description: 'Bañada en salsa verde.',
           price: '139',
         },
         {
           name: 'Queso Fundido Natural',
+          gramaje: '180 g',
           price: '139',
-          note: 'Con chorizo, flor de calabaza o champiñón $169',
+          note: 'Con chorizo, flor de calabaza o champiñón 80 g: $169',
         },
-        { name: 'Manitas en Escabeche Frías', description: '6 piezas.', price: '139' },
-        { name: 'Guacamole con Totopos', price: '109' },
+        {
+          name: 'Manitas en Escabeche Frías',
+          gramaje: '4 pzas, 500 g',
+          price: '139',
+        },
+        {
+          name: 'Guacamole con Totopos',
+          gramaje: '180 g',
+          price: '109',
+        },
         {
           name: 'Taco de Chile Güero Empanizado',
           description: 'Relleno de asada.',
@@ -476,6 +487,7 @@ const comidas: Menu = {
         },
         {
           name: 'Chistorra Asada al Carbón',
+          gramaje: '200 g',
           description: 'Acompañada de chiles toreados y cebolla.',
           price: '129',
         },
@@ -487,6 +499,7 @@ const comidas: Menu = {
       products: [
         {
           name: 'Ensalada César con Pollo',
+          gramaje: '100 g de pollo',
           description:
             'Corazón de lechuga bañado en aderezo césar, crotones y queso parmesano.',
           price: '139',
@@ -496,7 +509,7 @@ const comidas: Menu = {
           description:
             'Mix de lechugas con fresa, suprema de naranja, arándano y queso suizo, con vinagreta de fresa, vino tinto y miel.',
           price: '120',
-          note: 'Con pollo o peinecillo $170',
+          note: 'Con pollo o peinecillo 100 g: $170',
         },
       ],
     },
@@ -506,6 +519,7 @@ const comidas: Menu = {
       products: [
         {
           name: 'Caldo Tlalpeño',
+          gramaje: '70 g',
           description:
             'Consomé con verduras, arroz, pollo, un toque de chipotle, garbanzos y aguacate.',
           price: '149',
@@ -535,16 +549,19 @@ const comidas: Menu = {
       products: [
         {
           name: 'Pollo a la Plancha',
+          gramaje: '180 g',
           description: 'Acompañado de arroz y ensalada.',
           price: '190',
         },
         {
           name: 'Milanesa de Pollo',
+          gramaje: '180 g',
           description: 'Acompañada de ensalada y papas fritas.',
           price: '190',
         },
         {
           name: 'Chile en Nogada',
+          gramaje: '100 g',
           description:
             'Chile relleno de carne con un toque dulce, bañado en salsa nogada con nuez, perejil y granada.',
           price: '259',
@@ -557,30 +574,35 @@ const comidas: Menu = {
         },
         {
           name: 'Pollo en Mole',
+          gramaje: '250 g',
           description:
-            'Pierna o muslo bañado en mole de la casa, espolvoreado con ajonjolí y acompañado de arroz.',
+            'Pierna y muslo bañados en mole de la casa, espolvoreados con ajonjolí y acompañados de arroz.',
           price: '240',
         },
         {
           name: 'Carne Asada',
+          gramaje: '180 g',
           description:
             'Carne en tasajo, quesadilla, nopal asado, cebolla cambray, guacamole y frijoles con queso fresco.',
           price: '199',
         },
         {
           name: 'Chamorro',
+          gramaje: '900 g',
           description:
             '1 pieza de chamorro horneado lentamente, bañado con salsa de la casa y acompañado de frijoles y cebolla curtida.',
           price: '189',
         },
         {
           name: 'Molcajete Mar y Tierra',
+          gramaje: '100 g de picaña, 100 g de camarón',
           description:
             'Picaña, camarón, nopal asado con cebolla cambray y panela asada, bañados en salsa de tomate, morrón y un toque de serrano.',
           price: '299',
         },
         {
           name: 'Peinecillo',
+          gramaje: '180 g',
           description:
             'Acompañado de frijoles fritos, nopal y cebolla cambray asados, y guacamole.',
           price: '199',
@@ -593,18 +615,21 @@ const comidas: Menu = {
       products: [
         {
           name: 'Salmón al Gusto',
+          gramaje: '200 g',
           description:
             'A las finas hierbas, a la mantequilla o al limón. Acompañado de puré y ensalada.',
           price: '259',
         },
         {
           name: 'Camarones al Gusto',
+          gramaje: '180 g',
           description:
             'A la diabla, al ajillo, a la momia, empanizados o al coco. Guarnición de arroz y ensalada.',
           price: '259',
         },
         {
           name: 'Pescado al Gusto',
+          gramaje: '180 g',
           description:
             'A la plancha, al ajillo, a la diabla o empanizado. Guarnición de arroz y ensalada.',
           price: '210',
@@ -617,14 +642,16 @@ const comidas: Menu = {
       products: [
         {
           name: 'Plato Botanero',
+          gramaje: '4 personas',
           description:
-            'Para 4 personas. 2 jaladas de chile jalapeño con queso, chicharrón duro, chistorra, queso fundido natural, guacamole y frijoles fritos.',
+            '2 jaladas de chile jalapeño con queso, chicharrón duro 100 g, chistorra 200 g, queso fundido natural 180 g, guacamole 180 g y frijoles fritos 180 g.',
           price: '550',
         },
         {
           name: 'Parrillada',
+          gramaje: '3 a 4 personas',
           description:
-            'Para 3 a 4 personas. 800 gramos en crudo de peinecillo, pollo adobado, espaldilla y panza de cerdo. Queso fundido con chorizo, guacamole y frijoles refritos con queso.',
+            'Peinecillo 200 g, pollo adobado 200 g, espaldilla 200 g y panza de cerdo 200 g. Queso fundido con chorizo 250 g, guacamole 180 g y frijoles refritos con queso 180 g.',
           price: '850',
         },
       ],
@@ -636,17 +663,20 @@ const comidas: Menu = {
       products: [
         {
           name: '3 Mini Hamburguesas',
+          gramaje: '140 g de carne, 100 g de papas',
           description:
             'Carne de res, pan brioche y queso amarillo, con papas a la francesa.',
           price: '119',
         },
         {
           name: 'Tiras de Pechuga de Pollo',
-          description: 'Acompañadas de papas a la francesa.',
+          gramaje: '140 g de pollo, 100 g de papas',
+          description: 'Con papas a la francesa.',
           price: '119',
         },
         {
           name: 'Camarones Empanizados',
+          gramaje: '100 g',
           description: 'Con aderezo de la casa.',
           price: '129',
         },
@@ -658,6 +688,8 @@ const comidas: Menu = {
       products: [
         { name: 'Jericallas', price: '79' },
         { name: 'Flan de Elote', price: '79' },
+        { name: 'Carlota de Limón', price: '69' },
+        { name: 'Pan de Elote', price: '69' },
       ],
     },
   ],
