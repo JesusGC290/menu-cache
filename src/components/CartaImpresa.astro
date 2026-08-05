@@ -49,8 +49,10 @@ const pesoDeMenu = (menu: (typeof menus)[number]) =>
 
     for (const p of categoria.products) {
       peso += 1; // el renglón de nombre y precio
-      if (p.description) {
-        peso += Math.ceil(p.description.length / CARACTERES_POR_RENGLON) * 0.85;
+      // El gramaje va en el mismo párrafo que la descripción, más « · »
+      const largoDesc = (p.gramaje ? p.gramaje.length + 3 : 0) + (p.description?.length ?? 0);
+      if (largoDesc) {
+        peso += Math.ceil(largoDesc / CARACTERES_POR_RENGLON) * 0.85;
       }
       if (p.note) peso += 0.8;
     }
@@ -171,7 +173,11 @@ const pesoDeMenu = (menu: (typeof menus)[number]) =>
                 {menu.categories.map((categoria) => (
                 <div class="categoria">
                   <h3>{categoria.title}</h3>
-                  {categoria.note && <p class="categoria-nota">{categoria.note}</p>}
+                  {categoria.note && (
+                    <p class={categoria.note.length > 46 ? 'categoria-nota larga' : 'categoria-nota'}>
+                      {categoria.note}
+                    </p>
+                  )}
 
                   {categoria.products.map((p) => (
                     <div class="producto">
@@ -180,7 +186,17 @@ const pesoDeMenu = (menu: (typeof menus)[number]) =>
                         <span class="guia" />
                         {p.price && <span class="precio">${p.price}</span>}
                       </div>
-                      {p.description && <p class="producto-desc">{p.description}</p>}
+                      {(p.gramaje || p.description) && (
+                        <p class="producto-desc">
+                          {p.gramaje && (
+                            <span class="gramaje">
+                              {p.gramaje}
+                              {p.description ? ' · ' : ''}
+                            </span>
+                          )}
+                          {p.description}
+                        </p>
+                      )}
                       {p.note && <p class="producto-nota">{p.note}</p>}
                     </div>
                   ))}

@@ -11,6 +11,18 @@
 
 export type Product = {
   name: string;
+  /**
+   * Porción o gramaje del elemento principal. PROFECO obliga a declararlo.
+   *
+   * Se escribe sólo la cantidad —"160 g", "2 pzas", "3 claras"—, sin
+   * paréntesis. Se dibuja al inicio de la descripción, en dorado y separado
+   * con «·», para que se lea como especificación y no como parte del texto.
+   * Si el platillo no tiene descripción, el gramaje ocupa ese renglón.
+   *
+   * Lo cualitativo ("fruta del día") va en `description`, no aquí: este campo
+   * es para cantidades.
+   */
+  gramaje?: string;
   description?: string;
   price?: string;
   /** Aclaración o precios alternos, p. ej. "Con huevo $169 o pollo $169". */
@@ -44,15 +56,33 @@ const desayunos: Menu = {
       id: 'entradas-desayuno',
       title: 'Entradas',
       products: [
-        { name: 'Pan Dulce de Canasta', price: '29' },
+        {
+          name: 'Pan Dulce de Canasta',
+          gramaje: '1 pza',
+          price: '29',
+        },
         {
           name: 'Plato de Jocoque',
+          gramaje: '160 g',
           description: 'Acompañado de tortillas hechas a mano.',
           price: '69',
         },
-        { name: 'Hot Cakes con Fruta', description: '3 piezas.', price: '109' },
-        { name: 'Pan Francés', description: '2 piezas.', price: '109' },
-        { name: 'Plato de Fruta con Yogurt', price: '109' },
+        {
+          name: 'Hot Cakes con Fruta',
+          gramaje: '3 pzas',
+          description: 'Con fruta del día.',
+          price: '109',
+        },
+        {
+          name: 'Pan Francés',
+          gramaje: '2 pzas',
+          price: '109',
+        },
+        {
+          name: 'Plato de Fruta con Yogurt',
+          description: 'Con fruta del día.',
+          price: '109',
+        },
       ],
     },
     {
@@ -121,7 +151,7 @@ const desayunos: Menu = {
           price: '190',
         },
       ],
-      note: 'Con chicharrón, asada o suadero: más $60',
+      note: 'Con chorizo, chicharrón, asada o suadero 80 g: más $60 · Huevo 1 pza · Pollo 80 g',
     },
     {
       id: 'huevos',
@@ -129,12 +159,14 @@ const desayunos: Menu = {
       products: [
         {
           name: 'Omelette al Gusto',
+          gramaje: '2 pzas de huevo, 60 g de proteína',
           description: 'Mexicana, salchicha, jamón, chorizo o tocino.',
           price: '149',
           note: 'Con espinaca, flor de calabaza o panela asada: más $10',
         },
         {
           name: 'Embarazada de Huevo',
+          gramaje: '1 pza de huevo, 80 g de chicharrón',
           description:
             'Tortilla hecha a mano rellena de huevo, bañada en chicharrón rojo o verde y frijoles.',
           price: '149',
@@ -147,6 +179,7 @@ const desayunos: Menu = {
         },
         {
           name: 'Huevos al Gusto',
+          gramaje: '2 huevos',
           description:
             'Estrellados o revueltos. A la mexicana, jamón, tocino, salchicha o chorizo.',
           price: '139',
@@ -154,8 +187,9 @@ const desayunos: Menu = {
         },
         {
           name: 'Huevos Rancheros',
+          gramaje: '2 huevos',
           description:
-            '2 huevos fritos montados en tortillas doradas, bañados en salsa ranchera. Acompañados de frijol con queso fresco y aguacate.',
+            'Fritos y montados en tortillas doradas, bañados en salsa ranchera. Acompañados de frijol con queso fresco y aguacate.',
           price: '139',
         },
         {
@@ -166,8 +200,9 @@ const desayunos: Menu = {
         },
         {
           name: 'Tradicional Huevo Ahogado',
+          gramaje: '2 huevos',
           description:
-            '2 huevos cocinados en cazuela de hierro en salsa de tomate verde y panela, acompañados de pan o tortilla.',
+            'Cocinados en cazuela de hierro en salsa de tomate verde y panela, acompañados de pan o tortilla.',
           price: '149',
         },
         {
@@ -178,7 +213,8 @@ const desayunos: Menu = {
         },
         {
           name: 'Desayuno Americano',
-          description: '2 huevos al gusto, tocino, hot cakes y papas hash brown (3).',
+          gramaje: '2 huevos',
+          description: 'Al gusto, con tocino, hot cakes y 3 papas hash brown.',
           price: '149',
         },
       ],
@@ -191,7 +227,7 @@ const desayunos: Menu = {
         {
           name: 'Toast de Jamón Serrano',
           description:
-            'Aguacate, jamón serrano y huevo estrellado. Acompañado de ensalada dulce con espinaca.',
+            'Aguacate, jamón serrano y 1 huevo estrellado. Acompañado de ensalada dulce con espinaca.',
           price: '149',
         },
         {
@@ -220,6 +256,7 @@ const desayunos: Menu = {
         },
         {
           name: 'Mollete de Chicharrón',
+          gramaje: '80 g de chicharrón',
           description: 'Bolillo con frijoles, queso gratinado y chicharrón verde o rojo.',
           price: '129',
         },
@@ -248,12 +285,14 @@ const desayunos: Menu = {
       products: [
         {
           name: 'Club Sandwich',
+          gramaje: '140 g de proteína, 100 g de papas',
           description:
             'Pan tostado con queso, tocino, pollo y aguacate, acompañado de papas fritas.',
           price: '169',
         },
         {
           name: 'Crispy Chicken Cesar Sandwich',
+          gramaje: '200 g de proteína, 100 g de papas',
           description:
             'Pan baguette tostado con pechuga empanizada, aderezo césar, lechuga y queso parmesano, acompañado de papas fritas.',
           price: '179',
@@ -263,6 +302,7 @@ const desayunos: Menu = {
     {
       id: 'enchiladas',
       title: 'Enchiladas',
+      note: 'Todas llevan 100 g de proteína',
       products: [
         {
           name: 'Suizas',
@@ -325,7 +365,11 @@ const desayunos: Menu = {
       title: 'Birria',
       products: [
         { name: 'Quesabirria Individual', price: '49' },
-        { name: 'Volteados con Queso', price: '49' },
+        {
+          name: 'Volteados con Queso',
+          gramaje: '1 pza',
+          price: '49',
+        },
       ],
     },
     {
@@ -351,24 +395,28 @@ const desayunos: Menu = {
       products: [
         {
           name: 'Panela Asada',
+          gramaje: '180 g',
           description: 'Bañada en salsa verde, con guarnición de ensalada.',
           price: '139',
         },
         {
           name: 'Rollo de Pollo',
+          gramaje: '180 g',
           description:
             'Relleno de panela y espinaca, bañado en salsa roja o verde, con guarnición de ensalada.',
           price: '189',
         },
         {
           name: 'Omelette de Claras de Huevo',
+          gramaje: '3 claras',
           description:
             'Con panela asada y espinacas, acompañado de ensalada fresca y aguacate.',
           price: '169',
         },
         {
           name: 'Hot Cakes de Avena',
-          description: '3 piezas acompañadas de topping de frutas.',
+          gramaje: '3 pzas',
+          description: 'Acompañados de topping de fruta del día.',
           price: '139',
         },
       ],
@@ -379,6 +427,7 @@ const desayunos: Menu = {
       products: [
         {
           name: '3 Mini Hamburguesitas',
+          gramaje: '140 g de carne, 100 g de papas',
           description: 'Con pan brioche, carne de res y queso, con papas fritas.',
           price: '119',
         },
@@ -389,7 +438,7 @@ const desayunos: Menu = {
         },
         {
           name: 'Mini Hot Cakes',
-          description: 'Acompañados de bolita de nieve.',
+          gramaje: '4 pzas, 1 bola de nieve',
           price: '99',
         },
       ],

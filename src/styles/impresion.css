@@ -303,6 +303,14 @@ body {
   margin: 0 0 0.05in;
 }
 
+/* Nota larga: sin versalitas ni tracking, o se vuelve ilegible y roba renglones */
+.categoria-nota.larga {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 6.4pt;
+  line-height: 1.25;
+}
+
 /* ── Producto ────────────────────────────────────────────────────────── */
 .producto {
   break-inside: avoid;
@@ -345,6 +353,13 @@ body {
   line-height: 1.26;
   color: var(--tinta-suave);
   margin: 0.01in 0 0;
+}
+
+/* Gramaje al inicio de la descripción: obligatorio ante PROFECO, así que se
+   distingue con el dorado sin robarle un renglón al pliego. */
+.gramaje {
+  color: var(--oro);
+  font-weight: 500;
 }
 
 .producto-nota {

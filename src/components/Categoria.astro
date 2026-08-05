@@ -23,8 +23,17 @@ const precio = (valor: string) => `$${valor}`;
       {categoria.title}
     </h2>
     {
+      /* Las versalitas con tracking amplio lucen en una nota corta
+         («Solo sábados y domingos»), pero a tres renglones se vuelven
+         ilegibles. Pasando de 46 caracteres se cambia a caja baja. */
       categoria.note && (
-        <p class="text-acento/85 mt-1.5 text-[0.7rem] tracking-[0.16em] uppercase">
+        <p
+          class={
+            categoria.note.length > 46
+              ? 'text-acento/85 mt-1.5 text-[0.76rem] leading-snug'
+              : 'text-acento/85 mt-1.5 text-[0.7rem] tracking-[0.16em] uppercase'
+          }
+        >
           {categoria.note}
         </p>
       )
@@ -47,8 +56,17 @@ const precio = (valor: string) => `$${valor}`;
             )}
           </div>
 
-          {p.description && (
+          {/* El gramaje abre la descripción, en dorado: se lee como
+              especificación y no gasta un renglón aparte. Si no hay
+              descripción, ocupa ese renglón él solo. */}
+          {(p.gramaje || p.description) && (
             <p class="text-suave/85 mt-1 max-w-[46ch] text-[0.82rem] leading-relaxed font-light">
+              {p.gramaje && (
+                <span class="text-acento font-normal">
+                  {p.gramaje}
+                  {p.description ? ' · ' : ''}
+                </span>
+              )}
               {p.description}
             </p>
           )}
