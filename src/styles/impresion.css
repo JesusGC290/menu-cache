@@ -184,7 +184,7 @@ body {
 .cabecera {
   text-align: center;
   flex: 0 0 auto;
-  margin-bottom: 0.11in;
+  margin-bottom: 0.08in;
 }
 
 .marca-nombre {
@@ -206,15 +206,16 @@ body {
   margin: 0.07in 0 0;
 }
 
-/* El asset de imprenta tiene 1194 px de ancho: a 3.5 in queda en 341 DPI, con
-   holgura sobre los 300 que pide imprenta. El techo son 3.98 in (justo 300),
-   pero a partir de 3.6 in la vuelta se queda sin aire para las bebidas. */
+/* Logotipo v2: sin marco y con transparencia, así que se imprime directo sobre
+   el papel. Nada de `border`: un marco alrededor de un logo recortado delata
+   la caja de la imagen. 1216 px de ancho -> a 3.5 in son 347 DPI, sobrados
+   frente a los 300 de imprenta; el techo está en 4.05 in. A 3.9 in son 312 DPI,
+   y al formato apaisado del v2 le sienta el tamaño mayor. */
 .placa {
   display: block;
   margin: 0 auto;
-  width: 3.5in;
+  width: 3.9in;
   height: auto;
-  border: 0.5pt solid var(--filete);
 }
 
 .lema {
@@ -306,7 +307,7 @@ body {
 /* ── Producto ────────────────────────────────────────────────────────── */
 .producto {
   break-inside: avoid;
-  margin-bottom: 0.045in;
+  margin-bottom: 0.041in;
 }
 
 .renglon {
@@ -372,7 +373,7 @@ body {
    sólo el espacio; y como es una hoja plana de dos caras, nunca se ven juntas
    y la diferencia de espaciado no se percibe. */
 .hoja[data-cara='vuelta'] .producto {
-  margin-bottom: 0.139in;
+  margin-bottom: 0.168in;
 }
 
 .hoja[data-cara='vuelta'] .categoria {

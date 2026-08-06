@@ -2,8 +2,8 @@
   "generado": "npm run exportar (no editar a mano)",
   "fuente": "src/data/menu.ts",
   "totales": {
-    "productos": 160,
-    "con_gramaje": 131,
+    "productos": 161,
+    "con_gramaje": 133,
     "categorias": 33
   },
   "menus": [
@@ -383,10 +383,17 @@
           "nota": "Solo sábados y domingos",
           "productos": [
             {
-              "producto": "Menudo",
-              "gramaje": null,
+              "producto": "Menudo Mediano",
+              "gramaje": "100 g",
               "descripcion": null,
-              "precio": 100,
+              "precio": 130,
+              "nota": null
+            },
+            {
+              "producto": "Menudo Grande",
+              "gramaje": "130 g",
+              "descripcion": null,
+              "precio": 150,
               "nota": null
             }
           ]

@@ -1,8 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-// Logotipo en alta (1194 px, recortado de cache-logo-h.jpeg): da hasta 3.98 in
-// a 300 DPI. El mismo asset alimenta la web y el impreso.
-import logo from '../assets/cache-logo.png';
+// Logotipo v2 (Cache-logo-v2-tr.png), recortado de su aire transparente: 1216
+// px de ancho, sin marco y con alfa, para imprimirse directo sobre el papel.
+// La web sigue con la placa enmarcada, que es la que funciona sobre terciopelo.
+import logo from '../assets/cache-logo-impresion.png';
 import { menus } from '../data/menu';
 import '../styles/impresion.css';
 

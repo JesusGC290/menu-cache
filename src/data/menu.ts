@@ -391,7 +391,10 @@ const desayunos: Menu = {
       id: 'menudo',
       title: 'Menudo',
       note: 'Solo sábados y domingos',
-      products: [{ name: 'Menudo', price: '100' }],
+      products: [
+        { name: 'Menudo Mediano', gramaje: '100 g', price: '130' },
+        { name: 'Menudo Grande', gramaje: '130 g', price: '150' },
+      ],
     },
     {
       id: 'fitness',

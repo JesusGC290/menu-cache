@@ -1,6 +1,6 @@
 # Caché Restaurante · Carta completa
 
-**160 productos** en 33 categorías · 131 con gramaje declarado.
+**161 productos** en 33 categorías · 133 con gramaje declarado.
 
 > Generado con `npm run exportar` desde `src/data/menu.ts`. No editar a mano.
 
@@ -10,7 +10,7 @@ Precios en pesos mexicanos, IVA incluido.
 
 ## Desayunos
 
-_52 productos._
+_53 productos._
 
 ### Entradas
 
@@ -116,7 +116,8 @@ _52 productos._
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Menudo |  |  | $100 |  |
+| Menudo Mediano | 100 g |  | $130 |  |
+| Menudo Grande | 130 g |  | $150 |  |
 
 ### Menú Fitness
 
@@ -365,9 +366,9 @@ _74 productos._
 
 ## Estado de las porciones
 
-- **131** con gramaje propio.
+- **133** con gramaje propio.
 - **5** sin campo propio, pero su categoría lo declara por todos.
-- **24** sin porción declarada en ningún lado.
+- **23** sin porción declarada en ningún lado.
 
 ### Declarados por su categoría
 
@@ -397,7 +398,6 @@ _74 productos._
 | Molletes Divorciados | Desayunos | Molletes |
 | Molletes Dulces | Desayunos | Molletes |
 | Quesabirria Individual | Desayunos | Birria |
-| Menudo | Desayunos | Menudo |
 | Ensalada de Frutos Rojos | Comidas | Ensaladas |
 | Sopa de Fideo Seco o en Caldo | Comidas | Sopas |
 | Sopa de Tortilla Azteca | Comidas | Sopas |
