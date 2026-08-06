@@ -213,8 +213,8 @@ _36 productos._
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Yoyo Caché |  | Cremoso de limón amarillo, compota de piel de limón y mousse de limón. |  |  |
-| Trompo Caché |  | Mousse de chocolate con nibs de cacao. |  |  |
+| Yoyo Caché |  | Cremoso de limón amarillo, compota de piel de limón y mousse de limón. | $189 |  |
+| Trompo Caché |  | Mousse de chocolate con nibs de cacao. | $189 |  |
 | Jericallas |  |  | $89 |  |
 | Flan de Elote |  |  | $79 |  |
 | Carlota de Limón |  |  | $69 |  |

@@ -703,10 +703,12 @@ const comidas: Menu = {
           name: 'Yoyo Caché',
           description:
             'Cremoso de limón amarillo, compota de piel de limón y mousse de limón.',
+          price: '189',
         },
         {
           name: 'Trompo Caché',
           description: 'Mousse de chocolate con nibs de cacao.',
+          price: '189',
         },
         { name: 'Jericallas', price: '89' },
         { name: 'Flan de Elote', price: '79' },
