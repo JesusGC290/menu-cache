@@ -22,7 +22,7 @@
   --bleed: 0.125in;
   --media-w: 11.25in;
   --media-h: 17.25in;
-  --segura: 0.35in;
+  --segura: 0.33in;
 }
 
 /* ── Paleta clara: marfil con tinta vino y oro ───────────────────────── */
@@ -218,6 +218,12 @@ body {
   height: auto;
 }
 
+/* En el frente el logotipo va más chico: esa cara lleva Desayunos y Comidas
+   completos, y compite por el alto con 87 productos. A 1.8 in son 676 DPI. */
+.placa-frente {
+  width: 1.8in;
+}
+
 .lema {
   font-family: 'Cormorant Garamond Variable', Georgia, serif;
   font-style: italic;
@@ -307,7 +313,7 @@ body {
 /* ── Producto ────────────────────────────────────────────────────────── */
 .producto {
   break-inside: avoid;
-  margin-bottom: 0.041in;
+  margin-bottom: 0.036in;
 }
 
 .renglon {

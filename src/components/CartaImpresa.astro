@@ -102,37 +102,18 @@ const totalProductos = menus.reduce(
             </Fragment>
           ) : (
             <Fragment>
-              <p class="marca-nombre">Caché</p>
-              <p class="marca-bajada">Restaurante · Cocina Mexicana</p>
-              <div class="floron" style="margin-top:0.1in">
-                <hr class="filete" />
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
-                  <g stroke="var(--oro)" stroke-width="1.2" stroke-linecap="round">
-                    <path
-                      d="M12 3.2c2.1 3.1 2.1 5.9 0 5.9s-2.1-2.8 0-5.9z"
-                      fill="var(--talavera-coral)"
-                      fill-opacity="0.45"
-                    />
-                    <path
-                      d="M12 20.8c-2.1-3.1-2.1-5.9 0-5.9s2.1 2.8 0 5.9z"
-                      fill="var(--talavera-turquesa)"
-                      fill-opacity="0.45"
-                    />
-                    <path
-                      d="M3.2 12c3.1-2.1 5.9-2.1 5.9 0s-2.8 2.1-5.9 0z"
-                      fill="var(--talavera-verde)"
-                      fill-opacity="0.45"
-                    />
-                    <path
-                      d="M20.8 12c-3.1 2.1-5.9 2.1-5.9 0s2.8-2.1 5.9 0z"
-                      fill="var(--talavera-ambar)"
-                      fill-opacity="0.45"
-                    />
-                    <circle cx="12" cy="12" r="2.1" fill="var(--oro)" fill-opacity="0.3" />
-                  </g>
-                </svg>
-                <hr class="filete" />
-              </div>
+              {/* El mismo logotipo que la vuelta, más chico: esta cara carga los
+                  dos menús. La bajada ya no dice «Restaurante» porque el
+                  logotipo lo trae dentro. */}
+              <Image
+                src={logo}
+                alt="Caché Restaurante"
+                format="png"
+                quality={100}
+                loading="eager"
+                class="placa placa-frente"
+              />
+              <p class="marca-bajada">Cocina Mexicana</p>
             </Fragment>
           )}
         </header>
