@@ -154,8 +154,14 @@ const totalProductos = menus.reduce(
                     <div class="producto">
                       <div class="renglon">
                         <p class="producto-nombre">{p.name}</p>
-                        <span class="guia" />
-                        {p.price && <span class="precio">${p.price}</span>}
+                        {/* Sin precio no se dibuja la guía: unos puntos que
+                            terminan en nada se leen como error de impresión. */}
+                        {p.price && (
+                          <Fragment>
+                            <span class="guia" />
+                            <span class="precio">${p.price}</span>
+                          </Fragment>
+                        )}
                       </div>
                       {(p.gramaje || p.description) && (
                         <p class="producto-desc">

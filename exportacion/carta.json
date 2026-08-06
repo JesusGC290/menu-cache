@@ -2,7 +2,7 @@
   "generado": "npm run exportar (no editar a mano)",
   "fuente": "src/data/menu.ts",
   "totales": {
-    "productos": 161,
+    "productos": 163,
     "con_gramaje": 133,
     "categorias": 33
   },
@@ -440,7 +440,7 @@
               "producto": "3 Mini Hamburguesitas",
               "gramaje": "140 g de carne, 100 g de papas",
               "descripcion": "Con pan brioche, carne de res y queso, con papas fritas.",
-              "precio": 119,
+              "precio": 139,
               "nota": null
             },
             {
@@ -697,7 +697,7 @@
               "producto": "3 Mini Hamburguesas",
               "gramaje": "140 g de carne, 100 g de papas",
               "descripcion": "Carne de res, pan brioche y queso amarillo, con papas a la francesa.",
-              "precio": 119,
+              "precio": 139,
               "nota": null
             },
             {
@@ -721,10 +721,24 @@
           "nota": null,
           "productos": [
             {
+              "producto": "Yoyo Caché",
+              "gramaje": null,
+              "descripcion": "Cremoso de limón amarillo, compota de piel de limón y mousse de limón.",
+              "precio": null,
+              "nota": null
+            },
+            {
+              "producto": "Trompo Caché",
+              "gramaje": null,
+              "descripcion": "Mousse de chocolate con nibs de cacao.",
+              "precio": null,
+              "nota": null
+            },
+            {
               "producto": "Jericallas",
               "gramaje": null,
               "descripcion": null,
-              "precio": 79,
+              "precio": 89,
               "nota": null
             },
             {
@@ -745,7 +759,7 @@
               "producto": "Pan de Elote",
               "gramaje": null,
               "descripcion": null,
-              "precio": 69,
+              "precio": 79,
               "nota": null
             }
           ]

@@ -48,11 +48,15 @@ const precio = (valor: string) => `$${valor}`;
             <h3 class="font-display text-texto text-[1.15rem] leading-snug font-medium sm:text-xl">
               {p.name}
             </h3>
-            <span class="guia-puntos"></span>
+            {/* Sin precio no se dibuja la guía: unos puntos que terminan en
+                nada se leen como error, no como dato pendiente. */}
             {p.price && (
-              <span class="text-acento font-sans text-[0.95rem] font-medium tabular-nums sm:text-base">
-                {precio(p.price)}
-              </span>
+              <>
+                <span class="guia-puntos"></span>
+                <span class="text-acento font-sans text-[0.95rem] font-medium tabular-nums sm:text-base">
+                  {precio(p.price)}
+                </span>
+              </>
             )}
           </div>
 

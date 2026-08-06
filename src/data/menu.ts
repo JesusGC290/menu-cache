@@ -436,7 +436,7 @@ const desayunos: Menu = {
           name: '3 Mini Hamburguesitas',
           gramaje: '140 g de carne, 100 g de papas',
           description: 'Con pan brioche, carne de res y queso, con papas fritas.',
-          price: '119',
+          price: '139',
         },
         {
           name: 'Pechuga Empanizada',
@@ -679,7 +679,7 @@ const comidas: Menu = {
           gramaje: '140 g de carne, 100 g de papas',
           description:
             'Carne de res, pan brioche y queso amarillo, con papas a la francesa.',
-          price: '119',
+          price: '139',
         },
         {
           name: 'Tiras de Pechuga de Pollo',
@@ -699,10 +699,19 @@ const comidas: Menu = {
       id: 'postres',
       title: 'Postres',
       products: [
-        { name: 'Jericallas', price: '79' },
+        {
+          name: 'Yoyo Caché',
+          description:
+            'Cremoso de limón amarillo, compota de piel de limón y mousse de limón.',
+        },
+        {
+          name: 'Trompo Caché',
+          description: 'Mousse de chocolate con nibs de cacao.',
+        },
+        { name: 'Jericallas', price: '89' },
         { name: 'Flan de Elote', price: '79' },
         { name: 'Carlota de Limón', price: '69' },
-        { name: 'Pan de Elote', price: '69' },
+        { name: 'Pan de Elote', price: '79' },
       ],
     },
   ],

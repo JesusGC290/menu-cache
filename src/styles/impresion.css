@@ -184,7 +184,7 @@ body {
 .cabecera {
   text-align: center;
   flex: 0 0 auto;
-  margin-bottom: 0.08in;
+  margin-bottom: 0.06in;
 }
 
 .marca-nombre {
@@ -203,7 +203,7 @@ body {
   letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--tinta-suave);
-  margin: 0.07in 0 0;
+  margin: 0.05in 0 0;
 }
 
 /* Logotipo v2: sin marco y con transparencia, así que se imprime directo sobre
@@ -219,9 +219,9 @@ body {
 }
 
 /* En el frente el logotipo va más chico: esa cara lleva Desayunos y Comidas
-   completos, y compite por el alto con 87 productos. A 1.8 in son 676 DPI. */
+   completos, y compite por el alto con 89 productos. A 1.45 in son 839 DPI. */
 .placa-frente {
-  width: 1.8in;
+  width: 1.45in;
 }
 
 .lema {

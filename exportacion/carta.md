@@ -1,6 +1,6 @@
 # Caché Restaurante · Carta completa
 
-**161 productos** en 33 categorías · 133 con gramaje declarado.
+**163 productos** en 33 categorías · 133 con gramaje declarado.
 
 > Generado con `npm run exportar` desde `src/data/menu.ts`. No editar a mano.
 
@@ -132,7 +132,7 @@ _53 productos._
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| 3 Mini Hamburguesitas | 140 g de carne, 100 g de papas | Con pan brioche, carne de res y queso, con papas fritas. | $119 |  |
+| 3 Mini Hamburguesitas | 140 g de carne, 100 g de papas | Con pan brioche, carne de res y queso, con papas fritas. | $139 |  |
 | Pechuga Empanizada | 140 g de pechuga, 100 g de papas | Con guarnición de papas fritas. | $119 |  |
 | Mini Hot Cakes | 4 pzas, 1 bola de nieve |  | $99 |  |
 
@@ -140,7 +140,7 @@ _53 productos._
 
 ## Comidas
 
-_34 productos._
+_36 productos._
 
 ### Entradas
 
@@ -205,7 +205,7 @@ _34 productos._
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| 3 Mini Hamburguesas | 140 g de carne, 100 g de papas | Carne de res, pan brioche y queso amarillo, con papas a la francesa. | $119 |  |
+| 3 Mini Hamburguesas | 140 g de carne, 100 g de papas | Carne de res, pan brioche y queso amarillo, con papas a la francesa. | $139 |  |
 | Tiras de Pechuga de Pollo | 140 g de pollo, 100 g de papas | Con papas a la francesa. | $119 |  |
 | Camarones Empanizados | 100 g | Con aderezo de la casa. | $129 |  |
 
@@ -213,10 +213,12 @@ _34 productos._
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Jericallas |  |  | $79 |  |
+| Yoyo Caché |  | Cremoso de limón amarillo, compota de piel de limón y mousse de limón. |  |  |
+| Trompo Caché |  | Mousse de chocolate con nibs de cacao. |  |  |
+| Jericallas |  |  | $89 |  |
 | Flan de Elote |  |  | $79 |  |
 | Carlota de Limón |  |  | $69 |  |
-| Pan de Elote |  |  | $69 |  |
+| Pan de Elote |  |  | $79 |  |
 
 ---
 
@@ -368,7 +370,7 @@ _74 productos._
 
 - **133** con gramaje propio.
 - **5** sin campo propio, pero su categoría lo declara por todos.
-- **23** sin porción declarada en ningún lado.
+- **25** sin porción declarada en ningún lado.
 
 ### Declarados por su categoría
 
@@ -403,6 +405,8 @@ _74 productos._
 | Sopa de Tortilla Azteca | Comidas | Sopas |
 | Crema del Día | Comidas | Sopas |
 | Chiles Rellenos | Comidas | Platos Fuertes |
+| Yoyo Caché | Comidas | Postres |
+| Trompo Caché | Comidas | Postres |
 | Jericallas | Comidas | Postres |
 | Flan de Elote | Comidas | Postres |
 | Carlota de Limón | Comidas | Postres |
