@@ -178,9 +178,9 @@ _36 productos._
 | Milanesa de Pollo | 180 g | Acompañada de ensalada y papas fritas. | $190 |  |
 | Chile en Nogada | 100 g | Chile relleno de carne con un toque dulce, bañado en salsa nogada con nuez, perejil y granada. | $259 |  |
 | Chiles Rellenos |  | 2 piezas rellenas de queso, bañadas en salsa roja y acompañadas de arroz. | $180 |  |
-| Pollo en Mole | 250 g | Pierna y muslo bañados en mole de la casa, espolvoreados con ajonjolí y acompañados de arroz. | $240 |  |
+| Pollo en Mole | 250 g | Pierna y muslo bañados en mole de la casa, espolvoreados con ajonjolí y acompañados de arroz. | $170 |  |
 | Carne Asada | 180 g | Carne en tasajo, quesadilla, nopal asado, cebolla cambray, guacamole y frijoles con queso fresco. | $199 |  |
-| Chamorro | 900 g | 1 pieza de chamorro horneado lentamente, bañado con salsa de la casa y acompañado de frijoles y cebolla curtida. | $189 |  |
+| Chamorro | 900 g | 1 pieza de chamorro horneado lentamente, bañado con salsa de la casa y acompañado de frijoles y cebolla curtida. | $180 |  |
 | Molcajete Mar y Tierra | 100 g de picaña, 100 g de camarón | Picaña, camarón, nopal asado con cebolla cambray y panela asada, bañados en salsa de tomate, morrón y un toque de serrano. | $299 |  |
 | Peinecillo | 180 g | Acompañado de frijoles fritos, nopal y cebolla cambray asados, y guacamole. | $199 |  |
 

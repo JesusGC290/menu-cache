@@ -590,7 +590,7 @@ const comidas: Menu = {
           gramaje: '250 g',
           description:
             'Pierna y muslo bañados en mole de la casa, espolvoreados con ajonjolí y acompañados de arroz.',
-          price: '240',
+          price: '170',
         },
         {
           name: 'Carne Asada',
@@ -604,7 +604,7 @@ const comidas: Menu = {
           gramaje: '900 g',
           description:
             '1 pieza de chamorro horneado lentamente, bañado con salsa de la casa y acompañado de frijoles y cebolla curtida.',
-          price: '189',
+          price: '180',
         },
         {
           name: 'Molcajete Mar y Tierra',
