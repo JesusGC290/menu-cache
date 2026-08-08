@@ -12,18 +12,21 @@ Hecho con **Astro + Tailwind CSS**. Sitio 100 % estático, listo para GitHub + C
 
 | Ruta                | Qué es                                                          |
 | ------------------- | --------------------------------------------------------------- |
-| `/`                 | Presentación: portada, la casa, especialidades, horario y contacto |
-| `/carta`            | **La carta completa. Es el destino del QR.**                     |
-| `/carta-impresa`    | **Muestra del pliego impreso, para compartir por enlace**        |
+| `/`                 | **La carta completa. Es la principal y el destino del QR.**     |
+| `/informacion`      | Presentación: la casa, especialidades, horario y contacto        |
+| `/carta-impresa`    | Muestra del pliego impreso, para compartir por enlace            |
 | `/impresion/claro`  | Carta para imprenta, paleta marfil (la que se trabaja)          |
 | `/impresion/oscuro` | Carta para imprenta, paleta morada                              |
+
+`/carta` sigue respondiendo con un redirect a `/`, por si quedó algún enlace viejo.
 
 Las tres versiones salen del mismo `menu.ts`, así que un cambio de precio entra a las tres
 a la vez.
 
-**El QR apunta a `/carta`**, no a la portada: quien escanea en la mesa quiere la carta de
-inmediato. La portada existe para el tráfico de Google e Instagram, y desde el pie de la
-carta hay un enlace de vuelta para horario y teléfono.
+**La carta es la página principal.** Quien escanea el QR en la mesa cae directo en ella, y
+desde ahí hay dos botones: *Información* (horario, ubicación y contacto) y *Carta impresa*
+(la muestra del pliego). Los datos estructurados de Google viven en `/`, que es la página
+que se posiciona.
 
 ### Tema claro y oscuro
 
@@ -78,10 +81,10 @@ build truena en lugar de dejar el hueco en silencio.
 
 | Menú          | Categorías | Productos | Con gramaje |
 | ------------- | ---------: | --------: | ----------: |
-| Desayunos     |         13 |        52 |          23 |
-| Comidas       |          8 |        34 |          24 |
-| Bebidas       |         12 |        73 |           0 |
-| **Total**     | **33** | **159** | **47** |
+| Desayunos     |         13 |        53 |          34 |
+| Comidas       |          8 |        36 |          25 |
+| Bebidas       |         12 |        74 |          74 |
+| **Total**     | **33** | **163** | **133** | **33** | **159** | **47** |
 
 Las **bebidas se comparten** entre desayunos y comidas, por eso viven en su propia pestaña
 en lugar de repetirse en los otros dos menús.
@@ -168,87 +171,37 @@ El sitio se genera en `dist/`.
 
 ---
 
-## Publicar en GitHub + Cloudflare Pages
+## Publicar
 
-### 1. Subir el repositorio
+El sitio lo despliega **Cloudflare Pages conectado directamente al repositorio de GitHub**,
+en la cuenta del cliente. Cada push a `main` reconstruye y publica solo: no hace falta
+ningún workflow de GitHub Actions, y por eso el repositorio ya no trae uno.
 
-```bash
-git init && git add . && git commit -m "Carta digital de Caché Restaurante"
-```
+Configuración del proyecto en Cloudflare Pages:
 
-```bash
-git remote add origin git@github.com:USUARIO/cache-menu.git && git branch -M main && git push -u origin main
-```
+| Campo                     | Valor           |
+| ------------------------- | --------------- |
+| Framework preset          | `Astro`         |
+| Build command             | `npm run build` |
+| Build output directory    | `dist`          |
+| Node version              | 22 o superior   |
 
-### 2. Deploy automático con GitHub Actions
+**Variable de entorno obligatoria**, en *Settings → Environment variables*:
 
-El repositorio ya trae el workflow **`.github/workflows/deploy.yml`**. En cada push:
+| Variable   | Valor                         |
+| ---------- | ----------------------------- |
+| `SITE_URL` | `https://cacherestaurante.com` |
 
-1. instala dependencias con `npm ci`,
-2. revisa tipos con `astro check`,
-3. compila con `npm run build`,
-4. publica `dist/` en Cloudflare Pages con `wrangler`.
+Sin ella, la URL canónica, la imagen que se ve al compartir en WhatsApp y los datos
+estructurados de Google apuntarían al dominio por omisión. El valor por omisión ya es el
+dominio final, así que aunque falte no queda mal — pero conviene fijarla para que una
+vista previa de otra rama no se anuncie como si fuera producción.
 
-Push a **`main` → producción** (`cache.soyshua.dev`). Push a **cualquier otra rama →
-vista previa** con su propia URL, útil para revisar un cambio de precios antes de que lo
-vea un cliente.
+El dominio está en Namecheap con los nameservers apuntando a Cloudflare, así que el
+subdominio se agrega desde **Custom domains** del proyecto de Pages y Cloudflare crea el
+registro solo.
 
-Hace falta configurarlo **una sola vez**:
-
-**a) Crear el proyecto de Pages** (tipo _Direct Upload_, no conectado a Git):
-
-```bash
-npx wrangler pages project create menu-cache --production-branch=main
-```
-
-**b) Crear el API token** en [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/profile/api-tokens)
-→ **Create Token → Custom token**, con el permiso **Account · Cloudflare Pages · Edit**.
-
-**c) Guardar los dos secrets** en GitHub: **Settings → Secrets and variables → Actions →
-New repository secret**:
-
-| Secret                 | De dónde sale                                            |
-| ---------------------- | -------------------------------------------------------- |
-| `CLOUDFLARE_API_TOKEN` | el token del paso (b)                                    |
-| `CLOUDFLARE_ACCOUNT_ID`| panel de Cloudflare, barra lateral derecha de la cuenta  |
-
-Mientras falten los secrets el workflow **compila igual pero no publica**, y deja un aviso
-en el log en lugar de fallar.
-
-> **No conectes además la integración de Git de Cloudflare Pages.** Con las dos activas cada
-> push se publicaría dos veces. Se elige una: o este workflow, o
-> _Workers & Pages → Create → Pages → Connect to Git_ (que no necesita secrets ni workflow,
-> pero sí acceso de Cloudflare al repositorio).
-
-### 3. Apuntar el subdominio `cache.soyshua.dev`
-
-Como `soyshua.dev` ya está en Cloudflare, **no hay que tocar DNS a mano**: Cloudflare crea
-el registro solo.
-
-En el proyecto de Pages: **Custom domains → Set up a custom domain**, se escribe
-`cache.soyshua.dev` y se confirma con **Activate domain**.
-
-Cloudflare agrega un `CNAME` de `cache` hacia `<proyecto>.pages.dev` (proxeado, la nubecita
-naranja) y emite el certificado TLS. Tarda entre un minuto y unos 15; mientras aparece como
-_Initializing_.
-
-El dominio ya está configurado en `astro.config.mjs`:
-
-```js
-site: 'https://cache.soyshua.dev',
-```
-
-> Si el subdominio ya tuviera un registro previo (`A`, `AAAA` o `CNAME` de `cache`), hay que
-> borrarlo antes o Cloudflare marcará conflicto.
-
-### 4. Generar el QR
-
-Ya con el sitio en línea, el QR se apunta a **`https://cache.soyshua.dev/carta`** (la carta,
-no la portada). Al vivir en un dominio propio, el QR impreso **no se vuelve a imprimir**
-aunque cambie el hosting.
-
-Para un QR de una sección específica se le agrega el ancla de la categoría, por ejemplo
-`https://cache.soyshua.dev/carta#micheladas`.
+Las ramas distintas de `main` generan una vista previa con su propia URL.
 
 ---
 

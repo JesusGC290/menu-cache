@@ -1,9 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 // Logotipo v2 (Cache-logo-v2-tr.png), recortado de su aire transparente: 1216
-// px de ancho, sin marco y con alfa, para imprimirse directo sobre el papel.
-// La web sigue con la placa enmarcada, que es la que funciona sobre terciopelo.
-import logo from '../assets/cache-logo-impresion.png';
+// px de ancho, sin marco y con alfa. Es el mismo asset en la web y el impreso.
+import logo from '../assets/cache-logo.png';
 import { menus } from '../data/menu';
 import '../styles/impresion.css';
 
@@ -86,7 +85,7 @@ const totalProductos = menus.reduce(
               {/* Sin `widths` ni `sizes`: en una hoja impresa hay UNA resolución
                   correcta, y dejar selección responsiva sólo abre la puerta a que
                   el navegador elija una variante chica y el logotipo salga a 96 DPI.
-                  Así se sirve el PNG íntegro de 1194 px → 341 DPI a 3.5 in. */}
+                  Así se sirve el PNG íntegro de 1216 px → 312 DPI a 3.9 in. */}
               <Image
                 src={logo}
                 alt="Caché Restaurante"

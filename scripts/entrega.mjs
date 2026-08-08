@@ -31,7 +31,6 @@ const APARTADO = join(raiz, '.impresion-apartada');
 /** Rutas que NO van en el ZIP de código. */
 const EXCLUIR = [
   'src/pages/impresion/', // las páginas que generan el PDF: no se entregan
-  '.github/', // CI apuntando a nuestra cuenta de Cloudflare
   '.claude/', // configuración local del editor
   'scripts/', // este script y la plantilla del LEEME
   'README.md', // se reemplaza por LEEME.md (documenta también la imprenta)

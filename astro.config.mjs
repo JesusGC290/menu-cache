@@ -8,7 +8,13 @@ export default defineConfig({
   // los datos estructurados de Google. Se cambia con la variable de entorno
   // SITE_URL al compilar, sin tocar código:
   //   SITE_URL=https://cacherestaurante.com npm run build
-  site: process.env.SITE_URL ?? 'https://cache.soyshua.dev',
+  site: process.env.SITE_URL ?? 'https://cacherestaurante.com',
+  // La carta pasó de /carta a la raíz. Se deja el redirect por si algún
+  // enlace o QR viejo apunta a la ruta anterior.
+  redirects: {
+    '/carta': '/',
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },

@@ -17,7 +17,7 @@ const datos = {
   servesCuisine: 'Mexicana',
   priceRange: '$$',
   url: sitio || undefined,
-  hasMenu: sitio ? `${sitio}/carta` : undefined,
+  hasMenu: sitio || undefined,
   image: sitio ? `${sitio}/cache-logo.jpg` : undefined,
   telephone: negocio.telefono.marcar,
   address: {
