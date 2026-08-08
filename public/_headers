@@ -1,16 +1,37 @@
 # Cloudflare Pages · reglas de caché
-# Las tipografías y los assets con hash no cambian nunca: se cachean un año.
-# Así el menú abre casi instantáneo cuando el mismo cliente vuelve a escanear el QR.
+#
+# ── Por qué /_astro/* NO lleva caché larga ──────────────────────────────
+#
+# Estos encabezados se aplican por PATRÓN DE RUTA, no por archivo: Cloudflare
+# se los pone a cualquier respuesta de esa ruta, exista el archivo o no.
+#
+# Los nombres bajo /_astro/ llevan hash, así que cambian en cada despliegue.
+# Durante los segundos que tarda en propagarse un deploy, un navegador puede
+# pedir el hash nuevo y caer en un edge que todavía sirve el deploy anterior,
+# donde ese archivo no existe. Con una regla de `immutable` a un año, esa
+# respuesta equivocada se quedaba cacheada UN AÑO bajo la URL del CSS: el
+# sitio se veía sin estilos hasta purgar a mano, y volvía a pasar en cada
+# despliegue. En el dominio propio se notaba y en pages.dev no, porque
+# pages.dev no atraviesa la caché de la zona.
+#
+# Sin la regla aplica el valor por omisión de Pages —`max-age=0,
+# must-revalidate`—, que revalida y por tanto se corrige solo. Cuesta una
+# petición condicional por archivo, que responde 304 y pesa nada. Vale mucho
+# más que arriesgar un año de sitio roto.
+#
+# ── Por qué /fonts/* SÍ puede llevarla ──────────────────────────────────
+#
+# Esos archivos viven en public/ con nombre fijo: existen igual en el deploy
+# viejo y en el nuevo, así que una petición nunca cae en el vacío durante la
+# propagación. Son además lo más pesado del sitio (~100 KB) y no cambian
+# nunca, así que aquí la caché de un año es segura y vale la pena.
 
 /fonts/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
 /favicon.svg
   Cache-Control: public, max-age=604800
 
-# El HTML sí se revalida, para que un cambio de precios se vea de inmediato.
+# El HTML se revalida siempre, para que un cambio de precios se vea de inmediato.
 /
   Cache-Control: public, max-age=0, must-revalidate
