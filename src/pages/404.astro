@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Floron from '../components/Floron.astro';
+
+/**
+ * Página 404.
+ *
+ * No es sólo cortesía: sin ella, Cloudflare Pages responde a cualquier ruta
+ * inexistente con la portada y **estado 200**. Combinado con la regla de
+ * `_headers` que marca `/_astro/*` como `immutable` por un año, basta que un
+ * navegador pida un asset con hash mientras se propaga un despliegue para que
+ * el edge cachee ese HTML por un año bajo la URL del CSS —y el sitio se vea
+ * sin estilos hasta purgar la caché.
+ *
+ * Con esta página, esas rutas devuelven 404 de verdad: la respuesta mala deja
+ * de ser un éxito cacheable y se corrige sola en la siguiente petición.
+ */
+---
+
+<Layout
+  title="Página no encontrada · Caché Restaurante"
+  description="La página que busca no existe. Vea la carta completa de Caché Restaurante."
+>
+  <main class="mx-auto flex min-h-[100svh] max-w-lg flex-col items-center justify-center px-5 py-12 text-center">
+    <p class="font-display text-oro-degradado text-[3.5rem] leading-none font-medium sm:text-6xl">
+      404
+    </p>
+
+    <Floron class="mt-5" color />
+
+    <h1 class="font-display text-texto mt-6 text-[1.5rem] leading-tight font-medium sm:text-3xl">
+      Esta página no está en la carta.
+    </h1>
+
+    <p class="text-suave/85 mt-3 max-w-[32ch] text-[0.92rem] leading-relaxed font-light">
+      Puede que el enlace haya cambiado. La carta completa sigue en su lugar.
+    </p>
+
+    <div class="mt-8 flex flex-col items-center gap-3">
+      <a
+        href="/"
+        class="from-oro-claro via-oro to-oro-hondo text-vino focus-visible:outline-oro inline-flex w-full max-w-xs items-center justify-center rounded-full bg-gradient-to-b px-7 py-3.5 text-[0.82rem] font-medium tracking-[0.14em] uppercase shadow-[0_6px_22px_-6px_rgb(212_164_55/0.6)] transition-transform duration-200 hover:scale-[1.02] focus-visible:outline-2 focus-visible:outline-offset-4"
+      >
+        Ver la carta
+      </a>
+
+      <a
+        href="/informacion"
+        class="border-acento/35 text-suave hover:border-acento/70 hover:text-texto inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[0.76rem] tracking-[0.12em] uppercase transition-colors duration-200"
+      >
+        Información
+      </a>
+    </div>
+  </main>
+</Layout>
