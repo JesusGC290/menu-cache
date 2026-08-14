@@ -1,0 +1,45 @@
+---
+/**
+ * PostHog: visitas y analítica web del sitio.
+ *
+ * Va SÓLO en Layout.astro, el layout de las páginas públicas. Las páginas de
+ * `Impresion.astro` quedan fuera a propósito: `/impresion/claro` y
+ * `/impresion/oscuro` se abren para generar el PDF de la carta impresa, y
+ * contarlas ensuciaría las visitas con trabajo interno.
+ *
+ * ── Por qué la llave va en una variable de entorno ──────────────────────
+ *
+ * La project API key de PostHog es pública por diseño (viaja al navegador de
+ * todos modos), así que no es un secreto. Se saca del código igual, por dos
+ * razones prácticas: cambiar de proyecto de PostHog no obliga a tocar código,
+ * y sin la variable —el caso de `npm run dev`— no se manda absolutamente
+ * nada. Trabajar en la carta no cuenta como visita.
+ *
+ * En Cloudflare Pages se pone en Settings › Environment variables como
+ * PUBLIC_POSTHOG_KEY (el prefijo PUBLIC_ es lo que hace que Astro la exponga
+ * al navegador). Para probar en local, en un archivo `.env`, que está en el
+ * .gitignore.
+ */
+---
+
+<script>
+  // Vite sustituye esto por el valor literal al compilar. Sin la variable
+  // queda `undefined`, el `if` se cae solo y ni se descarga posthog-js: la
+  // importación dinámica hace que viva en su propio chunk, aparte del JS de
+  // la página.
+  const llave = import.meta.env.PUBLIC_POSTHOG_KEY;
+
+  if (llave) {
+    const { default: posthog } = await import('posthog-js');
+
+    posthog.init(llave, {
+      api_host: 'https://us.i.posthog.com',
+      // Fija el comportamiento por omisión a la fecha de esta instalación, en
+      // lugar de heredar el de 2020. Es lo que activa las pageviews modernas,
+      // el ignorar rageclicks en contenido, y demás. Al subir de versión
+      // posthog-js NO cambia nada de esto solo: mover la fecha es un cambio
+      // explícito, que es justo la idea.
+      defaults: '2026-06-25',
+    });
+  }
+</script>

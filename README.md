@@ -186,13 +186,14 @@ Configuración del proyecto en Cloudflare Pages:
 | Build output directory    | `dist`          |
 | Node version              | 22 o superior   |
 
-**Variable de entorno obligatoria**, en *Settings → Environment variables*:
+**Variables de entorno**, en *Settings → Environment variables*:
 
-| Variable   | Valor                         |
-| ---------- | ----------------------------- |
-| `SITE_URL` | `https://cacherestaurante.com` |
+| Variable              | Valor                          |                                |
+| --------------------- | ------------------------------ | ------------------------------ |
+| `SITE_URL`            | `https://cacherestaurante.com` | obligatoria                    |
+| `PUBLIC_POSTHOG_KEY`  | `phc_…`                        | para la analítica (ver abajo)  |
 
-Sin ella, la URL canónica, la imagen que se ve al compartir en WhatsApp y los datos
+Sin `SITE_URL`, la URL canónica, la imagen que se ve al compartir en WhatsApp y los datos
 estructurados de Google apuntarían al dominio por omisión. El valor por omisión ya es el
 dominio final, así que aunque falte no queda mal — pero conviene fijarla para que una
 vista previa de otra rama no se anuncie como si fuera producción.
@@ -202,6 +203,46 @@ subdominio se agrega desde **Custom domains** del proyecto de Pages y Cloudflare
 registro solo.
 
 Las ramas distintas de `main` generan una vista previa con su propia URL.
+
+---
+
+## Analítica
+
+Visitas y analítica web con **PostHog** (proyecto en la región US). Todo vive en un solo
+componente, [`src/components/Analitica.astro`](src/components/Analitica.astro), incluido
+únicamente en `Layout.astro`.
+
+Eso último es a propósito. Sólo cuentan las páginas públicas:
+
+| Cuenta                          | No cuenta                                              |
+| ------------------------------- | ------------------------------------------------------ |
+| `/` (la carta), `/informacion`  | `/impresion/claro`, `/impresion/oscuro`, `/carta-impresa` |
+
+Las de impresión salen de `Impresion.astro`, que no lleva el componente: se abren para
+generar el PDF, y contarlas mezclaría trabajo interno con visitas de clientes. Si algún día
+se quiere medir la muestra compartible `/carta-impresa`, es agregar `<Analitica />` a
+`Impresion.astro` dentro del `if` de `compartible`, para que las dos de producción sigan
+fuera.
+
+**La llave va en `PUBLIC_POSTHOG_KEY`**, no en el código. La project API key de PostHog es
+pública por diseño —viaja al navegador de todos modos, no es un secreto—, pero sacarla del
+código sirve para dos cosas: cambiar de proyecto de PostHog no obliga a tocar código, y
+**sin la variable no se manda nada**. Como `npm run dev` no la trae, trabajar en la carta
+no genera visitas falsas. Para probar la analítica en local, un archivo `.env` con:
+
+```
+PUBLIC_POSTHOG_KEY=phc_…
+```
+
+`.env` está en el `.gitignore`.
+
+Sobre el peso: `posthog-js` se carga con importación dinámica, así que queda en su propio
+archivo (~65 KB comprimido) aparte del JS de la página, y se pide después de pintar. Sin la
+variable el compilador lo elimina entero: no se genera ni el archivo.
+
+Ningún visitante genera perfil de persona. El sitio no tiene cuentas ni `identify`, y con
+el valor por omisión de PostHog (`person_profiles: 'identified_only'`) los eventos son
+anónimos, lo que además abarata el plan.
 
 ---
 
