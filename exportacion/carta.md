@@ -196,7 +196,7 @@ _36 productos._
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Plato Botanero | 4 personas | 2 jaladas de chile jalapeño con queso, chicharrón duro 100 g, chistorra 200 g, queso fundido natural 180 g, guacamole 180 g y frijoles fritos 180 g. | $550 |  |
+| Plato Botanero | 4 personas | 2 chiles jalapeños con queso, chicharrón duro 100 g, chistorra 200 g, queso fundido natural 180 g, guacamole 180 g y frijoles fritos 180 g. | $550 |  |
 | Parrillada | 3 a 4 personas | Peinecillo 200 g, pollo adobado 200 g, espaldilla 200 g y panza de cerdo 200 g. Queso fundido con chorizo 250 g, guacamole 180 g y frijoles refritos con queso 180 g. | $850 |  |
 
 ### Menú Infantil

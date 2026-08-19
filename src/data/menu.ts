@@ -657,7 +657,7 @@ const comidas: Menu = {
           name: 'Plato Botanero',
           gramaje: '4 personas',
           description:
-            '2 jaladas de chile jalapeño con queso, chicharrón duro 100 g, chistorra 200 g, queso fundido natural 180 g, guacamole 180 g y frijoles fritos 180 g.',
+            '2 chiles jalapeños con queso, chicharrón duro 100 g, chistorra 200 g, queso fundido natural 180 g, guacamole 180 g y frijoles fritos 180 g.',
           price: '550',
         },
         {
