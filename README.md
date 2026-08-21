@@ -17,8 +17,16 @@ Hecho con **Astro + Tailwind CSS**. Sitio 100 % estático, listo para GitHub + C
 | `/carta-impresa`    | Muestra del pliego impreso, para compartir por enlace            |
 | `/impresion/claro`  | Carta para imprenta, paleta marfil (la que se trabaja)          |
 | `/impresion/oscuro` | Carta para imprenta, paleta morada                              |
+| `/89`               | Landing de la campaña del café con QR (`noindex`, piloto)       |
 
 `/carta` sigue respondiendo con un redirect a `/`, por si quedó algún enlace viejo.
+
+**`/89` no se enlaza desde ninguna parte del sitio, y es a propósito.** Se llega sólo
+escaneando el QR pegado en los vasos de café que se reparten en la zona de oficinas. Lleva
+`noindex, nofollow` mientras corre el piloto: la campaña se mide por la razón entre escaneos
+y canjes en Nei, y si la página empezara a recibir visitas de búsqueda ese número dejaría de
+significar algo. Al cerrar el piloto se revierte en una línea. Ver
+[la sección de la campaña](#la-campaña-del-café-89).
 
 Las tres versiones salen del mismo `menu.ts`, así que un cambio de precio entra a las tres
 a la vez.
@@ -214,9 +222,15 @@ componente, [`src/components/Analitica.astro`](src/components/Analitica.astro), 
 
 Eso último es a propósito. Sólo cuentan las páginas públicas:
 
-| Cuenta                          | No cuenta                                              |
-| ------------------------------- | ------------------------------------------------------ |
-| `/` (la carta), `/informacion`  | `/impresion/claro`, `/impresion/oscuro`, `/carta-impresa` |
+| Cuenta                                  | No cuenta                                              |
+| --------------------------------------- | ------------------------------------------------------ |
+| `/` (la carta), `/informacion`, `/89`   | `/impresion/claro`, `/impresion/oscuro`, `/carta-impresa` |
+
+`/89` no usa `Analitica.astro`: su layout trae su propio script, porque además de
+inicializar PostHog tiene que mandar el evento de la campaña con la zona de reparto en el
+mismo hilo. Con dos scripts separados el evento dependería de que PostHog ya hubiera acabado
+de cargar, y esa carrera se pierde justo con mala señal. Los dos scripts fijan `defaults` a
+la misma fecha: si algún día se mueve, se mueven los dos.
 
 Las de impresión salen de `Impresion.astro`, que no lleva el componente: se abren para
 generar el PDF, y contarlas mezclaría trabajo interno con visitas de clientes. Si algún día
@@ -352,6 +366,149 @@ material de imprenta.
 - **Para la versión oscura**, papel couché con laminado mate: es mucha cobertura de tinta y
   en impresión digital barata el morado sale manchado.
 
+## La campaña del café: `/89`
+
+Se reparte café gratis en una zona de oficinas cercana. Cada vaso lleva un QR pegado, y quien
+lo escanea cae en [`/89`](src/pages/89.astro). El único trabajo de esa página es que esa
+persona entienda la promo en cinco segundos y sepa cómo llegar.
+
+**El canje ocurre en Nei, en la caja, en persona.** La web no emite códigos, no valida nada,
+no registra canjes y no le habla al punto de venta. Por eso la página es prácticamente
+estática: cualquier estado o lógica de canje en web crearía una segunda fuente de verdad que
+contradiría a Nei. Queda explícitamente fuera de alcance —y no se debe agregar— formulario de
+cualquier tipo, código o cupón en pantalla, cuenta regresiva, contador de canjes restantes,
+pedido en línea, reserva y fotografía de banco.
+
+### Otro sistema visual, y por eso otro layout
+
+`/89` no se ve como la carta, a propósito. Sigue el **Sistema de Identidad Visual v1.1**
+—papel `#FBF5ED`, escalas de coral y golondrina, Alegreya y Alegreya Sans, motivos planos
+sacados de los murales— mientras la carta sigue en terciopelo y oro con Cormorant Garamond y
+Jost. El v1.1 deja el sitio web en su lista de pendientes: el rediseño con ese sistema
+todavía no se decide, así que cada sistema vive en su propia hoja y no se pisan.
+
+| Pieza | La carta y `/informacion` | `/89` |
+| --- | --- | --- |
+| Layout | `Layout.astro` | `Campana.astro` |
+| Hoja | `global.css` (Tailwind) | `campana.css` (CSS a mano) |
+| Tipografías | Cormorant Garamond + Jost | Alegreya + Alegreya Sans |
+| Temas | claro y oscuro | uno solo |
+
+`campana.css` no usa Tailwind. Un segundo punto de entrada arrastraría a la landing todo el
+utilitario que usa la carta —que es mucho—, y esta página se abre en un pasillo de oficina con
+mala señal. Escrita a mano, y con las tres fotos dentro, la primera carga en un celular de
+375px son **181 KB** — y **93 KB** en las visitas siguientes, porque las tipografías se quedan
+en la caché de un año:
+
+| Pieza | Peso |
+| --- | --- |
+| Tipografías ×3 (caché de un año) | 88 KB |
+| Sello | 31 KB |
+| Foto del café | 22 KB |
+| Fotos de chilaquiles y hotcakes | 24 KB |
+| HTML | 9 KB |
+| CSS | 7 KB |
+| **JavaScript** | **0 KB** |
+
+### El diseño es de celular, no de escritorio
+
+La página se llega escaneando un QR pegado a un vaso, así que **el celular no es un caso a
+soportar: es el caso**. De ahí salen las decisiones que a primera vista parecen raras en una
+pantalla grande:
+
+- **Las tres opciones van en filas horizontales**, no apiladas con foto grande. Tres fotos de
+  4:3 una debajo de otra son unos 750px de scroll antes de llegar a «Cómo llegar», y el
+  trabajo de la página son cinco segundos. Arriba de 600px pasan a tres columnas.
+- **No hay motivo decorativo grande.** Hubo una golondrina en la banda oscura y se quitó: para
+  que se leyera como golondrina y no como un fragmento, había que darle su propio espacio, y
+  en un celular ese espacio se ve como un hueco vacío. La foto real del café hace ese trabajo
+  mejor. El componente [`Golondrina.astro`](src/components/campana/Golondrina.astro) se queda:
+  es el motivo que llevan las dos tarjetas de vista previa, y ahí sí tiene ancho de sobra.
+- **El ritmo vertical está apretado a mano.** El aire por omisión entre secciones se lee como
+  descuido en una pantalla de 375px.
+
+### El interruptor de apagado
+
+La promo no tiene fecha de cierre, pero algún día termina, y para entonces va a haber QRs
+impresos circulando por meses en vasos que ya nadie controla. En `89.astro`:
+
+```js
+const PROMO_ACTIVA = true;
+```
+
+En `false`, la misma ruta renderiza el estado alterno —la promo ya no está, el restaurante
+sigue aquí, dirección, horario e Instagram—, cambia el `og:image` por la tarjeta de promo
+cerrada y manda otro evento de analítica, para que los escaneos de vasos viejos no inflen la
+razón del piloto. **Nunca un 404 ni un redirect:** quien escanea un vaso viejo merece una
+respuesta, no un error.
+
+### La zona de reparto: `?p=`
+
+`/89?p=<zona>` se lee en cliente y viaja como propiedad `zona` del evento de analítica. **No
+se muestra en pantalla:** no hay código que enseñar, el canje lo resuelve la caja. Sin
+parámetro se registra como `general`. Hoy hay una sola zona; el parámetro existe desde ahora
+para que expandir la campaña no obligue a tocar código.
+
+### Las fotos
+
+Tres, todas propias del restaurante y todas recortadas a mano en `src/assets/`:
+
+| Archivo | Qué es | Recorte |
+| --- | --- | --- |
+| `89-chilaquiles.jpg` | Chilaquiles rojos, a 45° | 1:1 |
+| `89-hotcakes.jpg` | Hotcakes con fruta, cenital | 1:1 |
+| `89-cafe-bota.jpg` | La taza de barro en forma de bota | 4:5 |
+
+Cumplen las reglas de foto del v1.1: cenital o a 45°, sobre superficie neutra, sin filtros y
+**nada de fotografía de banco**, que contradiría un sistema visual que se sostiene en que cada
+color existe de verdad en el local.
+
+**Dos cosas que hubo que arreglar y conviene revisar si se cambia alguna foto:**
+
+- La del café traía en el fondo el letrero enmarcado del menú con el horario viejo,
+  `8:00 — 22:00`, perfectamente legible. Publicada así, la página se contradecía a sí misma
+  tres bloques más abajo, donde dice que abrimos de 8 am a 6 pm. El recorte 4:5 lo saca por
+  completo. **Revisar el fondo antes de publicar cualquier foto nueva.**
+- La del café y la de hotcakes venían con orientación EXIF 6, o sea acostadas.
+
+### El platillo sin foto
+
+De huevos no hay foto todavía, y no se esperó. El problema de tener dos de tres no es que
+falte una: es que **cualquier relleno tibio al lado de dos fotografías se lee como imagen
+rota.** El bloque de crema con un arco pálido que había antes se veía exactamente así, como un
+agujero.
+
+La salida no fue disimularlo sino subirle el peso hasta que empatara: **coral 500 macizo con un
+círculo de papel encima.** Plano, sin sombra ni degradado, dentro del sistema —el 500 es la
+banda de las manchas de color y el círculo pleno es el motivo «sol» de la biblioteca— y de paso
+se lee como un huevo estrellado. Deja de parecer una foto que falta y pasa a parecer una
+decisión.
+
+El mecanismo está en el arreglo `platillos` de [`89.astro`](src/pages/89.astro): cada platillo
+lleva `foto` y un `motivo` (`'sol'` o `'arco'`) que ocupa el hueco mientras la foto no exista.
+**Cuando llegue la de huevos:** se suelta el archivo en `src/assets/`, se importa, se pone en
+`foto` y se le escribe su `alt`. El `motivo` se queda sin usar, listo para la próxima vez, y no
+hay que mover ninguna medida.
+
+> El `alt` describe **la foto, no el platillo**. El detalle de la tarjeta dice «verdes o rojos»
+> porque las dos versiones entran en la promo, pero la foto es de los rojos, y eso es lo que
+> tiene que oír quien no la ve. Las tres tarjetas traen el slot reservado y degradan a un bloque de crema con
+un arco plano, así que **agregarlas es soltar tres archivos en `src/assets/` y cambiar tres
+`null`** en el arreglo `platillos`. No hay que rediseñar nada: el hueco ya ocupa el espacio
+final. Tienen que ser cenitales, cuadradas y propias — nada de fotografía de banco, que
+contradice un sistema visual que se sostiene en que cada color existe de verdad en el local.
+
+### Las tarjetas de vista previa
+
+[`public/og-89.png`](public/og-89.png) y
+[`public/og-89-cerrada.png`](public/og-89-cerrada.png), 1200×630. Importan más que la página:
+el camino más probable de esta campaña no es el escaneo, es que quien escaneó reenvíe el
+enlace al grupo de WhatsApp de su oficina, y esa tarjeta la ven más ojos que la landing.
+
+Están generadas por código a partir del sistema v1.1 para no lanzar con la vista previa
+vacía. **Cuando exista la versión de Figma, se reemplazan los dos archivos en la misma ruta y
+no hay que tocar código.**
+
 ## Notas sobre el contenido
 
 - Los precios y textos salieron de los documentos `MENU DESAYUNOS`, `MENU COMIDAS` y
@@ -365,8 +522,9 @@ material de imprenta.
 
 ## Detalles técnicos
 
-- Tipografías **autoalojadas** (Cormorant Garamond + Jost): no se llama a Google Fonts, así
-  el menú abre más rápido con una señal de celular débil.
+- Tipografías **autoalojadas**: Cormorant Garamond + Jost en la carta, Alegreya + Alegreya
+  Sans en `/89`. No se llama a Google Fonts, así el sitio abre más rápido con una señal de
+  celular débil. Sólo el subconjunto latino, y las agarra la caché de un año de `/fonts/*`.
 - El logotipo se sirve en **WebP** en tres tamaños (8–49 KB según la pantalla), en vez del
   PNG original de 547 KB.
 - Fondo de lujo mexicano en CSS puro: terciopelo morado en degradado, celosía de talavera

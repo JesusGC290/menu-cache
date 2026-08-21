@@ -21,3 +21,11 @@ pnpm-debug.log*
 # documentos fuente de la carta (se quedan locales, no se publican)
 *.docx
 entrega/
+
+# material de contexto: briefs, documentos de identidad y fotos en crudo.
+# Se queda local por dos razones: son decenas de MB de binarios (un JPG de
+# platillo pesa 20 MB) y son documentos internos. Lo que sí se publica son los
+# recortes que usa el sitio, en src/assets/.
+# `scripts/entrega.mjs` arma el ZIP con `git ls-files`, así que ignorarlo aquí
+# también lo mantiene fuera de lo que se le entrega al cliente.
+material/

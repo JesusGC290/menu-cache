@@ -1,0 +1,58 @@
+---
+/**
+ * Golondrina — motivo del Sistema de Identidad Visual v1.1.
+ *
+ * La biblioteca de motivos del v1.1 (golondrina, sol, arco, escalera, cactus,
+ * maceta, trompo, pirinola, canicas, serpiente, damero, campanario) sale de
+ * los murales que Celest Ramírez pintó en el restaurante. Los derechos están
+ * pagados, pero en el repositorio no hay ningún archivo: esta golondrina está
+ * redibujada como silueta plana a partir del motivo, no calcada del mural.
+ *
+ * Si algún día llegan los vectores originales, este componente se reemplaza
+ * por el archivo bueno y la página no se entera.
+ *
+ * Reglas del sistema que este componente cumple y hay que seguir cumpliendo
+ * al usarlo:
+ *
+ * · **Plano.** Un solo trazo, sin sombra, sin degradado, sin volumen.
+ * · **Grande y recortado por el borde**, no flotando chiquito en el centro.
+ *   Quien lo coloque se encarga del recorte; aquí sólo va la silueta.
+ * · **Nunca como fondo de texto.** El color va en la banda 300–400, que el
+ *   v1.1 reserva para ilustración justamente porque no da contraste de
+ *   lectura. Si algo tiene que leerse encima, el motivo está mal puesto.
+ * · **Uno o dos motivos por pieza.** Nunca regados como confeti.
+ *
+ * El v1.1 la señala como «el motivo más versátil y el mejor candidato a
+ * elemento recurrente de marca», y por eso es la que abre la landing.
+ *
+ * Toma el color de `currentColor`: lo decide quien la coloca.
+ */
+
+interface Props {
+  class?: string;
+}
+
+/**
+ * `resto` no es adorno: ahí viene el `data-astro-cid-*` con el que Astro
+ * marca los elementos para los estilos con alcance del componente que llama.
+ * Sin repartirlo en el `<svg>`, cualquier regla que el padre escriba para
+ * este motivo —color, posición, recorte— no lo alcanza, y el motivo aparece
+ * en el color del texto y sin colocar. Silencioso y desconcertante.
+ */
+const { class: clase, ...resto } = Astro.props;
+---
+
+<svg
+  class={clase}
+  {...resto}
+  viewBox="0 0 200 150"
+  fill="currentColor"
+  aria-hidden="true"
+  focusable="false"
+  role="presentation"
+>
+  <path
+    d="M22 73c8-12 22-18 35-13 24-23 60-45 97-51-21 29-43 50-57 64 14 3 24 6 32 9
+       19-4 38-11 56-19-13 13-25 21-38 26 11 8 23 19 33 32-19-8-37-19-53-30-10-1-20-3-31-5
+       7 19 3 40-13 58-10-23-21-46-26-60-13 1-27-2-35-11Z"></path>
+</svg>

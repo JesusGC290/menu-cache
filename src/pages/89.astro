@@ -1,0 +1,672 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Campana from '../layouts/Campana.astro';
+import sello from '../assets/cache-sello.png';
+import cafeBota from '../assets/89-cafe-bota.jpg';
+import chilaquiles from '../assets/89-chilaquiles.jpg';
+import hotcakes from '../assets/89-hotcakes.jpg';
+import { negocio } from '../data/negocio';
+
+/**
+ * Landing de la campaña del café con QR — `cacherestaurante.com/89`
+ * ═══════════════════════════════════════════════════════════════════════
+ *
+ * Se reparte café gratis en una zona de oficinas cercana. Cada vaso lleva un
+ * QR pegado. Quien lo escanea llega aquí.
+ *
+ * El único trabajo de esta página: que esa persona entienda la promo en cinco
+ * segundos y sepa cómo llegar al restaurante. Nada más.
+ *
+ * **El canje ocurre en Nei, en la caja, en persona.** Esta página no emite
+ * códigos, no valida nada, no registra canjes y no le habla a Nei. Por eso es
+ * prácticamente estática: cualquier estado o lógica de canje en web crearía
+ * una segunda fuente de verdad que contradiría al punto de venta.
+ *
+ * De ahí también lo que NO está aquí y no se debe agregar: formulario de
+ * ningún tipo, código o cupón en pantalla, cuenta regresiva, contador de
+ * canjes restantes, pedido en línea, reserva, y fotografía de banco.
+ *
+ * Sistema visual: Identidad Visual v1.1, vía `Campana.astro`. No es el de la
+ * carta; ver la cabecera de `campana.css`.
+ */
+
+/**
+ * ── Interruptor de apagado ──────────────────────────────────────────────
+ *
+ * La promo no tiene fecha de cierre, pero algún día termina — y para entonces
+ * va a haber QRs impresos circulando por meses, pegados en vasos que ya nadie
+ * controla.
+ *
+ * En `false`, esta misma ruta renderiza el estado alterno: la promo ya no
+ * está, el restaurante sigue aquí, dirección, horario y enlace a Instagram.
+ * **Nunca un 404 ni un redirect:** quien escanea un vaso viejo merece una
+ * respuesta, no un error.
+ *
+ * Cambiar esta línea y volver a desplegar es todo. La ruta no lleva regla de
+ * caché en `public/_headers`, así que Cloudflare Pages la revalida en cada
+ * petición y el cambio se ve de inmediato.
+ */
+const PROMO_ACTIVA = true;
+
+/**
+ * Horario de la promo. Es la única restricción que tiene: no hay fecha de
+ * cierre ni tope de canjes, así que sin ventana `$89` dejaría de ser una
+ * promoción y sería el precio efectivo del desayuno.
+ *
+ * Va aquí y no en `negocio.ts` a propósito: es un dato de esta campaña, no
+ * del restaurante. El horario general sí sale de `negocio.ts`, que es la
+ * fuente única del sitio entero.
+ */
+const HORARIO_PROMO = 'todos los días de 8 am a 2 pm';
+
+/**
+ * ── Las tres opciones ───────────────────────────────────────────────────
+ *
+ * Chilaquiles y hotcakes ya tienen foto propia del restaurante. Huevos no, y
+ * no se esperó: el hueco lo llena un motivo plano.
+ *
+ * **El problema real de tener dos fotos de tres** no es que falte una, es que
+ * cualquier relleno tibio al lado de dos fotografías se lee como imagen rota.
+ * Un bloque de crema con un arco pálido —lo que había— se veía exactamente
+ * así: un agujero. La salida no fue disimularlo sino subirle el peso hasta que
+ * empate: coral 500 macizo con un círculo de papel encima. Plano, sin sombra
+ * ni degradado, dentro del sistema —el 500 es la banda de las manchas de color
+ * y el círculo pleno es el motivo «sol» de la biblioteca— y de paso se lee
+ * como un huevo estrellado. Deja de parecer una foto que falta y pasa a
+ * parecer una decisión.
+ *
+ * Cuando llegue la foto de huevos: se suelta el archivo en `src/assets/`, se
+ * importa y se pone en `foto`. El `motivo` se queda sin usar, listo para la
+ * próxima vez, y no hay que mover ninguna medida.
+ *
+ * Las fotos son **cenitales o a 45°, sobre superficie neutra y propias del
+ * restaurante**, como pide el sistema visual. Nada de fotografía de banco.
+ */
+const platillos: {
+  nombre: string;
+  detalle: string;
+  foto: ImageMetadata | null;
+  /**
+   * Descripción de la FOTO, no del platillo. El detalle dice «verdes o rojos»
+   * porque las dos versiones entran en la promo, pero la foto es de los rojos:
+   * quien la escucha en lugar de verla merece saber qué se está enseñando.
+   */
+  alt: string;
+  /** Motivo plano que ocupa el hueco mientras no haya foto. */
+  motivo: 'sol' | 'arco';
+}[] = [
+  {
+    nombre: 'Chilaquiles',
+    detalle: 'verdes o rojos',
+    foto: chilaquiles,
+    alt: 'Chilaquiles rojos con crema, queso y aguacate, en plato de talavera',
+    motivo: 'arco',
+  },
+  {
+    nombre: 'Huevos',
+    detalle: 'con jamón o con chorizo',
+    foto: null,
+    alt: '',
+    motivo: 'sol',
+  },
+  {
+    nombre: 'Hotcakes',
+    detalle: 'tres, con fruta',
+    foto: hotcakes,
+    alt: 'Tres hotcakes con mantequilla y fruta picada, vistos desde arriba',
+    motivo: 'arco',
+  },
+];
+
+/**
+ * El evento cambia con el interruptor. Si los dos estados mandaran el mismo,
+ * los escaneos de vasos viejos se sumarían a los del piloto y la razón entre
+ * escaneos y canjes —el número que decide si la campaña se expande— quedaría
+ * inflada por tráfico que ya no podía canjear nada.
+ */
+const meta = PROMO_ACTIVA
+  ? {
+      title: 'Desayuno y café por $89',
+      description:
+        'Chilaquiles, huevos o hotcakes. Café americano incluido. Ladrón de Guevara.',
+      ogImage: '/og-89.png',
+      evento: 'promo_89_visita',
+    }
+  : {
+      title: 'Esta promoción ya terminó · Caché Restaurante',
+      description:
+        'La promoción de desayuno con café ya terminó. Caché sigue en Ladrón de Guevara, Guadalajara.',
+      ogImage: '/og-89-cerrada.png',
+      evento: 'promo_89_visita_cerrada',
+    };
+---
+
+<Campana
+  title={meta.title}
+  description={meta.description}
+  ogImage={meta.ogImage}
+  evento={meta.evento}
+>
+  <main>
+    {
+      PROMO_ACTIVA ? (
+        <Fragment>
+          {/* ═════════ Encabezado — se ve sin scroll a 375px ═════════ */}
+          <header class="portada">
+            <div class="limite portada-caja">
+              {/* Tipografía y nada más. A 375px no cabe un motivo grande al
+                  lado del precio sin que el texto acabe encima de él, y el
+                  v1.1 no admite ni eso ni la salida contraria, ponerlo
+                  chiquito. El precio se defiende solo. */}
+              <div class="portada-texto">
+                <h1>
+                  Desayuno y café por{' '}
+                  <span class="precio cifra">$89</span>
+                </h1>
+                <p class="portada-sub">Elige uno de los tres. El americano va incluido.</p>
+              </div>
+            </div>
+          </header>
+
+          {/* ═════════ Las tres opciones ═════════ */}
+          <section class="platillos" aria-labelledby="opciones">
+            <div class="limite">
+              <h2 id="opciones" class="oculto-visual">Las tres opciones</h2>
+
+              <ul class="tarjetas">
+                {platillos.map((platillo) => (
+                  <li class="tarjeta">
+                    <div class:list={['hueco', !platillo.foto && `hueco-${platillo.motivo}`]}>
+                      {platillo.foto ? (
+                        <Image
+                          src={platillo.foto}
+                          alt={platillo.alt}
+                          widths={[204, 408, 612]}
+                          sizes="(min-width: 600px) 10rem, 6rem"
+                          format="webp"
+                          quality={82}
+                          class="hueco-foto"
+                        />
+                      ) : (
+                        <span class={platillo.motivo} aria-hidden="true" />
+                      )}
+                    </div>
+
+                    <div class="tarjeta-texto">
+                      <h3>{platillo.nombre}</h3>
+                      <p class="tarjeta-detalle">{platillo.detalle}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              {/*
+                El americano, y la taza en la que llega. Es la única foto real
+                de la página y hace concreto lo que las tres tarjetas prometen:
+                cierra el bloque en vez de dejarlo en una nota al pie.
+
+                La bota es de las cosas que la gente recuerda del lugar, así
+                que se enseña. La foto es propia y del restaurante —nada de
+                banco de imágenes— y el barro naranja cae, de casualidad, muy
+                cerca del coral del sistema.
+              */}
+              <div class="cafe">
+                <Image
+                  src={cafeBota}
+                  alt="Taza de barro en forma de bota, pintada a mano en negro sobre naranja"
+                  widths={[224, 448, 672]}
+                  sizes="7rem"
+                  format="webp"
+                  quality={82}
+                  class="cafe-foto"
+                />
+                <div>
+                  <p class="cafe-titulo">Todos incluyen café americano.</p>
+                  <p class="nota cafe-detalle">Aquí llega en taza de barro, en forma de bota.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ═════════ Cómo se canja ═════════
+              Banda de golondrina 800 a todo lo ancho: es el «respiro» que
+              pide el v1.1 cuando la pieza lleva mucho cálido seguido, y de
+              paso separa la promo de la letra chica. */}
+          <section class="canje" aria-labelledby="canje-titulo">
+            <div class="limite">
+              <h2 id="canje-titulo">Solo muéstralo al pedir.</h2>
+              <p class="canje-texto">No necesitas código, ni registro, ni imprimir nada.</p>
+              <p class="nota canje-condiciones">
+                Uno por persona. Válido {HORARIO_PROMO}.
+              </p>
+            </div>
+          </section>
+        </Fragment>
+      ) : (
+        /* ═════════ Estado apagado ═════════
+           Mismo encabezado, otro mensaje. En tercera persona, sin disculpa y
+           sin cuenta regresiva de nada. */
+        <header class="portada portada-cerrada">
+          <div class="limite portada-caja">
+            <div class="portada-texto">
+              <h1>
+                Esta promoción{' '}
+                <span class="cerrada-remate">ya terminó</span>
+              </h1>
+              <p class="portada-sub">
+                La cocina sigue en su lugar, {negocio.horario.frase}.
+              </p>
+            </div>
+          </div>
+        </header>
+      )
+    }
+
+    {/* ═════════ Dónde ═════════
+        Después del precio, «Cómo llegar» es lo más valioso de la página. Va
+        como acción principal, no como pie: coral 700 con papel encima (6.9:1)
+        y 44px de área táctil. */}
+    <section class="donde" aria-labelledby="donde-titulo">
+      <div class="limite">
+        <h2 id="donde-titulo" class="oculto-visual">Dónde estamos</h2>
+
+        <p class="direccion">Av. {negocio.direccion.calle}</p>
+        <p class="direccion-detalle">
+          {negocio.direccion.colonia}, {negocio.direccion.ciudad}
+        </p>
+        <p class="direccion-detalle">Abrimos {negocio.horario.frase}</p>
+
+        <a class="boton-mapa" href={negocio.mapa} target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="12" cy="10" r="2.4"></circle>
+          </svg>
+          Cómo llegar
+        </a>
+      </div>
+    </section>
+
+    {/* ═════════ Qué es Caché ═════════
+        Voz: primera del plural, la del restaurante. El brief pedía tercera
+        persona, y en tercera el dato sonaba de ficha —«el abuelo de la dueña»
+        pone a la dueña de por medio y aleja justo lo que debería acercar—. Lo
+        que la regla del brief protege de verdad es no ponerle palabras en la
+        boca a la dueña: «somos» es el restaurante hablando, no ella, así que
+        se cumple el fondo de la regla sin pagar la distancia.
+
+        El cierre invita a la carta completa, que es la página principal: quien
+        ya entendió la promo y sigue leyendo aquí es quien más probablemente
+        quiera ver todo lo demás. */}
+    <section class="acerca" aria-labelledby="acerca-titulo">
+      <div class="limite">
+        <h2 id="acerca-titulo" class="oculto-visual">Qué es Caché</h2>
+
+        <div class="acerca-caja">
+          <p>
+            Somos cocina mexicana, aquí en Ladrón de Guevara. El nombre viene de un
+            abuelo: está pintado en el mural del fondo, caminando de la mano de su
+            nieta, con su nombre en el sombrero. Cuando vengas, búscalo.
+          </p>
+
+          <a class="boton-carta" href="/">
+            Ver la carta completa
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <path d="M5 12h13M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* ═════════ Pie ═════════
+        Instagram discreto y al pie, nunca arriba. El sello chico, sobre papel,
+        con aire de sobra: el mínimo del v1.1 es la altura de la palabra
+        «RESTAURANTE» del propio logo —medida, 5.1% del alto del sello— y aquí
+        lleva bastante más. */}
+    <footer class="pie">
+      <div class="limite">
+        <a class="instagram" href={negocio.instagram.url} target="_blank" rel="noopener noreferrer">
+          @{negocio.instagram.usuario}
+        </a>
+
+        <Image
+          src={sello}
+          alt="Caché Restaurante"
+          widths={[160, 320, 480]}
+          sizes="10rem"
+          format="webp"
+          quality={90}
+          class="sello"
+        />
+      </div>
+    </footer>
+  </main>
+</Campana>
+
+<style>
+  /* ── Rejilla ──────────────────────────────────────────────────────── */
+
+  .limite {
+    max-width: 30rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  /* ── Encabezado ───────────────────────────────────────────────────── */
+
+  .portada-caja {
+    padding-top: 2.5rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .portada h1 {
+    /* La cifra va aparte, en su propio bloque */
+    max-width: 14ch;
+  }
+
+  .precio {
+    display: block;
+    margin-top: 0.05em;
+    font-size: clamp(4.4rem, 22vw, 5.4rem);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: var(--coral-700);
+  }
+
+  .portada-sub {
+    max-width: 24ch;
+    margin-top: 1rem;
+  }
+
+  /* Estado apagado: el remate hereda el titular, en Alegreya, no en la sans:
+     aquí no hay ninguna cifra que proteger. */
+  .cerrada-remate {
+    display: block;
+    color: var(--coral-700);
+  }
+
+  .portada-cerrada h1 {
+    max-width: 18ch;
+  }
+
+  /* ── Las tres opciones ────────────────────────────────────────────── */
+
+  .platillos {
+    padding-bottom: 2.5rem;
+  }
+
+  .tarjetas {
+    display: grid;
+    gap: 0.875rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /*
+    En el teléfono las tres van en fila horizontal, no apiladas con foto
+    grande: el trabajo de la página es que se entiendan las tres opciones en
+    cinco segundos, y tres fotos de 4:3 apiladas son ~750px de scroll antes de
+    llegar a «cómo llegar». Así las tres caben de un vistazo. En pantalla
+    ancha ya hay espacio y pasan a tres columnas con la foto grande.
+
+    El slot es 1:1 en los dos casos —la misma relación fija en las tres, como
+    pide el brief— así que la foto que llegue sirve para ambos diseños.
+  */
+  .tarjeta {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+  }
+
+  .hueco {
+    position: relative;
+    flex: none;
+    /* 6rem y no menos: ya hay fotos de comida adentro y por debajo de esto
+       dejan de dar apetito. */
+    width: 6rem;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 0.625rem;
+    /* Superficie de la banda 50–200: crema sobre el papel */
+    background-color: var(--crema);
+  }
+
+  /*
+    El hueco sin foto de «Huevos». Coral 500 macizo —la banda de las manchas de
+    color— con el círculo de papel encima: plano, sin sombra ni degradado, y con
+    el mismo peso visual que una fotografía. Al lado de dos fotos, un relleno
+    pálido se lee como imagen rota; éste se lee como huevo estrellado.
+  */
+  .hueco-sol {
+    display: grid;
+    place-items: center;
+    background-color: var(--coral-500);
+  }
+
+  .sol {
+    width: 58%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: var(--papel);
+  }
+
+  .hueco-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* El arco: motivo plano, recortado por el borde inferior del hueco.
+     Sin sombra, sin degradado, sin volumen. */
+  .arco {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 54%;
+    height: 72%;
+    transform: translateX(-50%);
+    border-radius: 999px 999px 0 0;
+    background-color: var(--coral-300);
+  }
+
+  .tarjeta h3 {
+    /* Alegreya nunca por debajo de 20px: 1.294rem × 17px = 22px */
+    text-wrap: nowrap;
+  }
+
+  .tarjeta-detalle {
+    color: var(--tinta-700);
+  }
+
+  /*
+    La fila del café cierra el bloque de las tres opciones. Mismo ritmo
+    horizontal que las tarjetas —foto a la izquierda, texto a la derecha— para
+    que se lea como «y esto viene con las tres», no como un cuarto platillo a
+    elegir. La foto es 4:5 y las tarjetas 1:1 a propósito: la diferencia de
+    forma es lo que la marca como otra cosa.
+  */
+  .cafe {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--coral-100);
+  }
+
+  .cafe-foto {
+    flex: none;
+    width: 7rem;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 0.625rem;
+  }
+
+  .cafe-titulo {
+    font-weight: 500;
+  }
+
+  .cafe-detalle {
+    margin-top: 0.25rem;
+    color: var(--tinta-700);
+  }
+
+  @media (min-width: 600px) {
+    .tarjetas {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .tarjeta {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+
+    .hueco {
+      width: 100%;
+    }
+
+  }
+
+  /* ── Cómo se canja ────────────────────────────────────────────────── */
+
+  .canje {
+    /* Fondo oscuro del sistema. Papel encima: 9.4:1 */
+    padding-block: 2.5rem;
+    background-color: var(--golondrina-800);
+    color: var(--papel);
+  }
+
+  .canje-texto {
+    margin-top: 0.625rem;
+    max-width: 32ch;
+  }
+
+  .canje-condiciones {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--golondrina-300);
+    /* La letra chica es letra chica, pero tiene que leerse: papel al 82% sobre
+       golondrina 800 sigue muy por encima del mínimo. */
+    color: color-mix(in srgb, var(--papel) 82%, var(--golondrina-800));
+  }
+
+  /* ── Dónde ────────────────────────────────────────────────────────── */
+
+  .donde {
+    padding-block: 2.5rem;
+  }
+
+  .direccion {
+    /* Lleva número: Alegreya Sans, no la serif */
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 1.294rem;
+    line-height: 1.3;
+  }
+
+  .direccion-detalle {
+    color: var(--tinta-700);
+  }
+
+  .boton-mapa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    /* El brief pide 44px mínimo de área táctil */
+    min-height: 3.25rem;
+    margin-top: 1.5rem;
+    padding-inline: 1.5rem;
+    border-radius: 999px;
+    background-color: var(--coral-700);
+    color: var(--papel);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .boton-mapa svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: none;
+  }
+
+  /* ── Qué es Caché ─────────────────────────────────────────────────── */
+
+  /* Pegado al bloque de arriba a propósito: el botón del mapa y esta tarjeta
+     son el cierre de la página y no necesitan 76px de aire entre los dos. */
+  .acerca {
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .acerca .limite {
+    /* La superficie es el crema; el papel queda como fondo de página */
+    max-width: 32.5rem;
+  }
+
+  /* Más de tres líneas: Alegreya Sans, nunca la serif */
+  .acerca-caja {
+    padding: 1.5rem;
+    border-radius: 0.875rem;
+    background-color: var(--crema);
+  }
+
+  /*
+    Acción secundaria, y tiene que verse secundaria: el contorno de coral no
+    compite con el relleno macizo de «Cómo llegar», que sigue siendo la acción
+    principal de la página. Mismos 44px de área táctil.
+  */
+  .boton-carta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    margin-top: 1.25rem;
+    padding-inline: 1.125rem;
+    border: 1.5px solid var(--coral-700);
+    border-radius: 999px;
+    color: var(--coral-700);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .boton-carta svg {
+    width: 1.0625rem;
+    height: 1.0625rem;
+    flex: none;
+  }
+
+  /* ── Pie ──────────────────────────────────────────────────────────── */
+
+  .pie {
+    padding-top: 0.5rem;
+    padding-bottom: 3rem;
+    text-align: center;
+  }
+
+  .instagram {
+    display: inline-flex;
+    align-items: center;
+    /* Discreto no quiere decir difícil de atinar: 44px de alto, el mismo
+       mínimo que el botón del mapa. */
+    min-height: 2.75rem;
+    padding-inline: 0.75rem;
+    font-size: 0.824rem;
+    color: var(--tinta-700);
+    text-decoration-color: color-mix(in srgb, var(--tinta-700) 40%, transparent);
+    text-underline-offset: 0.2em;
+  }
+
+  .sello {
+    width: 10rem;
+    height: auto;
+    /* Aire alrededor del sello. El mínimo del v1.1 es la altura de la palabra
+       «RESTAURANTE» del logo: medida sobre el archivo, 5.1% de su alto — a
+       10rem de ancho son ~4px. Aquí lleva 2rem arriba, de sobra. */
+    margin: 2rem auto 0;
+  }
+</style>
