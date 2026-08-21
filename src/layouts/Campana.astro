@@ -1,0 +1,182 @@
+---
+import '../styles/campana.css';
+
+/**
+ * Layout de las páginas de campaña.
+ *
+ * Es el tercer layout del proyecto y responde a un sistema visual distinto:
+ *
+ *   · `Layout.astro`    la carta y /informacion — terciopelo y oro, dos temas
+ *   · `Impresion.astro` los pliegos que se vuelven PDF
+ *   · `Campana.astro`   las landings de campaña — Identidad Visual v1.1
+ *
+ * Lo que este layout NO trae, y por qué:
+ *
+ * · **Botón de tema y script de tema.** El v1.1 es un solo tema: papel de
+ *   fondo, tinta encima. No hay versión oscura que elegir, así que no hay
+ *   nada que guardar en localStorage ni script que corra antes de pintar.
+ * · **Las capas de fondo** (`fondo-terciopelo`, `fondo-talavera`,
+ *   `fondo-vineta`). Son del otro sistema y aquí el fondo es color plano.
+ * · **`index, follow`.** Estas páginas se piden `noindex` mientras el piloto
+ *   corre; ver `robots` más abajo.
+ * · **Tailwind.** Ver la cabecera de `campana.css`.
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  /** Ruta absoluta de la imagen de vista previa, 1200×630. */
+  ogImage: string;
+  /**
+   * Indexación. Por omisión `noindex, nofollow`.
+   *
+   * Una campaña con QR se mide por la razón entre escaneos y canjes. Si la
+   * página además recibe visitas de búsqueda, ese número deja de significar
+   * algo y ya no se puede saber si el mecanismo del vaso funcionó. Cuando el
+   * piloto cierre, se pasa `robots="index, follow"` y listo.
+   */
+  robots?: string;
+  /**
+   * Nombre del evento de analítica que se manda al cargar. Sin él no se
+   * manda nada: una página de campaña sin medición no existe, pero tampoco
+   * se le inventa un evento a una página que no lo pidió.
+   */
+  evento?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage,
+  robots = 'noindex, nofollow',
+  evento,
+} = Astro.props;
+
+const urlOg = new URL(ogImage, Astro.site);
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <meta name="theme-color" content="#FBF5ED" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+
+    <!--
+      Las tres se piden desde el primer momento porque las tres se usan arriba
+      del pliegue: el titular en Alegreya, el texto en Alegreya Sans 400 y el
+      precio en Alegreya Sans 500.
+    -->
+    <link
+      rel="preload"
+      href="/fonts/alegreya-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/alegreya-sans-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/alegreya-sans-latin-500-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!--
+      La vista previa al compartir importa más que la página.
+      El camino más probable de esta campaña no es el escaneo: es que quien
+      escaneó reenvíe el enlace al grupo de WhatsApp de su oficina. Esa
+      tarjeta la van a ver más ojos que la landing.
+    -->
+    <meta property="og:type" content="website" />
+    <!--
+      El `og:title` es el copy exacto de la campaña y no lleva marca, para no
+      gastar en el nombre los caracteres que WhatsApp recorta. La marca la pone
+      `og:site_name`, que se muestra aparte y no compite con el titular.
+    -->
+    <meta property="og:site_name" content="Caché Restaurante" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={urlOg} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="es_MX" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <slot name="head" />
+
+    {
+      /**
+       * El nombre del evento viaja en un `<meta>` en lugar de inyectarse al
+       * script con `define:vars`. No es rodeo: `define:vars` obliga a que el
+       * script sea `is:inline`, y un script en línea ya no lo procesa Vite —
+       * ni `import.meta.env`, que se quedaría literal, ni el import de
+       * `posthog-js`, que el navegador no sabe resolver. La analítica se
+       * rompería sin avisar. Con el meta, el script sigue siendo un módulo
+       * procesado y el nombre se lee del documento.
+       *
+       * Sin este meta, el script de abajo no manda nada.
+       */
+      evento && <meta name="analitica-evento" content={evento} />
+    }
+
+    <!--
+      Analítica.
+
+      Va como módulo, así que está diferida por definición: no retrasa nada de
+      lo que se ve. El contenido de la página no depende de ella —el parámetro
+      y la medición son mejora progresiva, y sin `PUBLIC_POSTHOG_KEY` no se
+      descarga ni un byte de posthog.
+
+      No reutiliza `Analitica.astro` a propósito. Ese componente sólo
+      inicializa PostHog, y aquí hace falta inicializar Y mandar el evento con
+      la zona en el mismo hilo. Con dos scripts separados, el evento
+      dependería de que PostHog ya hubiera terminado de cargar: una carrera
+      que se pierde justo con mala señal, que es cuando se abre esta página.
+
+      `defaults` fijado a la misma fecha que `Analitica.astro`: si algún día se
+      mueve, se mueven las dos juntas.
+    -->
+    <script>
+      const evento = document
+        .querySelector('meta[name="analitica-evento"]')
+        ?.getAttribute('content');
+      const llave = import.meta.env.PUBLIC_POSTHOG_KEY;
+
+      if (evento && llave) {
+        const { default: posthog } = await import('posthog-js');
+
+        posthog.init(llave, {
+          api_host: 'https://us.i.posthog.com',
+          defaults: '2026-06-25',
+        });
+
+        // Zona de reparto, de `?p=`. No se muestra en pantalla: no hay código
+        // que enseñar, el canje lo resuelve la caja. Hoy hay una sola zona; el
+        // parámetro existe desde ahora para que expandir la campaña a más
+        // zonas no obligue a tocar código. Se recorta a 40 caracteres para que
+        // nadie llene la analítica de basura desde la barra de direcciones.
+        const zona = new URLSearchParams(location.search).get('p');
+        posthog.capture(evento, { zona: zona ? zona.slice(0, 40) : 'general' });
+      }
+    </script>
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>
