@@ -13,7 +13,7 @@ export const negocio = {
   descripcionCorta: 'Cocina mexicana en Guadalajara',
 
   direccion: {
-    calle: 'Manuel Acuña 1846',
+    calle: 'Manuel Acuña 1849',
     colonia: 'Ladrón de Guevara',
     cp: '44600',
     ciudad: 'Guadalajara',
@@ -21,12 +21,25 @@ export const negocio = {
     pais: 'MX',
   },
 
-  /** Todos los días, 8:00 a 22:00 */
+  /**
+   * Todos los días, 8:00 a 18:00.
+   *
+   * Este es el horario oficial, el mismo que las bios de Instagram, TikTok y
+   * Facebook. El sitio decía 8 am – 10 pm y las contradecía: cualquiera que
+   * compare las dos fuentes se queda sin saber a qué hora abrimos, y el
+   * primer dato equivocado es el que se recuerda.
+   *
+   * De aquí salen el pie, la portada, /informacion, la landing /89 y el
+   * `openingHours` de schema.org. Cambiarlo aquí lo cambia en todo el sitio:
+   * no hay ninguna otra copia del horario en el código.
+   */
   horario: {
-    texto: 'Todos los días de 8:00 am a 10:00 pm',
-    textoCorto: 'Todos los días · 8 am – 10 pm',
+    texto: 'Todos los días de 8:00 am a 6:00 pm',
+    textoCorto: 'Todos los días · 8 am – 6 pm',
+    /** Redacción corta para frases dentro de un párrafo: «Abrimos …» */
+    frase: 'todos los días de 8 am a 6 pm',
     abre: '08:00',
-    cierra: '22:00',
+    cierra: '18:00',
     /** Formato de schema.org para los datos estructurados */
     dias: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
   },
@@ -57,7 +70,7 @@ export const negocio = {
   },
 
   /** Búsqueda en Google Maps por nombre y dirección: abre la app en el celular. */
-  mapa: 'https://www.google.com/maps/search/?api=1&query=Cach%C3%A9%20Restaurante%2C%20Manuel%20Acu%C3%B1a%201846%2C%20Ladr%C3%B3n%20de%20Guevara%2C%2044600%20Guadalajara%2C%20Jal.',
+  mapa: 'https://www.google.com/maps/search/?api=1&query=Cach%C3%A9%20Restaurante%2C%20Manuel%20Acu%C3%B1a%201849%2C%20Ladr%C3%B3n%20de%20Guevara%2C%2044600%20Guadalajara%2C%20Jal.',
 } as const;
 
 export const direccionUnaLinea = [
