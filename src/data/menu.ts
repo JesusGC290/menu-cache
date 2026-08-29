@@ -524,11 +524,6 @@ const bebidas: Menu = {
           price: '55',
         },
         {
-          name: 'Tonicol',
-          gramaje: '600 ml',
-          price: '55',
-        },
-        {
           name: 'Fuze Tea',
           gramaje: '600 ml',
           description: 'Durazno o limón.',
@@ -591,29 +586,10 @@ const bebidas: Menu = {
           price: '79',
         },
         {
-          name: 'Pantera Rosa',
-          gramaje: '400 ml',
-          description: 'Crema de coco, fresa y granadina.',
-          price: '79',
-        },
-        {
           name: 'Canica',
           gramaje: '350 ml',
           description: 'Soda lima limón con granadina.',
           price: '49',
-        },
-        {
-          name: 'Tejuino',
-          gramaje: '400 ml',
-          description: 'Fermento a base de maíz nixtamalizado, piloncillo y limón.',
-          price: '65',
-        },
-        {
-          name: 'Tepache',
-          gramaje: '300 ml',
-          description:
-            'Fermento a base de piña, piloncillo y especias: clavo de olor, canela, pimienta gorda y anís.',
-          price: '59',
         },
         {
           name: 'Cazuela',
@@ -751,12 +727,6 @@ const bebidas: Menu = {
           description: 'Pepino natural, jarabe, limón y jugo de piña.',
           price: '79',
         },
-        {
-          name: 'Tejuino Muck',
-          gramaje: '400 ml',
-          description: 'Tejuino, limón, jugo de piña y agua mineral.',
-          price: '79',
-        },
       ],
     },
     {
@@ -875,18 +845,6 @@ const bebidas: Menu = {
           gramaje: '45 ml',
           description: 'Escarchado con sal, jugo de limón y salsas negras.',
           price: '25',
-        },
-        {
-          name: 'Vaso Tejuichela',
-          gramaje: '90 ml',
-          description: 'Preparación de tejuino, limón y sal.',
-          price: '39',
-        },
-        {
-          name: 'Tejuichela Caché',
-          gramaje: '300 ml',
-          description: 'Tejuino, sal de grano, limón y cerveza de la casa.',
-          price: '119',
         },
         {
           name: 'Michelada de Fresa',
