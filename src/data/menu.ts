@@ -238,6 +238,20 @@ const desayunos: Menu = {
         },
       ],
     },
+    {
+      id: 'extras',
+      title: 'Extras',
+      products: [
+        { name: 'Huevo', price: '20' },
+        { name: 'Pollo', price: '40' },
+        { name: 'Chorizo', price: '40' },
+        { name: 'Chicharrón', price: '60' },
+        { name: 'Asada', price: '60' },
+        { name: 'Frijoles', price: '15' },
+        { name: 'Jamón', price: '20' },
+        { name: 'Tocino', price: '25' },
+      ],
+    },
   ],
 };
 
