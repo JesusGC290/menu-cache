@@ -3,6 +3,13 @@ import { Image } from 'astro:assets';
 // Logotipo v2 (Cache-logo-v2-tr.png), recortado de su aire transparente: 1216
 // px de ancho, sin marco y con alfa. Es el mismo asset en la web y el impreso.
 import logo from '../assets/cache-logo.png';
+// Fotos de producto reales para la tira de la hoja 1, optimizadas desde
+// material/ (originales 5000×3000 → 1600×960 JPG).
+import fotoChamorro from '../assets/foto-chamorro.jpg';
+import fotoNogada from '../assets/foto-chile-nogada.jpg';
+import fotoParrillada from '../assets/foto-parrillada.jpg';
+import fotoPostre from '../assets/foto-postre.jpg';
+import CategoriaImpresa from './CategoriaImpresa.astro';
 import { menus } from '../data/menu';
 import '../styles/impresion.css';
 
@@ -17,6 +24,13 @@ interface Props {
 }
 const { tema, conAviso = true } = Astro.props;
 
+const fotos = [
+  { src: fotoChamorro, alt: 'Chamorro al horno', pie: 'Chamorro al horno' },
+  { src: fotoNogada, alt: 'Chile en nogada', pie: 'Chile en nogada' },
+  { src: fotoParrillada, alt: 'Parrillada', pie: 'Parrillada' },
+  { src: fotoPostre, alt: 'Postre de la casa', pie: 'Postre de la casa' },
+];
+
 const porId = (id: string) => menus.find((m) => m.id === id)!;
 const desayunos = porId('desayunos');
 const comidas = porId('comidas');
@@ -27,6 +41,32 @@ const caras = [
   { id: 'frente', menus: [desayunos, comidas] },
   { id: 'vuelta', menus: [bebidas] },
 ];
+
+/**
+ * Reparto MANUAL de categorías por columna en la hoja 1. A diferencia del flujo
+ * multicolumna de la vuelta, aquí cada categoría vive entera en una columna: no
+ * se parte ni deja títulos huérfanos. Cada arreglo es una columna (izq→der).
+ */
+const catId = (menu: (typeof menus)[number], id: string) =>
+  menu.categories.find((c) => c.id === id)!;
+
+const columnasFrente = {
+  desayunos: [
+    ['pa-empezar', 'chilaquiles'],
+    ['molletes', 'huevos', 'pal-capricho'],
+    ['burritos', 'infantil-desayunos'],
+  ],
+  comidas: [
+    ['pa-entrarle', 'sopas'],
+    ['pa-no-rendirse', 'las-inolvidables', 'pa-los-carnivoros'],
+    ['muy-nuestros', 'postres'],
+  ],
+};
+
+const columnasDe = (menu: (typeof menus)[number]) =>
+  (columnasFrente as Record<string, string[][]>)[menu.id].map((ids) =>
+    ids.map((id) => catId(menu, id)),
+  );
 
 const totalProductos = menus.reduce(
   (n, m) => n + m.categories.reduce((k, c) => k + c.products.length, 0),
@@ -118,70 +158,90 @@ const totalProductos = menus.reduce(
         </header>
 
         {/*
-          ── Cuerpo: UN solo flujo de columnas para todas las secciones ──
+          ── Cuerpo ──
 
-          Antes cada menú tenía su propia retícula y el alto se repartía con un
-          peso estimado desde los datos. El problema es de fondo: cualquier
-          estimación se desvía, y al desviarse un menú acapara espacio mientras
-          al otro se le desborda el contenido —fue exactamente lo que pasó al
-          entrar los gramajes de Comidas.
+          Vuelta (bebidas): flujo multicolumna que el navegador balancea solo.
 
-          Con un flujo único y las bandas de título cruzando el ancho
-          (`column-span: all`), el navegador balancea todo el contenido y no
-          hay reparto que calibrar.
+          Frente (alimentos): columnas EXPLÍCITAS. Cada categoría vive entera en
+          una columna —nunca se parte ni deja un título huérfano— y el reparto
+          se decide a mano en `columnasFrente`. Con la carta corta hay aire de
+          sobra abajo, así que priorizamos categorías completas sobre balancear.
         */}
-        <div class="columnas">
-          {
-          cara.menus.map((menu) => (
-            <Fragment>
-              <div class="banda">
-                <hr class="filete" />
-                <h2>{menu.title}</h2>
-                <hr class="filete" />
-              </div>
-
-              {menu.categories.map((categoria) => (
-                <div class="categoria">
-                  <h3>{categoria.title}</h3>
-                  {categoria.note && (
-                    <p class={categoria.note.length > 46 ? 'categoria-nota larga' : 'categoria-nota'}>
-                      {categoria.note}
-                    </p>
-                  )}
-
-                  {categoria.products.map((p) => (
-                    <div class="producto">
-                      <div class="renglon">
-                        <p class="producto-nombre">{p.name}</p>
-                        {/* Sin precio no se dibuja la guía: unos puntos que
-                            terminan en nada se leen como error de impresión. */}
-                        {p.price && (
-                          <Fragment>
-                            <span class="guia" />
-                            <span class="precio">${p.price}</span>
-                          </Fragment>
-                        )}
-                      </div>
-                      {(p.gramaje || p.description) && (
-                        <p class="producto-desc">
-                          {p.gramaje && (
-                            <span class="gramaje">
-                              {p.gramaje}
-                              {p.description ? ' · ' : ''}
-                            </span>
-                          )}
-                          {p.description}
-                        </p>
-                      )}
-                      {p.note && <p class="producto-nota">{p.note}</p>}
-                    </div>
+        {cara.id === 'frente' ? (
+          <div class="cuerpo-frente">
+            <div class="banda">
+              <hr class="filete" />
+              <h2>{desayunos.title}</h2>
+              <hr class="filete" />
+            </div>
+            <div class="cols-3">
+              {columnasDe(desayunos).map((col) => (
+                <div class="col">
+                  {col.map((categoria) => (
+                    <CategoriaImpresa categoria={categoria} />
                   ))}
                 </div>
               ))}
-            </Fragment>
-          ))
-          }
-        </div>
+            </div>
+
+            {/* Tira de fotos: parte la hoja entre Desayunos y Comidas */}
+            <div class="tira-fotos">
+              <hr class="filete" />
+              <div class="tira-imgs">
+                {fotos.map((f) => (
+                  <figure class="foto">
+                    {/* Marco de 2.4 in: a 1000 px son ~417 DPI, holgados frente a
+                        los 300 de imprenta. Las fuentes vienen a 1600 px. */}
+                    <Image src={f.src} alt={f.alt} width={1000} class="foto-img" />
+                    <figcaption class="foto-pie">{f.pie}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+
+            <div class="banda">
+              <hr class="filete" />
+              <h2>{comidas.title}</h2>
+              <hr class="filete" />
+            </div>
+            <div class="cols-3">
+              {columnasDe(comidas).map((col) => (
+                <div class="col">
+                  {col.map((categoria) => (
+                    <CategoriaImpresa categoria={categoria} />
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div class="columnas">
+            {cara.menus.map((menu) => (
+              <Fragment>
+                <div class="banda">
+                  <hr class="filete" />
+                  <h2>{menu.title}</h2>
+                  <hr class="filete" />
+                </div>
+                {menu.categories.map((categoria) => (
+                  <CategoriaImpresa categoria={categoria} />
+                ))}
+              </Fragment>
+            ))}
+          </div>
+        )}
+
+        {/* ── Cierre inferior (sólo hoja 1): filete e inscripción de la casa ── */}
+        {cara.id === 'frente' && (
+          <div class="remate">
+            <hr class="filete" />
+            <p class="dicho">
+              «Aquí se guisa como en casa: a fuego lento y con las recetas de las
+              de antes.»
+            </p>
+            <p class="rubrica">De caché, como debe ser</p>
+          </div>
+        )}
 
         {/* ── Pie ── */}
         <footer class="pie">

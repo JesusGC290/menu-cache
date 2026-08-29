@@ -491,3 +491,196 @@ body {
     display: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PROTOTIPO · Rediseño «fonda de antaño»
+   ───────────────────────────────────────────────────────────────────────
+   Vira el tono del lujo (oro + Cormorant) a lo tradicional: títulos en
+   Alegreya y acentos de talavera. El VIRAJE VISUAL aplica a las dos hojas;
+   el REMATE (medallón que llena el aire) y su acomodo sólo a la hoja 1,
+   que fue la que quedó corta con la reducción de carta.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Viraje visual (ambas hojas) ─────────────────────────────────────── */
+/* Títulos en Alegreya: de libro viejo, no de joyería */
+.hoja .banda h2,
+.hoja .categoria h3 {
+  font-family: 'Alegreya Variable', 'Cormorant Garamond Variable', Georgia, serif;
+}
+
+.hoja .banda h2 {
+  color: var(--talavera-coral);
+  letter-spacing: 0.12em;
+}
+
+.hoja .categoria h3 {
+  color: var(--tinta);
+  letter-spacing: 0.09em;
+}
+
+/* Precios y gramaje en terracota mate, no en oro brillante */
+.hoja .precio,
+.hoja .gramaje {
+  color: var(--talavera-ambar);
+}
+
+/* Guías y filetes de talavera turquesa, planos (sin degradado dorado) */
+.hoja .guia {
+  border-bottom-color: color-mix(in srgb, var(--talavera-turquesa) 42%, transparent);
+}
+
+.hoja .filete {
+  background: none;
+  height: 0;
+  border-top: 0.8pt solid color-mix(in srgb, var(--talavera-turquesa) 55%, transparent);
+}
+
+/* ── Hoja 1: texto más grande (ahora hay espacio) y más aire ─────────── */
+.hoja[data-cara='frente'] .banda h2 {
+  font-size: 23pt;
+}
+
+.hoja[data-cara='frente'] .categoria h3 {
+  font-size: 12pt;
+}
+
+.hoja[data-cara='frente'] .producto-nombre {
+  font-size: 10.5pt;
+}
+
+.hoja[data-cara='frente'] .producto-desc {
+  font-size: 7.6pt;
+}
+
+.hoja[data-cara='frente'] .precio {
+  font-size: 9.5pt;
+}
+
+.hoja[data-cara='frente'] .categoria-nota {
+  font-size: 7pt;
+}
+
+/* Más espacio entre secciones y entre platillos */
+.hoja[data-cara='frente'] .categoria {
+  margin-bottom: 0.2in;
+}
+
+.hoja[data-cara='frente'] .producto {
+  margin-bottom: 0.075in;
+}
+
+.hoja[data-cara='frente'] .banda:not(:first-child) {
+  margin-top: 0.34in;
+}
+
+/* Cuerpo del frente al alto natural; el cierre absorbe el remanente de la hoja */
+.cuerpo-frente {
+  flex: 0 0 auto;
+}
+
+/* ── Columnas EXPLÍCITAS de la hoja 1 ─────────────────────────────────
+   Tres columnas de reparto fijo (definido en el componente). Cada categoría
+   es un bloque completo, así que nunca se parte ni deja un título huérfano.
+   Los filetes verticales imitan el `column-rule` del flujo de la vuelta. */
+.cols-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: start;
+  margin-top: 0.04in;
+}
+
+.cols-3 .col {
+  min-width: 0;
+  padding: 0 0.2in;
+}
+
+.cols-3 .col:first-child {
+  padding-left: 0;
+}
+
+.cols-3 .col:last-child {
+  padding-right: 0;
+}
+
+.cols-3 .col + .col {
+  border-left: 0.4pt solid color-mix(in srgb, var(--talavera-turquesa) 40%, transparent);
+}
+
+/* ── Tira de fotos de producto (cruza las columnas) ──────────────────── */
+.tira-fotos {
+  column-span: all;
+  break-inside: avoid;
+  margin: 0.26in 0 0.12in;
+  text-align: center;
+}
+
+.tira-fotos .filete {
+  max-width: 3.2in;
+  margin: 0 auto 0.16in;
+}
+
+.tira-imgs {
+  display: flex;
+  justify-content: center;
+  gap: 0.18in;
+}
+
+.foto {
+  width: 2.4in;
+  margin: 0;
+}
+
+.foto-img {
+  display: block;
+  width: 2.4in;
+  height: 1.44in;
+  object-fit: cover;
+  border: 1.4pt solid var(--talavera-turquesa);
+  outline: 0.8pt solid color-mix(in srgb, var(--talavera-ambar) 65%, transparent);
+  outline-offset: 1.6pt;
+}
+
+.foto-pie {
+  font-family: 'Alegreya Variable', 'Cormorant Garamond Variable', Georgia, serif;
+  font-size: 8pt;
+  font-style: italic;
+  color: var(--tinta-suave);
+  margin: 0.07in 0 0;
+}
+
+/* ── Cierre inferior: filete + inscripción de la casa ─────────────────── */
+.remate {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.09in;
+  text-align: center;
+  padding: 0.14in 0 0.02in;
+}
+
+.remate .filete {
+  width: 3.6in;
+  max-width: 60%;
+}
+
+.remate .dicho {
+  font-family: 'Cormorant Garamond Variable', Georgia, serif;
+  font-style: italic;
+  font-size: 13pt;
+  line-height: 1.34;
+  color: var(--tinta-suave);
+  max-width: 6in;
+  margin: 0;
+}
+
+.remate .rubrica {
+  font-family: 'Alegreya Variable', 'Cormorant Garamond Variable', Georgia, serif;
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--talavera-coral);
+  margin: 0;
+}

@@ -50,32 +50,38 @@ const desayunos: Menu = {
   id: 'desayunos',
   tab: 'Desayunos',
   title: 'Desayunos',
-  subtitle: 'Para empezar el día con caché',
+  subtitle: 'Pa’ empezar el día como se debe',
   categories: [
     {
-      id: 'entradas-desayuno',
-      title: 'Entradas',
+      id: 'pa-empezar',
+      title: 'Pa’ empezar',
       products: [
         {
-          name: 'Pan Dulce de Canasta',
-          gramaje: '1 pza',
-          price: '29',
+          name: 'Tasajo de Peinecillo con Jocoque',
+          description: 'Cebollitas asadas, nopal y tortillas hechas a mano.',
+          price: '199',
         },
         {
-          name: 'Plato de Jocoque',
-          gramaje: '160 g',
-          description: 'Acompañado de tortillas hechas a mano.',
-          price: '69',
+          name: 'Quesadillas con Lengua en Salsa Verde',
+          gramaje: '3 pzas',
+          price: '149',
         },
+        {
+          name: 'Quesabirrias',
+          gramaje: '2 pzas',
+          description: 'Tortilla hecha a mano.',
+          price: '99',
+        },
+        {
+          name: 'Tacos de Frijol a las Brasas',
+          gramaje: '3 pzas',
+          price: '89',
+        },
+        // Recuperados de la carta anterior (iban en Entradas de desayuno).
         {
           name: 'Hot Cakes con Fruta',
           gramaje: '3 pzas',
           description: 'Con fruta del día.',
-          price: '109',
-        },
-        {
-          name: 'Pan Francés',
-          gramaje: '2 pzas',
           price: '109',
         },
         {
@@ -84,370 +90,151 @@ const desayunos: Menu = {
           description: 'Con fruta del día y granola.',
           price: '109',
         },
+        {
+          name: 'Pan Francés',
+          gramaje: '2 pzas',
+          price: '109',
+        },
       ],
     },
     {
       id: 'chilaquiles',
-      title: 'Chilaquiles',
+      title: 'Pa’ seguir · Chilaquiles',
+      note: 'Todos nuestros chilaquiles llevan crema, queso y cebolla.',
       products: [
         {
           name: 'Rojos',
-          description:
-            'Tira de maíz frita bañada en salsa de jitomate y serrano. Coronados con cebolla, queso fresco, crema y cilantro.',
-          price: '149',
+          price: '159',
+          note: 'Con huevo o pollo: $189',
         },
         {
           name: 'Verdes',
-          description:
-            'Tira de maíz frita bañada en salsa de tomate verde, chile serrano, cilantro, cebolla y epazote. Coronados con cebolla, queso fresco, crema y cilantro.',
-          price: '149',
-        },
-        {
-          name: 'Enchipotlados',
-          description:
-            'Tira de maíz frita bañada en salsa de jitomate, cebolla, chile chipotle y crema. Coronados con cebolla, queso fresco, crema y cilantro.',
-          price: '149',
-        },
-        {
-          name: 'Enmolados',
-          description:
-            'Tira de maíz frita bañada en mole de la casa, acompañados de queso fresco, cebolla morada y ajonjolí.',
-          price: '169',
-        },
-        {
-          name: 'Entre Chilaquiles',
-          description:
-            'Delicado omelette bañado en chilaquiles a elección. Coronados con cebolla, queso fresco, crema y cilantro.',
-          price: '169',
-        },
-        {
-          name: 'Poblanos',
-          description:
-            'Tira de maíz frita bañada en salsa poblana, con elote, flor de calabaza, cebolla, queso fresco, crema y cilantro.',
-          price: '169',
-        },
-        {
-          name: 'Tatemados',
-          description:
-            'Tira de maíz frita bañada en salsa tatemada de tomate verde y jitomate. Coronados con cebolla, queso fresco, crema y cilantro.',
-          price: '149',
-        },
-        {
-          name: 'Chilaquiles Caché',
-          description:
-            'Tira de maíz frita bañada en salsa de frijol, acompañados de chorizo y espaldilla asada, salsa molcajeteada, crema y queso.',
-          price: '190',
-        },
-        {
-          name: 'Chilaquitas',
-          description:
-            'Tira de maíz bañada en salsa roja o verde, acompañada de fajitas de pollo adobado, con cebolla, queso fresco, crema y cilantro.',
-          price: '190',
-        },
-      ],
-      note: 'Con chorizo, chicharrón o asada 80 g: más $60 · Huevo 1 pza: más $20 · Pollo 80 g: más $40',
-    },
-    {
-      id: 'huevos',
-      title: 'Omelette y Huevos',
-      products: [
-        {
-          name: 'Omelette al Gusto',
-          gramaje: '2 pzas de huevo, 60 g de proteína',
-          description: 'Mexicana, salchicha, jamón, chorizo o tocino.',
-          price: '149',
-          note: 'Con espinaca, flor de calabaza o panela asada: más $30',
-        },
-        {
-          name: 'Embarazada de Huevo',
-          gramaje: '1 pza de huevo, 80 g de chicharrón',
-          description:
-            'Tortilla hecha a mano rellena de huevo, bañada en chicharrón rojo o verde y frijoles.',
-          price: '149',
-        },
-        {
-          name: 'Plato de Chilorio',
-          gramaje: '100 g de chilorio, 2 pzas de huevo',
-          description:
-            'A la mexicana, acompañado de frijoles refritos, aguacate y queso fresco.',
-          price: '179',
-        },
-        {
-          name: 'Huevos al Gusto',
-          gramaje: '2 huevos',
-          description:
-            'Estrellados o revueltos. A la mexicana, jamón, tocino, salchicha o chorizo. Acompañados de frijoles refritos, aguacate y queso fresco.',
-          price: '139',
-          note: 'Con espinaca, flor de calabaza o panela asada: más $30',
-        },
-        {
-          name: 'Huevos Rancheros',
-          gramaje: '2 huevos',
-          description:
-            'Fritos y montados en tortillas doradas, bañados en salsa ranchera. Acompañados de frijol con queso fresco y aguacate.',
-          price: '139',
-        },
-        {
-          name: 'Huevos con Machaca',
-          gramaje: '2 huevos, 50 g de machaca',
-          description:
-            'Revueltos y guisados a la mexicana. Acompañados de frijol con queso fresco, aguacate y tortillas de harina.',
-          price: '179',
-        },
-        {
-          name: 'Tradicional Huevo Ahogado',
-          gramaje: '2 huevos',
-          description:
-            'Cocinados en cazuela de hierro en salsa de tomate verde y panela, acompañados de pan o tortilla.',
-          price: '149',
-        },
-        {
-          name: 'Huevos Caché',
-          gramaje: '2 huevos',
-          description:
-            'Huevo pochado montado en nido de papa, bañado en crema de chipotle, tocino crujiente, espinaca y queso.',
-          price: '169',
-        },
-        {
-          name: 'Desayuno Americano',
-          gramaje: '2 huevos',
-          description: 'Al gusto, con tocino, hot cakes, papa hash brown y café.',
           price: '159',
-        },
-      ],
-    },
-    {
-      id: 'toast',
-      title: 'Toast',
-      products: [
-        {
-          name: 'Toast de Jamón Serrano',
-          gramaje: '30 g de jamón serrano',
-          description:
-            'Con aguacate y 1 huevo estrellado. Acompañado de ensalada dulce con espinaca.',
-          price: '149',
+          note: 'Con huevo o pollo: $189',
         },
         {
-          name: 'Toast de Salmón',
-          gramaje: '100 g de salmón',
-          description:
-            'Con aderezo de yogurt griego y pesto de finas hierbas. Acompañado de ensalada dulce con espinaca y plátano macho.',
+          name: 'Enchipotlados con Lengua',
+          description: 'En salsa de chipotle, con lengua de res.',
           price: '199',
         },
         {
-          name: 'Toast de Aguacate',
-          gramaje: '50 g de tocino, 50 g de panela',
-          description:
-            'Con aguacate y huevo. Acompañado de ensalada dulce con espinaca.',
-          price: '149',
+          name: 'Verdes con Labio',
+          description: 'En salsa verde, con labio de res.',
+          price: '199',
+        },
+        {
+          name: 'Birriaquiles Gratinados',
+          description: 'Con birria y queso gratinado.',
+          price: '199',
         },
       ],
     },
     {
       id: 'molletes',
-      title: 'Molletes',
+      title: 'Pal gusto · Molletes',
       products: [
         {
-          name: 'Molletes Tradicionales',
-          description:
-            'Bolillo con frijol y queso gratinado, acompañado de salsa mexicana.',
+          name: 'Tradicionales',
+          description: 'Frijol y queso, con salsa mexicana.',
           price: '99',
         },
         {
-          name: 'Mollete de Chicharrón',
-          gramaje: '80 g de chicharrón',
-          description: 'Bolillo con frijoles, queso gratinado y chicharrón verde o rojo.',
-          price: '129',
-        },
-        {
-          name: 'Mollete de Chilaquiles',
-          description:
-            'A su elección. Bolillo con frijoles, chilaquiles, queso fresco, crema, cebolla y cilantro.',
-          price: '129',
-        },
-        {
-          name: 'Molletes Divorciados',
-          description:
-            'Mitad bolillo dulce a elección y mitad mollete salado con frijoles y queso gratinado.',
-          price: '99',
-        },
-        {
-          name: 'Molletes Dulces',
-          description: 'Bolillo con mantequilla, mermelada, cajeta o lechera.',
+          name: 'Dulces',
+          description: 'Cajeta, o mantequilla con azúcar.',
           price: '79',
         },
+        {
+          name: 'Divorciados con Chicharrón',
+          description: 'Uno en salsa verde y otro en roja.',
+          price: '110',
+        },
       ],
     },
     {
-      id: 'sandwich',
-      title: 'Sandwich',
+      id: 'huevos',
+      title: 'De la granja · Huevos',
+      note: 'Todos los huevos van con frijoles o papa rayada.',
       products: [
         {
-          name: 'Club Sandwich',
-          gramaje: '140 g de proteína, 100 g de papas',
-          description:
-            'Pan tostado con queso, tocino, pollo y aguacate, acompañado de papas fritas.',
-          price: '169',
+          name: 'Huevos al Gusto',
+          gramaje: '2 huevos',
+          description: 'Revueltos, con jamón, chorizo, salchicha, tocino, o rancheros.',
+          price: '149',
         },
         {
-          name: 'Crispy Chicken Cesar Sandwich',
-          gramaje: '200 g de proteína, 100 g de papas',
+          name: 'Huevos con Machaca y Salsa Norteña',
+          gramaje: '2 huevos, 50 g de machaca',
+          description: 'Acompañados con tortilla de harina.',
+          price: '189',
+        },
+        {
+          name: 'Huevos con Chilorio',
+          gramaje: '100 g de chilorio, 2 pzas de huevo',
+          description: 'Con un toque de la casa.',
+          price: '189',
+        },
+        {
+          name: 'Huevos a Caballo',
           description:
-            'Pan baguette tostado con pechuga empanizada, aderezo césar, lechuga y queso parmesano, acompañado de papas fritas.',
+            'Par de huevos en tostada, con bistec de res bañado en salsa de molcajete, nopal asado, cebollitas y chile toreado.',
+          price: '199',
+        },
+      ],
+    },
+    {
+      id: 'pal-capricho',
+      title: 'Pal capricho',
+      note: 'Acompañado de frijoles y un trozo de panela.',
+      products: [
+        {
+          name: 'Chicharrón (Pancita) en Salsa Roja',
           price: '179',
         },
-      ],
-    },
-    {
-      id: 'enchiladas',
-      title: 'Enchiladas',
-      note: 'Todas llevan 100 g de proteína',
-      products: [
         {
-          name: 'Suizas',
-          description:
-            'Cuatro enchiladas rellenas de pollo deshebrado, bañadas en salsa suiza, gratinadas.',
-          price: '149',
-        },
-        {
-          name: 'Poblanas',
-          description:
-            'Cuatro enchiladas rellenas de diezmillo asado o pollo deshebrado, bañadas en salsa de chile poblano, gratinadas con crema y queso.',
-          price: '169',
-        },
-        {
-          name: 'Entomatadas',
-          description:
-            'Cuatro enchiladas rellenas de pollo deshebrado, bañadas en salsa cremosa de jitomate. Gratinadas.',
-          price: '139',
-        },
-        {
-          name: 'Enmoladas',
-          description:
-            'Cuatro enchiladas rellenas de pollo deshebrado, bañadas en mole de la casa, con cebolla morada desflemada y ajonjolí.',
-          price: '149',
-        },
-        {
-          name: 'Enfrijoladas',
-          description:
-            'Cuatro enchiladas rellenas de pollo deshebrado, bañadas en salsa de frijoles de la casa, con queso fresco y crema.',
-          price: '139',
+          name: 'Chicharrón (Pancita) en Salsa Verde',
+          price: '179',
         },
       ],
     },
     {
       id: 'burritos',
-      title: 'Burritos',
+      title: 'Pal glotón · Burritos gigantes',
+      note: 'Todos los burritos van acompañados de papas a la francesa.',
       products: [
         {
-          name: 'Burrito de Machaca',
-          gramaje: '50 g de machaca, 100 g de papas',
-          description:
-            'Tortilla de harina con machaca a la mexicana, acompañado de papas fritas.',
-          price: '179',
-        },
-        {
-          name: 'Burrito a la Mexicana',
-          gramaje: '2 huevos',
-          description:
-            'Tortilla de harina con huevo a la mexicana, acompañado de frijoles.',
-          price: '139',
-        },
-        {
-          name: 'Burrito de Carne Asada',
-          gramaje: '100 g de carne',
-          description:
-            'Tortilla de harina con carne asada, queso y frijoles.',
-          price: '169',
-        },
-      ],
-    },
-    {
-      id: 'birria',
-      title: 'Birria',
-      products: [
-        { name: 'Quesabirria Individual', price: '49' },
-        {
-          name: 'Volteados con Queso',
-          gramaje: '1 pza',
-          price: '49',
-        },
-      ],
-    },
-    {
-      id: 'quesadillas',
-      title: 'Quesadillas',
-      products: [
-        {
-          name: 'Quesadilla de Comal',
-          gramaje: '1 pza',
-          description: 'Tortilla hecha a mano con queso.',
-          price: '39',
-          note: 'Con chorizo, chicharrón o asada 80 g: más $60 · Pollo 80 g: más $40',
-        },
-      ],
-    },
-    {
-      id: 'menudo',
-      title: 'Menudo',
-      note: 'Solo sábados y domingos',
-      products: [
-        { name: 'Menudo Mediano', gramaje: '100 g', price: '130' },
-        { name: 'Menudo Grande', gramaje: '130 g', price: '150' },
-      ],
-    },
-    {
-      id: 'fitness',
-      title: 'Menú Fitness',
-      products: [
-        {
-          name: 'Panela Asada',
-          gramaje: '180 g',
-          description: 'Bañada en salsa verde, con guarnición de ensalada.',
-          price: '139',
-        },
-        {
-          name: 'Rollo de Pollo',
-          gramaje: '180 g',
-          description:
-            'Relleno de panela y espinaca, bañado en salsa roja o verde, con guarnición de ensalada.',
+          name: 'Huevo, Machaca, Queso y Frijol',
           price: '189',
         },
         {
-          name: 'Omelette de Claras de Huevo',
-          gramaje: '3 claras',
-          description:
-            'Con panela asada y espinacas, acompañado de ensalada fresca y aguacate.',
-          price: '169',
+          name: 'Carne Asada, Queso y Frijol',
+          gramaje: '100 g de carne',
+          price: '189',
         },
         {
-          name: 'Hot Cakes de Avena',
-          gramaje: '3 pzas',
-          description: 'Acompañados de topping de fruta del día.',
-          price: '139',
+          name: 'Camarón, Queso y Verdura',
+          description: 'Con aderezo de cilantro.',
+          price: '199',
         },
       ],
     },
     {
       id: 'infantil-desayunos',
-      title: 'Menú Infantil',
+      title: 'Pal chilpayate',
       products: [
         {
-          name: '3 Mini Hamburguesitas',
+          name: 'Hamburguesa Infantil',
           gramaje: '140 g de carne, 100 g de papas',
-          description: 'Con pan brioche, carne de res y queso, con papas fritas.',
           price: '139',
+        },
+        {
+          name: 'Hot Cakes con Nieve',
+          gramaje: '4 pzas, 1 bola de nieve',
+          price: '110',
         },
         {
           name: 'Pechuga Empanizada',
           gramaje: '140 g de pechuga, 100 g de papas',
-          description: 'Con guarnición de papas fritas.',
-          price: '119',
-        },
-        {
-          name: 'Mini Hot Cakes',
-          gramaje: '4 pzas, 1 bola de nieve',
-          price: '99',
+          price: '110',
         },
       ],
     },
@@ -458,201 +245,162 @@ const comidas: Menu = {
   id: 'comidas',
   tab: 'Comidas',
   title: 'Comidas',
-  subtitle: 'La cocina mexicana de la casa',
+  subtitle: 'La cocina de siempre, la de la casa',
   categories: [
     {
-      id: 'entradas',
-      title: 'Entradas',
+      id: 'pa-entrarle',
+      title: 'Pa’ entrarle',
       products: [
         {
-          name: 'Chicharrón Duro',
-          gramaje: '80 g',
-          description: 'Con salsa martajada.',
-          price: '99',
-        },
-        {
-          name: 'Panela Asada',
+          name: 'Panela del Rancho Asada',
           gramaje: '180 g',
           description: 'Bañada en salsa verde.',
-          price: '139',
+          price: '149',
         },
         {
           name: 'Queso Fundido Natural',
           gramaje: '180 g',
-          price: '139',
-          note: 'Con chorizo, flor de calabaza o champiñón 80 g: $169',
+          price: '149',
         },
         {
-          name: 'Manitas en Escabeche Frías',
-          gramaje: '4 pzas, 500 g',
-          price: '139',
-        },
-        {
-          name: 'Guacamole con Totopos',
+          name: 'Queso Fundido con Chorizo',
           gramaje: '180 g',
-          price: '109',
+          price: '149',
         },
         {
-          name: 'Taco de Chile Güero Empanizado',
-          gramaje: '30 g de asada',
-          description: 'Relleno de asada.',
-          price: '79',
+          name: 'Guacamole',
+          gramaje: '180 g',
+          price: '110',
         },
         {
-          name: 'Chistorra Asada al Carbón',
+          name: 'Chistorra',
           gramaje: '200 g',
           description: 'Acompañada de chiles toreados y cebolla.',
-          price: '129',
-        },
-      ],
-    },
-    {
-      id: 'ensaladas',
-      title: 'Ensaladas',
-      products: [
-        {
-          name: 'Ensalada César con Pollo',
-          gramaje: '100 g de pollo',
-          description:
-            'Corazón de lechuga bañado en aderezo césar, crotones y queso parmesano.',
-          price: '139',
+          price: '149',
         },
         {
-          name: 'Ensalada de Frutos Rojos',
-          description:
-            'Mix de lechugas con fresa, suprema de naranja, arándano y queso suizo, con vinagreta de fresa, vino tinto y miel.',
-          price: '120',
-          note: 'Con pollo 80 g: $160 · Con peinecillo 80 g: $180',
+          name: 'Queso Empanizado',
+          description: 'Bañado en salsa verde.',
+          price: '149',
+        },
+        {
+          name: 'Frijoles con Queso',
+          price: '99',
+        },
+        {
+          name: 'Tacos de Frijol al Carbón',
+          price: '89',
         },
       ],
     },
     {
       id: 'sopas',
-      title: 'Sopas',
+      title: 'Pa’ sopear · Sopas',
       products: [
         {
-          name: 'Caldo Tlalpeño',
+          name: 'Tortilla',
+          description: 'Fritura de tortilla, panela, aguacate y chicharrón.',
+          price: '139',
+        },
+        {
+          name: 'Tlalpeño',
           gramaje: '70 g',
-          description:
-            'Consomé con verduras, arroz, pollo, un toque de chipotle, garbanzos y aguacate.',
-          price: '149',
-        },
-        {
-          name: 'Sopa de Fideo Seco o en Caldo',
-          description:
-            'Receta de la abuela, decorada con panela, aguacate y chipotle.',
-          price: '99',
-        },
-        {
-          name: 'Sopa de Tortilla Azteca',
-          description:
-            'Salsa a base de jitomate y epazote con fritura de tortilla de maíz, decorada con panela, aguacate, chicharrón duro, crema y chile pasilla.',
-          price: '119',
-        },
-        {
-          name: 'Crema del Día',
-          description: 'Preguntar al mesero.',
-          price: '99',
+          description: 'Consomé de pollo con arroz, verdura y pechuga.',
+          price: '159',
         },
       ],
     },
     {
-      id: 'platos-fuertes',
-      title: 'Platos Fuertes',
+      id: 'pa-no-rendirse',
+      title: 'Pa’ no rendirse',
+      note: 'Las pechugas van con papas a la francesa y ensalada.',
       products: [
         {
-          name: 'Pollo a la Plancha',
+          name: 'Pechuga a la Plancha',
           gramaje: '180 g',
-          description: 'Acompañado de arroz y ensalada.',
-          price: '190',
+          price: '199',
         },
         {
-          name: 'Milanesa de Pollo',
+          name: 'Pechuga Empanizada',
           gramaje: '180 g',
-          description: 'Acompañada de ensalada y papas fritas.',
-          price: '190',
+          price: '199',
         },
+        {
+          name: 'Enchiladas Arrieras',
+          description: 'De arrachera, bañadas en salsa verde y queso Oaxaca.',
+          price: '169',
+        },
+        {
+          name: 'Enchiladas de la Abuela',
+          description: 'Muy rojas, con pollo, crema y queso Oaxaca.',
+          price: '149',
+        },
+      ],
+    },
+    {
+      id: 'las-inolvidables',
+      title: 'Las inolvidables',
+      products: [
         {
           name: 'Chile en Nogada',
           gramaje: '100 g',
-          description:
-            'Chile relleno de carne con un toque dulce, bañado en salsa nogada con nuez, perejil y granada.',
-          price: '259',
+          description: 'Acompañado de arroz. De temporada.',
+          price: '249',
         },
         {
-          name: 'Chiles Rellenos',
-          description:
-            '2 piezas rellenas de queso, bañadas en salsa roja y acompañadas de arroz.',
-          price: '180',
+          name: 'Chile Relleno',
+          description: 'Acompañado de arroz.',
+          price: '189',
         },
-        {
-          name: 'Pollo en Mole',
-          gramaje: '250 g',
-          description:
-            'Pierna y muslo bañados en mole de la casa, espolvoreados con ajonjolí y acompañados de arroz.',
-          price: '170',
-        },
+      ],
+    },
+    {
+      id: 'pa-los-carnivoros',
+      title: 'Pa’ los carnívoros',
+      note: 'Peinecillo y arrachera se sirven con papa horneada, ensalada y nopal asado.',
+      products: [
         {
           name: 'Carne Asada',
           gramaje: '180 g',
           description:
-            'Carne en tasajo, quesadilla, nopal asado, cebolla cambray, guacamole y frijoles con queso fresco.',
+            'Muy suavecita, con guacamole, frijoles, quesadilla, nopal, cebollitas y chile toreado.',
           price: '199',
         },
         {
-          name: 'Chamorro',
+          name: 'Peinecillo',
+          gramaje: '180 g',
+          price: '199',
+        },
+        {
+          name: 'Arrachera',
+          price: '199',
+        },
+      ],
+    },
+    {
+      id: 'muy-nuestros',
+      title: 'Muy nuestros',
+      products: [
+        {
+          name: 'Chamorro al Horno',
           gramaje: '900 g',
-          description:
-            '1 pieza de chamorro horneado lentamente, bañado con salsa de la casa y acompañado de frijoles y cebolla curtida.',
-          price: '180',
+          price: '199',
+        },
+        {
+          name: 'Mixiote de Pollo al Horno',
+          price: '199',
+        },
+        {
+          name: 'Molcajete de Peinecillo',
+          price: '229',
         },
         {
           name: 'Molcajete Mar y Tierra',
           gramaje: '100 g de picaña, 100 g de camarón',
           description:
             'Picaña, camarón, nopal asado con cebolla cambray y panela asada, bañados en salsa de tomate, morrón y un toque de serrano.',
-          price: '299',
+          price: '289',
         },
-        {
-          name: 'Peinecillo',
-          gramaje: '180 g',
-          description:
-            'Acompañado de frijoles fritos, nopal y cebolla cambray asados, y guacamole.',
-          price: '199',
-        },
-      ],
-    },
-    {
-      id: 'del-mar',
-      title: 'Del Mar',
-      products: [
-        {
-          name: 'Salmón al Gusto',
-          gramaje: '200 g',
-          description:
-            'A las finas hierbas, a la mantequilla o al limón. Acompañado de puré y ensalada.',
-          price: '259',
-        },
-        {
-          name: 'Camarones al Gusto',
-          gramaje: '180 g',
-          description:
-            'A la diabla, al ajillo, a la momia, empanizados o al coco. Guarnición de arroz y ensalada.',
-          price: '259',
-        },
-        {
-          name: 'Pescado al Gusto',
-          gramaje: '180 g',
-          description:
-            'A la plancha, al ajillo, a la diabla o empanizado. Guarnición de arroz y ensalada.',
-          price: '210',
-        },
-      ],
-    },
-    {
-      id: 'especialidades',
-      title: 'Especialidades',
-      products: [
         {
           name: 'Plato Botanero',
           gramaje: '4 personas',
@@ -670,50 +418,14 @@ const comidas: Menu = {
       ],
     },
     {
-      id: 'infantil-comidas',
-      title: 'Menú Infantil',
-      note: 'Todo en cajitas',
-      products: [
-        {
-          name: '3 Mini Hamburguesas',
-          gramaje: '140 g de carne, 100 g de papas',
-          description:
-            'Carne de res, pan brioche y queso amarillo, con papas a la francesa.',
-          price: '139',
-        },
-        {
-          name: 'Tiras de Pechuga de Pollo',
-          gramaje: '140 g de pollo, 100 g de papas',
-          description: 'Con papas a la francesa.',
-          price: '119',
-        },
-        {
-          name: 'Camarones Empanizados',
-          gramaje: '100 g',
-          description: 'Con aderezo de la casa.',
-          price: '129',
-        },
-      ],
-    },
-    {
       id: 'postres',
-      title: 'Postres',
+      title: 'Pa’ acabar · Postres',
       products: [
-        {
-          name: 'Yoyo Caché',
-          description:
-            'Cremoso de limón amarillo, compota de piel de limón y mousse de limón.',
-          price: '189',
-        },
-        {
-          name: 'Trompo Caché',
-          description: 'Mousse de chocolate con nibs de cacao.',
-          price: '189',
-        },
-        { name: 'Jericallas', price: '89' },
-        { name: 'Flan de Elote', price: '79' },
-        { name: 'Carlota de Limón', price: '69' },
+        { name: 'Jericalla', price: '89' },
+        { name: 'Flan de Elote', price: '89' },
         { name: 'Pan de Elote', price: '79' },
+        { name: 'Pastel de Chocolate', price: '99' },
+        { name: 'Carlota de Limón', price: '89' },
       ],
     },
   ],
