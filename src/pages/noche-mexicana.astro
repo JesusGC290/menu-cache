@@ -1,0 +1,470 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import BotonTema from '../components/BotonTema.astro';
+import Floron from '../components/Floron.astro';
+import Filigrana from '../components/Filigrana.astro';
+import DatosEvento from '../components/evento/DatosEvento.astro';
+import flyer from '../assets/noche-mexicana-flyer.jpg';
+import { evento, eventoVigente } from '../data/evento';
+import { negocio } from '../data/negocio';
+
+/**
+ * La Noche Mexicana del 15 de septiembre — `cacherestaurante.com/noche-mexicana`
+ * ═══════════════════════════════════════════════════════════════════════════
+ *
+ * A esta página se llega de tres formas: el modal que salta al entrar al
+ * sitio, el botón dorado del encabezado de la carta, y el enlace que el
+ * restaurante manda por WhatsApp junto al flyer. Las tres piden lo mismo: el
+ * menú completo, el programa de la noche y cómo apartar mesa.
+ *
+ * El contenido sale entero de `evento.ts`, que a su vez transcribe
+ * `material/menu-evento.docx`. Aquí no se teclea ni un precio ni un horario.
+ *
+ * ── Sigue el sistema de la carta, no el de `/89` ────────────────────────
+ *
+ * Terciopelo y oro, `Layout.astro`, dos temas. `/89` usa otro sistema porque
+ * es una campaña de captación con QR que se abre en la calle; esto es una
+ * noche del restaurante, se llega desde el propio sitio y tiene que verse
+ * como el sitio. El flyer —que sí es del mundo del cartel de feria— entra
+ * enmarcado, como pieza gráfica, no como plantilla de la página.
+ *
+ * ── Cuando la noche pase ────────────────────────────────────────────────
+ *
+ * `eventoVigente` se apaga solo al cruzar la fecha y esta misma ruta pasa a
+ * renderizar el estado alterno. **Nunca un 404 ni un redirect:** el flyer va
+ * a seguir reenviándose por WhatsApp semanas después, y quien lo abra tarde
+ * merece saber que ya pasó y que el restaurante sigue ahí.
+ */
+
+const enlaceWhatsapp = negocio.whatsapp
+  ? `https://wa.me/${negocio.whatsapp.numero}?text=${encodeURIComponent(evento.mensajeWhatsapp)}`
+  : null;
+
+const meta = eventoVigente
+  ? {
+      title: `${evento.nombre} · 15 de septiembre en Caché Restaurante`,
+      description: `Menú de tres tiempos por $${evento.menu.precio}, mariachi y el show de Esdras Vaca. Martes 15 de septiembre, desde las 8:00 pm en Ladrón de Guevara, Guadalajara.`,
+      ogImage: '/og-noche-mexicana.jpg',
+    }
+  : {
+      title: 'La Noche Mexicana ya pasó · Caché Restaurante',
+      description:
+        'La Noche Mexicana del 15 de septiembre ya se celebró. Caché sigue en Ladrón de Guevara, Guadalajara, todos los días de 8 am a 6 pm.',
+      /* De vuelta al logotipo: seguir mandando la tarjeta del evento haría que
+         cada reenvío del enlace en WhatsApp siguiera anunciando una noche que
+         ya pasó, que es justo lo que este estado existe para evitar. */
+      ogImage: '/cache-logo.jpg',
+    };
+
+/** Clases repetidas de los botones, para no copiarlas seis veces */
+const botonOro =
+  'from-oro-claro via-oro to-oro-hondo text-vino inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-b px-6 py-3 text-[0.78rem] font-medium tracking-[0.14em] uppercase';
+const botonLinea =
+  'border-acento/45 text-acento hover:bg-acento/10 hover:border-acento/75 inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-[0.76rem] tracking-[0.12em] uppercase transition-colors duration-200';
+---
+
+<Layout
+  title={meta.title}
+  description={meta.description}
+  ogImage={meta.ogImage}
+>
+  <DatosEvento slot="head" />
+
+  {
+    eventoVigente ? (
+      <Fragment>
+        {/* ═══════════ Barra que aparece al dejar la portada ═══════════ */}
+        <div
+          id="barra"
+          class="border-acento/20 bg-barra/92 pointer-events-none fixed inset-x-0 top-0 z-40 -translate-y-full border-b opacity-0 backdrop-blur-md transition-all duration-300"
+        >
+          <div class="mx-auto flex max-w-xl items-center justify-between gap-3 px-5 py-2.5">
+            <a href="/" class="font-display text-oro-degradado text-base tracking-[0.2em] uppercase">
+              Caché
+            </a>
+            <div class="flex items-center gap-2">
+              <BotonTema />
+              {enlaceWhatsapp && (
+                <a
+                  href={enlaceWhatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="from-oro-claro via-oro to-oro-hondo text-vino inline-flex items-center rounded-full bg-gradient-to-b px-4 py-2 text-[0.7rem] font-medium tracking-[0.12em] uppercase"
+                >
+                  Reservar
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* ═══════════ Portada ═══════════ */}
+        <header class="mx-auto max-w-xl px-5 pt-10 pb-4 text-center sm:pt-14">
+          {/* El tricolor del flyer, resuelto con los talavera del logotipo */}
+          <span class="liston mx-auto" aria-hidden="true" />
+
+          <p class="text-acento/85 mt-6 text-[0.66rem] tracking-[0.34em] uppercase">
+            {evento.fechaLarga}
+          </p>
+
+          <h1 class="font-display text-oro-degradado mt-3 text-[2.6rem] leading-[1.02] font-medium sm:text-6xl">
+            {evento.nombre}
+          </h1>
+
+          <p class="font-display text-suave mt-4 text-lg leading-snug italic sm:text-xl">
+            «{evento.gancho}»
+          </p>
+
+          <p class="mt-5 inline-flex items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-talavera-coral)_55%,transparent)] bg-[color-mix(in_srgb,var(--color-talavera-coral)_14%,transparent)] px-3.5 py-1 text-[0.62rem] tracking-[0.22em] uppercase text-[color-mix(in_srgb,var(--color-talavera-coral)_88%,var(--color-texto))]">
+            {evento.urgencia}
+          </p>
+
+          <Floron class="mt-6" color />
+
+          <div class="mt-7 flex flex-col items-stretch gap-2.5 sm:flex-row sm:justify-center">
+            {enlaceWhatsapp && (
+              <a
+                href={enlaceWhatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={botonOro}
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+                  <path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-2.8.8.8-2.7-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.4 4c-.2 0-.5 0-.7.3-.3.3-.9.9-.9 2s.8 2.2 1 2.4c.1.2 1.6 2.5 3.9 3.4 1.9.8 2.3.6 2.7.6.4 0 1.4-.5 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.2-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-.9-.3-1.7-1-.6-.6-1-1.2-1.2-1.4-.1-.2 0-.3.1-.4l.4-.5.2-.4v-.4l-.6-1.5c-.2-.4-.3-.5-.5-.5h-.4z" />
+                </svg>
+                Reservar por WhatsApp
+              </a>
+            )}
+
+            <a href={`tel:${negocio.telefono.marcar}`} class={botonLinea}>
+              Llamar {negocio.telefono.mostrar}
+            </a>
+          </div>
+        </header>
+
+        {/* ═══════════ El flyer ═══════════ */}
+        <section class="mx-auto max-w-xl px-5 pt-10">
+          <figure class="mx-auto max-w-[19rem] sm:max-w-[21rem]">
+            <div class="border-acento/40 overflow-hidden rounded-lg border p-1.5 shadow-[var(--sombra-placa)]">
+              {/* Se muestra a 19–21rem, así que 672 ya cubre las pantallas 2x.
+                  Un tercer tamaño de 1008 pesaba 266 KB para ganar nada visible
+                  en una imagen de 21rem de ancho. */}
+              <Image
+                src={flyer}
+                alt={`Cartel de la Gran Noche Mexicana en Caché Restaurante: Esdras Vaca Showman, 15 de septiembre a partir de las 8:00 pm, Manuel Acuña 1849, reservaciones al ${negocio.whatsapp?.mostrar ?? negocio.telefono.mostrar}`}
+                widths={[336, 672]}
+                sizes="(min-width: 640px) 21rem, 19rem"
+                format="webp"
+                quality={80}
+                class="h-auto w-full rounded"
+              />
+            </div>
+          </figure>
+        </section>
+
+        {/* ═══════════ El programa de la noche ═══════════ */}
+        <section id="programa" class="scroll-mt-20 mx-auto max-w-xl px-5 py-14 sm:py-16">
+          <p class="text-acento/80 text-center text-[0.66rem] tracking-[0.34em] uppercase">
+            Variedad
+          </p>
+          <h2 class="font-display text-oro-degradado mt-3 text-center text-[1.6rem] leading-tight font-medium sm:text-3xl">
+            El programa de la noche
+          </h2>
+
+          <Floron class="mt-6" />
+
+          <ol class="mt-8 space-y-3.5">
+            <li class="border-acento/20 bg-superficie/25 rounded-lg border px-5 py-4">
+              <p class="text-acento/85 text-[0.62rem] tracking-[0.26em] uppercase">
+                {evento.apertura.hora}
+              </p>
+              <p class="font-display text-texto mt-1.5 text-[1.1rem] leading-snug font-medium sm:text-xl">
+                {evento.apertura.texto}
+              </p>
+            </li>
+
+            {evento.variedad.map((acto) => (
+              <li class="border-acento/20 bg-superficie/25 rounded-lg border px-5 py-4">
+                <p class="text-acento/85 text-[0.62rem] tracking-[0.26em] uppercase">
+                  {acto.hora}
+                </p>
+                <p class="font-display text-texto mt-1.5 text-[1.1rem] leading-snug font-medium sm:text-xl">
+                  {acto.nombre}
+                </p>
+                {acto.detalle && (
+                  <p class="text-suave/80 mt-1.5 text-[0.82rem] leading-relaxed font-light">
+                    {acto.detalle}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {/* ═══════════ El menú ═══════════ */}
+        <section id="menu" class="scroll-mt-20 mx-auto max-w-xl px-5 pb-4">
+          <p class="text-acento/80 text-center text-[0.66rem] tracking-[0.34em] uppercase">
+            A la mesa
+          </p>
+          <h2 class="font-display text-oro-degradado mt-3 text-center text-[1.6rem] leading-tight font-medium sm:text-3xl">
+            Menú de tres tiempos
+          </h2>
+
+          <Floron class="mt-6" color />
+
+          <div class="border-acento/25 bg-superficie/25 mt-8 rounded-lg border px-6 py-7">
+            <dl class="space-y-6">
+              {evento.menu.tiempos.map((tiempo) => (
+                <div>
+                  <dt class="flex items-baseline gap-2">
+                    <span class="text-acento/85 text-[0.62rem] tracking-[0.26em] uppercase">
+                      {tiempo.nombre}
+                    </span>
+                    {tiempo.elegir && (
+                      <span class="text-tenue text-[0.62rem] tracking-[0.14em] uppercase">
+                        · a elegir uno
+                      </span>
+                    )}
+                  </dt>
+
+                  <dd class="mt-2">
+                    <ul class="space-y-1.5">
+                      {tiempo.platillos.map((platillo) => (
+                        <li class="font-display text-texto text-[1.15rem] leading-snug sm:text-xl">
+                          {platillo}
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <hr class="filete-oro my-7" />
+
+            <p class="text-center">
+              <span class="font-display text-oro-degradado text-3xl font-medium sm:text-4xl">
+                ${evento.menu.precio}
+              </span>
+            </p>
+            <p class="text-suave/85 mt-2 text-center text-[0.8rem] leading-relaxed font-light">
+              {evento.menu.nota}
+            </p>
+          </div>
+        </section>
+
+        {/* ═══════════ Menú infantil ═══════════ */}
+        <section class="mx-auto max-w-xl px-5 pt-8 pb-14 sm:pb-16">
+          <div class="border-acento/20 bg-superficie/20 rounded-lg border px-6 py-6">
+            <p class="text-acento/85 text-center text-[0.62rem] tracking-[0.26em] uppercase">
+              Menú infantil
+            </p>
+
+            <dl class="mt-5 space-y-5">
+              {evento.menuInfantil.tiempos.map((tiempo) => (
+                <div>
+                  <dt class="flex items-baseline gap-2">
+                    <span class="text-acento/75 text-[0.6rem] tracking-[0.24em] uppercase">
+                      {tiempo.nombre}
+                    </span>
+                    {tiempo.elegir && (
+                      <span class="text-tenue text-[0.6rem] tracking-[0.14em] uppercase">
+                        · a elegir uno
+                      </span>
+                    )}
+                  </dt>
+                  <dd class="mt-1.5">
+                    <ul class="space-y-1">
+                      {tiempo.platillos.map((platillo) => (
+                        <li class="font-display text-texto text-[1.02rem] leading-snug">
+                          {platillo}
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <hr class="filete-oro my-6 opacity-70" />
+
+            <p class="text-center">
+              <span class="font-display text-oro-degradado text-2xl font-medium">
+                ${evento.menuInfantil.precio}
+              </span>
+            </p>
+            <p class="text-suave/85 mt-1.5 text-center text-[0.78rem] leading-relaxed font-light">
+              {evento.menuInfantil.nota}
+            </p>
+          </div>
+
+          {/*
+            El aviso del horario no es un detalle de letra chica: el sitio
+            entero —portada, pie, Google— dice que Caché abre de 8 am a 6 pm.
+            Quien llegue a esta página desde una búsqueda va a ver las dos
+            cosas, y sin esta línea la contradicción se resuelve sola en la
+            cabeza del lector, casi siempre para mal.
+          */}
+          <p class="text-tenue mt-6 text-center text-[0.76rem] leading-relaxed">
+            Esta noche es una excepción al horario de siempre: el restaurante abre de
+            {' '}{negocio.horario.frase}, y el 15 de septiembre vuelve a abrir a las {evento.apertura.hora}{' '}
+            sólo para el evento.
+          </p>
+        </section>
+
+        {/* ═══════════ Reservar ═══════════ */}
+        <section id="reservar" class="scroll-mt-20 mx-auto max-w-xl px-5 pb-16">
+          <div class="border-acento/25 relative rounded-lg border px-6 py-9 text-center">
+            <Filigrana />
+
+            <p class="text-acento/80 text-[0.66rem] tracking-[0.34em] uppercase">
+              Reservaciones
+            </p>
+            <h2 class="font-display text-oro-degradado mt-3 text-[1.5rem] leading-tight font-medium sm:text-3xl">
+              Aparte su mesa
+            </h2>
+            <p class="text-suave/85 mt-3 text-[0.86rem] leading-relaxed font-light">
+              El cupo de la noche es limitado y las mesas se apartan por orden de
+              reservación.
+            </p>
+
+            <div class="mt-7 flex flex-col items-stretch gap-2.5">
+              {enlaceWhatsapp && (
+                <a
+                  href={enlaceWhatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class={botonOro}
+                >
+                  WhatsApp {negocio.whatsapp?.mostrar}
+                </a>
+              )}
+
+              <a href={`tel:${negocio.telefono.marcar}`} class={botonLinea}>
+                Llamar {negocio.telefono.mostrar}
+              </a>
+            </div>
+
+            <hr class="filete-oro my-7 opacity-70" />
+
+            <p class="text-texto text-[0.92rem] leading-relaxed font-light">
+              {negocio.direccion.calle}<br />
+              {negocio.direccion.colonia}, {negocio.direccion.cp}<br />
+              {negocio.direccion.ciudad}, {negocio.direccion.estado}
+            </p>
+
+            <a
+              href={negocio.mapa}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-acento/85 hover:text-acento mt-4 inline-block text-[0.74rem] tracking-[0.14em] uppercase transition-colors"
+            >
+              Abrir en Google Maps →
+            </a>
+          </div>
+        </section>
+      </Fragment>
+    ) : (
+      /* ═══════════ La noche ya pasó ═══════════ */
+      <main class="mx-auto flex min-h-dvh max-w-xl flex-col justify-center px-5 py-16 text-center">
+        <p class="text-acento/80 text-[0.66rem] tracking-[0.34em] uppercase">
+          {evento.fechaLarga}
+        </p>
+
+        <h1 class="font-display text-oro-degradado mt-3 text-[2.1rem] leading-tight font-medium sm:text-5xl">
+          La Noche Mexicana ya pasó
+        </h1>
+
+        <p class="text-suave mt-4 text-[0.95rem] leading-relaxed font-light">
+          Gracias a todos los que nos acompañaron. Caché sigue aquí, en Ladrón de Guevara,
+          {' '}{negocio.horario.frase}.
+        </p>
+
+        <Floron class="mt-8" color />
+
+        <div class="mt-8 flex flex-col items-stretch gap-2.5 sm:flex-row sm:justify-center">
+          <a href="/" class={botonOro}>Ver la carta</a>
+          <a href={negocio.instagram.url} target="_blank" rel="noopener noreferrer" class={botonLinea}>
+            Instagram
+          </a>
+        </div>
+      </main>
+    )
+  }
+
+  {/* ═══════════ Pie ═══════════ */}
+  <footer class="mx-auto max-w-xl px-5 pb-14">
+    <Floron class="mb-8" color />
+
+    <div class="px-8 text-center">
+      <p class="font-display text-oro-degradado text-xl tracking-[0.22em] uppercase">Caché</p>
+      <p class="text-tenue mt-1.5 text-[0.66rem] tracking-[0.24em] uppercase">
+        Restaurante · Guadalajara
+      </p>
+
+      <nav class="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-2" aria-label="Pie">
+        <a href="/" class="text-suave/80 hover:text-acento text-[0.74rem] tracking-[0.1em] uppercase transition-colors">
+          Carta
+        </a>
+        <a href="/informacion" class="text-suave/80 hover:text-acento text-[0.74rem] tracking-[0.1em] uppercase transition-colors">
+          Información
+        </a>
+        <a
+          href={negocio.instagram.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-suave/80 hover:text-acento text-[0.74rem] tracking-[0.1em] uppercase transition-colors"
+        >
+          Instagram
+        </a>
+      </nav>
+
+      <p class="text-tenue mt-6 text-[0.64rem] tracking-[0.14em] uppercase">
+        {negocio.horario.textoCorto}
+      </p>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  /* Listón tricolor: el motivo del cartel, con los talavera del logotipo */
+  .liston {
+    display: block;
+    height: 3px;
+    width: 7.5rem;
+    border-radius: 9999px;
+    background: linear-gradient(
+      90deg,
+      var(--color-talavera-verde) 0%,
+      var(--color-talavera-verde) 33.3%,
+      var(--color-oro-claro) 33.3%,
+      var(--color-oro-claro) 66.6%,
+      var(--color-talavera-coral) 66.6%,
+      var(--color-talavera-coral) 100%
+    );
+  }
+
+  #barra[data-visible='true'] {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+</style>
+
+<script>
+  // La barra aparece cuando la portada sale de pantalla. Mismo patrón que
+  // /informacion: la reservación tiene que estar siempre a un toque.
+  const barra = document.getElementById('barra');
+  const portada = document.querySelector('header');
+
+  if (barra && portada) {
+    const observador = new IntersectionObserver(
+      ([entrada]) => {
+        barra.dataset.visible = String(!entrada.isIntersecting);
+      },
+      { rootMargin: '-70% 0px 0px 0px', threshold: 0 },
+    );
+    observador.observe(portada);
+  }
+</script>

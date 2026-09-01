@@ -5,8 +5,17 @@ import Analitica from '../components/Analitica.astro';
 interface Props {
   title: string;
   description: string;
+  /**
+   * Imagen de vista previa al compartir el enlace, ruta absoluta desde la
+   * raíz. Por omisión el logotipo, que es lo correcto para la carta y para
+   * /informacion. Una página con su propia noticia —el evento del 15 de
+   * septiembre— pasa la suya: el logotipo no dice nada de una fecha, y el
+   * enlace se comparte sobre todo por WhatsApp, donde la tarjeta es lo
+   * primero (y a veces lo único) que se ve.
+   */
+  ogImage?: string;
 }
-const { title, description } = Astro.props;
+const { title, description, ogImage = '/cache-logo.jpg' } = Astro.props;
 ---
 
 <!doctype html>
@@ -56,7 +65,7 @@ const { title, description } = Astro.props;
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL('/cache-logo.jpg', Astro.site)} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
     <meta property="og:locale" content="es_MX" />
     <meta name="twitter:card" content="summary_large_image" />
 

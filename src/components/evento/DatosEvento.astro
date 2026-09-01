@@ -1,0 +1,82 @@
+---
+import { evento, eventoVigente } from '../../data/evento';
+import { negocio, direccionUnaLinea } from '../../data/negocio';
+
+/**
+ * Datos estructurados schema.org/FoodEvent para la Noche Mexicana.
+ *
+ * Es lo que permite que Google muestre la fecha, la hora y el precio en el
+ * resultado de búsqueda y en el panel de eventos. Sale de `evento.ts` y de
+ * `negocio.ts`, así que no puede contradecir a la página.
+ *
+ * **El horario del restaurante no se toca aquí.** El `openingHours` de
+ * 8 am – 6 pm sigue viviendo en `DatosEstructurados.astro`, que describe al
+ * restaurante; esta noche es una excepción y va como `Event`, que es donde
+ * Google espera encontrar una fecha con hora de inicio y fin.
+ */
+const sitio = Astro.site?.toString().replace(/\/$/, '') ?? '';
+
+const datos = {
+  '@context': 'https://schema.org',
+  '@type': 'FoodEvent',
+  name: `${evento.nombre} · ${negocio.nombre}`,
+  description: `${evento.gancho}. Menú de tres tiempos, mariachi y el show de Esdras Vaca Showman en ${negocio.nombre}, Guadalajara.`,
+  startDate: evento.inicio,
+  endDate: evento.fin,
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  image: sitio ? `${sitio}/og-noche-mexicana.jpg` : undefined,
+  url: sitio ? `${sitio}${evento.ruta}` : undefined,
+  location: {
+    '@type': 'Restaurant',
+    name: negocio.nombre,
+    telephone: negocio.telefono.marcar,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: `${negocio.direccion.calle}, ${negocio.direccion.colonia}`,
+      postalCode: negocio.direccion.cp,
+      addressLocality: negocio.direccion.ciudad,
+      addressRegion: negocio.direccion.estado,
+      addressCountry: negocio.direccion.pais,
+    },
+  },
+  organizer: {
+    '@type': 'Restaurant',
+    name: negocio.nombre,
+    url: sitio || undefined,
+  },
+  performer: [
+    { '@type': 'PerformingGroup', name: 'Mariachi' },
+    { '@type': 'Person', name: 'Esdras Vaca Showman' },
+  ],
+  /**
+   * Dos ofertas: el menú de adulto y el infantil. Sin `url` de compra porque
+   * no se vende en línea — se reserva por teléfono o WhatsApp, y la página del
+   * evento es el destino correcto para quien llegue desde Google.
+   */
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Menú de 3 tiempos',
+      price: evento.menu.precio,
+      priceCurrency: 'MXN',
+      availability: 'https://schema.org/LimitedAvailability',
+      url: sitio ? `${sitio}${evento.ruta}` : undefined,
+    },
+    {
+      '@type': 'Offer',
+      name: 'Menú infantil',
+      price: evento.menuInfantil.precio,
+      priceCurrency: 'MXN',
+      availability: 'https://schema.org/LimitedAvailability',
+      url: sitio ? `${sitio}${evento.ruta}` : undefined,
+    },
+  ],
+  /** Redundante con `location`, pero es lo que leen los mapas. */
+  about: direccionUnaLinea,
+};
+---
+
+{/* Pasada la noche no se anuncia un evento que ya ocurrió: Google lo
+    marcaría como expirado y ensuciaría los resultados del restaurante. */}
+{eventoVigente && <script type="application/ld+json" set:html={JSON.stringify(datos)} is:inline />}

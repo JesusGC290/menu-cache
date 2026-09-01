@@ -6,6 +6,7 @@ import Especialidades from '../components/sitio/Especialidades.astro';
 import Visitanos from '../components/sitio/Visitanos.astro';
 import PieSitio from '../components/sitio/PieSitio.astro';
 import BotonTema from '../components/BotonTema.astro';
+import AnuncioEvento from '../components/evento/AnuncioEvento.astro';
 ---
 
 <Layout
@@ -35,6 +36,9 @@ import BotonTema from '../components/BotonTema.astro';
       </div>
     </div>
   </div>
+
+  {/* El mismo anuncio que en la carta: se abre en cada carga de las dos. */}
+  <AnuncioEvento />
 
   <Portada />
   <Historia />

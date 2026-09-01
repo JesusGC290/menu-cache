@@ -9,6 +9,8 @@ import BotonTema from '../components/BotonTema.astro';
 import { menus } from '../data/menu';
 import { negocio } from '../data/negocio';
 import DatosEstructurados from '../components/sitio/DatosEstructurados.astro';
+import AnuncioEvento from '../components/evento/AnuncioEvento.astro';
+import { evento, eventoVigente } from '../data/evento';
 
 const anio = new Date().getFullYear();
 ---
@@ -18,6 +20,9 @@ const anio = new Date().getFullYear();
   description="Carta completa: desayunos, comidas y bebidas. Cocina mexicana en Ladrón de Guevara, Guadalajara, todos los días de 8 am a 6 pm."
 >
   <DatosEstructurados slot="head" />
+
+  {/* Salta en cada carga, y desaparece solo al pasar la fecha */}
+  <AnuncioEvento />
 
   <!-- ═══════════ Portada ═══════════ -->
   <header class="mx-auto max-w-lg px-5 pt-8 pb-6 text-center sm:pt-10">
@@ -45,6 +50,26 @@ const anio = new Date().getFullYear();
     {/* La carta es la portada, así que lo demás vive aquí: los datos del
         restaurante y el pliego impreso, a un toque desde el inicio. */}
     <div class="mt-5 flex flex-wrap items-center justify-center gap-2.5">
+      {
+        /* Mientras la noche siga en pie, el evento manda: es lo único de esta
+           portada con fecha de caducidad. En dorado macizo porque los otros
+           dos botones son de contorno, y quien ya cerró el modal necesita
+           poder volver a encontrarlo. Al pasar el 15 se quita solo. */
+        eventoVigente && (
+          <a
+            href={evento.ruta}
+            class="from-oro-claro via-oro to-oro-hondo text-vino inline-flex items-center gap-2 rounded-full bg-gradient-to-b px-5 py-2.5 text-[0.74rem] font-medium tracking-[0.12em] uppercase"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-4 w-4">
+              <path d="M9 18V5l10-2v13" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="6.5" cy="18" r="2.5" />
+              <circle cx="16.5" cy="16" r="2.5" />
+            </svg>
+            {evento.etiquetaBoton}
+          </a>
+        )
+      }
+
       <a
         href="/informacion"
         class="border-acento/35 text-suave hover:border-acento/70 hover:text-texto inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[0.74rem] tracking-[0.12em] uppercase transition-colors duration-200"

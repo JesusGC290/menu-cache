@@ -1,0 +1,357 @@
+---
+import { evento, eventoVigente } from '../../data/evento';
+import { negocio } from '../../data/negocio';
+
+/**
+ * Anuncio de la Noche Mexicana al entrar al sitio.
+ * ═══════════════════════════════════════════════════════════════════════
+ *
+ * Un `<dialog>` nativo, no un div con `position: fixed`. El nativo trae gratis
+ * lo que un modal casero siempre acaba implementando mal: cerrar con Esc,
+ * atrapar el foco dentro mientras está abierto, devolverlo al salir y quedar
+ * fuera del árbol de accesibilidad cuando está cerrado.
+ *
+ * ── Se muestra en CADA carga ────────────────────────────────────────────
+ *
+ * Decisión del restaurante: la noche es en unos días, el aforo está por
+ * llenarse y quieren que nadie entre al sitio sin verla. Así que no se marca
+ * nada en localStorage — cada visita a `/` y a `/informacion` lo vuelve a
+ * abrir, incluso si ya se cerró antes.
+ *
+ * El costo es real y hay que tenerlo presente: la página principal es la
+ * carta, y quien está sentado en la mesa escaneando el QR se topa con el
+ * anuncio cada vez que recarga. Por eso se conservan las tres salidas —la ✕,
+ * el fondo y «Ahora no, quiero ver la carta»— y el medio segundo de espera,
+ * para que la carta se vea primero y el anuncio no tape una pantalla en
+ * blanco.
+ *
+ * Si algún día se quiere volver al comportamiento de una vez por navegador,
+ * es guardar una marca en localStorage al cerrar y no abrir si ya está.
+ *
+ * ── Doble verificación de la fecha ──────────────────────────────────────
+ *
+ * `eventoVigente` se resuelve al compilar y decide si este componente
+ * siquiera se dibuja. El script lo vuelve a verificar en el navegador contra
+ * `data-fin`, porque el HTML de `/` se revalida pero puede servirse desde la
+ * caché del navegador: sin esa segunda verificación, alguien podría abrir en
+ * octubre una copia guardada y encontrarse invitado a una noche que ya pasó.
+ *
+ * Sin JavaScript no hay modal, y está bien: el botón dorado del encabezado
+ * lleva a la misma página y ese sí es HTML puro.
+ */
+
+const enlaceWhatsapp = negocio.whatsapp
+  ? `https://wa.me/${negocio.whatsapp.numero}?text=${encodeURIComponent(evento.mensajeWhatsapp)}`
+  : null;
+---
+
+{
+  eventoVigente && (
+    <dialog
+      id="anuncio-evento"
+      class="anuncio"
+      aria-labelledby="anuncio-titulo"
+      data-fin={evento.fin}
+    >
+      {/* Listón tricolor: el motivo del flyer traducido a la paleta talavera
+          del logotipo, que ya trae un verde y un coral. Es la única concesión
+          al tricolor; el resto de la tarjeta es el terciopelo y oro de siempre. */}
+      <span class="liston" aria-hidden="true" />
+
+      <button type="button" class="cerrar" data-cerrar aria-label="Cerrar el anuncio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" class="h-4 w-4">
+          <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <div class="cuerpo">
+        <p class="urgencia">{evento.urgencia}</p>
+
+        <p class="antetitulo">{evento.fechaCorta}</p>
+
+        <h2 id="anuncio-titulo" class="font-display text-oro-degradado titulo">
+          {evento.nombre}
+        </h2>
+
+        <p class="gancho">{evento.gancho}</p>
+
+        <hr class="filete-oro mx-auto my-4 w-24 opacity-70" />
+
+        <ul class="datos">
+          <li>
+            <span class="dato-etiqueta">Menú de 3 tiempos</span>
+            <span class="dato-valor">${evento.menu.precio} por persona</span>
+          </li>
+          <li>
+            <span class="dato-etiqueta">Variedad</span>
+            <span class="dato-valor">Mariachi y Esdras Vaca Showman</span>
+          </li>
+          <li>
+            <span class="dato-etiqueta">Puertas</span>
+            <span class="dato-valor">{evento.apertura.hora}</span>
+          </li>
+        </ul>
+
+        <div class="acciones">
+          {enlaceWhatsapp && (
+            <a href={enlaceWhatsapp} target="_blank" rel="noopener noreferrer" class="boton-oro">
+              <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+                <path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-2.8.8.8-2.7-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.4 4c-.2 0-.5 0-.7.3-.3.3-.9.9-.9 2s.8 2.2 1 2.4c.1.2 1.6 2.5 3.9 3.4 1.9.8 2.3.6 2.7.6.4 0 1.4-.5 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.2-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-.9-.3-1.7-1-.6-.6-1-1.2-1.2-1.4-.1-.2 0-.3.1-.4l.4-.5.2-.4v-.4l-.6-1.5c-.2-.4-.3-.5-.5-.5h-.4z" />
+              </svg>
+              Reservar ya
+            </a>
+          )}
+
+          <a href={evento.ruta} class="boton-linea">
+            Ver el menú de la noche
+          </a>
+
+          <button type="button" class="ahora-no" data-cerrar>
+            Ahora no, quiero ver la carta
+          </button>
+        </div>
+      </div>
+    </dialog>
+  )
+}
+
+<style>
+  .anuncio {
+    width: min(24rem, calc(100vw - 2rem));
+    max-height: calc(100dvh - 3rem);
+    overflow-y: auto;
+    margin: auto;
+    padding: 0;
+    position: relative;
+    border: 1px solid color-mix(in srgb, var(--color-acento) 38%, transparent);
+    border-radius: 1rem;
+    background-color: var(--color-barra);
+    background-image: radial-gradient(
+      120% 80% at 50% 0%,
+      color-mix(in srgb, var(--color-superficie) 85%, transparent) 0%,
+      transparent 70%
+    );
+    color: var(--color-texto);
+    box-shadow: var(--sombra-placa-alta);
+  }
+
+  .anuncio::backdrop {
+    /* Vino de marca, no negro: es fijo en los dos temas, así que el velo se
+       ve igual de intencionado sobre el terciopelo que sobre el marfil. */
+    background-color: color-mix(in srgb, var(--color-vino) 76%, transparent);
+    backdrop-filter: blur(3px);
+  }
+
+  /* Entrada: sube un pelo y aparece. Sólo al abrir; cerrar es inmediato. */
+  .anuncio[open] {
+    animation: entrar 260ms ease-out;
+  }
+  .anuncio[open]::backdrop {
+    animation: aclarar 260ms ease-out;
+  }
+
+  @keyframes entrar {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem) scale(0.98);
+    }
+  }
+  @keyframes aclarar {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anuncio[open],
+    .anuncio[open]::backdrop {
+      animation: none;
+    }
+  }
+
+  /* Listón tricolor del flyer, con los talavera del logotipo */
+  .liston {
+    display: block;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--color-talavera-verde) 0%,
+      var(--color-talavera-verde) 33.3%,
+      var(--color-oro-claro) 33.3%,
+      var(--color-oro-claro) 66.6%,
+      var(--color-talavera-coral) 66.6%,
+      var(--color-talavera-coral) 100%
+    );
+  }
+
+  .cerrar {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    display: flex;
+    height: 2rem;
+    width: 2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in srgb, var(--color-acento) 30%, transparent);
+    color: var(--color-suave);
+    transition: color 200ms ease, border-color 200ms ease;
+  }
+  .cerrar:hover {
+    color: var(--color-texto);
+    border-color: color-mix(in srgb, var(--color-acento) 65%, transparent);
+  }
+
+  .cuerpo {
+    padding: 1.6rem 1.4rem 1.4rem;
+    text-align: center;
+  }
+
+  .urgencia {
+    display: inline-block;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in srgb, var(--color-talavera-coral) 55%, transparent);
+    background-color: color-mix(in srgb, var(--color-talavera-coral) 14%, transparent);
+    padding: 0.2rem 0.7rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-talavera-coral) 88%, var(--color-texto));
+  }
+
+  .antetitulo {
+    margin-top: 0.8rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-acento) 85%, transparent);
+  }
+
+  .titulo {
+    margin-top: 0.35rem;
+    font-size: 1.85rem;
+    line-height: 1.05;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .gancho {
+    margin-top: 0.5rem;
+    font-size: 0.84rem;
+    line-height: 1.5;
+    font-weight: 300;
+    color: color-mix(in srgb, var(--color-suave) 92%, transparent);
+  }
+
+  .datos {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.5rem;
+    text-align: left;
+  }
+  .datos li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    justify-content: space-between;
+  }
+  .dato-etiqueta {
+    flex-shrink: 0;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-acento) 78%, transparent);
+  }
+  .dato-valor {
+    text-align: right;
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1.35;
+    color: var(--color-texto);
+  }
+
+  .acciones {
+    margin-top: 1.4rem;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .boton-oro {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.8rem 1.25rem;
+    background-image: linear-gradient(
+      180deg,
+      var(--color-oro-claro) 0%,
+      var(--color-oro) 55%,
+      var(--color-oro-hondo) 100%
+    );
+    color: var(--color-vino);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .boton-linea {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in srgb, var(--color-acento) 40%, transparent);
+    padding: 0.75rem 1.25rem;
+    color: var(--color-acento);
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: border-color 200ms ease, background-color 200ms ease;
+  }
+  .boton-linea:hover {
+    border-color: color-mix(in srgb, var(--color-acento) 75%, transparent);
+    background-color: color-mix(in srgb, var(--color-acento) 10%, transparent);
+  }
+
+  .ahora-no {
+    margin-top: 0.15rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: color-mix(in srgb, var(--color-tenue) 95%, transparent);
+    transition: color 200ms ease;
+  }
+  .ahora-no:hover {
+    color: var(--color-suave);
+  }
+</style>
+
+<script>
+  const anuncio = document.getElementById('anuncio-evento') as HTMLDialogElement | null;
+
+  if (anuncio) {
+    const fin = Date.parse(anuncio.dataset.fin!);
+
+    // Única condición para abrir: que la noche no haya pasado. Es la segunda
+    // verificación de la fecha, contra una copia servida desde caché.
+    const aTiempo = Number.isNaN(fin) || Date.now() < fin;
+
+    if (aTiempo) {
+      // Medio segundo: primero se ve la carta, luego llega el anuncio. Si
+      // apareciera junto con la página se leería como un banner de sitio
+      // pirata, y el pulgar ya va camino al botón de cerrar.
+      setTimeout(() => anuncio.showModal(), 500);
+    }
+
+    anuncio.querySelectorAll('[data-cerrar]').forEach((boton) =>
+      boton.addEventListener('click', () => anuncio.close()),
+    );
+
+    // Clic en el fondo oscuro: el `<dialog>` ocupa toda la pantalla, así que
+    // el clic sobre el propio elemento (y no sobre su contenido) es el fondo.
+    anuncio.addEventListener('click', (e) => {
+      if (e.target === anuncio) anuncio.close();
+    });
+  }
+</script>

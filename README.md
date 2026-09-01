@@ -17,6 +17,7 @@ Hecho con **Astro + Tailwind CSS**. Sitio 100 % estático, listo para GitHub + C
 | `/carta-impresa`    | Muestra del pliego impreso, para compartir por enlace            |
 | `/impresion/claro`  | Carta para imprenta, paleta marfil (la que se trabaja)          |
 | `/impresion/oscuro` | Carta para imprenta, paleta morada                              |
+| `/noche-mexicana`   | El evento del 15 de septiembre: menú, programa y reservaciones  |
 | `/89`               | Landing de la campaña del café con QR (`noindex`, piloto)       |
 
 `/carta` sigue respondiendo con un redirect a `/`, por si quedó algún enlace viejo.
@@ -33,8 +34,10 @@ a la vez.
 
 **La carta es la página principal.** Quien escanea el QR en la mesa cae directo en ella, y
 desde ahí hay dos botones: *Información* (horario, ubicación y contacto) y *Carta impresa*
-(la muestra del pliego). Los datos estructurados de Google viven en `/`, que es la página
-que se posiciona.
+(la muestra del pliego). Mientras haya un evento en pie se les suma un tercero, en dorado
+macizo, que lleva a [`/noche-mexicana`](#la-noche-mexicana-noche-mexicana) y se quita solo al
+pasar la fecha. Los datos estructurados de Google viven en `/`, que es la página que se
+posiciona.
 
 ### Tema claro y oscuro
 
@@ -508,6 +511,75 @@ enlace al grupo de WhatsApp de su oficina, y esa tarjeta la ven más ojos que la
 Están generadas por código a partir del sistema v1.1 para no lanzar con la vista previa
 vacía. **Cuando exista la versión de Figma, se reemplazan los dos archivos en la misma ruta y
 no hay que tocar código.**
+
+## La Noche Mexicana: `/noche-mexicana`
+
+El evento del **martes 15 de septiembre de 2026**: menú de tres tiempos, mariachi y el show de
+Esdras Vaca. Son tres piezas y todas leen el mismo archivo,
+[`src/data/evento.ts`](src/data/evento.ts):
+
+| Pieza | Dónde | Qué hace |
+| --- | --- | --- |
+| Modal | [`AnuncioEvento.astro`](src/components/evento/AnuncioEvento.astro) | Salta al entrar a `/` y a `/informacion` |
+| Página | [`/noche-mexicana`](src/pages/noche-mexicana.astro) | El detalle completo, con el flyer |
+| Datos de Google | [`DatosEvento.astro`](src/components/evento/DatosEvento.astro) | `schema.org/FoodEvent` con fecha, precio y artistas |
+
+El contenido se transcribió de `material/menu-evento.docx`; el nombre, la hora de apertura y el
+teléfono de reservaciones salen además del flyer `material/vacashow.JPG`. Se corrigió una sola
+redacción —«Pechuga tiras de pollo empanizada» → «Tiras de pechuga de pollo empanizada»—; **ningún
+precio se modificó**.
+
+### El menú del evento no vive en `menu.ts`
+
+Va aparte a propósito. En `menu.ts` acabaría en la carta y en la exportación al punto de venta
+(`npm run exportar`), donde no debe estar, y su horario chocaría con el del restaurante.
+
+**El horario oficial no se toca:** `negocio.ts` sigue diciendo 8 am – 6 pm y eso es lo que
+publica el `openingHours` de schema.org. La noche del 15 es una excepción, va como `Event` —que
+es donde Google la espera— y la página lo dice con todas sus letras, porque quien llegue de una
+búsqueda va a ver las dos cosas y sin esa línea la contradicción la resuelve solo.
+
+### El modal sale en cada carga
+
+Es un `<dialog>` nativo: Esc, foco atrapado y foco devuelto salen gratis. **No se guarda ninguna
+marca**, así que se vuelve a abrir en cada visita a `/` y a `/informacion`, aunque ya se haya
+cerrado antes. Es decisión del restaurante: la noche es en unos días, el aforo está por llenarse
+y no quieren que nadie entre al sitio sin verla.
+
+El costo hay que tenerlo presente: la portada es la carta, y quien está sentado en la mesa con
+el QR se topa con el anuncio cada vez que recarga. Por eso se conservan las tres salidas —la ✕,
+el fondo y *«Ahora no, quiero ver la carta»*— y el medio segundo de espera, para que la carta se
+vea primero. Volver a «una vez por navegador» es guardar una marca en localStorage al cerrar y
+no abrir si ya está.
+
+Sin JavaScript no hay modal —y está bien—: el botón dorado de la portada es HTML puro y lleva al
+mismo lado.
+
+### Se apaga solo
+
+`eventoVigente` compara la fecha al compilar, así que el modal, el botón de la portada y los
+datos estructurados desaparecen en el primer despliegue posterior a la noche, y
+`/noche-mexicana` pasa a renderizar su estado alterno: *la noche ya pasó*, y el restaurante
+sigue ahí. El modal vuelve a verificar la fecha en el navegador, por si alguien abre una copia
+en caché. `EVENTO_ACTIVO = false` hace lo mismo antes de tiempo, para cancelar sin borrar
+código.
+
+**Nunca un 404 ni un redirect:** el flyer se va a seguir reenviando por WhatsApp semanas
+después, y en ese estado el `og:image` vuelve al logotipo para que cada reenvío deje de anunciar
+una noche que ya pasó.
+
+### El flyer
+
+`src/assets/noche-mexicana-flyer.jpg` es el cartel tal cual, y entra **enmarcado, como pieza
+gráfica**. La página sigue el sistema de la carta —terciopelo y oro, `Layout.astro`, dos temas—,
+no el del cartel de feria: se llega a ella desde el propio sitio y tiene que verse como el
+sitio. Del cartel se toma sólo el listón tricolor, resuelto con el verde y el coral de talavera
+que ya trae el logotipo.
+
+`public/og-noche-mexicana.jpg` es la tarjeta de vista previa, 1200×630, compuesta con el flyer
+sobre el fondo de terciopelo. Es la única página del sitio con `og:image` propio: el enlace se
+comparte sobre todo por WhatsApp, donde esa tarjeta es lo primero —y a veces lo único— que se
+ve, y el logotipo no dice nada de una fecha.
 
 ## Notas sobre el contenido
 
