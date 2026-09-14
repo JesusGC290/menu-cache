@@ -1,0 +1,350 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Carta de bebidas de la Noche Mexicana · media carta, 2 por hoja
+   ───────────────────────────────────────────────────────────────────────
+   Hoja tamaño CARTA APAISADA (11 × 8.5 in) con dos medias cartas de
+   5.5 × 8.5 in una junto a la otra. Se corta por el centro y salen dos
+   menús idénticos de una sola impresión.
+
+   ── Por qué esto no hereda de `impresion.css` ────────────────────────────
+
+   Aquel pliego es para imprenta: doble carta, sangrado de 0.125 in y marcas
+   de corte en las esquinas. Éste se imprime en la impresora del restaurante
+   la noche anterior al evento, y de ahí salen tres diferencias de fondo:
+
+     · No hay sangrado. Una impresora de oficina no llega a la orilla del
+       papel, así que un fondo a rebase saldría con una franja blanca en
+       tres lados. La tinta se mantiene dentro de 0.34 in por lado —el
+       margen que ninguna impresora se come— y el fondo marfil puede
+       recortarse en la orilla sin que se note.
+     · La guía de corte es un filete al centro de la hoja, no marcas en las
+       esquinas: al centro no hay impresora que lo recorte, y al cortar
+       queda medio pelo en cada pieza, que no se ve.
+     · `@page` es global al documento. Dos tamaños de papel no pueden
+       convivir, por eso ésta es su propia hoja de estilos y su propia ruta.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@import './fuentes.css';
+
+@page {
+  size: 11in 8.5in; /* carta apaisada */
+  margin: 0;
+}
+
+:root {
+  --pliego-w: 11in;
+  --pliego-h: 8.5in;
+  --tarjeta-w: 5.5in;
+
+  /* Paleta marfil, la misma de la carta impresa clara */
+  --papel: #f9f2e4;
+  --tinta: #2b1530;
+  --tinta-suave: #6b5566;
+  --talavera-turquesa: #1f7f74;
+  --talavera-coral: #b4402c;
+  --talavera-ambar: #a8660f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Jost Variable', ui-sans-serif, system-ui, sans-serif;
+  background: #6b6b6b; /* sólo en pantalla, alrededor de la hoja */
+}
+
+.pliego,
+.pliego * {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── La hoja ─────────────────────────────────────────────────────────── */
+.pliego {
+  position: relative;
+  width: var(--pliego-w);
+  height: var(--pliego-h);
+  display: flex;
+  background: var(--papel);
+  overflow: hidden;
+}
+
+/* Guía de corte: un pelo al centro exacto de la hoja. */
+.pliego::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 0.3pt;
+  background: color-mix(in srgb, var(--tinta) 28%, transparent);
+}
+
+/* ── La media carta ──────────────────────────────────────────────────── */
+.tarjeta {
+  position: relative;
+  width: var(--tarjeta-w);
+  height: 100%;
+  /* 0.34 in de reserva a la orilla: es lo que una impresora de oficina no
+     alcanza a imprimir, y el filete del marco va justo dentro. */
+  padding: 0.5in 0.46in 0.4in;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Marco de talavera. Doble filete: el grueso da el borde, el fino por dentro
+   es el detalle que lo saca de «recuadro de Word». */
+.tarjeta::before {
+  content: '';
+  position: absolute;
+  inset: 0.34in;
+  border: 0.9pt solid color-mix(in srgb, var(--talavera-turquesa) 62%, transparent);
+  outline: 0.4pt solid color-mix(in srgb, var(--talavera-ambar) 50%, transparent);
+  outline-offset: 2.2pt;
+  pointer-events: none;
+}
+
+/* ── Cabecera ────────────────────────────────────────────────────────── */
+.tarjeta-cabecera {
+  flex: 0 0 auto;
+  text-align: center;
+  margin-bottom: 0.13in;
+}
+
+.tarjeta-logo {
+  display: block;
+  margin: 0 auto;
+  width: 0.92in;
+  height: auto;
+}
+
+.tarjeta-evento {
+  font-family: 'Alegreya Variable', 'Cormorant Garamond Variable', Georgia, serif;
+  font-size: 9.5pt;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--talavera-coral);
+  margin: 0.06in 0 0.05in;
+  line-height: 1;
+}
+
+.tarjeta-titulo {
+  font-family: 'Cormorant Garamond Variable', Georgia, serif;
+  font-size: 14pt;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta);
+  margin: 0.05in 0 0;
+  line-height: 1;
+}
+
+
+/* ── Cuerpo a dos columnas explícitas ────────────────────────────────── */
+.tarjeta-cuerpo {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  column-gap: 0.24in;
+}
+
+.tarjeta-col {
+  min-width: 0;
+}
+
+.tarjeta-col + .tarjeta-col {
+  padding-left: 0.24in;
+  border-left: 0.4pt solid color-mix(in srgb, var(--talavera-turquesa) 38%, transparent);
+}
+
+/* ── Categorías ──────────────────────────────────────────────────────── */
+.categoria {
+  margin-bottom: 0.15in;
+  break-inside: avoid;
+}
+
+.categoria:last-child {
+  margin-bottom: 0;
+}
+
+.categoria h2 {
+  font-family: 'Alegreya Variable', 'Cormorant Garamond Variable', Georgia, serif;
+  font-size: 9.5pt;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--tinta);
+  margin: 0 0 0.05in;
+  line-height: 1.1;
+  break-after: avoid;
+}
+
+.categoria-nota {
+  font-size: 6pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--talavera-ambar);
+  margin: -0.02in 0 0.05in;
+}
+
+/* ── Producto ────────────────────────────────────────────────────────── */
+.producto {
+  break-inside: avoid;
+  margin-bottom: 0.042in;
+}
+
+.renglon {
+  display: flex;
+  align-items: baseline;
+  gap: 0.03in;
+  line-height: 1.1;
+}
+
+.producto-nombre {
+  font-family: 'Cormorant Garamond Variable', Georgia, serif;
+  font-size: 8.3pt;
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 0;
+  color: var(--tinta);
+}
+
+/* El volumen viaja pegado al nombre, en cuerpo chico: cumple con PROFECO sin
+   costarle un renglón a cada bebida. */
+.gramaje {
+  font-family: 'Jost Variable', ui-sans-serif, system-ui, sans-serif;
+  font-size: 5.8pt;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: var(--talavera-ambar);
+  white-space: nowrap;
+}
+
+.guia {
+  flex: 1 1 auto;
+  min-width: 0.08in;
+  margin-bottom: 0.03in;
+  border-bottom: 0.4pt dotted color-mix(in srgb, var(--talavera-turquesa) 45%, transparent);
+}
+
+.precio {
+  font-size: 7.7pt;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  color: var(--talavera-ambar);
+  white-space: nowrap;
+}
+
+.producto-desc {
+  font-size: 6.2pt;
+  font-weight: 300;
+  line-height: 1.25;
+  color: var(--tinta-suave);
+  margin: 0.008in 0 0;
+}
+
+/* La onza de tequila es lo que decide la compra entre una cazuela de 89 y una
+   de 199, así que va en coral y no en el gris de la descripción. */
+.producto-nota {
+  font-size: 6.2pt;
+  font-style: italic;
+  line-height: 1.25;
+  color: var(--talavera-coral);
+  margin: 0.008in 0 0;
+}
+
+/* ── Filetes y pie ───────────────────────────────────────────────────── */
+.filete {
+  height: 0;
+  border: 0;
+  border-top: 0.7pt solid color-mix(in srgb, var(--talavera-turquesa) 55%, transparent);
+  width: 1.6in;
+  margin: 0.07in auto 0;
+}
+
+.tarjeta-pie {
+  flex: 0 0 auto;
+  margin-top: 0.1in;
+  text-align: center;
+}
+
+.tarjeta-pie .filete {
+  width: 2.4in;
+  margin-bottom: 0.07in;
+}
+
+.tarjeta-pie p {
+  font-size: 5.8pt;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  margin: 0;
+}
+
+/* ── Sólo en pantalla ────────────────────────────────────────────────── */
+@media screen {
+  body {
+    padding: 0.4in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4in;
+  }
+
+  .pliego {
+    box-shadow: 0 0.1in 0.4in rgb(0 0 0 / 0.45);
+  }
+
+  .aviso {
+    max-width: var(--pliego-w);
+    font-family: 'Jost Variable', ui-sans-serif, system-ui, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #fff;
+    background: #3a3a3a;
+    border-left: 3pt solid #d4a437;
+    padding: 0.16in 0.2in;
+  }
+
+  .aviso h1 {
+    font-size: 13pt;
+    margin: 0 0 0.06in;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .aviso p {
+    margin: 0.05in 0;
+  }
+
+  .aviso code {
+    background: #1f1f1f;
+    padding: 0.01in 0.05in;
+    border-radius: 2pt;
+    font-size: 10pt;
+  }
+}
+
+@media print {
+  body {
+    background: none;
+    padding: 0;
+  }
+
+  .aviso {
+    display: none;
+  }
+}

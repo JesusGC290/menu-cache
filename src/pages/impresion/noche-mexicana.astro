@@ -1,0 +1,39 @@
+---
+import Impresion from '../../layouts/Impresion.astro';
+import BebidasEvento from '../../components/BebidasEvento.astro';
+import { totalBebidasEvento } from '../../data/evento-bebidas';
+import '../../styles/impresion-evento.css';
+
+/**
+ * Carta de bebidas de la Noche Mexicana, lista para imprimir.
+ *
+ * Una hoja tamaño carta APAISADA con la misma media carta repetida a izquierda
+ * y derecha: se imprime, se corta por el filete del centro y salen dos menús
+ * de 5.5 × 8.5 in. Dos, no uno, porque la noche del evento hay que repartirlos
+ * por mesa y una impresión que rinde la mitad se nota.
+ *
+ * El contenido sale de `evento-bebidas.ts`; aquí no se teclea ningún precio.
+ */
+---
+
+<Impresion title="Caché · Carta de bebidas de la Noche Mexicana (media carta)">
+  <div class="aviso">
+    <h1>Carta de bebidas · Noche Mexicana</h1>
+    <p>
+      Media carta, <strong>2 por hoja</strong>. Se imprime en <strong>tamaño carta
+      horizontal</strong> y se corta por el filete del centro: cada pieza queda de
+      <strong>5.5 × 8.5 in</strong>. {totalBebidasEvento} bebidas.
+    </p>
+    <p>
+      Para imprimir: <code>Cmd + P</code> → Orientación <em>Horizontal</em> →
+      Tamaño de papel <em>Carta</em> → Escala <em>100 %</em> → Márgenes
+      <em>Ninguno</em> → y hay que activar <strong>Gráficos de fondo</strong>, si no
+      no salen el papel marfil ni los filetes.
+    </p>
+  </div>
+
+  <section class="pliego">
+    <BebidasEvento />
+    <BebidasEvento />
+  </section>
+</Impresion>

@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/cache-logo.png';
+import { columnasBebidasEvento } from '../data/evento-bebidas';
+import { evento } from '../data/evento';
+
+/**
+ * Una media carta (5.5 × 8.5 in) con las bebidas de la Noche Mexicana.
+ *
+ * Se dibuja DOS VECES en la misma hoja tamaño carta para que de una impresión
+ * salgan dos menús, así que aquí no hay nada de la hoja: ni medidas de papel
+ * ni marcas de corte. Eso vive en `/impresion/noche-mexicana`.
+ *
+ * Columnas explícitas, no flujo balanceado: en 2.3 in de ancho un encabezado
+ * huérfano al pie de columna se nota de inmediato. El reparto se decide en
+ * `evento-bebidas.ts`.
+ */
+---
+
+<article class="tarjeta">
+  <header class="tarjeta-cabecera">
+    {/* `eager` obligatorio: con carga diferida el navegador puede mandar la
+        hoja a imprimir antes de bajar la imagen y el logotipo sale en blanco.
+        Sin `widths`: en papel hay UNA resolución correcta. A 1.25 in son
+        973 DPI, de sobra. */}
+    <Image src={logo} alt="Caché Restaurante" format="png" quality={100} loading="eager" class="tarjeta-logo" />
+    <p class="tarjeta-evento">{evento.nombre}</p>
+    <hr class="filete" />
+    <h1 class="tarjeta-titulo">Carta de Bebidas</h1>
+    {/* Sin fecha ni hora a propósito: esta carta se reparte en la mesa la noche
+        del evento, así que decirle al comensal qué día es repite lo que ya
+        sabe. El alto que ahorra se lo quedan las bebidas. */}
+  </header>
+
+  <div class="tarjeta-cuerpo">
+    {columnasBebidasEvento.map((columna) => (
+      <div class="tarjeta-col">
+        {columna.map((categoria) => (
+          <section class="categoria">
+            <h2>{categoria.title}</h2>
+            {categoria.note && <p class="categoria-nota">{categoria.note}</p>}
+
+            {categoria.products.map((p) => (
+              <div class="producto">
+                <div class="renglon">
+                  <p class="producto-nombre">
+                    {p.name}
+                    {/* El volumen va pegado al nombre, no en renglón aparte:
+                        PROFECO obliga a declararlo y en media carta no hay
+                        alto para regalarle una línea a cada bebida. */}
+                    {p.gramaje && <span class="gramaje"> {p.gramaje}</span>}
+                  </p>
+                  <span class="guia" />
+                  <span class="precio">${p.price}</span>
+                </div>
+                {p.description && <p class="producto-desc">{p.description}</p>}
+                {p.note && <p class="producto-nota">{p.note}</p>}
+              </div>
+            ))}
+          </section>
+        ))}
+      </div>
+    ))}
+  </div>
+
+  <footer class="tarjeta-pie">
+    <hr class="filete" />
+    <p>Carta exclusiva de la noche · Precios en pesos mexicanos, IVA incluido</p>
+  </footer>
+</article>

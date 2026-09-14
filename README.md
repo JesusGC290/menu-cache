@@ -17,6 +17,7 @@ Hecho con **Astro + Tailwind CSS**. Sitio 100 % estático, listo para GitHub + C
 | `/carta-impresa`    | Muestra del pliego impreso, para compartir por enlace            |
 | `/impresion/claro`  | Carta para imprenta, paleta marfil (la que se trabaja)          |
 | `/impresion/oscuro` | Carta para imprenta, paleta morada                              |
+| `/impresion/noche-mexicana` | Bebidas del evento en media carta, 2 por hoja           |
 | `/noche-mexicana`   | El evento del 15 de septiembre: menú, programa y reservaciones  |
 | `/89`               | Landing de la campaña del café con QR (`noindex`, piloto)       |
 
@@ -368,6 +369,109 @@ material de imprenta.
   conversión con perfil, o una prueba de color antes del tiraje.
 - **Para la versión oscura**, papel couché con laminado mate: es mucha cobertura de tinta y
   en impresión digital barata el morado sale manchado.
+
+## La carta de bebidas de la Noche Mexicana
+
+La noche del 15 de septiembre el restaurante abre **después de su horario**, y la barra
+trabaja con un listado que no es el de diario: aguas frescas y mocktails a precio de
+evento, cazuelas, cantaritos y margaritas que no existen en la carta. De ahí sale
+[`/impresion/noche-mexicana`](src/pages/impresion/noche-mexicana.astro).
+
+**Formato: media carta, dos por hoja.** Una hoja tamaño **carta apaisada (11 × 8.5 in)**
+con la misma media carta repetida a izquierda y derecha. Se corta por el filete del centro
+y quedan dos menús de **5.5 × 8.5 in**. Dos y no uno porque esa noche hay que repartirlos
+por mesa, y una impresión que rinde la mitad se nota.
+
+```
+npm run dev
+```
+
+Se abre `http://localhost:4321/impresion/noche-mexicana` y **Cmd + P**:
+
+| Opción            | Valor           |
+| ----------------- | --------------- |
+| Orientación       | **Horizontal**  |
+| Tamaño de papel   | Carta           |
+| Márgenes          | Ninguno         |
+| Escala            | 100 %           |
+| Gráficos de fondo | **Activado**    |
+
+### Por qué no hereda de `impresion.css`
+
+Aquel pliego va a imprenta: doble carta, sangrado de 0.125 in y marcas de corte en las
+esquinas. Éste se imprime en la impresora del restaurante la noche anterior, y de ahí
+salen tres diferencias de fondo:
+
+- **No hay sangrado.** Una impresora de oficina no llega a la orilla del papel, así que un
+  fondo a rebase saldría con franja blanca en tres lados. Toda la tinta se mantiene dentro
+  de **0.34 in** por lado —el margen que ninguna impresora se come, y donde va el marco de
+  talavera—, y el fondo marfil puede recortarse en la orilla sin que se note.
+- **La guía de corte es un filete al centro de la hoja**, no marcas en las esquinas. Al
+  centro no hay impresora que lo recorte, y al cortar queda medio pelo en cada pieza.
+- **`@page` es global al documento.** Dos tamaños de papel no pueden convivir en la misma
+  hoja de estilos, y por eso ésta es su propia ruta con su propio `impresion-evento.css`.
+
+### De dónde salen las bebidas
+
+De [`src/data/evento-bebidas.ts`](src/data/evento-bebidas.ts), y **sólo la mitad se
+tecleó**. Cerveza, refrescos, micheladas y digestivos son los mismos de la carta y al mismo
+precio, así que se leen de `menu.ts` por id: si mañana sube la Heineken, sube en la carta,
+en la exportación al punto de venta y en esta media carta a la vez. La búsqueda lleva `!`
+a propósito — si alguien borra o renombra una de esas categorías el build truena, en vez de
+imprimir una sección vacía.
+
+Lo que sí se teclea son las 14 bebidas que sólo existen esa noche: aguas frescas, mocktails,
+cazuelas, cantaritos, margaritas y el tequila de la casa. **No van en `menu.ts`** porque
+`npm run exportar` las mandaría al punto de venta, ni en `evento.ts`, que es la fuente del
+anuncio —modal, página del evento y datos estructurados de Google— y donde las bebidas no
+entran.
+
+En el tequila la marca va en la **nota de la categoría**, no en el nombre de cada producto:
+en una columna de 2.2 in «Tradición Azul Blanco · Botella» se parte en dos renglones, y
+repetirla en Botella y Copa gasta el ancho que necesita la guía de puntos. Si algún día
+entra un segundo tequila, la marca baja al nombre y la nota se quita.
+
+### Lo que se sacrificó para que cupiera
+
+Son 44 bebidas en una hoja de 5.5 × 8.5 in. Cuatro decisiones lo hacen posible, y la primera
+es la que más rindió:
+
+- **El renglón lleva `line-height` fijo.** Medía 0.156 in para un texto de 8.3 pt: el
+  `line-height: normal` que heredaban el precio y el volumen levantaba la caja de línea muy
+  por encima del nombre. Fijarlo devolvió **0.027 in por bebida — 1.2 in en la tarjeta** sin
+  bajar un punto el cuerpo de texto, que es lo único que no se puede seguir achicando. Ese
+  ahorro es el que permitió meter el tequila y además **devolver aire entre bebidas**: la
+  densidad se lee entre productos, no dentro de uno.
+- **El volumen viaja pegado al nombre**, en cuerpo chico y ámbar, no en renglón aparte.
+  PROFECO obliga a declararlo; con un renglón por bebida se desbordaba la hoja.
+- **Cerveza, refrescos y micheladas van sin descripción** (`sinDescripcion()` en el archivo
+  de datos). El renglón de ingredientes de una Coca no le dice nada a nadie y cuesta el alto
+  que necesitan las bebidas que sí hay que explicar.
+- **La cabecera no lleva fecha ni hora.** Esta carta se reparte en la mesa la noche del
+  evento: decirle al comensal qué día es repite lo que ya sabe, y ese alto se lo quedan las
+  bebidas.
+
+Las columnas son **explícitas, no balanceadas**, igual que la hoja 1 del pliego grande: en
+2.2 in de ancho un encabezado huérfano al pie de columna se nota de inmediato. El reparto
+vive en `columnasBebidasEvento`: izquierda lo que la barra prepara en vaso más los
+refrescos, derecha lo que se sirve de botella.
+
+**Las micheladas van con la cerveza, no con los mocktails.** Una michelada es una cerveza, y
+quien la busca la busca ahí; de paso empareja las columnas —**5.78 y 5.81 in de las 6.17
+disponibles**, contra 5.3 y 5.9 con las micheladas del otro lado—, así que quedan unas
+0.37 in de holgura de cada lado para crecer sin recomponer.
+
+### Quitar una bebida sólo de la noche
+
+`sinDescripcion('refrescos', ['Squirt'])`. El segundo argumento lleva nombres exactos y
+**verifica que existan**: si alguien renombra el producto en `menu.ts`, el build truena con
+el nombre que ya no encontró. Sin esa verificación la exclusión se degradaría en silencio a
+no excluir nada, y la bebida reaparecería en la carta impresa sin que nadie lo note.
+
+El Squirt es el caso vivo: esa botella se va en las cazuelas y los cantaritos, y venderlo
+suelto se come el insumo de lo que más deja. **Sigue en la carta de diario y en el punto de
+venta** — la exclusión es sólo del evento, que es justo lo que este archivo permite hacer
+sin tocar `menu.ts`.
 
 ## La campaña del café: `/89`
 
