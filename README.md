@@ -420,27 +420,29 @@ en la exportación al punto de venta y en esta media carta a la vez. La búsqued
 a propósito — si alguien borra o renombra una de esas categorías el build truena, en vez de
 imprimir una sección vacía.
 
-Lo que sí se teclea son las 14 bebidas que sólo existen esa noche: aguas frescas, mocktails,
-cazuelas, cantaritos, margaritas y el tequila de la casa. **No van en `menu.ts`** porque
-`npm run exportar` las mandaría al punto de venta, ni en `evento.ts`, que es la fuente del
-anuncio —modal, página del evento y datos estructurados de Google— y donde las bebidas no
-entran.
+Lo que sí se teclea son las 12 bebidas que sólo existen esa noche: aguas frescas, mocktails,
+margaritas, la jarra de clericot y la botella de vino de la casa. **No van en `menu.ts`**
+porque `npm run exportar` las mandaría al punto de venta, ni en `evento.ts`, que es la
+fuente del anuncio —modal, página del evento y datos estructurados de Google— y donde las
+bebidas no entran.
 
-En el tequila la marca va en la **nota de la categoría**, no en el nombre de cada producto:
-en una columna de 2.2 in «Tradición Azul Blanco · Botella» se parte en dos renglones, y
-repetirla en Botella y Copa gasta el ancho que necesita la guía de puntos. Si algún día
-entra un segundo tequila, la marca baja al nombre y la nota se quita.
+Hay dos formas de reusar, y la diferencia importa. `sinDescripcion(id)` trae una categoría
+entera; **`productos(id, nombres)` trae bebidas sueltas**, y es la que permite que «Vinos y
+Clericot» mezcle el Clericot, la Sangría y el Tinto de Verano de la carta —mismo precio, se
+sincronizan solos— con la jarra y la botella, que sólo existen esa noche. Las dos verifican
+que el nombre exista: renombrar el Clericot en `menu.ts` truena el build en vez de imprimir
+la categoría con un hueco.
 
 ### Lo que se sacrificó para que cupiera
 
-Son 44 bebidas en una hoja de 5.5 × 8.5 in. Cuatro decisiones lo hacen posible, y la primera
+Son 45 bebidas en una hoja de 5.5 × 8.5 in. Cuatro decisiones lo hacen posible, y la primera
 es la que más rindió:
 
 - **El renglón lleva `line-height` fijo.** Medía 0.156 in para un texto de 8.3 pt: el
   `line-height: normal` que heredaban el precio y el volumen levantaba la caja de línea muy
   por encima del nombre. Fijarlo devolvió **0.027 in por bebida — 1.2 in en la tarjeta** sin
   bajar un punto el cuerpo de texto, que es lo único que no se puede seguir achicando. Ese
-  ahorro es el que permitió meter el tequila y además **devolver aire entre bebidas**: la
+  ahorro es el que permitió crecer la carta y además **devolver aire entre bebidas**: la
   densidad se lee entre productos, no dentro de uno.
 - **El volumen viaja pegado al nombre**, en cuerpo chico y ámbar, no en renglón aparte.
   PROFECO obliga a declararlo; con un renglón por bebida se desbordaba la hoja.
@@ -456,10 +458,21 @@ Las columnas son **explícitas, no balanceadas**, igual que la hoja 1 del pliego
 vive en `columnasBebidasEvento`: izquierda lo que la barra prepara en vaso más los
 refrescos, derecha lo que se sirve de botella.
 
-**Las micheladas van con la cerveza, no con los mocktails.** Una michelada es una cerveza, y
-quien la busca la busca ahí; de paso empareja las columnas —**5.78 y 5.81 in de las 6.17
-disponibles**, contra 5.3 y 5.9 con las micheladas del otro lado—, así que quedan unas
-0.37 in de holgura de cada lado para crecer sin recomponer.
+Izquierda, lo que la barra prepara: aguas, mocktails, cócteles y los digestivos, que se
+montan con espresso. Derecha, lo que sale de botella o lata. **Las micheladas van con la
+cerveza, no con los mocktails** — una michelada es una cerveza, y quien la busca la busca
+ahí.
+
+El reparto se recalibra cada vez que entra o sale una sección: al entrar los vinos, los
+digestivos se pasaron a la izquierda, porque la derecha se salía 0.40 in de la hoja mientras
+a la izquierda le sobraban 1.32. Hoy cierran en **5.72 y 5.70 in de las 6.17 disponibles**,
+con 0.45 in de holgura de cada lado.
+
+La cazuela vive dentro de «Mocktails y Cazuela» y no en su propia sección: al quitarse la
+versión con tequila y el cantarito quedó sola, y un encabezado centrado para un solo renglón
+se lee como que falta contenido. No se le llama mocktail —por eso el título la nombra
+aparte—, pero comparte lo único que hay que anunciar: que no lleva alcohol, que es justo lo
+que nadie espera de una cazuela.
 
 ### Quitar una bebida sólo de la noche
 

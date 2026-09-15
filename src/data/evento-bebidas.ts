@@ -3,8 +3,8 @@
  * ═══════════════════════════════════════════════════════════════════════
  *
  * La noche es DESPUÉS del horario del restaurante y la barra trabaja con un
- * listado propio: aguas frescas y mocktails a precio de evento, cazuelas,
- * cantaritos y margaritas que no están en la carta de diario. De aquí sale
+ * listado propio: aguas frescas y mocktails a precio de evento, margaritas y
+ * una jarra de clericot que no están en la carta de diario. De aquí sale
  * la media carta impresa `/impresion/noche-mexicana`.
  *
  * ── Por qué esto no vive en `menu.ts` ni en `evento.ts` ─────────────────
@@ -69,11 +69,29 @@ const sinDescripcion = (id: string, excluir: string[] = []): Category => {
 };
 
 /**
-  * Tequila de la casa. Dos formas: la de producto lleva punto porque cae junto
-  * a una descripción, y la de categoría no, porque se compone en versalitas
-  * con tracking y ahí un punto se lee como mancha.
-  */
-const tequila = (oz: number) => `Con ${oz} oz de tequila.`;
+ * Productos sueltos de una categoría de la carta, en el orden que se piden.
+ *
+ * Igual que `sinDescripcion`, **verifica que existan**: si alguien renombra el
+ * Clericot en `menu.ts`, el build truena en vez de imprimir la categoría con un
+ * hueco. Sirve para las categorías del evento que mezclan bebidas de la carta
+ * con bebidas que sólo existen esa noche.
+ */
+const productos = (id: string, nombres: string[]): Product[] =>
+  nombres.map((n) => {
+    const p = dela(id).products.find((x) => x.name === n);
+    if (!p) {
+      throw new Error(
+        `evento-bebidas: en la categoría «${id}» no existe «${n}». ` +
+          'Se renombró o se borró en menu.ts.',
+      );
+    }
+    return p;
+  });
+
+/**
+ * Tequila de las margaritas. Sin punto final: la nota de categoría se compone
+ * en versalitas con tracking, y ahí un punto se lee como mancha.
+ */
 const tequilaNota = (oz: number) => `Con ${oz} oz de tequila`;
 
 const aguasFrescas: Category = {
@@ -92,10 +110,17 @@ const aguasFrescas: Category = {
  * restaurante. Es un volumen de evento y NO coincide con la carta de diario,
  * donde el Maracuyá Muck se sirve en 300 ml: por eso se teclean aquí en vez de
  * leerse de `menu.ts`.
+ *
+ * **La cazuela vive aquí y no en su propia categoría.** Al quitarse la versión
+ * con tequila y el cantarito quedaba sola, y un encabezado centrado para un
+ * solo renglón se lee como que falta contenido. No se le llama mocktail —por
+ * eso el título dice «y Cazuela»—, pero comparte lo único que importa
+ * anunciar: que no lleva alcohol, que es justo lo que un comensal NO espera de
+ * una cazuela.
  */
 const mocktails: Category = {
   id: 'evento-mocktails',
-  title: 'Mocktails',
+  title: 'Mocktails y Cazuela',
   note: 'Sin alcohol',
   products: [
     {
@@ -110,30 +135,11 @@ const mocktails: Category = {
       description: 'Pulpa de maracuyá, jarabe, limón y piña.',
       price: '79',
     },
-  ],
-};
-
-const cazuelas: Category = {
-  id: 'evento-cazuelas',
-  title: 'Cazuelas y Cantaritos',
-  products: [
     {
-      name: 'Cazuela sin Alcohol',
+      name: 'Cazuela',
       gramaje: '500 ml',
       description: 'Squirt, naranja, lima, toronja, limón y sal.',
       price: '89',
-    },
-    {
-      name: 'Cazuela con Alcohol',
-      gramaje: '500 ml',
-      note: tequila(3),
-      price: '199',
-    },
-    {
-      name: 'Cantarito',
-      description: 'Naranja, lima, toronja, limón y sal, en barro.',
-      note: tequila(2),
-      price: '120',
     },
   ],
 };
@@ -150,21 +156,28 @@ const margaritas: Category = {
 };
 
 /**
- * El tequila de la noche.
+ * Vinos y cócteles de vino.
  *
- * La marca va en la nota de la categoría y no en el nombre de cada producto:
- * en una columna de 2.2 in «Tradición Azul Blanco · Botella» se parte en dos
- * renglones, y repetirla en los dos productos gasta el ancho que necesita la
- * guía de puntos. Si algún día entra un segundo tequila, la marca se baja al
- * nombre y la nota se quita.
+ * Los tres cócteles son los mismos de la carta y al mismo precio, así que se
+ * leen de `menu.ts`: sólo se teclean la jarra y la botella, que no existen en
+ * la carta de diario. Las Mimosas de esa categoría se quedan fuera, no entran
+ * en la noche.
+ *
+ * La botella es el mismo vino que la copa de la carta (La Cetto Cabernet
+ * Sauvignon), por eso repite esa descripción en vez de inventarle una.
  */
-const tequilaCasa: Category = {
-  id: 'evento-tequila',
-  title: 'Tequila',
-  note: 'Tradición Azul Blanco',
+const vinos: Category = {
+  id: 'evento-vinos',
+  title: 'Vinos y Clericot',
   products: [
-    { name: 'Botella', note: 'Incluye 4 refrescos.', price: '990' },
-    { name: 'Copa', price: '90' },
+    ...productos('cocteles-vino', ['Clericot']),
+    { name: 'Jarra de Clericot', price: '390' },
+    ...productos('cocteles-vino', ['Sangría', 'Tinto de Verano']),
+    {
+      name: 'Botella de Vino de la Casa',
+      description: 'La Cetto, Cabernet Sauvignon.',
+      price: '350',
+    },
   ],
 };
 
@@ -176,19 +189,25 @@ const tequilaCasa: Category = {
  * carta importa más que en doble carta, porque una columna mide 2.3 in y un
  * encabezado suelto se nota de inmediato.
  *
- * Izquierda, lo que la barra prepara en vaso más los refrescos; derecha, lo
- * que se sirve de botella. **Las micheladas van con la cerveza, no con los
- * mocktails**: una michelada es una cerveza, y quien la busca la busca ahí.
- * De paso empareja las columnas —5.9 in contra 5.4 in de las 6.1 disponibles—,
- * que con las micheladas del otro lado quedaban a 5.3 y 5.9.
+ * Izquierda, lo que la barra prepara: aguas, mocktails, cócteles y los
+ * digestivos, que se montan con espresso. Derecha, lo que sale de botella o
+ * lata. **Las micheladas van con la cerveza, no con los mocktails**: una
+ * michelada es una cerveza, y quien la busca la busca ahí.
+ *
+ * Los digestivos cambiaron de columna al entrar los vinos: con ellos a la
+ * derecha esa columna se pasaba 0.40 in de la hoja mientras a la izquierda le
+ * sobraban 1.32. Así cierran en 5.57 y 5.85 in de las 6.17 disponibles.
  */
 export const columnasBebidasEvento: Category[][] = [
-  // El Squirt sale de la carta de la noche: esa botella se va en las cazuelas y
-  // los cantaritos, y venderlo suelto se come el insumo de lo que más deja.
-  // Sigue en la carta de diario y en el punto de venta; esta exclusión es sólo
-  // del evento.
-  [aguasFrescas, mocktails, margaritas, cazuelas, sinDescripcion('refrescos', ['Squirt'])],
-  [tequilaCasa, dela('cerveza'), sinDescripcion('micheladas'), dela('digestivos')],
+  [aguasFrescas, mocktails, margaritas, vinos, dela('digestivos')],
+  // El Squirt sale de la carta de la noche: esa botella se va en las cazuelas,
+  // y venderlo suelto se come el insumo. Sigue en la carta de diario y en el
+  // punto de venta; esta exclusión es sólo del evento.
+  [
+    dela('cerveza'),
+    sinDescripcion('micheladas'),
+    sinDescripcion('refrescos', ['Squirt']),
+  ],
 ];
 
 export const bebidasEvento: Category[] = columnasBebidasEvento.flat();
