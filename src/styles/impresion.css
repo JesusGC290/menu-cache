@@ -310,6 +310,18 @@ body {
   line-height: 1.25;
 }
 
+/* Renglones cortos a dos columnas (ver `CategoriaImpresa.astro`) */
+.categoria.lista {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 0.2in;
+}
+
+.categoria.lista > h3,
+.categoria.lista > .categoria-nota {
+  grid-column: 1 / -1;
+}
+
 /* ── Producto ────────────────────────────────────────────────────────── */
 .producto {
   break-inside: avoid;
@@ -566,11 +578,11 @@ body {
 }
 
 .hoja[data-cara='frente'] .producto {
-  margin-bottom: 0.075in;
+  margin-bottom: 0.065in;
 }
 
 .hoja[data-cara='frente'] .banda:not(:first-child) {
-  margin-top: 0.34in;
+  margin-top: 0.28in;
 }
 
 /* Cuerpo del frente al alto natural; el cierre absorbe el remanente de la hoja */
@@ -610,7 +622,7 @@ body {
 .tira-fotos {
   column-span: all;
   break-inside: avoid;
-  margin: 0.26in 0 0.12in;
+  margin: 0.2in 0 0.12in;
   text-align: center;
 }
 
@@ -633,7 +645,7 @@ body {
 .foto-img {
   display: block;
   width: 2.4in;
-  height: 1.44in;
+  height: 1.2in;
   object-fit: cover;
   border: 1.4pt solid var(--talavera-turquesa);
   outline: 0.8pt solid color-mix(in srgb, var(--talavera-ambar) 65%, transparent);

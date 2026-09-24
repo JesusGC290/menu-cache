@@ -113,13 +113,13 @@ const desayunos: Menu = {
           note: 'Con huevo o pollo: $189',
         },
         {
-          name: 'Enchipotlados con Lengua',
-          description: 'En salsa de chipotle, con lengua de res.',
+          name: 'Verdes con Lengua',
+          description: 'En salsa verde, con lengua de res.',
           price: '199',
         },
         {
-          name: 'Verdes con Labio',
-          description: 'En salsa verde, con labio de res.',
+          name: 'Chilaquiles Caché',
+          description: 'En salsa de frijol, con asada y chorizo.',
           price: '199',
         },
         {
@@ -184,15 +184,41 @@ const desayunos: Menu = {
     {
       id: 'pal-capricho',
       title: 'Pal capricho',
-      note: 'Acompañado de frijoles y un trozo de panela.',
       products: [
         {
           name: 'Chicharrón (Pancita) en Salsa Roja',
+          description: 'Acompañado de frijoles y un trozo de panela.',
           price: '179',
         },
         {
           name: 'Chicharrón (Pancita) en Salsa Verde',
+          description: 'Acompañado de frijoles y un trozo de panela.',
           price: '179',
+        },
+        {
+          name: 'Embarazada de Huevo con Chicharrón',
+          description: 'En salsa roja o verde.',
+          price: '179',
+        },
+        {
+          name: 'Enfrijoladas de Asada',
+          price: '189',
+        },
+      ],
+    },
+    {
+      id: 'enchiladas',
+      title: 'Bien bañaditas · Enchiladas',
+      products: [
+        {
+          name: 'Enchiladas Arrieras',
+          description: 'De arrachera, bañadas en salsa verde y queso Oaxaca.',
+          price: '169',
+        },
+        {
+          name: 'Enchiladas de la Abuela',
+          description: 'Muy rojas, con pollo, crema y queso Oaxaca.',
+          price: '149',
         },
       ],
     },
@@ -339,6 +365,7 @@ const comidas: Menu = {
           gramaje: '180 g',
           price: '199',
         },
+        // También en Desayunos: se sirven en los dos turnos.
         {
           name: 'Enchiladas Arrieras',
           description: 'De arrachera, bañadas en salsa verde y queso Oaxaca.',
@@ -371,7 +398,6 @@ const comidas: Menu = {
     {
       id: 'pa-los-carnivoros',
       title: 'Pa’ los carnívoros',
-      note: 'Peinecillo y arrachera se sirven con papa horneada, ensalada y nopal asado.',
       products: [
         {
           name: 'Carne Asada',
@@ -386,9 +412,29 @@ const comidas: Menu = {
           price: '199',
         },
         {
-          name: 'Arrachera',
-          price: '199',
+          name: 'Tampiqueña',
+          gramaje: '180 g',
+          price: '240',
         },
+      ],
+    },
+    {
+      // Subsección de Pa’ los carnívoros: los cortes. Va justo después para
+      // leerse como parte del mismo bloque.
+      id: 'pa-un-buen-vino',
+      title: 'Pa’ un buen vino · Cortes',
+      products: [
+        {
+          name: 'New York',
+          gramaje: '240 g',
+          price: '280',
+        },
+        {
+          name: 'Rib Eye',
+          gramaje: '240 g',
+          price: '280',
+        },
+        { name: 'Arrachera', price: '280' },
       ],
     },
     {
@@ -439,7 +485,7 @@ const comidas: Menu = {
         { name: 'Flan de Elote', price: '89' },
         { name: 'Pan de Elote', price: '79' },
         { name: 'Pastel de Chocolate', price: '99' },
-        { name: 'Carlota de Limón', price: '89' },
+        { name: 'Arroz con Leche', price: '79' },
       ],
     },
   ],
