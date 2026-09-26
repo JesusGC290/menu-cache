@@ -414,7 +414,7 @@ const comidas: Menu = {
         {
           name: 'Tampiqueña',
           gramaje: '180 g',
-          price: '240',
+          price: '209',
         },
       ],
     },
@@ -426,15 +426,15 @@ const comidas: Menu = {
       products: [
         {
           name: 'New York',
-          gramaje: '240 g',
-          price: '280',
+          gramaje: '200 g',
+          price: '209',
         },
         {
           name: 'Rib Eye',
-          gramaje: '240 g',
-          price: '280',
+          gramaje: '200 g',
+          price: '209',
         },
-        { name: 'Arrachera', price: '280' },
+        { name: 'Arrachera', gramaje: '200 g', price: '209' },
       ],
     },
     {
@@ -456,9 +456,9 @@ const comidas: Menu = {
         },
         {
           name: 'Molcajete Mar y Tierra',
-          gramaje: '100 g de picaña, 100 g de camarón',
+          gramaje: '100 g de New York, 100 g de camarón',
           description:
-            'Picaña, camarón, nopal asado con cebolla cambray y panela asada, bañados en salsa de tomate, morrón y un toque de serrano.',
+            'New York, camarón, nopal asado con cebolla cambray y panela asada, bañados en salsa de tomate, morrón y un toque de serrano.',
           price: '289',
         },
         {
@@ -472,8 +472,9 @@ const comidas: Menu = {
           name: 'Parrillada',
           gramaje: '3 a 4 personas',
           description:
-            'Peinecillo 200 g, pollo adobado 200 g, espaldilla 200 g y panza de cerdo 200 g. Queso fundido con chorizo 250 g, guacamole 180 g y frijoles refritos con queso 180 g.',
+            'Peinecillo 200 g, pollo adobado 200 g, chamorro 1 pieza y lomo de cerdo 200 g. Queso fundido con chorizo 250 g, guacamole 180 g y frijoles refritos con queso 180 g.',
           price: '850',
+          note: 'Con cubeta de cerveza (6 cervezas) $990',
         },
       ],
     },
@@ -483,9 +484,7 @@ const comidas: Menu = {
       products: [
         { name: 'Jericalla', price: '89' },
         { name: 'Flan de Elote', price: '89' },
-        { name: 'Pan de Elote', price: '79' },
         { name: 'Pastel de Chocolate', price: '99' },
-        { name: 'Arroz con Leche', price: '79' },
       ],
     },
   ],
