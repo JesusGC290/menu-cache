@@ -24,7 +24,7 @@ const lista =
 <div class:list={['categoria', { lista }]}>
   <h3>{categoria.title}</h3>
   {categoria.note && (
-    <p class={categoria.note.length > 46 ? 'categoria-nota larga' : 'categoria-nota'}>
+    <p class={categoria.note.length > 40 ? 'categoria-nota larga' : 'categoria-nota'}>
       {categoria.note}
     </p>
   )}

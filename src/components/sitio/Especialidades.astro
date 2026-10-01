@@ -26,7 +26,11 @@ const buscar = (nombre: string) => {
  * («con chicharrón: más $60») aplica a todos los chilaquiles, no a uno, y en
  * una tarjeta suelta se lee como si fuera de ese platillo.
  */
-const destacados = [
+const destacados: {
+  etiqueta: string;
+  producto: ReturnType<typeof buscar>;
+  nota?: boolean;
+}[] = [
   { etiqueta: 'Pa’ compartir en grande', producto: buscar('Molcajete Mar y Tierra') },
   { etiqueta: 'Pa’ seguir', producto: buscar('Verdes con Lengua') },
   { etiqueta: 'Pa’ los carnívoros', producto: buscar('Carne Asada') },

@@ -25,11 +25,11 @@ const precio = (valor: string) => `$${valor}`;
     {
       /* Las versalitas con tracking amplio lucen en una nota corta
          («Solo sábados y domingos»), pero a tres renglones se vuelven
-         ilegibles. Pasando de 46 caracteres se cambia a caja baja. */
+         ilegibles. Pasando de 40 caracteres se cambia a caja baja. */
       categoria.note && (
         <p
           class={
-            categoria.note.length > 46
+            categoria.note.length > 40
               ? 'text-acento/85 mt-1.5 text-[0.76rem] leading-snug'
               : 'text-acento/85 mt-1.5 text-[0.7rem] tracking-[0.16em] uppercase'
           }

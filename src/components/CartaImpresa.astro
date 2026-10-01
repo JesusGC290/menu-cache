@@ -3,11 +3,11 @@ import { Image } from 'astro:assets';
 // Logotipo v2 (Cache-logo-v2-tr.png), recortado de su aire transparente: 1216
 // px de ancho, sin marco y con alfa. Es el mismo asset en la web y el impreso.
 import logo from '../assets/cache-logo.png';
-// Fotos de producto reales para la tira de la hoja 1, optimizadas desde
-// material/ (originales 5000×3000 → 1600×960 JPG).
+// Fotos reales de la tira de la hoja 1. Chamorro y nogada conservan los JPG
+// de 1080×608; la parrillada se convirtió de HEIC a JPG de 1600×1200 en sRGB.
 import fotoChamorro from '../assets/foto-chamorro.jpg';
 import fotoNogada from '../assets/foto-chile-nogada.jpg';
-import fotoRibEye from '../assets/foto-rib-eye.jpg';
+import fotoParrillada from '../assets/foto-parrillada.jpg';
 import fotoPostre from '../assets/foto-postre.jpg';
 import CategoriaImpresa from './CategoriaImpresa.astro';
 import { menus } from '../data/menu';
@@ -27,7 +27,7 @@ const { tema, conAviso = true } = Astro.props;
 const fotos = [
   { src: fotoChamorro, alt: 'Chamorro al horno', pie: 'Chamorro al horno' },
   { src: fotoNogada, alt: 'Chile en nogada', pie: 'Chile en nogada' },
-  { src: fotoRibEye, alt: 'Rib Eye', pie: 'Rib Eye' },
+  { src: fotoParrillada, alt: 'Parrillada', pie: 'Parrillada' },
   { src: fotoPostre, alt: 'Postre de la casa', pie: 'Postre de la casa' },
 ];
 
@@ -58,8 +58,8 @@ const columnasFrente = {
   ],
   comidas: [
     ['pa-entrarle', 'sopas', 'las-inolvidables'],
-    ['pa-no-rendirse', 'pa-los-carnivoros', 'pa-un-buen-vino'],
-    ['muy-nuestros', 'postres'],
+    ['pa-los-carnivoros', 'pa-un-buen-vino'],
+    ['pa-no-rendirse', 'muy-nuestros', 'postres'],
   ],
 };
 
@@ -190,9 +190,21 @@ const totalProductos = menus.reduce(
               <div class="tira-imgs">
                 {fotos.map((f) => (
                   <figure class="foto">
-                    {/* Marco de 2.4 in: a 1000 px son ~417 DPI, holgados frente a
-                        los 300 de imprenta. Las fuentes vienen a 1600 px. */}
-                    <Image src={f.src} alt={f.alt} width={1000} class="foto-img" />
+                    {/* Recorte 2:1 para el marco de 2.4 × 1.2 in, sin estirar.
+                        1000×500 px dan ~417 DPI y no amplían las fuentes.
+                        Carga inmediata para que todas las fotos salgan al imprimir. */}
+                    <Image
+                      src={f.src}
+                      alt={f.alt}
+                      width={1000}
+                      height={500}
+                      fit="cover"
+                      position="centre"
+                      format="jpeg"
+                      quality={95}
+                      loading="eager"
+                      class="foto-img"
+                    />
                     <figcaption class="foto-pie">{f.pie}</figcaption>
                   </figure>
                 ))}

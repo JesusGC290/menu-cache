@@ -103,16 +103,6 @@ const desayunos: Menu = {
       note: 'Todos nuestros chilaquiles llevan crema, queso y cebolla.',
       products: [
         {
-          name: 'Rojos',
-          price: '159',
-          note: 'Con huevo o pollo: $189',
-        },
-        {
-          name: 'Verdes',
-          price: '159',
-          note: 'Con huevo o pollo: $189',
-        },
-        {
           name: 'Verdes con Lengua',
           description: 'En salsa verde, con lengua de res.',
           price: '199',
@@ -127,12 +117,27 @@ const desayunos: Menu = {
           description: 'Con birria y queso gratinado.',
           price: '199',
         },
+        {
+          name: 'Rojos',
+          price: '159',
+          note: 'Con huevo o pollo: $189',
+        },
+        {
+          name: 'Verdes',
+          price: '159',
+          note: 'Con huevo o pollo: $189',
+        },
       ],
     },
     {
       id: 'molletes',
       title: 'Pal gusto · Molletes',
       products: [
+        {
+          name: 'Divorciados con Chicharrón',
+          description: 'Uno en salsa verde y otro en roja.',
+          price: '110',
+        },
         {
           name: 'Tradicionales',
           description: 'Frijol y queso, con salsa mexicana.',
@@ -143,11 +148,6 @@ const desayunos: Menu = {
           description: 'Cajeta, o mantequilla con azúcar.',
           price: '79',
         },
-        {
-          name: 'Divorciados con Chicharrón',
-          description: 'Uno en salsa verde y otro en roja.',
-          price: '110',
-        },
       ],
     },
     {
@@ -156,10 +156,10 @@ const desayunos: Menu = {
       note: 'Todos los huevos van con frijoles o papa rayada.',
       products: [
         {
-          name: 'Huevos al Gusto',
-          gramaje: '2 huevos',
-          description: 'Revueltos, con jamón, chorizo, salchicha, tocino, o rancheros.',
-          price: '149',
+          name: 'Huevos a Caballo',
+          description:
+            'Par de huevos en tostada, con bistec de res bañado en salsa de molcajete, nopal asado, cebollitas y chile toreado.',
+          price: '199',
         },
         {
           name: 'Huevos con Machaca y Salsa Norteña',
@@ -168,16 +168,10 @@ const desayunos: Menu = {
           price: '189',
         },
         {
-          name: 'Huevos con Chilorio',
-          gramaje: '100 g de chilorio, 2 pzas de huevo',
-          description: 'Con un toque de la casa.',
-          price: '189',
-        },
-        {
-          name: 'Huevos a Caballo',
-          description:
-            'Par de huevos en tostada, con bistec de res bañado en salsa de molcajete, nopal asado, cebollitas y chile toreado.',
-          price: '199',
+          name: 'Huevos al Gusto',
+          gramaje: '2 huevos',
+          description: 'Revueltos, con jamón, chorizo, salchicha, tocino, o rancheros.',
+          price: '149',
         },
       ],
     },
@@ -319,11 +313,6 @@ const comidas: Menu = {
           price: '149',
         },
         {
-          name: 'Queso Empanizado',
-          description: 'Bañado en salsa verde.',
-          price: '149',
-        },
-        {
           name: 'Frijoles con Queso',
           price: '99',
         },
@@ -380,7 +369,7 @@ const comidas: Menu = {
     },
     {
       id: 'las-inolvidables',
-      title: 'Las inolvidables',
+      title: 'Nuestros inolvidables',
       products: [
         {
           name: 'Chile en Nogada',
@@ -398,22 +387,26 @@ const comidas: Menu = {
     {
       id: 'pa-los-carnivoros',
       title: 'Pa’ los carnívoros',
+      note: 'Todos nuestros gramajes son pesados en crudo.',
       products: [
         {
           name: 'Carne Asada',
           gramaje: '180 g',
           description:
-            'Muy suavecita, con guacamole, frijoles, quesadilla, nopal, cebollitas y chile toreado.',
+            'Con guacamole, frijol, nopal, cebolla asada y chile toreado.',
           price: '199',
         },
         {
           name: 'Peinecillo',
           gramaje: '180 g',
+          description: 'Con guacamole, frijol, nopal, cebolla asada y chile toreado.',
           price: '199',
         },
         {
           name: 'Tampiqueña',
           gramaje: '180 g',
+          description:
+            'Tradicional filete de res corte delgado asado al carbón, acompañados de frijol, guacamole una  enchilada y nopal asado.',
           price: '209',
         },
       ],
@@ -423,18 +416,32 @@ const comidas: Menu = {
       // leerse como parte del mismo bloque.
       id: 'pa-un-buen-vino',
       title: 'Pa’ un buen vino · Cortes',
+      note: 'Todos nuestros gramajes son pesados en crudo.',
       products: [
         {
           name: 'New York',
           gramaje: '200 g',
+          description: 'Con guacamole, ensalada y cebolla asada.',
           price: '209',
         },
         {
           name: 'Rib Eye',
           gramaje: '200 g',
+          description: 'Con guacamole, ensalada y cebolla asada.',
           price: '209',
         },
-        { name: 'Arrachera', gramaje: '200 g', price: '209' },
+        {
+          name: 'Arrachera',
+          gramaje: '200 g',
+          description: 'Con guacamole, ensalada y cebolla asada.',
+          price: '209',
+        },
+        {
+          name: 'Tuétano',
+          gramaje: '3 piezas',
+          description: 'Con salsa, limón y cebolla a la plancha.',
+          price: '199',
+        },
       ],
     },
     {
@@ -447,10 +454,6 @@ const comidas: Menu = {
           price: '199',
         },
         {
-          name: 'Mixiote de Pollo al Horno',
-          price: '199',
-        },
-        {
           name: 'Molcajete de Peinecillo',
           price: '229',
         },
@@ -460,13 +463,6 @@ const comidas: Menu = {
           description:
             'New York, camarón, nopal asado con cebolla cambray y panela asada, bañados en salsa de tomate, morrón y un toque de serrano.',
           price: '289',
-        },
-        {
-          name: 'Plato Botanero',
-          gramaje: '4 personas',
-          description:
-            '2 chiles jalapeños con queso, chicharrón duro 100 g, chistorra 200 g, queso fundido natural 180 g, guacamole 180 g y frijoles fritos 180 g.',
-          price: '550',
         },
         {
           name: 'Parrillada',

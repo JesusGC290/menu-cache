@@ -574,11 +574,11 @@ body {
 
 /* Más espacio entre secciones y entre platillos */
 .hoja[data-cara='frente'] .categoria {
-  margin-bottom: 0.2in;
+  margin-bottom: 0.18in;
 }
 
 .hoja[data-cara='frente'] .producto {
-  margin-bottom: 0.065in;
+  margin-bottom: 0.05in;
 }
 
 .hoja[data-cara='frente'] .banda:not(:first-child) {
@@ -667,9 +667,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.09in;
+  gap: 0.06in;
   text-align: center;
-  padding: 0.14in 0 0.02in;
+  padding: 0.08in 0 0.02in;
 }
 
 .remate .filete {
