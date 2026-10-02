@@ -57,11 +57,6 @@ const desayunos: Menu = {
       title: 'Pa’ empezar',
       products: [
         {
-          name: 'Tasajo de Peinecillo con Jocoque',
-          description: 'Cebollitas asadas, nopal y tortillas hechas a mano.',
-          price: '199',
-        },
-        {
           name: 'Quesadillas con Lengua en Salsa Verde',
           gramaje: '3 pzas',
           price: '149',
@@ -116,6 +111,12 @@ const desayunos: Menu = {
           name: 'Birriaquiles Gratinados',
           description: 'Con birria y queso gratinado.',
           price: '199',
+        },
+        {
+          name: 'Chipotle',
+          description: 'Bañados en salsa de chipotle, con un toque ahumado.',
+          price: '159',
+          note: 'Con huevo o pollo: $189',
         },
         {
           name: 'Rojos',
@@ -191,11 +192,12 @@ const desayunos: Menu = {
         },
         {
           name: 'Embarazada de Huevo con Chicharrón',
-          description: 'En salsa roja o verde.',
+          description: 'Huevo y chicharrón bañados en salsa roja o verde, con todo el sabor de casa.',
           price: '179',
         },
         {
           name: 'Enfrijoladas de Asada',
+          description: 'Tortillas rellenas de carne asada, bañadas en una sabrosa salsa de frijol.',
           price: '189',
         },
       ],
@@ -275,6 +277,9 @@ const desayunos: Menu = {
   ],
 };
 
+// Se sirven en ambos turnos; comparten productos, precios y acompañamiento.
+const burritos = desayunos.categories.find((categoria) => categoria.id === 'burritos')!;
+
 const comidas: Menu = {
   id: 'comidas',
   tab: 'Comidas',
@@ -314,7 +319,7 @@ const comidas: Menu = {
         },
         {
           name: 'Frijoles con Queso',
-          price: '99',
+          price: '79',
         },
         {
           name: 'Tacos de Frijol al Carbón',
@@ -421,19 +426,19 @@ const comidas: Menu = {
         {
           name: 'New York',
           gramaje: '200 g',
-          description: 'Con guacamole, ensalada y cebolla asada.',
+          description: 'Con guacamole, ensalada, nopal y cebolla asada.',
           price: '209',
         },
         {
           name: 'Rib Eye',
           gramaje: '200 g',
-          description: 'Con guacamole, ensalada y cebolla asada.',
+          description: 'Con guacamole, ensalada, nopal y cebolla asada.',
           price: '209',
         },
         {
           name: 'Arrachera',
           gramaje: '200 g',
-          description: 'Con guacamole, ensalada y cebolla asada.',
+          description: 'Con guacamole, ensalada, nopal y cebolla asada.',
           price: '209',
         },
         {
@@ -443,6 +448,10 @@ const comidas: Menu = {
           price: '199',
         },
       ],
+    },
+    {
+      ...burritos,
+      id: 'burritos-comidas',
     },
     {
       id: 'muy-nuestros',

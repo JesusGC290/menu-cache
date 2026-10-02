@@ -10,7 +10,8 @@ import fotoNogada from '../assets/foto-chile-nogada.jpg';
 import fotoParrillada from '../assets/foto-parrillada.jpg';
 import fotoPostre from '../assets/foto-postre.jpg';
 import CategoriaImpresa from './CategoriaImpresa.astro';
-import { menus } from '../data/menu';
+import { menus as menusActuales, type Menu } from '../data/menu';
+import menusOscuros from '../data/menu-impreso-oscuro.json';
 import '../styles/impresion.css';
 
 interface Props {
@@ -23,6 +24,8 @@ interface Props {
   conAviso?: boolean;
 }
 const { tema, conAviso = true } = Astro.props;
+// La carta oscura queda archivada: los cambios futuros sólo actualizan la clara.
+const menus: Menu[] = tema === 'oscuro' ? menusOscuros : menusActuales;
 
 const fotos = [
   { src: fotoChamorro, alt: 'Chamorro al horno', pie: 'Chamorro al horno' },
@@ -58,7 +61,7 @@ const columnasFrente = {
   ],
   comidas: [
     ['pa-entrarle', 'sopas', 'las-inolvidables'],
-    ['pa-los-carnivoros', 'pa-un-buen-vino'],
+    ['pa-los-carnivoros', 'pa-un-buen-vino', ...(tema === 'claro' ? ['burritos-comidas'] : [])],
     ['pa-no-rendirse', 'muy-nuestros', 'postres'],
   ],
 };

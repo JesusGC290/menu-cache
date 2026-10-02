@@ -577,6 +577,12 @@ body {
   margin-bottom: 0.18in;
 }
 
+/* La clara incluye burritos en Comidas y nuevas descripciones. Conserva
+   el tamaño de letra y deja el pie dentro de la zona segura de impresión. */
+.tema-claro[data-cara='frente'] .categoria {
+  margin-bottom: 0.15in;
+}
+
 .hoja[data-cara='frente'] .producto {
   margin-bottom: 0.05in;
 }
