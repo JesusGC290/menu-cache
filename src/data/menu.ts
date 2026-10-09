@@ -216,6 +216,11 @@ const desayunos: Menu = {
           description: 'Muy rojas, con pollo, crema y queso Oaxaca.',
           price: '149',
         },
+        {
+          name: 'Enchiladas Suizas',
+          description: 'De pollo, en salsa verde cremosa y gratinadas con queso.',
+          price: '169',
+        },
       ],
     },
     {
@@ -369,6 +374,11 @@ const comidas: Menu = {
           name: 'Enchiladas de la Abuela',
           description: 'Muy rojas, con pollo, crema y queso Oaxaca.',
           price: '149',
+        },
+        {
+          name: 'Enchiladas Suizas',
+          description: 'De pollo, en salsa verde cremosa y gratinadas con queso.',
+          price: '169',
         },
       ],
     },
