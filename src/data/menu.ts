@@ -209,7 +209,7 @@ const desayunos: Menu = {
         {
           name: 'Enchiladas Arrieras',
           description: 'De arrachera, bañadas en salsa verde y queso Oaxaca.',
-          price: '169',
+          price: '179',
         },
         {
           name: 'Enchiladas de la Abuela',
@@ -219,7 +219,7 @@ const desayunos: Menu = {
         {
           name: 'Enchiladas Suizas',
           description: 'De pollo, en salsa verde cremosa y gratinadas con queso.',
-          price: '169',
+          price: '179',
         },
       ],
     },
@@ -274,6 +274,7 @@ const desayunos: Menu = {
         { name: 'Chorizo', price: '40' },
         { name: 'Chicharrón', price: '60' },
         { name: 'Asada', price: '60' },
+        { name: 'Lengua', price: '60' },
         { name: 'Frijoles', price: '15' },
         { name: 'Jamón', price: '20' },
         { name: 'Tocino', price: '25' },
@@ -328,6 +329,7 @@ const comidas: Menu = {
         },
         {
           name: 'Tacos de Frijol al Carbón',
+          gramaje: '3 pzas',
           price: '89',
         },
       ],
@@ -368,7 +370,7 @@ const comidas: Menu = {
         {
           name: 'Enchiladas Arrieras',
           description: 'De arrachera, bañadas en salsa verde y queso Oaxaca.',
-          price: '169',
+          price: '179',
         },
         {
           name: 'Enchiladas de la Abuela',
@@ -378,7 +380,7 @@ const comidas: Menu = {
         {
           name: 'Enchiladas Suizas',
           description: 'De pollo, en salsa verde cremosa y gratinadas con queso.',
-          price: '169',
+          price: '179',
         },
       ],
     },
@@ -435,19 +437,19 @@ const comidas: Menu = {
       products: [
         {
           name: 'New York',
-          gramaje: '200 g',
+          gramaje: '250 g',
           description: 'Con guacamole, ensalada, nopal y cebolla asada.',
           price: '209',
         },
         {
           name: 'Rib Eye',
-          gramaje: '200 g',
+          gramaje: '250 g',
           description: 'Con guacamole, ensalada, nopal y cebolla asada.',
           price: '209',
         },
         {
           name: 'Arrachera',
-          gramaje: '200 g',
+          gramaje: '250 g',
           description: 'Con guacamole, ensalada, nopal y cebolla asada.',
           price: '209',
         },
@@ -483,6 +485,12 @@ const comidas: Menu = {
             'New York, camarón, nopal asado con cebolla cambray y panela asada, bañados en salsa de tomate, morrón y un toque de serrano.',
           price: '289',
         },
+      ],
+    },
+    {
+      id: 'para-compartir',
+      title: 'Para compartir',
+      products: [
         {
           name: 'Parrillada',
           gramaje: '3 a 4 personas',

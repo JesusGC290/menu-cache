@@ -27,11 +27,12 @@ const { tema, conAviso = true } = Astro.props;
 // La carta oscura queda archivada: los cambios futuros sólo actualizan la clara.
 const menus: Menu[] = tema === 'oscuro' ? menusOscuros : menusActuales;
 
+// Sin pie de foto: el alto que ocupaba se lo lleva la carta.
 const fotos = [
-  { src: fotoChamorro, alt: 'Chamorro al horno', pie: 'Chamorro al horno' },
-  { src: fotoNogada, alt: 'Chile en nogada', pie: 'Chile en nogada' },
-  { src: fotoParrillada, alt: 'Parrillada', pie: 'Parrillada' },
-  { src: fotoPostre, alt: 'Postre de la casa', pie: 'Postre de la casa' },
+  { src: fotoChamorro, alt: 'Chamorro al horno' },
+  { src: fotoNogada, alt: 'Chile en nogada' },
+  { src: fotoParrillada, alt: 'Parrillada' },
+  { src: fotoPostre, alt: 'Postre de la casa' },
 ];
 
 const porId = (id: string) => menus.find((m) => m.id === id)!;
@@ -53,7 +54,24 @@ const caras = [
 const catId = (menu: (typeof menus)[number], id: string) =>
   menu.categories.find((c) => c.id === id)!;
 
-const columnasFrente = {
+// Ingeniería de menú: lo que más se vende va en la columna central, que es
+// donde cae primero la vista.
+const columnasClaro = {
+  desayunos: [
+    ['pa-empezar', 'huevos'],
+    ['enchiladas', 'pal-capricho', 'chilaquiles'],
+    ['molletes', 'burritos', 'infantil-desayunos', 'extras'],
+  ],
+  comidas: [
+    ['pa-entrarle', 'sopas', 'burritos-comidas'],
+    ['pa-los-carnivoros', 'pa-un-buen-vino', 'para-compartir', 'las-inolvidables'],
+    ['muy-nuestros', 'pa-no-rendirse', 'postres'],
+  ],
+};
+
+// Reparto con el que se archivó la carta oscura: su JSON no tiene las
+// categorías nuevas, así que no sigue al de la clara.
+const columnasOscuro = {
   desayunos: [
     ['pa-empezar', 'chilaquiles'],
     ['molletes', 'huevos', 'pal-capricho'],
@@ -61,10 +79,12 @@ const columnasFrente = {
   ],
   comidas: [
     ['pa-entrarle', 'sopas', 'las-inolvidables'],
-    ['pa-los-carnivoros', 'pa-un-buen-vino', ...(tema === 'claro' ? ['burritos-comidas'] : [])],
+    ['pa-los-carnivoros', 'pa-un-buen-vino'],
     ['pa-no-rendirse', 'muy-nuestros', 'postres'],
   ],
 };
+
+const columnasFrente = tema === 'oscuro' ? columnasOscuro : columnasClaro;
 
 const columnasDe = (menu: (typeof menus)[number]) =>
   (columnasFrente as Record<string, string[][]>)[menu.id].map((ids) =>
@@ -193,14 +213,14 @@ const totalProductos = menus.reduce(
               <div class="tira-imgs">
                 {fotos.map((f) => (
                   <figure class="foto">
-                    {/* Recorte 2:1 para el marco de 2.4 × 1.2 in, sin estirar.
-                        1000×500 px dan ~417 DPI y no amplían las fuentes.
+                    {/* Recorte 2.4:1 para el marco de 2.4 × 1 in, sin estirar.
+                        1000×417 px dan ~417 DPI y no amplían las fuentes.
                         Carga inmediata para que todas las fotos salgan al imprimir. */}
                     <Image
                       src={f.src}
                       alt={f.alt}
                       width={1000}
-                      height={500}
+                      height={417}
                       fit="cover"
                       position="centre"
                       format="jpeg"
@@ -208,7 +228,6 @@ const totalProductos = menus.reduce(
                       loading="eager"
                       class="foto-img"
                     />
-                    <figcaption class="foto-pie">{f.pie}</figcaption>
                   </figure>
                 ))}
               </div>
@@ -243,18 +262,6 @@ const totalProductos = menus.reduce(
                 ))}
               </Fragment>
             ))}
-          </div>
-        )}
-
-        {/* ── Cierre inferior (sólo hoja 1): filete e inscripción de la casa ── */}
-        {cara.id === 'frente' && (
-          <div class="remate">
-            <hr class="filete" />
-            <p class="dicho">
-              «Aquí se guisa como en casa: a fuego lento y con las recetas de las
-              de antes.»
-            </p>
-            <p class="rubrica">De caché, como debe ser</p>
           </div>
         )}
 
