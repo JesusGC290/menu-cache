@@ -195,6 +195,12 @@ const desayunos: Menu = {
           description: 'Huevo y chicharrón bañados en salsa roja o verde, con todo el sabor de casa.',
           price: '179',
         },
+      ],
+    },
+    {
+      id: 'enfrijoladas',
+      title: 'Como en casa · Enfrijoladas',
+      products: [
         {
           name: 'Enfrijoladas de Asada',
           description: 'Tortillas rellenas de carne asada, bañadas en una sabrosa salsa de frijol.',

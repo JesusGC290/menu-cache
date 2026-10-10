@@ -58,8 +58,8 @@ const catId = (menu: (typeof menus)[number], id: string) =>
 // donde cae primero la vista.
 const columnasClaro = {
   desayunos: [
-    ['pa-empezar', 'huevos'],
-    ['enchiladas', 'pal-capricho', 'chilaquiles'],
+    ['pa-empezar', 'pal-capricho', 'huevos'],
+    ['enchiladas', 'chilaquiles', 'enfrijoladas'],
     ['molletes', 'burritos', 'infantil-desayunos', 'extras'],
   ],
   comidas: [
@@ -213,14 +213,14 @@ const totalProductos = menus.reduce(
               <div class="tira-imgs">
                 {fotos.map((f) => (
                   <figure class="foto">
-                    {/* Recorte 2.4:1 para el marco de 2.4 × 1 in, sin estirar.
-                        1000×417 px dan ~417 DPI y no amplían las fuentes.
+                    {/* Recorte 12:7 para el marco de 2.4 × 1.4 in, sin estirar.
+                        1000×583 px dan ~417 DPI y no amplían las fuentes.
                         Carga inmediata para que todas las fotos salgan al imprimir. */}
                     <Image
                       src={f.src}
                       alt={f.alt}
                       width={1000}
-                      height={417}
+                      height={583}
                       fit="cover"
                       position="centre"
                       format="jpeg"

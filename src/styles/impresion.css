@@ -652,7 +652,7 @@ body {
 .foto-img {
   display: block;
   width: 2.4in;
-  height: 1in;
+  height: 1.4in;
   object-fit: cover;
   border: 1.4pt solid var(--talavera-turquesa);
   outline: 0.8pt solid color-mix(in srgb, var(--talavera-ambar) 65%, transparent);
