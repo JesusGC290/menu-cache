@@ -225,11 +225,13 @@ const desayunos: Menu = {
         },
         {
           name: 'Enchiladas de la Abuela',
+          gramaje: '100 g de pollo',
           description: 'Muy rojas, con pollo, crema y queso Oaxaca.',
           price: '149',
         },
         {
           name: 'Enchiladas Suizas',
+          gramaje: '100 g de pollo',
           description: 'De pollo, en salsa verde cremosa y gratinadas con queso.',
           price: '189',
         },
@@ -387,11 +389,13 @@ const comidas: Menu = {
         },
         {
           name: 'Enchiladas de la Abuela',
+          gramaje: '100 g de pollo',
           description: 'Muy rojas, con pollo, crema y queso Oaxaca.',
           price: '149',
         },
         {
           name: 'Enchiladas Suizas',
+          gramaje: '100 g de pollo',
           description: 'De pollo, en salsa verde cremosa y gratinadas con queso.',
           price: '189',
         },

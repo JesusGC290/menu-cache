@@ -1,6 +1,6 @@
 # Caché Restaurante · Carta completa
 
-**141 productos** en 32 categorías · 102 con gramaje declarado.
+**141 productos** en 32 categorías · 106 con gramaje declarado.
 
 > Generado con `npm run exportar` desde `src/data/menu.ts`. No editar a mano.
 
@@ -74,8 +74,8 @@ _41 productos._
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
 | Enchiladas Arrieras | 120 g de arrachera | De arrachera con lechuga, bañadas en salsa verde con crema y queso Oaxaca. | $179 |  |
-| Enchiladas de la Abuela |  | Muy rojas, con pollo, crema y queso Oaxaca. | $149 |  |
-| Enchiladas Suizas |  | De pollo, en salsa verde cremosa y gratinadas con queso. | $189 |  |
+| Enchiladas de la Abuela | 100 g de pollo | Muy rojas, con pollo, crema y queso Oaxaca. | $149 |  |
+| Enchiladas Suizas | 100 g de pollo | De pollo, en salsa verde cremosa y gratinadas con queso. | $189 |  |
 
 ### Pal glotón · Burritos gigantes
 
@@ -143,8 +143,8 @@ _33 productos._
 | Pechuga a la Plancha | 180 g |  | $199 |  |
 | Pechuga Empanizada | 180 g |  | $199 |  |
 | Enchiladas Arrieras | 120 g de arrachera | De arrachera con lechuga, bañadas en salsa verde con crema y queso Oaxaca. | $179 |  |
-| Enchiladas de la Abuela |  | Muy rojas, con pollo, crema y queso Oaxaca. | $149 |  |
-| Enchiladas Suizas |  | De pollo, en salsa verde cremosa y gratinadas con queso. | $189 |  |
+| Enchiladas de la Abuela | 100 g de pollo | Muy rojas, con pollo, crema y queso Oaxaca. | $149 |  |
+| Enchiladas Suizas | 100 g de pollo | De pollo, en salsa verde cremosa y gratinadas con queso. | $189 |  |
 
 ### Nuestros inolvidables
 
@@ -347,9 +347,9 @@ _67 productos._
 
 ## Estado de las porciones
 
-- **102** con gramaje propio.
+- **106** con gramaje propio.
 - **0** sin campo propio, pero su categoría lo declara por todos.
-- **39** sin porción declarada en ningún lado.
+- **35** sin porción declarada en ningún lado.
 
 ### Sin declarar
 
@@ -370,8 +370,6 @@ _67 productos._
 | Chicharrón (Pancita) en Salsa Verde | Desayunos | Pal capricho |
 | Embarazada de Huevo con Chicharrón | Desayunos | Pal capricho |
 | Enfrijoladas de Asada | Desayunos | Como en casa · Enfrijoladas |
-| Enchiladas de la Abuela | Desayunos | Bien bañaditas · Enchiladas |
-| Enchiladas Suizas | Desayunos | Bien bañaditas · Enchiladas |
 | Huevo, Machaca, Queso y Frijol | Desayunos | Pal glotón · Burritos gigantes |
 | Camarón, Queso y Verdura | Desayunos | Pal glotón · Burritos gigantes |
 | Huevo | Desayunos | Extras |
@@ -385,8 +383,6 @@ _67 productos._
 | Tocino | Desayunos | Extras |
 | Frijoles con Queso | Comidas | Pa’ entrarle |
 | Tortilla | Comidas | Pa’ sopear · Sopas |
-| Enchiladas de la Abuela | Comidas | Pa’ no rendirse |
-| Enchiladas Suizas | Comidas | Pa’ no rendirse |
 | Chile Relleno | Comidas | Nuestros inolvidables |
 | Huevo, Machaca, Queso y Frijol | Comidas | Pal glotón · Burritos gigantes |
 | Camarón, Queso y Verdura | Comidas | Pal glotón · Burritos gigantes |

@@ -3,7 +3,7 @@
   "fuente": "src/data/menu.ts",
   "totales": {
     "productos": 141,
-    "con_gramaje": 102,
+    "con_gramaje": 106,
     "categorias": 32
   },
   "menus": [
@@ -220,14 +220,14 @@
             },
             {
               "producto": "Enchiladas de la Abuela",
-              "gramaje": null,
+              "gramaje": "100 g de pollo",
               "descripcion": "Muy rojas, con pollo, crema y queso Oaxaca.",
               "precio": 149,
               "nota": null
             },
             {
               "producto": "Enchiladas Suizas",
-              "gramaje": null,
+              "gramaje": "100 g de pollo",
               "descripcion": "De pollo, en salsa verde cremosa y gratinadas con queso.",
               "precio": 189,
               "nota": null
@@ -464,14 +464,14 @@
             },
             {
               "producto": "Enchiladas de la Abuela",
-              "gramaje": null,
+              "gramaje": "100 g de pollo",
               "descripcion": "Muy rojas, con pollo, crema y queso Oaxaca.",
               "precio": 149,
               "nota": null
             },
             {
               "producto": "Enchiladas Suizas",
-              "gramaje": null,
+              "gramaje": "100 g de pollo",
               "descripcion": "De pollo, en salsa verde cremosa y gratinadas con queso.",
               "precio": 189,
               "nota": null
