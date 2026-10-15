@@ -75,7 +75,7 @@ _41 productos._
 | --- | --- | --- | ---: | --- |
 | Enchiladas Arrieras | 120 g de arrachera | De arrachera con lechuga, bañadas en salsa verde con crema y queso Oaxaca. | $179 |  |
 | Enchiladas de la Abuela |  | Muy rojas, con pollo, crema y queso Oaxaca. | $149 |  |
-| Enchiladas Suizas |  | De pollo, en salsa verde cremosa y gratinadas con queso. | $179 |  |
+| Enchiladas Suizas |  | De pollo, en salsa verde cremosa y gratinadas con queso. | $189 |  |
 
 ### Pal glotón · Burritos gigantes
 
@@ -144,7 +144,7 @@ _33 productos._
 | Pechuga Empanizada | 180 g |  | $199 |  |
 | Enchiladas Arrieras | 120 g de arrachera | De arrachera con lechuga, bañadas en salsa verde con crema y queso Oaxaca. | $179 |  |
 | Enchiladas de la Abuela |  | Muy rojas, con pollo, crema y queso Oaxaca. | $149 |  |
-| Enchiladas Suizas |  | De pollo, en salsa verde cremosa y gratinadas con queso. | $179 |  |
+| Enchiladas Suizas |  | De pollo, en salsa verde cremosa y gratinadas con queso. | $189 |  |
 
 ### Nuestros inolvidables
 

@@ -231,7 +231,7 @@ const desayunos: Menu = {
         {
           name: 'Enchiladas Suizas',
           description: 'De pollo, en salsa verde cremosa y gratinadas con queso.',
-          price: '179',
+          price: '189',
         },
       ],
     },
@@ -393,7 +393,7 @@ const comidas: Menu = {
         {
           name: 'Enchiladas Suizas',
           description: 'De pollo, en salsa verde cremosa y gratinadas con queso.',
-          price: '179',
+          price: '189',
         },
       ],
     },
