@@ -128,6 +128,11 @@ const desayunos: Menu = {
           price: '159',
           note: 'Con huevo o pollo: $189',
         },
+        {
+          name: 'Lonche de Chilaquiles con Chicharrón',
+          description: 'Salsa a su elección: roja, verde o chipotle.',
+          price: '110',
+        },
       ],
     },
     {
@@ -214,7 +219,8 @@ const desayunos: Menu = {
       products: [
         {
           name: 'Enchiladas Arrieras',
-          description: 'De arrachera, bañadas en salsa verde y queso Oaxaca.',
+          gramaje: '120 g de arrachera',
+          description: 'De arrachera con lechuga, bañadas en salsa verde con crema y queso Oaxaca.',
           price: '179',
         },
         {
@@ -375,7 +381,8 @@ const comidas: Menu = {
         // También en Desayunos: se sirven en los dos turnos.
         {
           name: 'Enchiladas Arrieras',
-          description: 'De arrachera, bañadas en salsa verde y queso Oaxaca.',
+          gramaje: '120 g de arrachera',
+          description: 'De arrachera con lechuga, bañadas en salsa verde con crema y queso Oaxaca.',
           price: '179',
         },
         {
@@ -414,23 +421,23 @@ const comidas: Menu = {
       products: [
         {
           name: 'Carne Asada',
-          gramaje: '180 g',
+          gramaje: '200 g',
           description:
             'Con guacamole, frijol, nopal, cebolla asada y chile toreado.',
-          price: '199',
+          price: '210',
         },
         {
           name: 'Peinecillo',
-          gramaje: '180 g',
+          gramaje: '200 g',
           description: 'Con guacamole, frijol, nopal, cebolla asada y chile toreado.',
-          price: '199',
+          price: '210',
         },
         {
           name: 'Tampiqueña',
-          gramaje: '180 g',
+          gramaje: '200 g',
           description:
             'Tradicional filete de res corte delgado asado al carbón, acompañados de frijol, guacamole una  enchilada y nopal asado.',
-          price: '209',
+          price: '230',
         },
       ],
     },
@@ -443,21 +450,21 @@ const comidas: Menu = {
       products: [
         {
           name: 'New York',
-          gramaje: '250 g',
-          description: 'Con guacamole, ensalada, nopal y cebolla asada.',
-          price: '209',
+          gramaje: '220 g',
+          description: 'Con ensalada, chimichurri y un adorno de romero.',
+          price: '250',
         },
         {
           name: 'Rib Eye',
-          gramaje: '250 g',
-          description: 'Con guacamole, ensalada, nopal y cebolla asada.',
-          price: '209',
+          gramaje: '220 g',
+          description: 'Con ensalada, chimichurri y un adorno de romero.',
+          price: '250',
         },
         {
           name: 'Arrachera',
-          gramaje: '250 g',
+          gramaje: '220 g',
           description: 'Con guacamole, ensalada, nopal y cebolla asada.',
-          price: '209',
+          price: '230',
         },
         {
           name: 'Tuétano',
@@ -501,7 +508,7 @@ const comidas: Menu = {
           name: 'Parrillada',
           gramaje: '3 a 4 personas',
           description:
-            'Peinecillo 200 g, pollo adobado 200 g, chamorro 1 pieza y lomo de cerdo 200 g. Queso fundido con chorizo 250 g, guacamole 180 g y frijoles refritos con queso 180 g.',
+            'Peinecillo 200 g, fajitas de pollo a la parrilla 200 g, chamorro 1 pieza y lomo de cerdo 200 g. Queso fundido con chorizo 250 g, guacamole 180 g y frijoles refritos con queso 180 g.',
           price: '850',
           note: 'Con cubeta de cerveza (6 cervezas) $990',
         },

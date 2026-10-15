@@ -1,6 +1,6 @@
 # Caché Restaurante · Carta completa
 
-**163 productos** en 33 categorías · 133 con gramaje declarado.
+**141 productos** en 32 categorías · 102 con gramaje declarado.
 
 > Generado con `npm run exportar` desde `src/data/menu.ts`. No editar a mano.
 
@@ -10,221 +10,207 @@ Precios en pesos mexicanos, IVA incluido.
 
 ## Desayunos
 
-_53 productos._
+_41 productos._
 
-### Entradas
+### Pa’ empezar
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Pan Dulce de Canasta | 1 pza |  | $29 |  |
-| Plato de Jocoque | 160 g | Acompañado de tortillas hechas a mano. | $69 |  |
+| Quesadillas con Lengua en Salsa Verde | 3 pzas |  | $149 |  |
+| Quesabirrias | 2 pzas | Tortilla hecha a mano. | $99 |  |
+| Tacos de Frijol a las Brasas | 3 pzas |  | $89 |  |
 | Hot Cakes con Fruta | 3 pzas | Con fruta del día. | $109 |  |
-| Pan Francés | 2 pzas |  | $109 |  |
 | Plato de Fruta con Yogurt | 60 g de yogurt | Con fruta del día y granola. | $109 |  |
+| Pan Francés | 2 pzas |  | $109 |  |
 
-### Chilaquiles
+### Pa’ seguir · Chilaquiles
 
-**Aplica a toda la categoría:** Con chorizo, chicharrón o asada 80 g: más $60 · Huevo 1 pza: más $20 · Pollo 80 g: más $40
-
-| Producto | Gramaje | Descripción | Precio | Extras |
-| --- | --- | --- | ---: | --- |
-| Rojos |  | Tira de maíz frita bañada en salsa de jitomate y serrano. Coronados con cebolla, queso fresco, crema y cilantro. | $149 |  |
-| Verdes |  | Tira de maíz frita bañada en salsa de tomate verde, chile serrano, cilantro, cebolla y epazote. Coronados con cebolla, queso fresco, crema y cilantro. | $149 |  |
-| Enchipotlados |  | Tira de maíz frita bañada en salsa de jitomate, cebolla, chile chipotle y crema. Coronados con cebolla, queso fresco, crema y cilantro. | $149 |  |
-| Enmolados |  | Tira de maíz frita bañada en mole de la casa, acompañados de queso fresco, cebolla morada y ajonjolí. | $169 |  |
-| Entre Chilaquiles |  | Delicado omelette bañado en chilaquiles a elección. Coronados con cebolla, queso fresco, crema y cilantro. | $169 |  |
-| Poblanos |  | Tira de maíz frita bañada en salsa poblana, con elote, flor de calabaza, cebolla, queso fresco, crema y cilantro. | $169 |  |
-| Tatemados |  | Tira de maíz frita bañada en salsa tatemada de tomate verde y jitomate. Coronados con cebolla, queso fresco, crema y cilantro. | $149 |  |
-| Chilaquiles Caché |  | Tira de maíz frita bañada en salsa de frijol, acompañados de chorizo y espaldilla asada, salsa molcajeteada, crema y queso. | $190 |  |
-| Chilaquitas |  | Tira de maíz bañada en salsa roja o verde, acompañada de fajitas de pollo adobado, con cebolla, queso fresco, crema y cilantro. | $190 |  |
-
-### Omelette y Huevos
+**Aplica a toda la categoría:** Todos nuestros chilaquiles llevan crema, queso y cebolla.
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Omelette al Gusto | 2 pzas de huevo, 60 g de proteína | Mexicana, salchicha, jamón, chorizo o tocino. | $149 | Con espinaca, flor de calabaza o panela asada: más $30 |
-| Embarazada de Huevo | 1 pza de huevo, 80 g de chicharrón | Tortilla hecha a mano rellena de huevo, bañada en chicharrón rojo o verde y frijoles. | $149 |  |
-| Plato de Chilorio | 100 g de chilorio, 2 pzas de huevo | A la mexicana, acompañado de frijoles refritos, aguacate y queso fresco. | $179 |  |
-| Huevos al Gusto | 2 huevos | Estrellados o revueltos. A la mexicana, jamón, tocino, salchicha o chorizo. Acompañados de frijoles refritos, aguacate y queso fresco. | $139 | Con espinaca, flor de calabaza o panela asada: más $30 |
-| Huevos Rancheros | 2 huevos | Fritos y montados en tortillas doradas, bañados en salsa ranchera. Acompañados de frijol con queso fresco y aguacate. | $139 |  |
-| Huevos con Machaca | 2 huevos, 50 g de machaca | Revueltos y guisados a la mexicana. Acompañados de frijol con queso fresco, aguacate y tortillas de harina. | $179 |  |
-| Tradicional Huevo Ahogado | 2 huevos | Cocinados en cazuela de hierro en salsa de tomate verde y panela, acompañados de pan o tortilla. | $149 |  |
-| Huevos Caché | 2 huevos | Huevo pochado montado en nido de papa, bañado en crema de chipotle, tocino crujiente, espinaca y queso. | $169 |  |
-| Desayuno Americano | 2 huevos | Al gusto, con tocino, hot cakes, papa hash brown y café. | $159 |  |
+| Verdes con Lengua |  | En salsa verde, con lengua de res. | $199 |  |
+| Chilaquiles Caché |  | En salsa de frijol, con asada y chorizo. | $199 |  |
+| Birriaquiles Gratinados |  | Con birria y queso gratinado. | $199 |  |
+| Chipotle |  | Bañados en salsa de chipotle, con un toque ahumado. | $159 | Con huevo o pollo: $189 |
+| Rojos |  |  | $159 | Con huevo o pollo: $189 |
+| Verdes |  |  | $159 | Con huevo o pollo: $189 |
+| Lonche de Chilaquiles con Chicharrón |  | Salsa a su elección: roja, verde o chipotle. | $110 |  |
 
-### Toast
+### Pal gusto · Molletes
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Toast de Jamón Serrano | 30 g de jamón serrano | Con aguacate y 1 huevo estrellado. Acompañado de ensalada dulce con espinaca. | $149 |  |
-| Toast de Salmón | 100 g de salmón | Con aderezo de yogurt griego y pesto de finas hierbas. Acompañado de ensalada dulce con espinaca y plátano macho. | $199 |  |
-| Toast de Aguacate | 50 g de tocino, 50 g de panela | Con aguacate y huevo. Acompañado de ensalada dulce con espinaca. | $149 |  |
+| Divorciados con Chicharrón |  | Uno en salsa verde y otro en roja. | $110 |  |
+| Tradicionales |  | Frijol y queso, con salsa mexicana. | $99 |  |
+| Dulces |  | Cajeta, o mantequilla con azúcar. | $79 |  |
 
-### Molletes
+### De la granja · Huevos
 
-| Producto | Gramaje | Descripción | Precio | Extras |
-| --- | --- | --- | ---: | --- |
-| Molletes Tradicionales |  | Bolillo con frijol y queso gratinado, acompañado de salsa mexicana. | $99 |  |
-| Mollete de Chicharrón | 80 g de chicharrón | Bolillo con frijoles, queso gratinado y chicharrón verde o rojo. | $129 |  |
-| Mollete de Chilaquiles |  | A su elección. Bolillo con frijoles, chilaquiles, queso fresco, crema, cebolla y cilantro. | $129 |  |
-| Molletes Divorciados |  | Mitad bolillo dulce a elección y mitad mollete salado con frijoles y queso gratinado. | $99 |  |
-| Molletes Dulces |  | Bolillo con mantequilla, mermelada, cajeta o lechera. | $79 |  |
-
-### Sandwich
+**Aplica a toda la categoría:** Todos los huevos van con frijoles o papa rayada.
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Club Sandwich | 140 g de proteína, 100 g de papas | Pan tostado con queso, tocino, pollo y aguacate, acompañado de papas fritas. | $169 |  |
-| Crispy Chicken Cesar Sandwich | 200 g de proteína, 100 g de papas | Pan baguette tostado con pechuga empanizada, aderezo césar, lechuga y queso parmesano, acompañado de papas fritas. | $179 |  |
+| Huevos a Caballo |  | Par de huevos en tostada, con bistec de res bañado en salsa de molcajete, nopal asado, cebollitas y chile toreado. | $199 |  |
+| Huevos con Machaca y Salsa Norteña | 2 huevos, 50 g de machaca | Acompañados con tortilla de harina. | $189 |  |
+| Huevos al Gusto | 2 huevos | Revueltos, con jamón, chorizo, salchicha, tocino, o rancheros. | $149 |  |
 
-### Enchiladas
-
-**Aplica a toda la categoría:** Todas llevan 100 g de proteína
-
-| Producto | Gramaje | Descripción | Precio | Extras |
-| --- | --- | --- | ---: | --- |
-| Suizas |  | Cuatro enchiladas rellenas de pollo deshebrado, bañadas en salsa suiza, gratinadas. | $149 |  |
-| Poblanas |  | Cuatro enchiladas rellenas de diezmillo asado o pollo deshebrado, bañadas en salsa de chile poblano, gratinadas con crema y queso. | $169 |  |
-| Entomatadas |  | Cuatro enchiladas rellenas de pollo deshebrado, bañadas en salsa cremosa de jitomate. Gratinadas. | $139 |  |
-| Enmoladas |  | Cuatro enchiladas rellenas de pollo deshebrado, bañadas en mole de la casa, con cebolla morada desflemada y ajonjolí. | $149 |  |
-| Enfrijoladas |  | Cuatro enchiladas rellenas de pollo deshebrado, bañadas en salsa de frijoles de la casa, con queso fresco y crema. | $139 |  |
-
-### Burritos
+### Pal capricho
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Burrito de Machaca | 50 g de machaca, 100 g de papas | Tortilla de harina con machaca a la mexicana, acompañado de papas fritas. | $179 |  |
-| Burrito a la Mexicana | 2 huevos | Tortilla de harina con huevo a la mexicana, acompañado de frijoles. | $139 |  |
-| Burrito de Carne Asada | 100 g de carne | Tortilla de harina con carne asada, queso y frijoles. | $169 |  |
+| Chicharrón (Pancita) en Salsa Roja |  | Acompañado de frijoles y un trozo de panela. | $179 |  |
+| Chicharrón (Pancita) en Salsa Verde |  | Acompañado de frijoles y un trozo de panela. | $179 |  |
+| Embarazada de Huevo con Chicharrón |  | Huevo y chicharrón bañados en salsa roja o verde, con todo el sabor de casa. | $179 |  |
 
-### Birria
-
-| Producto | Gramaje | Descripción | Precio | Extras |
-| --- | --- | --- | ---: | --- |
-| Quesabirria Individual |  |  | $49 |  |
-| Volteados con Queso | 1 pza |  | $49 |  |
-
-### Quesadillas
+### Como en casa · Enfrijoladas
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Quesadilla de Comal | 1 pza | Tortilla hecha a mano con queso. | $39 | Con chorizo, chicharrón o asada 80 g: más $60 · Pollo 80 g: más $40 |
+| Enfrijoladas de Asada |  | Tortillas rellenas de carne asada, bañadas en una sabrosa salsa de frijol. | $189 |  |
 
-### Menudo
-
-**Aplica a toda la categoría:** Solo sábados y domingos
+### Bien bañaditas · Enchiladas
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Menudo Mediano | 100 g |  | $130 |  |
-| Menudo Grande | 130 g |  | $150 |  |
+| Enchiladas Arrieras | 120 g de arrachera | De arrachera con lechuga, bañadas en salsa verde con crema y queso Oaxaca. | $179 |  |
+| Enchiladas de la Abuela |  | Muy rojas, con pollo, crema y queso Oaxaca. | $149 |  |
+| Enchiladas Suizas |  | De pollo, en salsa verde cremosa y gratinadas con queso. | $179 |  |
 
-### Menú Fitness
+### Pal glotón · Burritos gigantes
 
-| Producto | Gramaje | Descripción | Precio | Extras |
-| --- | --- | --- | ---: | --- |
-| Panela Asada | 180 g | Bañada en salsa verde, con guarnición de ensalada. | $139 |  |
-| Rollo de Pollo | 180 g | Relleno de panela y espinaca, bañado en salsa roja o verde, con guarnición de ensalada. | $189 |  |
-| Omelette de Claras de Huevo | 3 claras | Con panela asada y espinacas, acompañado de ensalada fresca y aguacate. | $169 |  |
-| Hot Cakes de Avena | 3 pzas | Acompañados de topping de fruta del día. | $139 |  |
-
-### Menú Infantil
+**Aplica a toda la categoría:** Todos los burritos van acompañados de papas a la francesa.
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| 3 Mini Hamburguesitas | 140 g de carne, 100 g de papas | Con pan brioche, carne de res y queso, con papas fritas. | $139 |  |
-| Pechuga Empanizada | 140 g de pechuga, 100 g de papas | Con guarnición de papas fritas. | $119 |  |
-| Mini Hot Cakes | 4 pzas, 1 bola de nieve |  | $99 |  |
+| Huevo, Machaca, Queso y Frijol |  |  | $189 |  |
+| Carne Asada, Queso y Frijol | 100 g de carne |  | $189 |  |
+| Camarón, Queso y Verdura |  | Con aderezo de cilantro. | $199 |  |
+
+### Pal chilpayate
+
+| Producto | Gramaje | Descripción | Precio | Extras |
+| --- | --- | --- | ---: | --- |
+| Hamburguesa Infantil | 140 g de carne, 100 g de papas |  | $139 |  |
+| Hot Cakes con Nieve | 4 pzas, 1 bola de nieve |  | $110 |  |
+| Pechuga Empanizada | 140 g de pechuga, 100 g de papas |  | $110 |  |
+
+### Extras
+
+| Producto | Gramaje | Descripción | Precio | Extras |
+| --- | --- | --- | ---: | --- |
+| Huevo |  |  | $20 |  |
+| Pollo |  |  | $40 |  |
+| Chorizo |  |  | $40 |  |
+| Chicharrón |  |  | $60 |  |
+| Asada |  |  | $60 |  |
+| Lengua |  |  | $60 |  |
+| Frijoles |  |  | $15 |  |
+| Jamón |  |  | $20 |  |
+| Tocino |  |  | $25 |  |
 
 ---
 
 ## Comidas
 
-_36 productos._
+_33 productos._
 
-### Entradas
-
-| Producto | Gramaje | Descripción | Precio | Extras |
-| --- | --- | --- | ---: | --- |
-| Chicharrón Duro | 80 g | Con salsa martajada. | $99 |  |
-| Panela Asada | 180 g | Bañada en salsa verde. | $139 |  |
-| Queso Fundido Natural | 180 g |  | $139 | Con chorizo, flor de calabaza o champiñón 80 g: $169 |
-| Manitas en Escabeche Frías | 4 pzas, 500 g |  | $139 |  |
-| Guacamole con Totopos | 180 g |  | $109 |  |
-| Taco de Chile Güero Empanizado | 30 g de asada | Relleno de asada. | $79 |  |
-| Chistorra Asada al Carbón | 200 g | Acompañada de chiles toreados y cebolla. | $129 |  |
-
-### Ensaladas
+### Pa’ entrarle
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Ensalada César con Pollo | 100 g de pollo | Corazón de lechuga bañado en aderezo césar, crotones y queso parmesano. | $139 |  |
-| Ensalada de Frutos Rojos |  | Mix de lechugas con fresa, suprema de naranja, arándano y queso suizo, con vinagreta de fresa, vino tinto y miel. | $120 | Con pollo 80 g: $160 · Con peinecillo 80 g: $180 |
+| Panela del Rancho Asada | 180 g | Bañada en salsa verde. | $149 |  |
+| Queso Fundido Natural | 180 g |  | $149 |  |
+| Queso Fundido con Chorizo | 180 g |  | $149 |  |
+| Guacamole | 180 g |  | $110 |  |
+| Chistorra | 200 g | Acompañada de chiles toreados y cebolla. | $149 |  |
+| Frijoles con Queso |  |  | $79 |  |
+| Tacos de Frijol al Carbón | 3 pzas |  | $89 |  |
 
-### Sopas
-
-| Producto | Gramaje | Descripción | Precio | Extras |
-| --- | --- | --- | ---: | --- |
-| Caldo Tlalpeño | 70 g | Consomé con verduras, arroz, pollo, un toque de chipotle, garbanzos y aguacate. | $149 |  |
-| Sopa de Fideo Seco o en Caldo |  | Receta de la abuela, decorada con panela, aguacate y chipotle. | $99 |  |
-| Sopa de Tortilla Azteca |  | Salsa a base de jitomate y epazote con fritura de tortilla de maíz, decorada con panela, aguacate, chicharrón duro, crema y chile pasilla. | $119 |  |
-| Crema del Día |  | Preguntar al mesero. | $99 |  |
-
-### Platos Fuertes
+### Pa’ sopear · Sopas
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Pollo a la Plancha | 180 g | Acompañado de arroz y ensalada. | $190 |  |
-| Milanesa de Pollo | 180 g | Acompañada de ensalada y papas fritas. | $190 |  |
-| Chile en Nogada | 100 g | Chile relleno de carne con un toque dulce, bañado en salsa nogada con nuez, perejil y granada. | $259 |  |
-| Chiles Rellenos |  | 2 piezas rellenas de queso, bañadas en salsa roja y acompañadas de arroz. | $180 |  |
-| Pollo en Mole | 250 g | Pierna y muslo bañados en mole de la casa, espolvoreados con ajonjolí y acompañados de arroz. | $170 |  |
-| Carne Asada | 180 g | Carne en tasajo, quesadilla, nopal asado, cebolla cambray, guacamole y frijoles con queso fresco. | $199 |  |
-| Chamorro | 900 g | 1 pieza de chamorro horneado lentamente, bañado con salsa de la casa y acompañado de frijoles y cebolla curtida. | $180 |  |
-| Molcajete Mar y Tierra | 100 g de picaña, 100 g de camarón | Picaña, camarón, nopal asado con cebolla cambray y panela asada, bañados en salsa de tomate, morrón y un toque de serrano. | $299 |  |
-| Peinecillo | 180 g | Acompañado de frijoles fritos, nopal y cebolla cambray asados, y guacamole. | $199 |  |
+| Tortilla |  | Fritura de tortilla, panela, aguacate y chicharrón. | $139 |  |
+| Tlalpeño | 70 g | Consomé de pollo con arroz, verdura y pechuga. | $159 |  |
 
-### Del Mar
+### Pa’ no rendirse
+
+**Aplica a toda la categoría:** Las pechugas van con papas a la francesa y ensalada.
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Salmón al Gusto | 200 g | A las finas hierbas, a la mantequilla o al limón. Acompañado de puré y ensalada. | $259 |  |
-| Camarones al Gusto | 180 g | A la diabla, al ajillo, a la momia, empanizados o al coco. Guarnición de arroz y ensalada. | $259 |  |
-| Pescado al Gusto | 180 g | A la plancha, al ajillo, a la diabla o empanizado. Guarnición de arroz y ensalada. | $210 |  |
+| Pechuga a la Plancha | 180 g |  | $199 |  |
+| Pechuga Empanizada | 180 g |  | $199 |  |
+| Enchiladas Arrieras | 120 g de arrachera | De arrachera con lechuga, bañadas en salsa verde con crema y queso Oaxaca. | $179 |  |
+| Enchiladas de la Abuela |  | Muy rojas, con pollo, crema y queso Oaxaca. | $149 |  |
+| Enchiladas Suizas |  | De pollo, en salsa verde cremosa y gratinadas con queso. | $179 |  |
 
-### Especialidades
-
-| Producto | Gramaje | Descripción | Precio | Extras |
-| --- | --- | --- | ---: | --- |
-| Plato Botanero | 4 personas | 2 chiles jalapeños con queso, chicharrón duro 100 g, chistorra 200 g, queso fundido natural 180 g, guacamole 180 g y frijoles fritos 180 g. | $550 |  |
-| Parrillada | 3 a 4 personas | Peinecillo 200 g, pollo adobado 200 g, espaldilla 200 g y panza de cerdo 200 g. Queso fundido con chorizo 250 g, guacamole 180 g y frijoles refritos con queso 180 g. | $850 |  |
-
-### Menú Infantil
-
-**Aplica a toda la categoría:** Todo en cajitas
+### Nuestros inolvidables
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| 3 Mini Hamburguesas | 140 g de carne, 100 g de papas | Carne de res, pan brioche y queso amarillo, con papas a la francesa. | $139 |  |
-| Tiras de Pechuga de Pollo | 140 g de pollo, 100 g de papas | Con papas a la francesa. | $119 |  |
-| Camarones Empanizados | 100 g | Con aderezo de la casa. | $129 |  |
+| Chile en Nogada | 100 g | Acompañado de arroz. De temporada. | $249 |  |
+| Chile Relleno |  | Acompañado de arroz. | $189 |  |
 
-### Postres
+### Pa’ los carnívoros
+
+**Aplica a toda la categoría:** Todos nuestros gramajes son pesados en crudo.
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
-| Yoyo Caché |  | Cremoso de limón amarillo, compota de piel de limón y mousse de limón. | $189 |  |
-| Trompo Caché |  | Mousse de chocolate con nibs de cacao. | $189 |  |
-| Jericallas |  |  | $89 |  |
-| Flan de Elote |  |  | $79 |  |
-| Carlota de Limón |  |  | $69 |  |
-| Pan de Elote |  |  | $79 |  |
+| Carne Asada | 200 g | Con guacamole, frijol, nopal, cebolla asada y chile toreado. | $210 |  |
+| Peinecillo | 200 g | Con guacamole, frijol, nopal, cebolla asada y chile toreado. | $210 |  |
+| Tampiqueña | 200 g | Tradicional filete de res corte delgado asado al carbón, acompañados de frijol, guacamole una  enchilada y nopal asado. | $230 |  |
+
+### Pa’ un buen vino · Cortes
+
+**Aplica a toda la categoría:** Todos nuestros gramajes son pesados en crudo.
+
+| Producto | Gramaje | Descripción | Precio | Extras |
+| --- | --- | --- | ---: | --- |
+| New York | 220 g | Con ensalada, chimichurri y un adorno de romero. | $250 |  |
+| Rib Eye | 220 g | Con ensalada, chimichurri y un adorno de romero. | $250 |  |
+| Arrachera | 220 g | Con guacamole, ensalada, nopal y cebolla asada. | $230 |  |
+| Tuétano | 3 piezas | Con salsa, limón y cebolla a la plancha. | $199 |  |
+
+### Pal glotón · Burritos gigantes
+
+**Aplica a toda la categoría:** Todos los burritos van acompañados de papas a la francesa.
+
+| Producto | Gramaje | Descripción | Precio | Extras |
+| --- | --- | --- | ---: | --- |
+| Huevo, Machaca, Queso y Frijol |  |  | $189 |  |
+| Carne Asada, Queso y Frijol | 100 g de carne |  | $189 |  |
+| Camarón, Queso y Verdura |  | Con aderezo de cilantro. | $199 |  |
+
+### Muy nuestros
+
+| Producto | Gramaje | Descripción | Precio | Extras |
+| --- | --- | --- | ---: | --- |
+| Chamorro al Horno | 900 g |  | $199 |  |
+| Molcajete de Peinecillo |  |  | $229 |  |
+| Molcajete Mar y Tierra | 100 g de New York, 100 g de camarón | New York, camarón, nopal asado con cebolla cambray y panela asada, bañados en salsa de tomate, morrón y un toque de serrano. | $289 |  |
+
+### Para compartir
+
+| Producto | Gramaje | Descripción | Precio | Extras |
+| --- | --- | --- | ---: | --- |
+| Parrillada | 3 a 4 personas | Peinecillo 200 g, fajitas de pollo a la parrilla 200 g, chamorro 1 pieza y lomo de cerdo 200 g. Queso fundido con chorizo 250 g, guacamole 180 g y frijoles refritos con queso 180 g. | $850 | Con cubeta de cerveza (6 cervezas) $990 |
+
+### Pa’ acabar · Postres
+
+| Producto | Gramaje | Descripción | Precio | Extras |
+| --- | --- | --- | ---: | --- |
+| Jericalla |  |  | $89 |  |
+| Flan de Elote |  |  | $89 |  |
+| Pastel de Chocolate |  |  | $99 |  |
 
 ---
 
 ## Bebidas
 
-_74 productos._
+_67 productos._
 
 ### Café
 
@@ -249,7 +235,6 @@ _74 productos._
 | Squirt | 600 ml |  | $55 |  |
 | Topo Chico | 600 ml |  | $55 |  |
 | Topo Chico Sangría | 600 ml |  | $55 |  |
-| Tonicol | 600 ml |  | $55 |  |
 | Fuze Tea | 600 ml | Durazno o limón. | $55 |  |
 | Agua Mineralizada (Ciel) | 350 ml |  | $55 |  |
 | Jugo del Valle Manzana Kids | 250 ml |  | $25 |  |
@@ -265,10 +250,7 @@ _74 productos._
 | Naranjada | 350 ml | Mineral o natural, con jarabe natural. | $59 |  |
 | Aguas Frescas | 400 ml | Avena, jamaica, piña o pepino con hierbabuena. | $49 |  |
 | Piñada | 400 ml | Crema de coco, jugo de piña y leche evaporada. | $79 |  |
-| Pantera Rosa | 400 ml | Crema de coco, fresa y granadina. | $79 |  |
 | Canica | 350 ml | Soda lima limón con granadina. | $49 |  |
-| Tejuino | 400 ml | Fermento a base de maíz nixtamalizado, piloncillo y limón. | $65 |  |
-| Tepache | 300 ml | Fermento a base de piña, piloncillo y especias: clavo de olor, canela, pimienta gorda y anís. | $59 |  |
 | Cazuela | 500 ml | Squirt, naranja, lima, toronja, limón y sal. | $89 |  |
 
 ### Vino Tinto
@@ -315,7 +297,6 @@ _74 productos._
 | Frutos Rojos Muck | 350 ml | Frutos rojos, jarabe, limón, arándano y ginger ale. | $79 |  |
 | Maracuyá Muck | 300 ml | Pulpa de maracuyá, jarabe, limón y piña. | $79 |  |
 | Pepino Muck | 300 ml | Pepino natural, jarabe, limón y jugo de piña. | $79 |  |
-| Tejuino Muck | 400 ml | Tejuino, limón, jugo de piña y agua mineral. | $79 |  |
 
 ### Digestivos
 
@@ -350,8 +331,6 @@ _74 productos._
 | Vaso Michelado | 90 ml | Escarchado con Tajín, salsas negras, limón, sal y clamato. | $30 |  |
 | Vaso Ruso | 30 ml | Escarcha de sal y jugo de limón. | $15 |  |
 | Vaso Cubano | 45 ml | Escarchado con sal, jugo de limón y salsas negras. | $25 |  |
-| Vaso Tejuichela | 90 ml | Preparación de tejuino, limón y sal. | $39 |  |
-| Tejuichela Caché | 300 ml | Tejuino, sal de grano, limón y cerveza de la casa. | $119 |  |
 | Michelada de Fresa | 600 ml | Limón, concentrado de fresa, cerveza, tamarindo y pica fresa. | $149 |  |
 | Michelada de Tamarindo | 600 ml | Limón, pulpa de tamarindo, cerveza y dulce de tamarindo. | $149 |  |
 | Michelada de Mango | 600 ml | Limón, pulpa de mango, cerveza y gomitas de mango. | $149 |  |
@@ -368,46 +347,50 @@ _74 productos._
 
 ## Estado de las porciones
 
-- **133** con gramaje propio.
-- **5** sin campo propio, pero su categoría lo declara por todos.
-- **25** sin porción declarada en ningún lado.
-
-### Declarados por su categoría
-
-| Producto | Categoría | Lo que declara la categoría |
-| --- | --- | --- |
-| Suizas | Enchiladas | Todas llevan 100 g de proteína |
-| Poblanas | Enchiladas | Todas llevan 100 g de proteína |
-| Entomatadas | Enchiladas | Todas llevan 100 g de proteína |
-| Enmoladas | Enchiladas | Todas llevan 100 g de proteína |
-| Enfrijoladas | Enchiladas | Todas llevan 100 g de proteína |
+- **102** con gramaje propio.
+- **0** sin campo propio, pero su categoría lo declara por todos.
+- **39** sin porción declarada en ningún lado.
 
 ### Sin declarar
 
 | Producto | Menú | Categoría |
 | --- | --- | --- |
-| Rojos | Desayunos | Chilaquiles |
-| Verdes | Desayunos | Chilaquiles |
-| Enchipotlados | Desayunos | Chilaquiles |
-| Enmolados | Desayunos | Chilaquiles |
-| Entre Chilaquiles | Desayunos | Chilaquiles |
-| Poblanos | Desayunos | Chilaquiles |
-| Tatemados | Desayunos | Chilaquiles |
-| Chilaquiles Caché | Desayunos | Chilaquiles |
-| Chilaquitas | Desayunos | Chilaquiles |
-| Molletes Tradicionales | Desayunos | Molletes |
-| Mollete de Chilaquiles | Desayunos | Molletes |
-| Molletes Divorciados | Desayunos | Molletes |
-| Molletes Dulces | Desayunos | Molletes |
-| Quesabirria Individual | Desayunos | Birria |
-| Ensalada de Frutos Rojos | Comidas | Ensaladas |
-| Sopa de Fideo Seco o en Caldo | Comidas | Sopas |
-| Sopa de Tortilla Azteca | Comidas | Sopas |
-| Crema del Día | Comidas | Sopas |
-| Chiles Rellenos | Comidas | Platos Fuertes |
-| Yoyo Caché | Comidas | Postres |
-| Trompo Caché | Comidas | Postres |
-| Jericallas | Comidas | Postres |
-| Flan de Elote | Comidas | Postres |
-| Carlota de Limón | Comidas | Postres |
-| Pan de Elote | Comidas | Postres |
+| Verdes con Lengua | Desayunos | Pa’ seguir · Chilaquiles |
+| Chilaquiles Caché | Desayunos | Pa’ seguir · Chilaquiles |
+| Birriaquiles Gratinados | Desayunos | Pa’ seguir · Chilaquiles |
+| Chipotle | Desayunos | Pa’ seguir · Chilaquiles |
+| Rojos | Desayunos | Pa’ seguir · Chilaquiles |
+| Verdes | Desayunos | Pa’ seguir · Chilaquiles |
+| Lonche de Chilaquiles con Chicharrón | Desayunos | Pa’ seguir · Chilaquiles |
+| Divorciados con Chicharrón | Desayunos | Pal gusto · Molletes |
+| Tradicionales | Desayunos | Pal gusto · Molletes |
+| Dulces | Desayunos | Pal gusto · Molletes |
+| Huevos a Caballo | Desayunos | De la granja · Huevos |
+| Chicharrón (Pancita) en Salsa Roja | Desayunos | Pal capricho |
+| Chicharrón (Pancita) en Salsa Verde | Desayunos | Pal capricho |
+| Embarazada de Huevo con Chicharrón | Desayunos | Pal capricho |
+| Enfrijoladas de Asada | Desayunos | Como en casa · Enfrijoladas |
+| Enchiladas de la Abuela | Desayunos | Bien bañaditas · Enchiladas |
+| Enchiladas Suizas | Desayunos | Bien bañaditas · Enchiladas |
+| Huevo, Machaca, Queso y Frijol | Desayunos | Pal glotón · Burritos gigantes |
+| Camarón, Queso y Verdura | Desayunos | Pal glotón · Burritos gigantes |
+| Huevo | Desayunos | Extras |
+| Pollo | Desayunos | Extras |
+| Chorizo | Desayunos | Extras |
+| Chicharrón | Desayunos | Extras |
+| Asada | Desayunos | Extras |
+| Lengua | Desayunos | Extras |
+| Frijoles | Desayunos | Extras |
+| Jamón | Desayunos | Extras |
+| Tocino | Desayunos | Extras |
+| Frijoles con Queso | Comidas | Pa’ entrarle |
+| Tortilla | Comidas | Pa’ sopear · Sopas |
+| Enchiladas de la Abuela | Comidas | Pa’ no rendirse |
+| Enchiladas Suizas | Comidas | Pa’ no rendirse |
+| Chile Relleno | Comidas | Nuestros inolvidables |
+| Huevo, Machaca, Queso y Frijol | Comidas | Pal glotón · Burritos gigantes |
+| Camarón, Queso y Verdura | Comidas | Pal glotón · Burritos gigantes |
+| Molcajete de Peinecillo | Comidas | Muy nuestros |
+| Jericalla | Comidas | Pa’ acabar · Postres |
+| Flan de Elote | Comidas | Pa’ acabar · Postres |
+| Pastel de Chocolate | Comidas | Pa’ acabar · Postres |

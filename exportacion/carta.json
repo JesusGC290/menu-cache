@@ -2,30 +2,37 @@
   "generado": "npm run exportar (no editar a mano)",
   "fuente": "src/data/menu.ts",
   "totales": {
-    "productos": 163,
-    "con_gramaje": 133,
-    "categorias": 33
+    "productos": 141,
+    "con_gramaje": 102,
+    "categorias": 32
   },
   "menus": [
     {
       "menu": "Desayunos",
       "categorias": [
         {
-          "categoria": "Entradas",
+          "categoria": "Pa’ empezar",
           "nota": null,
           "productos": [
             {
-              "producto": "Pan Dulce de Canasta",
-              "gramaje": "1 pza",
+              "producto": "Quesadillas con Lengua en Salsa Verde",
+              "gramaje": "3 pzas",
               "descripcion": null,
-              "precio": 29,
+              "precio": 149,
               "nota": null
             },
             {
-              "producto": "Plato de Jocoque",
-              "gramaje": "160 g",
-              "descripcion": "Acompañado de tortillas hechas a mano.",
-              "precio": 69,
+              "producto": "Quesabirrias",
+              "gramaje": "2 pzas",
+              "descripcion": "Tortilla hecha a mano.",
+              "precio": 99,
+              "nota": null
+            },
+            {
+              "producto": "Tacos de Frijol a las Brasas",
+              "gramaje": "3 pzas",
+              "descripcion": null,
+              "precio": 89,
               "nota": null
             },
             {
@@ -36,425 +43,316 @@
               "nota": null
             },
             {
-              "producto": "Pan Francés",
-              "gramaje": "2 pzas",
-              "descripcion": null,
-              "precio": 109,
-              "nota": null
-            },
-            {
               "producto": "Plato de Fruta con Yogurt",
               "gramaje": "60 g de yogurt",
               "descripcion": "Con fruta del día y granola.",
               "precio": 109,
               "nota": null
+            },
+            {
+              "producto": "Pan Francés",
+              "gramaje": "2 pzas",
+              "descripcion": null,
+              "precio": 109,
+              "nota": null
             }
           ]
         },
         {
-          "categoria": "Chilaquiles",
-          "nota": "Con chorizo, chicharrón o asada 80 g: más $60 · Huevo 1 pza: más $20 · Pollo 80 g: más $40",
+          "categoria": "Pa’ seguir · Chilaquiles",
+          "nota": "Todos nuestros chilaquiles llevan crema, queso y cebolla.",
           "productos": [
             {
-              "producto": "Rojos",
+              "producto": "Verdes con Lengua",
               "gramaje": null,
-              "descripcion": "Tira de maíz frita bañada en salsa de jitomate y serrano. Coronados con cebolla, queso fresco, crema y cilantro.",
-              "precio": 149,
-              "nota": null
-            },
-            {
-              "producto": "Verdes",
-              "gramaje": null,
-              "descripcion": "Tira de maíz frita bañada en salsa de tomate verde, chile serrano, cilantro, cebolla y epazote. Coronados con cebolla, queso fresco, crema y cilantro.",
-              "precio": 149,
-              "nota": null
-            },
-            {
-              "producto": "Enchipotlados",
-              "gramaje": null,
-              "descripcion": "Tira de maíz frita bañada en salsa de jitomate, cebolla, chile chipotle y crema. Coronados con cebolla, queso fresco, crema y cilantro.",
-              "precio": 149,
-              "nota": null
-            },
-            {
-              "producto": "Enmolados",
-              "gramaje": null,
-              "descripcion": "Tira de maíz frita bañada en mole de la casa, acompañados de queso fresco, cebolla morada y ajonjolí.",
-              "precio": 169,
-              "nota": null
-            },
-            {
-              "producto": "Entre Chilaquiles",
-              "gramaje": null,
-              "descripcion": "Delicado omelette bañado en chilaquiles a elección. Coronados con cebolla, queso fresco, crema y cilantro.",
-              "precio": 169,
-              "nota": null
-            },
-            {
-              "producto": "Poblanos",
-              "gramaje": null,
-              "descripcion": "Tira de maíz frita bañada en salsa poblana, con elote, flor de calabaza, cebolla, queso fresco, crema y cilantro.",
-              "precio": 169,
-              "nota": null
-            },
-            {
-              "producto": "Tatemados",
-              "gramaje": null,
-              "descripcion": "Tira de maíz frita bañada en salsa tatemada de tomate verde y jitomate. Coronados con cebolla, queso fresco, crema y cilantro.",
-              "precio": 149,
+              "descripcion": "En salsa verde, con lengua de res.",
+              "precio": 199,
               "nota": null
             },
             {
               "producto": "Chilaquiles Caché",
               "gramaje": null,
-              "descripcion": "Tira de maíz frita bañada en salsa de frijol, acompañados de chorizo y espaldilla asada, salsa molcajeteada, crema y queso.",
-              "precio": 190,
-              "nota": null
-            },
-            {
-              "producto": "Chilaquitas",
-              "gramaje": null,
-              "descripcion": "Tira de maíz bañada en salsa roja o verde, acompañada de fajitas de pollo adobado, con cebolla, queso fresco, crema y cilantro.",
-              "precio": 190,
-              "nota": null
-            }
-          ]
-        },
-        {
-          "categoria": "Omelette y Huevos",
-          "nota": null,
-          "productos": [
-            {
-              "producto": "Omelette al Gusto",
-              "gramaje": "2 pzas de huevo, 60 g de proteína",
-              "descripcion": "Mexicana, salchicha, jamón, chorizo o tocino.",
-              "precio": 149,
-              "nota": "Con espinaca, flor de calabaza o panela asada: más $30"
-            },
-            {
-              "producto": "Embarazada de Huevo",
-              "gramaje": "1 pza de huevo, 80 g de chicharrón",
-              "descripcion": "Tortilla hecha a mano rellena de huevo, bañada en chicharrón rojo o verde y frijoles.",
-              "precio": 149,
-              "nota": null
-            },
-            {
-              "producto": "Plato de Chilorio",
-              "gramaje": "100 g de chilorio, 2 pzas de huevo",
-              "descripcion": "A la mexicana, acompañado de frijoles refritos, aguacate y queso fresco.",
-              "precio": 179,
-              "nota": null
-            },
-            {
-              "producto": "Huevos al Gusto",
-              "gramaje": "2 huevos",
-              "descripcion": "Estrellados o revueltos. A la mexicana, jamón, tocino, salchicha o chorizo. Acompañados de frijoles refritos, aguacate y queso fresco.",
-              "precio": 139,
-              "nota": "Con espinaca, flor de calabaza o panela asada: más $30"
-            },
-            {
-              "producto": "Huevos Rancheros",
-              "gramaje": "2 huevos",
-              "descripcion": "Fritos y montados en tortillas doradas, bañados en salsa ranchera. Acompañados de frijol con queso fresco y aguacate.",
-              "precio": 139,
-              "nota": null
-            },
-            {
-              "producto": "Huevos con Machaca",
-              "gramaje": "2 huevos, 50 g de machaca",
-              "descripcion": "Revueltos y guisados a la mexicana. Acompañados de frijol con queso fresco, aguacate y tortillas de harina.",
-              "precio": 179,
-              "nota": null
-            },
-            {
-              "producto": "Tradicional Huevo Ahogado",
-              "gramaje": "2 huevos",
-              "descripcion": "Cocinados en cazuela de hierro en salsa de tomate verde y panela, acompañados de pan o tortilla.",
-              "precio": 149,
-              "nota": null
-            },
-            {
-              "producto": "Huevos Caché",
-              "gramaje": "2 huevos",
-              "descripcion": "Huevo pochado montado en nido de papa, bañado en crema de chipotle, tocino crujiente, espinaca y queso.",
-              "precio": 169,
-              "nota": null
-            },
-            {
-              "producto": "Desayuno Americano",
-              "gramaje": "2 huevos",
-              "descripcion": "Al gusto, con tocino, hot cakes, papa hash brown y café.",
-              "precio": 159,
-              "nota": null
-            }
-          ]
-        },
-        {
-          "categoria": "Toast",
-          "nota": null,
-          "productos": [
-            {
-              "producto": "Toast de Jamón Serrano",
-              "gramaje": "30 g de jamón serrano",
-              "descripcion": "Con aguacate y 1 huevo estrellado. Acompañado de ensalada dulce con espinaca.",
-              "precio": 149,
-              "nota": null
-            },
-            {
-              "producto": "Toast de Salmón",
-              "gramaje": "100 g de salmón",
-              "descripcion": "Con aderezo de yogurt griego y pesto de finas hierbas. Acompañado de ensalada dulce con espinaca y plátano macho.",
+              "descripcion": "En salsa de frijol, con asada y chorizo.",
               "precio": 199,
               "nota": null
             },
             {
-              "producto": "Toast de Aguacate",
-              "gramaje": "50 g de tocino, 50 g de panela",
-              "descripcion": "Con aguacate y huevo. Acompañado de ensalada dulce con espinaca.",
-              "precio": 149,
+              "producto": "Birriaquiles Gratinados",
+              "gramaje": null,
+              "descripcion": "Con birria y queso gratinado.",
+              "precio": 199,
+              "nota": null
+            },
+            {
+              "producto": "Chipotle",
+              "gramaje": null,
+              "descripcion": "Bañados en salsa de chipotle, con un toque ahumado.",
+              "precio": 159,
+              "nota": "Con huevo o pollo: $189"
+            },
+            {
+              "producto": "Rojos",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 159,
+              "nota": "Con huevo o pollo: $189"
+            },
+            {
+              "producto": "Verdes",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 159,
+              "nota": "Con huevo o pollo: $189"
+            },
+            {
+              "producto": "Lonche de Chilaquiles con Chicharrón",
+              "gramaje": null,
+              "descripcion": "Salsa a su elección: roja, verde o chipotle.",
+              "precio": 110,
               "nota": null
             }
           ]
         },
         {
-          "categoria": "Molletes",
+          "categoria": "Pal gusto · Molletes",
           "nota": null,
           "productos": [
             {
-              "producto": "Molletes Tradicionales",
+              "producto": "Divorciados con Chicharrón",
               "gramaje": null,
-              "descripcion": "Bolillo con frijol y queso gratinado, acompañado de salsa mexicana.",
+              "descripcion": "Uno en salsa verde y otro en roja.",
+              "precio": 110,
+              "nota": null
+            },
+            {
+              "producto": "Tradicionales",
+              "gramaje": null,
+              "descripcion": "Frijol y queso, con salsa mexicana.",
               "precio": 99,
               "nota": null
             },
             {
-              "producto": "Mollete de Chicharrón",
-              "gramaje": "80 g de chicharrón",
-              "descripcion": "Bolillo con frijoles, queso gratinado y chicharrón verde o rojo.",
-              "precio": 129,
-              "nota": null
-            },
-            {
-              "producto": "Mollete de Chilaquiles",
+              "producto": "Dulces",
               "gramaje": null,
-              "descripcion": "A su elección. Bolillo con frijoles, chilaquiles, queso fresco, crema, cebolla y cilantro.",
-              "precio": 129,
-              "nota": null
-            },
-            {
-              "producto": "Molletes Divorciados",
-              "gramaje": null,
-              "descripcion": "Mitad bolillo dulce a elección y mitad mollete salado con frijoles y queso gratinado.",
-              "precio": 99,
-              "nota": null
-            },
-            {
-              "producto": "Molletes Dulces",
-              "gramaje": null,
-              "descripcion": "Bolillo con mantequilla, mermelada, cajeta o lechera.",
+              "descripcion": "Cajeta, o mantequilla con azúcar.",
               "precio": 79,
               "nota": null
             }
           ]
         },
         {
-          "categoria": "Sandwich",
-          "nota": null,
+          "categoria": "De la granja · Huevos",
+          "nota": "Todos los huevos van con frijoles o papa rayada.",
           "productos": [
             {
-              "producto": "Club Sandwich",
-              "gramaje": "140 g de proteína, 100 g de papas",
-              "descripcion": "Pan tostado con queso, tocino, pollo y aguacate, acompañado de papas fritas.",
-              "precio": 169,
-              "nota": null
-            },
-            {
-              "producto": "Crispy Chicken Cesar Sandwich",
-              "gramaje": "200 g de proteína, 100 g de papas",
-              "descripcion": "Pan baguette tostado con pechuga empanizada, aderezo césar, lechuga y queso parmesano, acompañado de papas fritas.",
-              "precio": 179,
-              "nota": null
-            }
-          ]
-        },
-        {
-          "categoria": "Enchiladas",
-          "nota": "Todas llevan 100 g de proteína",
-          "productos": [
-            {
-              "producto": "Suizas",
+              "producto": "Huevos a Caballo",
               "gramaje": null,
-              "descripcion": "Cuatro enchiladas rellenas de pollo deshebrado, bañadas en salsa suiza, gratinadas.",
-              "precio": 149,
+              "descripcion": "Par de huevos en tostada, con bistec de res bañado en salsa de molcajete, nopal asado, cebollitas y chile toreado.",
+              "precio": 199,
               "nota": null
             },
             {
-              "producto": "Poblanas",
-              "gramaje": null,
-              "descripcion": "Cuatro enchiladas rellenas de diezmillo asado o pollo deshebrado, bañadas en salsa de chile poblano, gratinadas con crema y queso.",
-              "precio": 169,
-              "nota": null
-            },
-            {
-              "producto": "Entomatadas",
-              "gramaje": null,
-              "descripcion": "Cuatro enchiladas rellenas de pollo deshebrado, bañadas en salsa cremosa de jitomate. Gratinadas.",
-              "precio": 139,
-              "nota": null
-            },
-            {
-              "producto": "Enmoladas",
-              "gramaje": null,
-              "descripcion": "Cuatro enchiladas rellenas de pollo deshebrado, bañadas en mole de la casa, con cebolla morada desflemada y ajonjolí.",
-              "precio": 149,
-              "nota": null
-            },
-            {
-              "producto": "Enfrijoladas",
-              "gramaje": null,
-              "descripcion": "Cuatro enchiladas rellenas de pollo deshebrado, bañadas en salsa de frijoles de la casa, con queso fresco y crema.",
-              "precio": 139,
-              "nota": null
-            }
-          ]
-        },
-        {
-          "categoria": "Burritos",
-          "nota": null,
-          "productos": [
-            {
-              "producto": "Burrito de Machaca",
-              "gramaje": "50 g de machaca, 100 g de papas",
-              "descripcion": "Tortilla de harina con machaca a la mexicana, acompañado de papas fritas.",
-              "precio": 179,
-              "nota": null
-            },
-            {
-              "producto": "Burrito a la Mexicana",
-              "gramaje": "2 huevos",
-              "descripcion": "Tortilla de harina con huevo a la mexicana, acompañado de frijoles.",
-              "precio": 139,
-              "nota": null
-            },
-            {
-              "producto": "Burrito de Carne Asada",
-              "gramaje": "100 g de carne",
-              "descripcion": "Tortilla de harina con carne asada, queso y frijoles.",
-              "precio": 169,
-              "nota": null
-            }
-          ]
-        },
-        {
-          "categoria": "Birria",
-          "nota": null,
-          "productos": [
-            {
-              "producto": "Quesabirria Individual",
-              "gramaje": null,
-              "descripcion": null,
-              "precio": 49,
-              "nota": null
-            },
-            {
-              "producto": "Volteados con Queso",
-              "gramaje": "1 pza",
-              "descripcion": null,
-              "precio": 49,
-              "nota": null
-            }
-          ]
-        },
-        {
-          "categoria": "Quesadillas",
-          "nota": null,
-          "productos": [
-            {
-              "producto": "Quesadilla de Comal",
-              "gramaje": "1 pza",
-              "descripcion": "Tortilla hecha a mano con queso.",
-              "precio": 39,
-              "nota": "Con chorizo, chicharrón o asada 80 g: más $60 · Pollo 80 g: más $40"
-            }
-          ]
-        },
-        {
-          "categoria": "Menudo",
-          "nota": "Solo sábados y domingos",
-          "productos": [
-            {
-              "producto": "Menudo Mediano",
-              "gramaje": "100 g",
-              "descripcion": null,
-              "precio": 130,
-              "nota": null
-            },
-            {
-              "producto": "Menudo Grande",
-              "gramaje": "130 g",
-              "descripcion": null,
-              "precio": 150,
-              "nota": null
-            }
-          ]
-        },
-        {
-          "categoria": "Menú Fitness",
-          "nota": null,
-          "productos": [
-            {
-              "producto": "Panela Asada",
-              "gramaje": "180 g",
-              "descripcion": "Bañada en salsa verde, con guarnición de ensalada.",
-              "precio": 139,
-              "nota": null
-            },
-            {
-              "producto": "Rollo de Pollo",
-              "gramaje": "180 g",
-              "descripcion": "Relleno de panela y espinaca, bañado en salsa roja o verde, con guarnición de ensalada.",
+              "producto": "Huevos con Machaca y Salsa Norteña",
+              "gramaje": "2 huevos, 50 g de machaca",
+              "descripcion": "Acompañados con tortilla de harina.",
               "precio": 189,
               "nota": null
             },
             {
-              "producto": "Omelette de Claras de Huevo",
-              "gramaje": "3 claras",
-              "descripcion": "Con panela asada y espinacas, acompañado de ensalada fresca y aguacate.",
-              "precio": 169,
-              "nota": null
-            },
-            {
-              "producto": "Hot Cakes de Avena",
-              "gramaje": "3 pzas",
-              "descripcion": "Acompañados de topping de fruta del día.",
-              "precio": 139,
+              "producto": "Huevos al Gusto",
+              "gramaje": "2 huevos",
+              "descripcion": "Revueltos, con jamón, chorizo, salchicha, tocino, o rancheros.",
+              "precio": 149,
               "nota": null
             }
           ]
         },
         {
-          "categoria": "Menú Infantil",
+          "categoria": "Pal capricho",
           "nota": null,
           "productos": [
             {
-              "producto": "3 Mini Hamburguesitas",
+              "producto": "Chicharrón (Pancita) en Salsa Roja",
+              "gramaje": null,
+              "descripcion": "Acompañado de frijoles y un trozo de panela.",
+              "precio": 179,
+              "nota": null
+            },
+            {
+              "producto": "Chicharrón (Pancita) en Salsa Verde",
+              "gramaje": null,
+              "descripcion": "Acompañado de frijoles y un trozo de panela.",
+              "precio": 179,
+              "nota": null
+            },
+            {
+              "producto": "Embarazada de Huevo con Chicharrón",
+              "gramaje": null,
+              "descripcion": "Huevo y chicharrón bañados en salsa roja o verde, con todo el sabor de casa.",
+              "precio": 179,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Como en casa · Enfrijoladas",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Enfrijoladas de Asada",
+              "gramaje": null,
+              "descripcion": "Tortillas rellenas de carne asada, bañadas en una sabrosa salsa de frijol.",
+              "precio": 189,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Bien bañaditas · Enchiladas",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Enchiladas Arrieras",
+              "gramaje": "120 g de arrachera",
+              "descripcion": "De arrachera con lechuga, bañadas en salsa verde con crema y queso Oaxaca.",
+              "precio": 179,
+              "nota": null
+            },
+            {
+              "producto": "Enchiladas de la Abuela",
+              "gramaje": null,
+              "descripcion": "Muy rojas, con pollo, crema y queso Oaxaca.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Enchiladas Suizas",
+              "gramaje": null,
+              "descripcion": "De pollo, en salsa verde cremosa y gratinadas con queso.",
+              "precio": 179,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Pal glotón · Burritos gigantes",
+          "nota": "Todos los burritos van acompañados de papas a la francesa.",
+          "productos": [
+            {
+              "producto": "Huevo, Machaca, Queso y Frijol",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 189,
+              "nota": null
+            },
+            {
+              "producto": "Carne Asada, Queso y Frijol",
+              "gramaje": "100 g de carne",
+              "descripcion": null,
+              "precio": 189,
+              "nota": null
+            },
+            {
+              "producto": "Camarón, Queso y Verdura",
+              "gramaje": null,
+              "descripcion": "Con aderezo de cilantro.",
+              "precio": 199,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Pal chilpayate",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Hamburguesa Infantil",
               "gramaje": "140 g de carne, 100 g de papas",
-              "descripcion": "Con pan brioche, carne de res y queso, con papas fritas.",
+              "descripcion": null,
               "precio": 139,
+              "nota": null
+            },
+            {
+              "producto": "Hot Cakes con Nieve",
+              "gramaje": "4 pzas, 1 bola de nieve",
+              "descripcion": null,
+              "precio": 110,
               "nota": null
             },
             {
               "producto": "Pechuga Empanizada",
               "gramaje": "140 g de pechuga, 100 g de papas",
-              "descripcion": "Con guarnición de papas fritas.",
-              "precio": 119,
+              "descripcion": null,
+              "precio": 110,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Extras",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Huevo",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 20,
               "nota": null
             },
             {
-              "producto": "Mini Hot Cakes",
-              "gramaje": "4 pzas, 1 bola de nieve",
+              "producto": "Pollo",
+              "gramaje": null,
               "descripcion": null,
-              "precio": 99,
+              "precio": 40,
+              "nota": null
+            },
+            {
+              "producto": "Chorizo",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 40,
+              "nota": null
+            },
+            {
+              "producto": "Chicharrón",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 60,
+              "nota": null
+            },
+            {
+              "producto": "Asada",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 60,
+              "nota": null
+            },
+            {
+              "producto": "Lengua",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 60,
+              "nota": null
+            },
+            {
+              "producto": "Frijoles",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 15,
+              "nota": null
+            },
+            {
+              "producto": "Jamón",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 20,
+              "nota": null
+            },
+            {
+              "producto": "Tocino",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 25,
               "nota": null
             }
           ]
@@ -465,277 +363,275 @@
       "menu": "Comidas",
       "categorias": [
         {
-          "categoria": "Entradas",
+          "categoria": "Pa’ entrarle",
           "nota": null,
           "productos": [
             {
-              "producto": "Chicharrón Duro",
-              "gramaje": "80 g",
-              "descripcion": "Con salsa martajada.",
-              "precio": 99,
-              "nota": null
-            },
-            {
-              "producto": "Panela Asada",
+              "producto": "Panela del Rancho Asada",
               "gramaje": "180 g",
               "descripcion": "Bañada en salsa verde.",
-              "precio": 139,
+              "precio": 149,
               "nota": null
             },
             {
               "producto": "Queso Fundido Natural",
               "gramaje": "180 g",
               "descripcion": null,
-              "precio": 139,
-              "nota": "Con chorizo, flor de calabaza o champiñón 80 g: $169"
-            },
-            {
-              "producto": "Manitas en Escabeche Frías",
-              "gramaje": "4 pzas, 500 g",
-              "descripcion": null,
-              "precio": 139,
-              "nota": null
-            },
-            {
-              "producto": "Guacamole con Totopos",
-              "gramaje": "180 g",
-              "descripcion": null,
-              "precio": 109,
-              "nota": null
-            },
-            {
-              "producto": "Taco de Chile Güero Empanizado",
-              "gramaje": "30 g de asada",
-              "descripcion": "Relleno de asada.",
-              "precio": 79,
-              "nota": null
-            },
-            {
-              "producto": "Chistorra Asada al Carbón",
-              "gramaje": "200 g",
-              "descripcion": "Acompañada de chiles toreados y cebolla.",
-              "precio": 129,
-              "nota": null
-            }
-          ]
-        },
-        {
-          "categoria": "Ensaladas",
-          "nota": null,
-          "productos": [
-            {
-              "producto": "Ensalada César con Pollo",
-              "gramaje": "100 g de pollo",
-              "descripcion": "Corazón de lechuga bañado en aderezo césar, crotones y queso parmesano.",
-              "precio": 139,
-              "nota": null
-            },
-            {
-              "producto": "Ensalada de Frutos Rojos",
-              "gramaje": null,
-              "descripcion": "Mix de lechugas con fresa, suprema de naranja, arándano y queso suizo, con vinagreta de fresa, vino tinto y miel.",
-              "precio": 120,
-              "nota": "Con pollo 80 g: $160 · Con peinecillo 80 g: $180"
-            }
-          ]
-        },
-        {
-          "categoria": "Sopas",
-          "nota": null,
-          "productos": [
-            {
-              "producto": "Caldo Tlalpeño",
-              "gramaje": "70 g",
-              "descripcion": "Consomé con verduras, arroz, pollo, un toque de chipotle, garbanzos y aguacate.",
               "precio": 149,
               "nota": null
             },
             {
-              "producto": "Sopa de Fideo Seco o en Caldo",
-              "gramaje": null,
-              "descripcion": "Receta de la abuela, decorada con panela, aguacate y chipotle.",
-              "precio": 99,
-              "nota": null
-            },
-            {
-              "producto": "Sopa de Tortilla Azteca",
-              "gramaje": null,
-              "descripcion": "Salsa a base de jitomate y epazote con fritura de tortilla de maíz, decorada con panela, aguacate, chicharrón duro, crema y chile pasilla.",
-              "precio": 119,
-              "nota": null
-            },
-            {
-              "producto": "Crema del Día",
-              "gramaje": null,
-              "descripcion": "Preguntar al mesero.",
-              "precio": 99,
-              "nota": null
-            }
-          ]
-        },
-        {
-          "categoria": "Platos Fuertes",
-          "nota": null,
-          "productos": [
-            {
-              "producto": "Pollo a la Plancha",
+              "producto": "Queso Fundido con Chorizo",
               "gramaje": "180 g",
-              "descripcion": "Acompañado de arroz y ensalada.",
-              "precio": 190,
+              "descripcion": null,
+              "precio": 149,
               "nota": null
             },
             {
-              "producto": "Milanesa de Pollo",
+              "producto": "Guacamole",
               "gramaje": "180 g",
-              "descripcion": "Acompañada de ensalada y papas fritas.",
-              "precio": 190,
+              "descripcion": null,
+              "precio": 110,
               "nota": null
             },
             {
-              "producto": "Chile en Nogada",
-              "gramaje": "100 g",
-              "descripcion": "Chile relleno de carne con un toque dulce, bañado en salsa nogada con nuez, perejil y granada.",
-              "precio": 259,
-              "nota": null
-            },
-            {
-              "producto": "Chiles Rellenos",
-              "gramaje": null,
-              "descripcion": "2 piezas rellenas de queso, bañadas en salsa roja y acompañadas de arroz.",
-              "precio": 180,
-              "nota": null
-            },
-            {
-              "producto": "Pollo en Mole",
-              "gramaje": "250 g",
-              "descripcion": "Pierna y muslo bañados en mole de la casa, espolvoreados con ajonjolí y acompañados de arroz.",
-              "precio": 170,
-              "nota": null
-            },
-            {
-              "producto": "Carne Asada",
-              "gramaje": "180 g",
-              "descripcion": "Carne en tasajo, quesadilla, nopal asado, cebolla cambray, guacamole y frijoles con queso fresco.",
-              "precio": 199,
-              "nota": null
-            },
-            {
-              "producto": "Chamorro",
-              "gramaje": "900 g",
-              "descripcion": "1 pieza de chamorro horneado lentamente, bañado con salsa de la casa y acompañado de frijoles y cebolla curtida.",
-              "precio": 180,
-              "nota": null
-            },
-            {
-              "producto": "Molcajete Mar y Tierra",
-              "gramaje": "100 g de picaña, 100 g de camarón",
-              "descripcion": "Picaña, camarón, nopal asado con cebolla cambray y panela asada, bañados en salsa de tomate, morrón y un toque de serrano.",
-              "precio": 299,
-              "nota": null
-            },
-            {
-              "producto": "Peinecillo",
-              "gramaje": "180 g",
-              "descripcion": "Acompañado de frijoles fritos, nopal y cebolla cambray asados, y guacamole.",
-              "precio": 199,
-              "nota": null
-            }
-          ]
-        },
-        {
-          "categoria": "Del Mar",
-          "nota": null,
-          "productos": [
-            {
-              "producto": "Salmón al Gusto",
+              "producto": "Chistorra",
               "gramaje": "200 g",
-              "descripcion": "A las finas hierbas, a la mantequilla o al limón. Acompañado de puré y ensalada.",
-              "precio": 259,
+              "descripcion": "Acompañada de chiles toreados y cebolla.",
+              "precio": 149,
               "nota": null
             },
             {
-              "producto": "Camarones al Gusto",
-              "gramaje": "180 g",
-              "descripcion": "A la diabla, al ajillo, a la momia, empanizados o al coco. Guarnición de arroz y ensalada.",
-              "precio": 259,
+              "producto": "Frijoles con Queso",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 79,
               "nota": null
             },
             {
-              "producto": "Pescado al Gusto",
-              "gramaje": "180 g",
-              "descripcion": "A la plancha, al ajillo, a la diabla o empanizado. Guarnición de arroz y ensalada.",
-              "precio": 210,
+              "producto": "Tacos de Frijol al Carbón",
+              "gramaje": "3 pzas",
+              "descripcion": null,
+              "precio": 89,
               "nota": null
             }
           ]
         },
         {
-          "categoria": "Especialidades",
+          "categoria": "Pa’ sopear · Sopas",
           "nota": null,
           "productos": [
             {
-              "producto": "Plato Botanero",
-              "gramaje": "4 personas",
-              "descripcion": "2 chiles jalapeños con queso, chicharrón duro 100 g, chistorra 200 g, queso fundido natural 180 g, guacamole 180 g y frijoles fritos 180 g.",
-              "precio": 550,
-              "nota": null
-            },
-            {
-              "producto": "Parrillada",
-              "gramaje": "3 a 4 personas",
-              "descripcion": "Peinecillo 200 g, pollo adobado 200 g, espaldilla 200 g y panza de cerdo 200 g. Queso fundido con chorizo 250 g, guacamole 180 g y frijoles refritos con queso 180 g.",
-              "precio": 850,
-              "nota": null
-            }
-          ]
-        },
-        {
-          "categoria": "Menú Infantil",
-          "nota": "Todo en cajitas",
-          "productos": [
-            {
-              "producto": "3 Mini Hamburguesas",
-              "gramaje": "140 g de carne, 100 g de papas",
-              "descripcion": "Carne de res, pan brioche y queso amarillo, con papas a la francesa.",
+              "producto": "Tortilla",
+              "gramaje": null,
+              "descripcion": "Fritura de tortilla, panela, aguacate y chicharrón.",
               "precio": 139,
               "nota": null
             },
             {
-              "producto": "Tiras de Pechuga de Pollo",
-              "gramaje": "140 g de pollo, 100 g de papas",
-              "descripcion": "Con papas a la francesa.",
-              "precio": 119,
-              "nota": null
-            },
-            {
-              "producto": "Camarones Empanizados",
-              "gramaje": "100 g",
-              "descripcion": "Con aderezo de la casa.",
-              "precio": 129,
+              "producto": "Tlalpeño",
+              "gramaje": "70 g",
+              "descripcion": "Consomé de pollo con arroz, verdura y pechuga.",
+              "precio": 159,
               "nota": null
             }
           ]
         },
         {
-          "categoria": "Postres",
+          "categoria": "Pa’ no rendirse",
+          "nota": "Las pechugas van con papas a la francesa y ensalada.",
+          "productos": [
+            {
+              "producto": "Pechuga a la Plancha",
+              "gramaje": "180 g",
+              "descripcion": null,
+              "precio": 199,
+              "nota": null
+            },
+            {
+              "producto": "Pechuga Empanizada",
+              "gramaje": "180 g",
+              "descripcion": null,
+              "precio": 199,
+              "nota": null
+            },
+            {
+              "producto": "Enchiladas Arrieras",
+              "gramaje": "120 g de arrachera",
+              "descripcion": "De arrachera con lechuga, bañadas en salsa verde con crema y queso Oaxaca.",
+              "precio": 179,
+              "nota": null
+            },
+            {
+              "producto": "Enchiladas de la Abuela",
+              "gramaje": null,
+              "descripcion": "Muy rojas, con pollo, crema y queso Oaxaca.",
+              "precio": 149,
+              "nota": null
+            },
+            {
+              "producto": "Enchiladas Suizas",
+              "gramaje": null,
+              "descripcion": "De pollo, en salsa verde cremosa y gratinadas con queso.",
+              "precio": 179,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Nuestros inolvidables",
           "nota": null,
           "productos": [
             {
-              "producto": "Yoyo Caché",
+              "producto": "Chile en Nogada",
+              "gramaje": "100 g",
+              "descripcion": "Acompañado de arroz. De temporada.",
+              "precio": 249,
+              "nota": null
+            },
+            {
+              "producto": "Chile Relleno",
               "gramaje": null,
-              "descripcion": "Cremoso de limón amarillo, compota de piel de limón y mousse de limón.",
+              "descripcion": "Acompañado de arroz.",
+              "precio": 189,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Pa’ los carnívoros",
+          "nota": "Todos nuestros gramajes son pesados en crudo.",
+          "productos": [
+            {
+              "producto": "Carne Asada",
+              "gramaje": "200 g",
+              "descripcion": "Con guacamole, frijol, nopal, cebolla asada y chile toreado.",
+              "precio": 210,
+              "nota": null
+            },
+            {
+              "producto": "Peinecillo",
+              "gramaje": "200 g",
+              "descripcion": "Con guacamole, frijol, nopal, cebolla asada y chile toreado.",
+              "precio": 210,
+              "nota": null
+            },
+            {
+              "producto": "Tampiqueña",
+              "gramaje": "200 g",
+              "descripcion": "Tradicional filete de res corte delgado asado al carbón, acompañados de frijol, guacamole una  enchilada y nopal asado.",
+              "precio": 230,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Pa’ un buen vino · Cortes",
+          "nota": "Todos nuestros gramajes son pesados en crudo.",
+          "productos": [
+            {
+              "producto": "New York",
+              "gramaje": "220 g",
+              "descripcion": "Con ensalada, chimichurri y un adorno de romero.",
+              "precio": 250,
+              "nota": null
+            },
+            {
+              "producto": "Rib Eye",
+              "gramaje": "220 g",
+              "descripcion": "Con ensalada, chimichurri y un adorno de romero.",
+              "precio": 250,
+              "nota": null
+            },
+            {
+              "producto": "Arrachera",
+              "gramaje": "220 g",
+              "descripcion": "Con guacamole, ensalada, nopal y cebolla asada.",
+              "precio": 230,
+              "nota": null
+            },
+            {
+              "producto": "Tuétano",
+              "gramaje": "3 piezas",
+              "descripcion": "Con salsa, limón y cebolla a la plancha.",
+              "precio": 199,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Pal glotón · Burritos gigantes",
+          "nota": "Todos los burritos van acompañados de papas a la francesa.",
+          "productos": [
+            {
+              "producto": "Huevo, Machaca, Queso y Frijol",
+              "gramaje": null,
+              "descripcion": null,
               "precio": 189,
               "nota": null
             },
             {
-              "producto": "Trompo Caché",
-              "gramaje": null,
-              "descripcion": "Mousse de chocolate con nibs de cacao.",
+              "producto": "Carne Asada, Queso y Frijol",
+              "gramaje": "100 g de carne",
+              "descripcion": null,
               "precio": 189,
               "nota": null
             },
             {
-              "producto": "Jericallas",
+              "producto": "Camarón, Queso y Verdura",
+              "gramaje": null,
+              "descripcion": "Con aderezo de cilantro.",
+              "precio": 199,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Muy nuestros",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Chamorro al Horno",
+              "gramaje": "900 g",
+              "descripcion": null,
+              "precio": 199,
+              "nota": null
+            },
+            {
+              "producto": "Molcajete de Peinecillo",
+              "gramaje": null,
+              "descripcion": null,
+              "precio": 229,
+              "nota": null
+            },
+            {
+              "producto": "Molcajete Mar y Tierra",
+              "gramaje": "100 g de New York, 100 g de camarón",
+              "descripcion": "New York, camarón, nopal asado con cebolla cambray y panela asada, bañados en salsa de tomate, morrón y un toque de serrano.",
+              "precio": 289,
+              "nota": null
+            }
+          ]
+        },
+        {
+          "categoria": "Para compartir",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Parrillada",
+              "gramaje": "3 a 4 personas",
+              "descripcion": "Peinecillo 200 g, fajitas de pollo a la parrilla 200 g, chamorro 1 pieza y lomo de cerdo 200 g. Queso fundido con chorizo 250 g, guacamole 180 g y frijoles refritos con queso 180 g.",
+              "precio": 850,
+              "nota": "Con cubeta de cerveza (6 cervezas) $990"
+            }
+          ]
+        },
+        {
+          "categoria": "Pa’ acabar · Postres",
+          "nota": null,
+          "productos": [
+            {
+              "producto": "Jericalla",
               "gramaje": null,
               "descripcion": null,
               "precio": 89,
@@ -745,21 +641,14 @@
               "producto": "Flan de Elote",
               "gramaje": null,
               "descripcion": null,
-              "precio": 79,
+              "precio": 89,
               "nota": null
             },
             {
-              "producto": "Carlota de Limón",
+              "producto": "Pastel de Chocolate",
               "gramaje": null,
               "descripcion": null,
-              "precio": 69,
-              "nota": null
-            },
-            {
-              "producto": "Pan de Elote",
-              "gramaje": null,
-              "descripcion": null,
-              "precio": 79,
+              "precio": 99,
               "nota": null
             }
           ]
@@ -878,13 +767,6 @@
               "nota": null
             },
             {
-              "producto": "Tonicol",
-              "gramaje": "600 ml",
-              "descripcion": null,
-              "precio": 55,
-              "nota": null
-            },
-            {
               "producto": "Fuze Tea",
               "gramaje": "600 ml",
               "descripcion": "Durazno o limón.",
@@ -961,31 +843,10 @@
               "nota": null
             },
             {
-              "producto": "Pantera Rosa",
-              "gramaje": "400 ml",
-              "descripcion": "Crema de coco, fresa y granadina.",
-              "precio": 79,
-              "nota": null
-            },
-            {
               "producto": "Canica",
               "gramaje": "350 ml",
               "descripcion": "Soda lima limón con granadina.",
               "precio": 49,
-              "nota": null
-            },
-            {
-              "producto": "Tejuino",
-              "gramaje": "400 ml",
-              "descripcion": "Fermento a base de maíz nixtamalizado, piloncillo y limón.",
-              "precio": 65,
-              "nota": null
-            },
-            {
-              "producto": "Tepache",
-              "gramaje": "300 ml",
-              "descripcion": "Fermento a base de piña, piloncillo y especias: clavo de olor, canela, pimienta gorda y anís.",
-              "precio": 59,
               "nota": null
             },
             {
@@ -1134,13 +995,6 @@
               "producto": "Pepino Muck",
               "gramaje": "300 ml",
               "descripcion": "Pepino natural, jarabe, limón y jugo de piña.",
-              "precio": 79,
-              "nota": null
-            },
-            {
-              "producto": "Tejuino Muck",
-              "gramaje": "400 ml",
-              "descripcion": "Tejuino, limón, jugo de piña y agua mineral.",
               "precio": 79,
               "nota": null
             }
@@ -1293,20 +1147,6 @@
               "gramaje": "45 ml",
               "descripcion": "Escarchado con sal, jugo de limón y salsas negras.",
               "precio": 25,
-              "nota": null
-            },
-            {
-              "producto": "Vaso Tejuichela",
-              "gramaje": "90 ml",
-              "descripcion": "Preparación de tejuino, limón y sal.",
-              "precio": 39,
-              "nota": null
-            },
-            {
-              "producto": "Tejuichela Caché",
-              "gramaje": "300 ml",
-              "descripcion": "Tejuino, sal de grano, limón y cerveza de la casa.",
-              "precio": 119,
               "nota": null
             },
             {
