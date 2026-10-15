@@ -35,13 +35,13 @@ _41 productos._
 | Chipotle |  | Bañados en salsa de chipotle, con un toque ahumado. | $159 | Con huevo o pollo: $189 |
 | Rojos |  |  | $159 | Con huevo o pollo: $189 |
 | Verdes |  |  | $159 | Con huevo o pollo: $189 |
-| Lonche de Chilaquiles con Chicharrón |  | Salsa a su elección: roja, verde o chipotle. | $110 |  |
 
 ### Pal gusto · Molletes
 
 | Producto | Gramaje | Descripción | Precio | Extras |
 | --- | --- | --- | ---: | --- |
 | Divorciados con Chicharrón |  | Uno en salsa verde y otro en roja. | $110 |  |
+| Lonche de Chilaquiles con Chicharrón |  | Salsa a su elección: roja, verde o chipotle. | $110 |  |
 | Tradicionales |  | Frijol y queso, con salsa mexicana. | $99 |  |
 | Dulces |  | Cajeta, o mantequilla con azúcar. | $79 |  |
 
@@ -361,8 +361,8 @@ _67 productos._
 | Chipotle | Desayunos | Pa’ seguir · Chilaquiles |
 | Rojos | Desayunos | Pa’ seguir · Chilaquiles |
 | Verdes | Desayunos | Pa’ seguir · Chilaquiles |
-| Lonche de Chilaquiles con Chicharrón | Desayunos | Pa’ seguir · Chilaquiles |
 | Divorciados con Chicharrón | Desayunos | Pal gusto · Molletes |
+| Lonche de Chilaquiles con Chicharrón | Desayunos | Pal gusto · Molletes |
 | Tradicionales | Desayunos | Pal gusto · Molletes |
 | Dulces | Desayunos | Pal gusto · Molletes |
 | Huevos a Caballo | Desayunos | De la granja · Huevos |

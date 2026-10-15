@@ -103,13 +103,6 @@
               "descripcion": null,
               "precio": 159,
               "nota": "Con huevo o pollo: $189"
-            },
-            {
-              "producto": "Lonche de Chilaquiles con Chicharrón",
-              "gramaje": null,
-              "descripcion": "Salsa a su elección: roja, verde o chipotle.",
-              "precio": 110,
-              "nota": null
             }
           ]
         },
@@ -121,6 +114,13 @@
               "producto": "Divorciados con Chicharrón",
               "gramaje": null,
               "descripcion": "Uno en salsa verde y otro en roja.",
+              "precio": 110,
+              "nota": null
+            },
+            {
+              "producto": "Lonche de Chilaquiles con Chicharrón",
+              "gramaje": null,
+              "descripcion": "Salsa a su elección: roja, verde o chipotle.",
               "precio": 110,
               "nota": null
             },

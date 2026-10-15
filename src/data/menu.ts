@@ -128,11 +128,6 @@ const desayunos: Menu = {
           price: '159',
           note: 'Con huevo o pollo: $189',
         },
-        {
-          name: 'Lonche de Chilaquiles con Chicharrón',
-          description: 'Salsa a su elección: roja, verde o chipotle.',
-          price: '110',
-        },
       ],
     },
     {
@@ -142,6 +137,11 @@ const desayunos: Menu = {
         {
           name: 'Divorciados con Chicharrón',
           description: 'Uno en salsa verde y otro en roja.',
+          price: '110',
+        },
+        {
+          name: 'Lonche de Chilaquiles con Chicharrón',
+          description: 'Salsa a su elección: roja, verde o chipotle.',
           price: '110',
         },
         {
