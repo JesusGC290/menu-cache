@@ -292,9 +292,11 @@ por web.
 Igual que con `menu.ts`, **para cambiar la página sólo se edita `convenio.ts`**, y para
 cambiar una cláusula, el Markdown. Ninguna página teclea texto propio.
 
-Se enlaza desde el pie de página (*Empresas*), desde la franja que aparece al terminar la
-carta y desde la sección *Visítenos* de `/informacion`. No va en los botones de arriba de la
-carta: con un tercero ya no caben en un renglón a 360 px.
+En la carta se ve dos veces: una liga discreta, *Caché para empresas*, debajo de los botones
+de arriba, y la franja completa al terminar la carta. La de arriba va como liga y no como
+tercer botón porque en el celular los dos botones ya ocupan dos renglones, y otro más
+empujaría la carta hacia abajo. Además se enlaza desde la sección *Visítenos* de
+`/informacion` y desde el pie de página (*Empresas*).
 
 Sigue el sistema de la carta —terciopelo y oro, dos temas, Cormorant y Jost—. El único
 gesto grande es el titular; lo demás es sobrio a propósito: sin etiquetas en versalitas
