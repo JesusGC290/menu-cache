@@ -1,0 +1,187 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Floron from '../../components/Floron.astro';
+import PieSitio from '../../components/sitio/PieSitio.astro';
+import DatosEstructurados from '../../components/sitio/DatosEstructurados.astro';
+import Barra from '../../components/empresas/Barra.astro';
+import BotonWhatsapp from '../../components/empresas/BotonWhatsapp.astro';
+import Contacto from '../../components/empresas/Contacto.astro';
+import Paquetes from '../../components/empresas/Paquetes.astro';
+import Pasos from '../../components/empresas/Pasos.astro';
+import Preguntas from '../../components/empresas/Preguntas.astro';
+import Titular from '../../components/empresas/Titular.astro';
+import { ligaTexto, titulo } from '../../components/empresas/estilos';
+import muralAbuelo from '../../assets/mural-abuelo.jpg';
+import muralNieta from '../../assets/mural-nieta.jpg';
+import {
+  cierre,
+  experiencia,
+  hero,
+  paquetes,
+  paraQuien,
+  pasos,
+  preguntas,
+  seo,
+} from '../../data/regalos';
+
+/**
+ * Un regalo de caché — `cacherestaurante.com/regalos`
+ * ═══════════════════════════════════════════════════════════════════════════
+ *
+ * Certificados de regalo para empresas: una agencia de autos, una
+ * inmobiliaria o una aseguradora le regala a su cliente un desayuno o una
+ * comida para dos. Quien visita esta página es quien paga el regalo, no quien
+ * lo va a comer. La compra se cierra por WhatsApp y se paga por
+ * transferencia: no hay formulario ni pago en línea.
+ *
+ * Todo el texto sale de `regalos.ts`. Mismo sistema y mismas piezas que
+ * /empresas; aquí lo memorable son los paquetes, que se leen como un menú de
+ * tiempos de la casa (ver `Paquetes.astro`).
+ *
+ * **No se publican precios por volumen** en ninguna parte del sitio. La única
+ * mención es la pregunta del mínimo de compra, sin cifra.
+ *
+ * Datos estructurados: sólo los de `Restaurant` del sitio. Nada de `Offer` ni
+ * de `Product`.
+ */
+---
+
+<Layout title={seo.titulo} description={seo.descripcion}>
+  <DatosEstructurados slot="head" />
+
+  <!-- ═══════════ Portada y para quién ═══════════ -->
+  <header class="relative">
+    <Barra />
+
+    <div class="mx-auto max-w-2xl px-5 pt-14 pb-14 text-center sm:pt-20 sm:pb-16">
+      <Titular texto={hero.titulo} />
+
+      <p
+        class="text-suave mx-auto mt-6 max-w-[40ch] text-[1rem] leading-relaxed font-light sm:text-[1.08rem]"
+      >
+        {hero.bajada}
+      </p>
+
+      <div class="mt-9 flex justify-center">
+        <BotonWhatsapp texto={hero.cta} programa="regalos" ubicacion="portada" />
+      </div>
+
+      <Floron class="mt-12" color />
+
+      {/* Una sola línea: sin tarjetas ni iconos por industria */}
+      <p
+        class="font-display text-suave mx-auto mt-7 max-w-[36ch] text-[1.2rem] leading-snug italic sm:text-[1.35rem]"
+      >
+        {paraQuien}
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <!-- ═══════════ Los paquetes ═══════════ -->
+    <section aria-labelledby="paquetes" class="mx-auto max-w-3xl px-5 py-14 sm:py-16">
+      <h2 id="paquetes" class={titulo}>Los paquetes</h2>
+
+      <Floron class="mt-5" />
+
+      <Paquetes paquetes={paquetes} />
+
+      <div class="mt-10 flex justify-center">
+        <BotonWhatsapp texto={hero.cta} programa="regalos" ubicacion="paquetes" />
+      </div>
+    </section>
+
+    <!-- ═══════════ Cómo funciona ═══════════ -->
+    <section aria-labelledby="como-funciona" class="mx-auto max-w-xl px-5 py-14 sm:py-16">
+      <h2 id="como-funciona" class={titulo}>Cómo funciona</h2>
+
+      <Floron class="mt-5" />
+
+      <Pasos pasos={pasos} />
+    </section>
+
+    <!-- ═══════════ Lo que vive su cliente ═══════════ -->
+    <section aria-labelledby="experiencia" class="mx-auto max-w-2xl px-5 py-14 sm:py-16">
+      <h2 id="experiencia" class={titulo}>{experiencia.titulo}</h2>
+
+      <Floron class="mt-5" />
+
+      <p
+        class="text-suave mx-auto mt-7 max-w-[42ch] text-center text-[1rem] leading-relaxed font-light"
+      >
+        {experiencia.texto}
+      </p>
+
+      {/* Las dos mitades del mural principal, de Celest Ramírez: el abuelo
+          con «Caché» en el sombrero y su nieta. Juntas, sus manos se tocan al
+          centro. Murales y no comida: el regalo es la visita. */}
+      <div class="mt-9 grid grid-cols-2 gap-1 overflow-hidden rounded-lg">
+        <Image
+          src={muralAbuelo}
+          alt="Mural de Caché: un abuelo con «Caché» en el sombrero camina por una calle de pueblo, entre arcos, buganvilias y un puesto callejero."
+          widths={[320, 480, 720]}
+          sizes="(min-width: 672px) 19.5rem, 50vw"
+          format="webp"
+          quality={80}
+          loading="lazy"
+          class="h-full w-full object-cover"
+        />
+        <Image
+          src={muralNieta}
+          alt="Mural de Caché: su nieta, de vestido morado, camina por la misma calle de la mano del abuelo."
+          widths={[320, 480, 720]}
+          sizes="(min-width: 672px) 19.5rem, 50vw"
+          format="webp"
+          quality={80}
+          loading="lazy"
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </section>
+
+    <!-- ═══════════ Preguntas frecuentes ═══════════ -->
+    <section aria-labelledby="preguntas" class="mx-auto max-w-xl px-5 py-14 sm:py-16">
+      <h2 id="preguntas" class={titulo}>Preguntas frecuentes</h2>
+
+      <Floron class="mt-5" />
+
+      <Preguntas preguntas={preguntas} />
+    </section>
+
+    <!-- ═══════════ Cierre ═══════════ -->
+    <section aria-labelledby="cierre" class="mx-auto max-w-xl px-5 pt-14 pb-16 text-center sm:pt-16">
+      <h2
+        id="cierre"
+        class="font-display text-oro-degradado text-[2rem] leading-tight font-medium text-balance sm:text-[2.5rem]"
+      >
+        {cierre.titulo}
+      </h2>
+
+      <Floron class="mt-5" color />
+
+      <div class="mt-9 flex justify-center">
+        <BotonWhatsapp texto={cierre.cta} programa="regalos" ubicacion="cierre" />
+      </div>
+
+      <p class="mt-5">
+        <a href="/regalos/terminos" data-conserva-ref class={`${ligaTexto} text-[0.92rem]`}>
+          Términos completos
+        </a>
+      </p>
+
+      <Contacto />
+    </section>
+  </main>
+
+  <PieSitio />
+</Layout>
+
+<script>
+  import { analitica } from '../../scripts/analitica';
+  import { refEvento } from '../../scripts/referencia';
+
+  // Igual que `convenio_visita`: una visita por carga, con la referencia del
+  // correo o `directo`.
+  analitica().then((ph) => ph?.capture('regalos_visita', { ref: refEvento }));
+</script>

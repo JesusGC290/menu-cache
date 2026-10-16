@@ -1,0 +1,74 @@
+---
+import Filigrana from '../Filigrana.astro';
+import Floron from '../Floron.astro';
+import type { Paquete } from '../../data/regalos';
+
+/**
+ * Los paquetes de regalo, presentados como un menú de tiempos de la casa y no
+ * como tabla de precios: marco de filigrana (el mismo del pie de la carta),
+ * cada tiempo con su platillo y el precio al pie, con el formato de la carta.
+ *
+ * Sin «recomendado», sin palomitas y sin botón por paquete: la página lleva
+ * un solo botón de WhatsApp debajo de los dos.
+ *
+ * Van en el orden de `regalos.ts` (comida primero). Lado a lado desde `sm`,
+ * uno debajo del otro en el celular. Los precios por volumen NO se publican:
+ * sólo existen en las preguntas frecuentes, sin cifra.
+ */
+interface Props {
+  paquetes: Paquete[];
+}
+const { paquetes } = Astro.props;
+
+/** Mismo formato que `Categoria.astro`: signo de pesos y el valor tal cual. */
+const precio = (valor: string) => `$${valor}`;
+
+const NUMEROS = ['', 'una', 'dos', 'tres', 'cuatro', 'cinco', 'seis'];
+const paraPersonas = (n: number) =>
+  `para ${NUMEROS[n] ?? n} ${n === 1 ? 'persona' : 'personas'}`;
+---
+
+<ul role="list" class="mt-10 grid gap-6 sm:grid-cols-2 sm:gap-5">
+  {
+    paquetes.map((paquete) => (
+      <li class="border-acento/30 bg-superficie/30 relative flex flex-col rounded-lg border px-6 pt-12 pb-8 text-center sm:px-8">
+        <Filigrana />
+
+        <h3 class="font-display text-oro-degradado text-[1.55rem] leading-tight font-medium tracking-[0.12em] uppercase">
+          {paquete.nombre}
+        </h3>
+        <p class="text-suave mx-auto mt-2 max-w-[30ch] text-[0.85rem] leading-relaxed font-light">
+          {paquete.nota}
+        </p>
+
+        <Floron class="mt-5" />
+
+        <dl class="mt-6 space-y-4">
+          {paquete.tiempos.map((tiempo) => (
+            <div>
+              <dt class="text-acento text-[0.68rem] tracking-[0.22em] uppercase">{tiempo.nombre}</dt>
+              <dd class="font-display text-texto mx-auto mt-1 max-w-[26ch] text-[1.15rem] leading-snug text-balance">
+                {tiempo.detalle}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        {/* `mt-auto`: los precios quedan a la misma altura aunque un paquete
+            tenga platillos más largos que el otro */}
+        <div class="mt-auto pt-8">
+          <hr class="filete-oro mx-auto w-2/3 opacity-70" />
+          <p class="mt-5">
+            <span class="text-acento text-[1.5rem] font-medium tabular-nums">
+              {precio(paquete.precio)}
+            </span>
+            <span class="text-suave text-[0.92rem]"> · {paraPersonas(paquete.personas)}</span>
+          </p>
+          <p class="text-tenue mt-1 text-[0.78rem]">
+            Valor en carta: hasta <span class="tabular-nums">{precio(paquete.valorCarta)}</span>
+          </p>
+        </div>
+      </li>
+    ))
+  }
+</ul>

@@ -1,0 +1,23 @@
+---
+import BotonTema from '../BotonTema.astro';
+import { foco } from './estilos';
+
+/**
+ * Renglón superior de las páginas para empresas: «Caché» lleva a la carta y
+ * el botón de tema queda a la mano. `ancho` iguala el de la página.
+ */
+interface Props {
+  ancho?: 'max-w-xl' | 'max-w-2xl';
+}
+const { ancho = 'max-w-2xl' } = Astro.props;
+---
+
+<div class={`mx-auto flex ${ancho} items-center justify-between px-5 pt-5`}>
+  <a
+    href="/"
+    class={`font-display text-oro-degradado rounded-sm text-base tracking-[0.2em] uppercase ${foco} focus-visible:outline-offset-2`}
+  >
+    Caché
+  </a>
+  <BotonTema />
+</div>

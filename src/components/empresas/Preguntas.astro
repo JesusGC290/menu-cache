@@ -1,0 +1,37 @@
+---
+import { foco } from './estilos';
+
+/**
+ * Preguntas frecuentes en acordeón. `<details>`/`<summary>` nativos: abren con
+ * Enter o Espacio sin una línea de JavaScript.
+ */
+interface Props {
+  preguntas: { pregunta: string; respuesta: string }[];
+}
+const { preguntas } = Astro.props;
+---
+
+<div class="border-acento/15 mt-9 border-t">
+  {
+    preguntas.map(({ pregunta, respuesta }) => (
+      <details class="group border-acento/15 border-b">
+        <summary
+          class={`font-display text-texto flex cursor-pointer list-none items-start justify-between gap-4 rounded-sm py-4 text-[1.18rem] leading-snug font-medium [&::-webkit-details-marker]:hidden ${foco} focus-visible:outline-offset-2`}
+        >
+          {pregunta}
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            class="text-acento mt-1 h-4 w-4 shrink-0 group-open:rotate-180 motion-safe:transition-transform motion-safe:duration-200"
+            aria-hidden="true"
+          >
+            <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </summary>
+        <p class="text-suave pr-8 pb-5 text-[0.93rem] leading-relaxed font-light">{respuesta}</p>
+      </details>
+    ))
+  }
+</div>

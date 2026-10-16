@@ -1,0 +1,20 @@
+---
+/**
+ * Titular de portada de /empresas y /regalos: el único gesto grande de cada
+ * página. La última palabra va en cursiva dorada, como la portada de
+ * /informacion («servido de caché.»). Se parte aquí para que cambiar el
+ * titular en el `.ts` de contenido no obligue a tocar la página.
+ */
+interface Props {
+  texto: string;
+}
+const palabras = Astro.props.texto.split(' ');
+const remate = palabras.pop();
+const arranque = palabras.join(' ');
+---
+
+<h1
+  class="font-display text-texto mx-auto text-[clamp(2.6rem,10.5vw,4.75rem)] leading-[1.02] font-medium text-balance"
+>
+  {arranque} <span class="text-oro-degradado italic">{remate}</span>
+</h1>

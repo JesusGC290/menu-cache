@@ -1,0 +1,127 @@
+---
+import Layout from './Layout.astro';
+import PieSitio from '../components/sitio/PieSitio.astro';
+import Barra from '../components/empresas/Barra.astro';
+import BotonWhatsapp from '../components/empresas/BotonWhatsapp.astro';
+import { ligaTexto } from '../components/empresas/estilos';
+import type { Programa } from '../scripts/whatsapp';
+
+/**
+ * Layout de los términos y condiciones: `/empresas/terminos` y
+ * `/regalos/terminos`.
+ *
+ * El texto completo vive en un Markdown junto a su `.ts` de contenido; la
+ * página sólo lo pasa como hijo. Para cambiar una cláusula se edita el
+ * Markdown y nada más: este layout pone el marco, la tipografía, la liga de
+ * regreso y el botón de WhatsApp del programa.
+ */
+interface Props {
+  /** El `titulo` del frontmatter del Markdown. */
+  titulo: string;
+  descripcion: string;
+  /** Liga de regreso a la página del programa. Conserva `?e=`. */
+  volver: { texto: string; href: string };
+  boton: { texto: string; programa: Programa };
+}
+const { titulo, descripcion, volver, boton } = Astro.props;
+---
+
+<Layout title={`${titulo} · Caché Restaurante`} description={descripcion}>
+  <Barra ancho="max-w-xl" />
+
+  <main class="mx-auto max-w-xl px-5 pt-10 pb-14 sm:pt-14">
+    <a
+      href={volver.href}
+      data-conserva-ref
+      class={`${ligaTexto} text-[0.9rem]`}
+    >
+      {volver.texto}
+    </a>
+
+    <article class="terminos mt-7">
+      <slot />
+    </article>
+
+    <div class="mt-12 flex justify-center">
+      <BotonWhatsapp texto={boton.texto} programa={boton.programa} ubicacion="terminos" />
+    </div>
+  </main>
+
+  <PieSitio />
+</Layout>
+
+<style>
+  /* El texto largo del sitio (/informacion): Cormorant para los títulos,
+     Jost ligera en `suave` para el cuerpo. Los colores son los tokens
+     semánticos, así que funciona igual en los dos temas. `:global` porque
+     las etiquetas salen del Markdown, no de este archivo. */
+  .terminos :global(h1) {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 7vw, 2.4rem);
+    font-weight: 500;
+    line-height: 1.12;
+    color: var(--color-texto);
+    text-wrap: balance;
+  }
+
+  /* «Última actualización: …» */
+  .terminos :global(h1 + p) {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--color-tenue);
+  }
+
+  .terminos :global(h2) {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-acento) 18%, transparent);
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--color-texto);
+  }
+
+  .terminos :global(p),
+  .terminos :global(li) {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--color-suave);
+  }
+
+  .terminos :global(h2 + p),
+  .terminos :global(h2 + ol),
+  .terminos :global(h2 + ul) {
+    margin-top: 0.75rem;
+  }
+
+  .terminos :global(p + p),
+  .terminos :global(p + ul),
+  .terminos :global(ul + p) {
+    margin-top: 0.9rem;
+  }
+
+  .terminos :global(ol),
+  .terminos :global(ul) {
+    padding-left: 1.4rem;
+  }
+  .terminos :global(ol) {
+    list-style: decimal;
+  }
+  .terminos :global(ul) {
+    list-style: disc;
+  }
+  .terminos :global(li + li) {
+    margin-top: 0.5rem;
+  }
+  .terminos :global(li::marker) {
+    color: var(--color-acento);
+  }
+
+  /* «**Comida para 2.**» en los términos de regalos */
+  .terminos :global(strong) {
+    font-weight: 500;
+    color: var(--color-texto);
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 import Floron from '../Floron.astro';
 import BotonWhatsapp from './BotonWhatsapp.astro';
+import { titulo } from './estilos';
 import { aliados, aliadosTexto, hero, MIN_ALIADOS_VISIBLES } from '../../data/convenio';
 
 /**
@@ -29,7 +30,7 @@ const hayMuro = visibles.length >= MIN_ALIADOS_VISIBLES;
       <Fragment>
         <h2
           id="aliados-titulo"
-          class="font-display text-oro-degradado text-center text-[1.75rem] leading-tight font-medium text-balance sm:text-[2rem]"
+          class={titulo}
         >
           {aliadosTexto.titulo}
         </h2>
@@ -63,7 +64,7 @@ const hayMuro = visibles.length >= MIN_ALIADOS_VISIBLES;
       <div class="text-center">
         <h2
           id="aliados-titulo"
-          class="font-display text-oro-degradado text-[1.75rem] leading-tight font-medium text-balance sm:text-[2rem]"
+          class={titulo}
         >
           {aliadosTexto.vacioTitulo}
         </h2>
@@ -75,7 +76,7 @@ const hayMuro = visibles.length >= MIN_ALIADOS_VISIBLES;
         </p>
 
         <div class="mt-7 flex justify-center">
-          <BotonWhatsapp texto={hero.cta} ubicacion="aliados" />
+          <BotonWhatsapp texto={hero.cta} programa="convenio" ubicacion="aliados" />
         </div>
       </div>
     )

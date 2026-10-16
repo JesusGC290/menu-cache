@@ -1,26 +1,33 @@
 ---
 import { ligaWhatsApp } from '../../data/convenio';
+import { ligaWhatsAppRegalos } from '../../data/regalos';
+import type { Programa } from '../../scripts/whatsapp';
 
 /**
- * Botón principal del convenio: abre WhatsApp con el mensaje listo.
+ * Botón principal de /empresas y /regalos: abre WhatsApp con el mensaje listo.
  *
  * Se dibuja sin referencia; si la visita trae `?e=`, el script de
- * `src/scripts/convenio.ts` le agrega «(Ref: …)» al cargar y registra el
+ * `src/scripts/whatsapp.ts` le agrega «(Ref: …)» al cargar y registra el
  * clic. Sin JavaScript el botón funciona igual, sólo sin la referencia.
  */
 interface Props {
   texto: string;
+  /** De qué es el mensaje. Es también el prefijo del evento: `convenio_whatsapp`. */
+  programa: Programa;
   /** Dónde está el botón. Viaja en el evento para saber cuál se usa. */
-  ubicacion: 'portada' | 'aliados' | 'cierre' | 'terminos';
+  ubicacion: 'portada' | 'aliados' | 'paquetes' | 'cierre' | 'terminos';
 }
-const { texto, ubicacion } = Astro.props;
+const { texto, programa, ubicacion } = Astro.props;
+
+const liga = programa === 'regalos' ? ligaWhatsAppRegalos() : ligaWhatsApp();
 ---
 
 <a
-  href={ligaWhatsApp()}
+  href={liga}
   target="_blank"
   rel="noopener noreferrer"
-  data-whatsapp-convenio={ubicacion}
+  data-whatsapp={programa}
+  data-boton={ubicacion}
   class="from-oro-claro via-oro to-oro-hondo text-vino focus-visible:outline-acento inline-flex w-full max-w-sm items-center justify-center gap-2.5 rounded-full bg-gradient-to-b px-6 py-3.5 text-center text-[0.8rem] leading-snug font-medium tracking-[0.1em] text-balance uppercase shadow-[0_6px_22px_-6px_rgb(212_164_55/0.6)] focus-visible:outline-2 focus-visible:outline-offset-4 motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.02]"
 >
   <svg viewBox="0 0 24 24" fill="currentColor" class="h-[1.1rem] w-[1.1rem] shrink-0" aria-hidden="true">
@@ -30,5 +37,5 @@ const { texto, ubicacion } = Astro.props;
 </a>
 
 <script>
-  import '../../scripts/convenio';
+  import '../../scripts/whatsapp';
 </script>

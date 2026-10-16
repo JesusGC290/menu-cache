@@ -1,15 +1,19 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import BotonTema from '../../components/BotonTema.astro';
 import Floron from '../../components/Floron.astro';
 import PieSitio from '../../components/sitio/PieSitio.astro';
 import DatosEstructurados from '../../components/sitio/DatosEstructurados.astro';
-import BotonWhatsapp from '../../components/empresas/BotonWhatsapp.astro';
 import Aliados from '../../components/empresas/Aliados.astro';
+import Barra from '../../components/empresas/Barra.astro';
+import BotonWhatsapp from '../../components/empresas/BotonWhatsapp.astro';
+import Contacto from '../../components/empresas/Contacto.astro';
+import Pasos from '../../components/empresas/Pasos.astro';
+import Preguntas from '../../components/empresas/Preguntas.astro';
+import Titular from '../../components/empresas/Titular.astro';
+import { botonLinea, ligaTexto, titulo } from '../../components/empresas/estilos';
 import {
   beneficios,
   cierre,
-  contacto,
   hero,
   intro,
   pasos,
@@ -18,7 +22,7 @@ import {
   seo,
   vigencia,
 } from '../../data/convenio';
-import { negocio } from '../../data/negocio';
+import { ligaDesdeEmpresas } from '../../data/regalos';
 
 /**
  * Convenio Caché para Empresas — `cacherestaurante.com/empresas`
@@ -38,27 +42,14 @@ import { negocio } from '../../data/negocio';
  * sobrio: sin etiquetas en versalitas sobre los títulos, sin flechas en los
  * botones, sin tarjetas repetidas y sin animaciones de entrada.
  *
- * Analítica: ver `src/scripts/convenio.ts` (la referencia `?e=` y el clic en
- * WhatsApp) y el script al final de esta página (la visita).
+ * Analítica: ver `src/scripts/referencia.ts` (la referencia `?e=`),
+ * `src/scripts/whatsapp.ts` (el clic en WhatsApp) y el script al final de
+ * esta página (la visita).
  */
-
-// La última palabra del titular va en cursiva dorada, como la portada de
-// /informacion. Se parte aquí para que cambiar el titular en `convenio.ts`
-// no obligue a tocar la página.
-const palabras = hero.titulo.split(' ');
-const remate = palabras.pop();
-const arranque = palabras.join(' ');
 
 // La vigencia ya viene como la última regla; si algún día se quita de la
 // lista, igual se muestra aparte y no se pierde la fecha.
 const reglasCortas = reglas.filter((regla) => regla !== vigencia.texto);
-
-/** Clases repetidas */
-const foco = 'focus-visible:outline-acento focus-visible:outline-2 focus-visible:outline-offset-4';
-const titulo =
-  'font-display text-oro-degradado text-center text-[1.75rem] leading-tight font-medium text-balance sm:text-[2rem]';
-const botonLinea = `border-acento/45 text-acento hover:bg-acento/10 hover:border-acento/75 inline-flex items-center justify-center rounded-full border px-6 py-3 text-[0.76rem] tracking-[0.12em] uppercase transition-colors duration-200 ${foco}`;
-const ligaTexto = `text-acento hover:text-acento-alto decoration-acento/50 underline decoration-1 underline-offset-4 transition-colors ${foco} focus-visible:outline-offset-2 rounded-sm`;
 ---
 
 <Layout title={seo.titulo} description={seo.descripcion}>
@@ -66,22 +57,10 @@ const ligaTexto = `text-acento hover:text-acento-alto decoration-acento/50 under
 
   <!-- ═══════════ Portada ═══════════ -->
   <header class="relative">
-    <div class="mx-auto flex max-w-2xl items-center justify-between px-5 pt-5">
-      <a
-        href="/"
-        class={`font-display text-oro-degradado rounded-sm text-base tracking-[0.2em] uppercase ${foco}`}
-      >
-        Caché
-      </a>
-      <BotonTema />
-    </div>
+    <Barra />
 
     <div class="mx-auto max-w-2xl px-5 pt-14 pb-14 text-center sm:pt-20 sm:pb-16">
-      <h1
-        class="font-display text-texto mx-auto text-[clamp(2.6rem,10.5vw,4.75rem)] leading-[1.02] font-medium text-balance"
-      >
-        {arranque} <span class="text-oro-degradado italic">{remate}</span>
-      </h1>
+      <Titular texto={hero.titulo} />
 
       <p
         class="text-suave mx-auto mt-6 max-w-[38ch] text-[1rem] leading-relaxed font-light sm:text-[1.08rem]"
@@ -90,7 +69,7 @@ const ligaTexto = `text-acento hover:text-acento-alto decoration-acento/50 under
       </p>
 
       <div class="mt-9 flex flex-col items-center gap-3">
-        <BotonWhatsapp texto={hero.cta} ubicacion="portada" />
+        <BotonWhatsapp texto={hero.cta} programa="convenio" ubicacion="portada" />
         <a href="/empresas/terminos" data-conserva-ref class={botonLinea}>
           {hero.secundaria}
         </a>
@@ -113,28 +92,7 @@ const ligaTexto = `text-acento hover:text-acento-alto decoration-acento/50 under
 
       <Floron class="mt-5" />
 
-      <ol role="list" class="mt-9">
-        {
-          pasos.map((paso, i) => (
-            <li class="border-acento/15 grid grid-cols-[2.5rem_1fr] gap-x-4 border-t py-5 last:border-b sm:grid-cols-[3rem_1fr]">
-              <span
-                class="font-display text-acento text-[2.4rem] leading-[0.85] font-medium tabular-nums"
-                aria-hidden="true"
-              >
-                {i + 1}
-              </span>
-              <div>
-                <h3 class="font-display text-texto text-[1.3rem] leading-snug font-medium">
-                  {paso.titulo}
-                </h3>
-                <p class="text-suave mt-1 text-[0.93rem] leading-relaxed font-light">
-                  {paso.texto}
-                </p>
-              </div>
-            </li>
-          ))
-        }
-      </ol>
+      <Pasos pasos={pasos} />
     </section>
 
     <!-- ═══════════ Beneficios ═══════════ -->
@@ -159,6 +117,21 @@ const ligaTexto = `text-acento hover:text-acento-alto decoration-acento/50 under
         }
       </dl>
     </section>
+
+    <!-- ═══════════ Liga a regalos ═══════════ -->
+    {/* Quien registra el convenio suele ser quien también compraría regalos
+        para clientes. Lleva `?e=` consigo: la visita a /regalos queda
+        atribuida al mismo correo. */}
+    <div class="mx-auto max-w-xl px-5">
+      <div class="border-acento/20 border-y py-8 text-center">
+        <p class="font-display text-texto text-[1.3rem] leading-snug italic">
+          {ligaDesdeEmpresas.texto}
+        </p>
+        <a href={ligaDesdeEmpresas.href} data-conserva-ref class={`${botonLinea} mt-4`}>
+          {ligaDesdeEmpresas.cta}
+        </a>
+      </div>
+    </div>
 
     <!-- ═══════════ Empresas aliadas ═══════════ -->
     <Aliados />
@@ -200,32 +173,7 @@ const ligaTexto = `text-acento hover:text-acento-alto decoration-acento/50 under
 
       <Floron class="mt-5" />
 
-      <div class="border-acento/15 mt-9 border-t">
-        {
-          preguntas.map(({ pregunta, respuesta }) => (
-            <details class="group border-acento/15 border-b">
-              <summary
-                class={`font-display text-texto flex cursor-pointer list-none items-start justify-between gap-4 rounded-sm py-4 text-[1.18rem] leading-snug font-medium [&::-webkit-details-marker]:hidden ${foco} focus-visible:outline-offset-2`}
-              >
-                {pregunta}
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  class="text-acento mt-1 h-4 w-4 shrink-0 group-open:rotate-180 motion-safe:transition-transform motion-safe:duration-200"
-                  aria-hidden="true"
-                >
-                  <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </summary>
-              <p class="text-suave pr-8 pb-5 text-[0.93rem] leading-relaxed font-light">
-                {respuesta}
-              </p>
-            </details>
-          ))
-        }
-      </div>
+      <Preguntas preguntas={preguntas} />
     </section>
 
     <!-- ═══════════ Cierre ═══════════ -->
@@ -240,47 +188,10 @@ const ligaTexto = `text-acento hover:text-acento-alto decoration-acento/50 under
       <Floron class="mt-5" color />
 
       <div class="mt-9 flex justify-center">
-        <BotonWhatsapp texto={cierre.cta} ubicacion="cierre" />
+        <BotonWhatsapp texto={cierre.cta} programa="convenio" ubicacion="cierre" />
       </div>
 
-      <dl class="mt-10 space-y-5 text-center">
-        <div>
-          <dt class="text-acento text-[0.82rem]">Dirección</dt>
-          <dd class="text-texto mx-auto mt-1 max-w-[30ch] text-[0.98rem] leading-relaxed font-light">
-            {contacto.direccion}
-          </dd>
-          <dd class="mt-3">
-            <a
-              href={negocio.mapa}
-              target="_blank"
-              rel="noopener noreferrer"
-              class={`${botonLinea} gap-2 px-5 py-2.5`}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-4 w-4" aria-hidden="true">
-                <path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11z" stroke-linecap="round" stroke-linejoin="round" />
-                <circle cx="12" cy="10" r="2.4" />
-              </svg>
-              Abrir en Google Maps
-            </a>
-          </dd>
-        </div>
-
-        <div>
-          <dt class="text-acento text-[0.82rem]">Horario</dt>
-          <dd class="text-texto mt-1 text-[0.98rem] leading-relaxed font-light">
-            {contacto.horario}
-          </dd>
-        </div>
-
-        <div>
-          <dt class="text-acento text-[0.82rem]">Teléfono</dt>
-          <dd class="mt-1">
-            <a href={`tel:${contacto.telefono}`} class={`${ligaTexto} text-[0.98rem] font-light`}>
-              {contacto.telefonoVisible}
-            </a>
-          </dd>
-        </div>
-      </dl>
+      <Contacto />
     </section>
   </main>
 
@@ -289,7 +200,7 @@ const ligaTexto = `text-acento hover:text-acento-alto decoration-acento/50 under
 
 <script>
   import { analitica } from '../../scripts/analitica';
-  import { refEvento } from '../../scripts/convenio';
+  import { refEvento } from '../../scripts/referencia';
 
   // Una visita por carga, con la referencia del correo o `directo`. La
   // pageview automática ya trae la URL completa; este evento deja `ref` como

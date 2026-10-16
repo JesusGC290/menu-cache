@@ -22,6 +22,8 @@ Hecho con **Astro + Tailwind CSS**. Sitio 100 % estático, listo para GitHub + C
 | `/89`               | Landing de la campaña del café con QR (`noindex`, piloto)       |
 | `/empresas`         | Convenio Caché para Empresas: cómo funciona, reglas y registro  |
 | `/empresas/terminos` | Términos y condiciones completos del convenio                  |
+| `/regalos`          | Certificados de regalo para empresas: paquetes y cotización     |
+| `/regalos/terminos` | Términos y condiciones de los certificados                      |
 
 `/carta` sigue respondiendo con un redirect a `/`, por si quedó algún enlace viejo.
 
@@ -231,7 +233,7 @@ Eso último es a propósito. Sólo cuentan las páginas públicas:
 
 | Cuenta                                  | No cuenta                                              |
 | --------------------------------------- | ------------------------------------------------------ |
-| `/` (la carta), `/informacion`, `/89`, `/empresas`, `/empresas/terminos` | `/impresion/claro`, `/impresion/oscuro`, `/carta-impresa` |
+| `/` (la carta), `/informacion`, `/89`, `/empresas`, `/regalos` y sus términos | `/impresion/claro`, `/impresion/oscuro`, `/carta-impresa` |
 
 `/89` no usa `Analitica.astro`: su layout trae su propio script, porque además de
 inicializar PostHog tiene que mandar el evento de la campaña con la zona de reparto en el
@@ -243,7 +245,7 @@ Una página de `Layout.astro` que necesite eventos propios no importa `posthog-j
 cuenta: pide la instancia con `analitica()` de `src/scripts/analitica.ts`. Esa función
 devuelve siempre la misma promesa, así que el evento sale después del `init` sin importar
 qué script corra primero, y sin llave devuelve `null` (por eso se escribe `ph?.capture`).
-Es lo que usa `/empresas`; ver [sus eventos](#los-eventos).
+Es lo que usan `/empresas` y `/regalos`; ver [sus eventos](#los-eventos).
 
 Las de impresión salen de `Impresion.astro`, que no lleva el componente: se abren para
 generar el PDF, y contarlas mezclaría trabajo interno con visitas de clientes. Si algún día
@@ -273,36 +275,50 @@ anónimos, lo que además abarata el plan.
 
 ---
 
-## El convenio para empresas: `/empresas`
+## Para empresas: `/empresas` y `/regalos`
 
-Página para que una empresa cercana registre su convenio **por WhatsApp**. Llegan dos
-visitantes: quien recibió un correo de Caché (recursos humanos, administración, el
-encargado de un coworking) y el empleado que vio un anuncio. **No lleva formulario, y es a
-propósito:** obligaría a publicar un aviso de privacidad, y Caché decidió no recabar datos
-por web.
+Dos páginas para quien decide en una empresa, y las dos se cierran **por WhatsApp**:
+
+| Página      | Para qué                                                                       |
+| ----------- | ------------------------------------------------------------------------------ |
+| `/empresas` | El **Convenio Caché para Empresas**: 10% para los colaboradores de empresas cercanas |
+| `/regalos`  | **Un regalo de caché**: certificados de desayuno o comida para dos, para clientes o equipo |
+
+**Ninguna lleva formulario ni pago en línea, y es a propósito:** un formulario obligaría a
+publicar un aviso de privacidad, y Caché decidió no recabar datos por web. Los certificados
+se pagan por transferencia.
 
 | Qué                                   | Dónde                                                       |
 | ------------------------------------- | ----------------------------------------------------------- |
-| Todo el texto de la página            | [`src/data/convenio.ts`](src/data/convenio.ts)              |
-| Términos completos                    | [`src/data/terminos-convenio-empresas.md`](src/data/terminos-convenio-empresas.md) |
-| Página                                | [`src/pages/empresas/index.astro`](src/pages/empresas/index.astro) |
-| Términos                              | [`src/pages/empresas/terminos.astro`](src/pages/empresas/terminos.astro) |
-| Franja al final de la carta y en *Visítenos* | [`src/components/sitio/FranjaEmpresas.astro`](src/components/sitio/FranjaEmpresas.astro) |
+| Texto del convenio                    | [`src/data/convenio.ts`](src/data/convenio.ts)              |
+| Texto de los regalos, paquetes y precios | [`src/data/regalos.ts`](src/data/regalos.ts)             |
+| Términos completos                    | [`terminos-convenio-empresas.md`](src/data/terminos-convenio-empresas.md) y [`terminos-regalos.md`](src/data/terminos-regalos.md), en `src/data/` |
+| Páginas                               | `src/pages/empresas/` y `src/pages/regalos/`                |
+| Marco de los términos                 | [`src/layouts/Terminos.astro`](src/layouts/Terminos.astro)  |
+| Piezas compartidas                    | `src/components/empresas/`: titular, pasos, preguntas, contacto, botón de WhatsApp, paquetes y aliados |
+| Bloque de la carta y de *Visítenos*   | [`src/components/sitio/FranjaEmpresas.astro`](src/components/sitio/FranjaEmpresas.astro) |
 
-Igual que con `menu.ts`, **para cambiar la página sólo se edita `convenio.ts`**, y para
-cambiar una cláusula, el Markdown. Ninguna página teclea texto propio.
+Igual que con `menu.ts`, **para cambiar una página sólo se edita su `.ts`**, y para cambiar
+una cláusula, su Markdown. Ninguna página teclea texto propio. `regalos.ts` importa
+`contacto` de `convenio.ts`: el WhatsApp, el teléfono y la dirección viven en un solo lugar.
 
-En la carta se ve dos veces: una liga discreta, *Caché para empresas*, debajo de los botones
-de arriba, y la franja completa al terminar la carta. La de arriba va como liga y no como
-tercer botón porque en el celular los dos botones ya ocupan dos renglones, y otro más
-empujaría la carta hacia abajo. Además se enlaza desde la sección *Visítenos* de
-`/informacion` y desde el pie de página (*Empresas*).
+**Dónde aparecen en el sitio:**
 
-Sigue el sistema de la carta —terciopelo y oro, dos temas, Cormorant y Jost—. El único
-gesto grande es el titular; lo demás es sobrio a propósito: sin etiquetas en versalitas
-encima de los títulos, sin flechas en los botones, sin tarjetas repetidas y sin animaciones
-de entrada. La última palabra del titular va en cursiva dorada, y se parte en código, así
-que cambiar `hero.titulo` no obliga a tocar la página.
+- Al terminar la carta, **un solo bloque con las dos opciones** lado a lado (una debajo de la
+  otra en el celular), y el mismo bloque en *Visítenos* de `/informacion`. Un bloque y no dos
+  franjas apiladas, para no interrumpir dos veces.
+- Arriba de la carta, una liga discreta al convenio, *Caché para empresas*, debajo de los
+  botones. Va como liga y no como tercer botón porque en el celular los dos botones ya
+  ocupan dos renglones, y otro más empujaría la carta hacia abajo.
+- `/empresas` lleva a `/regalos` después de *Beneficios*: quien registra el convenio suele
+  ser quien también compraría regalos para clientes.
+- En el pie de página: *Empresas* y *Regalos*.
+
+Siguen el sistema de la carta —terciopelo y oro, dos temas, Cormorant y Jost—. El único
+gesto grande de cada página es el titular, con la última palabra en cursiva dorada (se
+parte en código, así que cambiar `hero.titulo` no obliga a tocar la página); lo demás es
+sobrio a propósito: sin etiquetas en versalitas encima de los títulos, sin flechas en los
+botones, sin tarjetas repetidas y sin animaciones de entrada.
 
 ### Empresas aliadas
 
@@ -323,26 +339,50 @@ el terciopelo. Conviene pedir la versión para fondo claro.
 cuenta completo. Como el evento, una empresa vencida desaparece en el primer despliegue
 posterior a su fecha: si nadie despliega, sigue apareciendo.
 
+### Los paquetes de regalo
+
+Lo memorable de `/regalos` son los paquetes, y se presentan **como un menú de tiempos de la
+casa**, no como tabla de precios: marco de filigrana (el del pie de la carta), cada tiempo
+con su platillo y el precio al pie con el formato de la carta —*$890 · para dos personas*,
+y debajo, más chico, *Valor en carta: hasta $984*—. Sin «recomendado», sin palomitas y sin
+botón por paquete: un solo botón de WhatsApp debajo de los dos. Van en el orden de
+`regalos.ts`, comida primero.
+
+**Los precios por volumen no se publican en ninguna parte.** Las únicas menciones son sin
+cifra: el paso 1 («Precio especial por volumen»), la pregunta del mínimo de compra y la
+cláusula 3.4 de los términos. Se cotizan por WhatsApp.
+
+*Lo que vive su cliente* va con el mural principal de Celest Ramírez y no con comida, porque
+el regalo es la visita. Son las dos mitades del mural (`src/assets/mural-abuelo.jpg` y
+`mural-nieta.jpg`): el abuelo con «Caché» en el sombrero y su nieta, que lado a lado se
+toman de la mano al centro.
+
 ### La referencia del correo: `?e=`
 
-Cada correo lleva su liga, `cacherestaurante.com/empresas?e=mutuo`. El valor se lee en el
-navegador ([`src/scripts/convenio.ts`](src/scripts/convenio.ts)) y se agrega al final del
-mensaje de **todos** los botones de WhatsApp: *«… (Ref: mutuo)»*. Así Caché sabe de qué
-correo viene el registro **aunque no haya analítica**.
+Cada correo lleva su liga, `cacherestaurante.com/empresas?e=mutuo` o `/regalos?e=mutuo`. El
+valor se lee en el navegador ([`src/scripts/referencia.ts`](src/scripts/referencia.ts)) y
+se agrega al final del mensaje de **todos** los botones de WhatsApp de la página: *«…
+(Ref: mutuo)»*. Así Caché sabe de qué correo viene el contacto **aunque no haya
+analítica**.
 
 Sólo se acepta `[a-z0-9-]{2,40}`; cualquier otra cosa se ignora como si no hubiera
 parámetro. No se guarda en ningún lado (ni cookie ni `localStorage`): para no perderlo al
-pasar a los términos y volver, las ligas entre las dos páginas lo llevan consigo
+pasar a los términos, de `/empresas` a `/regalos` y de regreso, esas ligas lo llevan consigo
 (`data-conserva-ref`).
 
 Es independiente del `?p=` de `/89`, que sigue igual.
 
 ### Los eventos
 
-| Evento              | Cuándo                         | Propiedades                                      |
-| ------------------- | ------------------------------ | ------------------------------------------------ |
-| `convenio_visita`   | cada carga de `/empresas`      | `ref`: el valor de `?e=`, o `directo`             |
-| `convenio_whatsapp` | clic en un botón de WhatsApp   | `ref`, y `boton`: `portada`, `aliados`, `cierre` o `terminos` |
+Cada botón de WhatsApp dice de qué programa es, y ese nombre es el prefijo de sus eventos
+([`src/scripts/whatsapp.ts`](src/scripts/whatsapp.ts)):
+
+| Evento              | Cuándo                                  | Propiedades                                      |
+| ------------------- | --------------------------------------- | ------------------------------------------------ |
+| `convenio_visita`   | cada carga de `/empresas`               | `ref`: el valor de `?e=`, o `directo`             |
+| `convenio_whatsapp` | clic en un botón de WhatsApp del convenio | `ref`, y `boton`: `portada`, `aliados`, `cierre` o `terminos` |
+| `regalos_visita`    | cada carga de `/regalos`                | `ref`                                            |
+| `regalos_whatsapp`  | clic en un botón de WhatsApp de regalos | `ref`, y `boton`: `portada`, `paquetes`, `cierre` o `terminos` |
 
 La pageview automática de PostHog ya trae la URL completa; los eventos dejan `ref` como
 propiedad propia para filtrar por correo sin escarbar en URLs. El clic sale con
@@ -350,18 +390,31 @@ propiedad propia para filtrar por correo sin escarbar en URLs. El clic sale con
 y un evento que espera el siguiente lote se puede perder. No hay cookies nuevas: PostHog
 usa la misma que en el resto del sitio.
 
-### Pendientes del negocio antes de publicar
+### Pendientes del negocio
+
+Del convenio:
 
 - Revisión legal de los términos. Plazos propuestos por confirmar: 7 días de aviso por
   cambios y 5 días hábiles para retirar un logo.
 - Confirmar con la dueña la línea `intro`, la única que toca la historia de origen.
-- **El sitio no tiene aviso de privacidad**, y PostHog ya corre en todas las páginas
-  públicas. El brief pide resolverlo antes de usar analítica.
 - El convenio vence el **30 de noviembre de 2026** y la página no se apaga sola: antes de
   esa fecha hay que actualizar `vigencia`, `reglas` y la pregunta del 30 de noviembre en
   `convenio.ts`.
 
-En el Markdown de los términos, las tres líneas de *Contacto* llevan `\` al final: sin eso,
+De los regalos:
+
+- Costo real del chamorro, confirmado por cocina, para el paquete de comida.
+- Horario de desayuno y de comida, para la cláusula 5.2 de los términos.
+- Confirmar que Caché puede emitir factura a empresas (la pregunta de pago y la cláusula 3.3
+  ya lo prometen).
+- Revisión legal de los términos: vigencia de 90 días, no reembolsable, 24 horas de
+  anticipación.
+- Diseño del certificado (digital e impreso) y de la tarjeta de mesa.
+
+De los dos: **el sitio no tiene aviso de privacidad**, y PostHog ya corre en todas las
+páginas públicas.
+
+En los Markdown de los términos, las tres líneas de *Contacto* llevan `\` al final: sin eso,
 Markdown las junta en un solo renglón.
 
 ---

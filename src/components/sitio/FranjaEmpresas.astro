@@ -1,11 +1,17 @@
 ---
-import { franjaInicio } from '../../data/convenio';
+import { franjaInicio as franjaConvenio } from '../../data/convenio';
+import { franjaInicio as franjaRegalos } from '../../data/regalos';
 
 /**
- * Invitación corta al convenio de empresas. Va al terminar la carta, donde no
- * le estorba a quien vino a pedir, y en «Visítenos» de /informacion.
+ * Lo que Caché ofrece a empresas, en un solo bloque con dos opciones: el
+ * convenio para su equipo y los certificados de regalo para sus clientes.
+ * Lado a lado desde `sm`, una debajo de la otra en el celular. Un bloque y no
+ * dos franjas apiladas, para no interrumpir dos veces.
  *
- * `nivel` es el del título: dentro de una sección que ya tiene su h2 va h3.
+ * Va al terminar la carta, donde no le estorba a quien vino a pedir, y en
+ * «Visítenos» de /informacion. El texto sale del `franjaInicio` de cada `.ts`.
+ *
+ * `nivel` es el de los títulos: dentro de una sección que ya tiene su h2 van h3.
  */
 interface Props {
   class?: string;
@@ -13,25 +19,29 @@ interface Props {
 }
 const { class: className = '', nivel = 2 } = Astro.props;
 const Titulo = nivel === 3 ? 'h3' : 'h2';
+
+const opciones = [franjaConvenio, franjaRegalos];
 ---
 
-<aside
-  aria-labelledby="franja-empresas"
-  class={`border-acento/25 bg-superficie/25 rounded-lg border px-5 py-6 text-center ${className}`}
+<div
+  class={`border-acento/25 bg-superficie/25 divide-acento/20 grid divide-y rounded-lg border text-center sm:grid-cols-2 sm:divide-x sm:divide-y-0 ${className}`}
 >
-  <Titulo
-    id="franja-empresas"
-    class="font-display text-texto text-[1.4rem] leading-snug font-medium"
-  >
-    {franjaInicio.titulo}
-  </Titulo>
-  <p class="text-suave mx-auto mt-1.5 max-w-[34ch] text-[0.9rem] leading-relaxed font-light">
-    {franjaInicio.texto}
-  </p>
-  <a
-    href={franjaInicio.href}
-    class="border-acento/45 text-acento hover:bg-acento/10 hover:border-acento/75 focus-visible:outline-acento mt-4 inline-flex items-center justify-center rounded-full border px-5 py-2.5 text-[0.74rem] tracking-[0.12em] uppercase transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4"
-  >
-    {franjaInicio.cta}
-  </a>
-</aside>
+  {
+    opciones.map((opcion) => (
+      <div class="flex flex-col items-center px-5 py-6">
+        <Titulo class="font-display text-texto text-[1.4rem] leading-snug font-medium">
+          {opcion.titulo}
+        </Titulo>
+        <p class="text-suave mx-auto mt-1.5 mb-4 max-w-[30ch] text-[0.9rem] leading-relaxed font-light">
+          {opcion.texto}
+        </p>
+        <a
+          href={opcion.href}
+          class="border-acento/45 text-acento hover:bg-acento/10 hover:border-acento/75 focus-visible:outline-acento mt-auto inline-flex items-center justify-center rounded-full border px-5 py-2.5 text-[0.74rem] tracking-[0.12em] uppercase transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4"
+        >
+          {opcion.cta}
+        </a>
+      </div>
+    ))
+  }
+</div>
