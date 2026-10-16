@@ -1,0 +1,34 @@
+---
+import { ligaWhatsApp } from '../../data/convenio';
+
+/**
+ * Botón principal del convenio: abre WhatsApp con el mensaje listo.
+ *
+ * Se dibuja sin referencia; si la visita trae `?e=`, el script de
+ * `src/scripts/convenio.ts` le agrega «(Ref: …)» al cargar y registra el
+ * clic. Sin JavaScript el botón funciona igual, sólo sin la referencia.
+ */
+interface Props {
+  texto: string;
+  /** Dónde está el botón. Viaja en el evento para saber cuál se usa. */
+  ubicacion: 'portada' | 'aliados' | 'cierre' | 'terminos';
+}
+const { texto, ubicacion } = Astro.props;
+---
+
+<a
+  href={ligaWhatsApp()}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-whatsapp-convenio={ubicacion}
+  class="from-oro-claro via-oro to-oro-hondo text-vino focus-visible:outline-acento inline-flex w-full max-w-sm items-center justify-center gap-2.5 rounded-full bg-gradient-to-b px-6 py-3.5 text-center text-[0.8rem] leading-snug font-medium tracking-[0.1em] text-balance uppercase shadow-[0_6px_22px_-6px_rgb(212_164_55/0.6)] focus-visible:outline-2 focus-visible:outline-offset-4 motion-safe:transition-transform motion-safe:duration-200 motion-safe:hover:scale-[1.02]"
+>
+  <svg viewBox="0 0 24 24" fill="currentColor" class="h-[1.1rem] w-[1.1rem] shrink-0" aria-hidden="true">
+    <path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.2l-.3-.2-2.8.8.8-2.7-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3.4 4c-.2 0-.5 0-.7.3-.3.3-.9.9-.9 2s.8 2.2 1 2.4c.1.2 1.6 2.5 3.9 3.4 1.9.8 2.3.6 2.7.6.4 0 1.4-.5 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.2-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-.9-.3-1.7-1-.6-.6-1-1.2-1.2-1.4-.1-.2 0-.3.1-.4l.4-.5.2-.4v-.4l-.6-1.5c-.2-.4-.3-.5-.5-.5h-.4z" />
+  </svg>
+  {texto}
+</a>
+
+<script>
+  import '../../scripts/convenio';
+</script>

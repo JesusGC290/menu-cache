@@ -1,0 +1,83 @@
+---
+import Floron from '../Floron.astro';
+import BotonWhatsapp from './BotonWhatsapp.astro';
+import { aliados, aliadosTexto, hero, MIN_ALIADOS_VISIBLES } from '../../data/convenio';
+
+/**
+ * Empresas aliadas: muro de logos o invitación, según cuántas haya.
+ *
+ * Cuenta sólo las que tienen `visible: true` y siguen vigentes. Con menos de
+ * `MIN_ALIADOS_VISIBLES` no se dibuja el muro: dos logos sueltos se leen como
+ * «casi nadie se ha registrado», y la invitación vende mejor que eso.
+ *
+ * La vigencia se evalúa al compilar, con la fecha de Guadalajara, y `vence`
+ * cuenta completo: una empresa que vence el 30 de noviembre se muestra todo
+ * ese día. Como en el evento, una empresa vencida desaparece en el primer
+ * despliegue posterior a su fecha.
+ */
+const hoy = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Mexico_City' }).format(
+  new Date(),
+);
+
+const visibles = aliados.filter((empresa) => empresa.visible && empresa.vence >= hoy);
+const hayMuro = visibles.length >= MIN_ALIADOS_VISIBLES;
+---
+
+<section aria-labelledby="aliados-titulo" class="mx-auto max-w-xl px-5 py-14 sm:py-16">
+  {
+    hayMuro ? (
+      <Fragment>
+        <h2
+          id="aliados-titulo"
+          class="font-display text-oro-degradado text-center text-[1.75rem] leading-tight font-medium text-balance sm:text-[2rem]"
+        >
+          {aliadosTexto.titulo}
+        </h2>
+
+        <Floron class="mt-5" />
+
+        {/* Placa clara fija en los dos temas: el logo va tal cual lo entregó la
+            empresa, y uno en tinta oscura desaparecería sobre el terciopelo. */}
+        <ul role="list" class="mt-9 flex flex-wrap items-center justify-center gap-3">
+          {visibles.map((empresa) => (
+            <li class="border-acento/20 flex h-16 items-center rounded-md border bg-[#fffaf0] px-5">
+              {empresa.autorizaLogo && empresa.logo ? (
+                <img
+                  src={empresa.logo}
+                  alt={empresa.nombre}
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-10 w-auto max-w-[9rem] object-contain"
+                />
+              ) : (
+                <span class="font-display text-lg leading-tight font-medium text-[#2b1530]">
+                  {empresa.nombre}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </Fragment>
+    ) : (
+      <div class="text-center">
+        <h2
+          id="aliados-titulo"
+          class="font-display text-oro-degradado text-[1.75rem] leading-tight font-medium text-balance sm:text-[2rem]"
+        >
+          {aliadosTexto.vacioTitulo}
+        </h2>
+
+        <Floron class="mt-5" />
+
+        <p class="text-suave mx-auto mt-6 max-w-[34ch] text-[0.95rem] leading-relaxed font-light">
+          {aliadosTexto.vacioTexto}
+        </p>
+
+        <div class="mt-7 flex justify-center">
+          <BotonWhatsapp texto={hero.cta} ubicacion="aliados" />
+        </div>
+      </div>
+    )
+  }
+</section>

@@ -20,6 +20,8 @@ Hecho con **Astro + Tailwind CSS**. Sitio 100 % estático, listo para GitHub + C
 | `/impresion/noche-mexicana` | Bebidas del evento en media carta, 2 por hoja           |
 | `/noche-mexicana`   | El evento del 15 de septiembre: menú, programa y reservaciones  |
 | `/89`               | Landing de la campaña del café con QR (`noindex`, piloto)       |
+| `/empresas`         | Convenio Caché para Empresas: cómo funciona, reglas y registro  |
+| `/empresas/terminos` | Términos y condiciones completos del convenio                  |
 
 `/carta` sigue respondiendo con un redirect a `/`, por si quedó algún enlace viejo.
 
@@ -220,21 +222,28 @@ Las ramas distintas de `main` generan una vista previa con su propia URL.
 
 ## Analítica
 
-Visitas y analítica web con **PostHog** (proyecto en la región US). Todo vive en un solo
-componente, [`src/components/Analitica.astro`](src/components/Analitica.astro), incluido
-únicamente en `Layout.astro`.
+Visitas y analítica web con **PostHog** (proyecto en la región US). Se arranca desde
+[`src/components/Analitica.astro`](src/components/Analitica.astro), incluido únicamente en
+`Layout.astro`, que llama a [`src/scripts/analitica.ts`](src/scripts/analitica.ts): ahí vive
+el `init`, una sola vez por página.
 
 Eso último es a propósito. Sólo cuentan las páginas públicas:
 
 | Cuenta                                  | No cuenta                                              |
 | --------------------------------------- | ------------------------------------------------------ |
-| `/` (la carta), `/informacion`, `/89`   | `/impresion/claro`, `/impresion/oscuro`, `/carta-impresa` |
+| `/` (la carta), `/informacion`, `/89`, `/empresas`, `/empresas/terminos` | `/impresion/claro`, `/impresion/oscuro`, `/carta-impresa` |
 
 `/89` no usa `Analitica.astro`: su layout trae su propio script, porque además de
 inicializar PostHog tiene que mandar el evento de la campaña con la zona de reparto en el
 mismo hilo. Con dos scripts separados el evento dependería de que PostHog ya hubiera acabado
 de cargar, y esa carrera se pierde justo con mala señal. Los dos scripts fijan `defaults` a
 la misma fecha: si algún día se mueve, se mueven los dos.
+
+Una página de `Layout.astro` que necesite eventos propios no importa `posthog-js` por su
+cuenta: pide la instancia con `analitica()` de `src/scripts/analitica.ts`. Esa función
+devuelve siempre la misma promesa, así que el evento sale después del `init` sin importar
+qué script corra primero, y sin llave devuelve `null` (por eso se escribe `ph?.capture`).
+Es lo que usa `/empresas`; ver [sus eventos](#los-eventos).
 
 Las de impresión salen de `Impresion.astro`, que no lleva el componente: se abren para
 generar el PDF, y contarlas mezclaría trabajo interno con visitas de clientes. Si algún día
@@ -261,6 +270,97 @@ variable el compilador lo elimina entero: no se genera ni el archivo.
 Ningún visitante genera perfil de persona. El sitio no tiene cuentas ni `identify`, y con
 el valor por omisión de PostHog (`person_profiles: 'identified_only'`) los eventos son
 anónimos, lo que además abarata el plan.
+
+---
+
+## El convenio para empresas: `/empresas`
+
+Página para que una empresa cercana registre su convenio **por WhatsApp**. Llegan dos
+visitantes: quien recibió un correo de Caché (recursos humanos, administración, el
+encargado de un coworking) y el empleado que vio un anuncio. **No lleva formulario, y es a
+propósito:** obligaría a publicar un aviso de privacidad, y Caché decidió no recabar datos
+por web.
+
+| Qué                                   | Dónde                                                       |
+| ------------------------------------- | ----------------------------------------------------------- |
+| Todo el texto de la página            | [`src/data/convenio.ts`](src/data/convenio.ts)              |
+| Términos completos                    | [`src/data/terminos-convenio-empresas.md`](src/data/terminos-convenio-empresas.md) |
+| Página                                | [`src/pages/empresas/index.astro`](src/pages/empresas/index.astro) |
+| Términos                              | [`src/pages/empresas/terminos.astro`](src/pages/empresas/terminos.astro) |
+| Franja al final de la carta y en *Visítenos* | [`src/components/sitio/FranjaEmpresas.astro`](src/components/sitio/FranjaEmpresas.astro) |
+
+Igual que con `menu.ts`, **para cambiar la página sólo se edita `convenio.ts`**, y para
+cambiar una cláusula, el Markdown. Ninguna página teclea texto propio.
+
+Se enlaza desde el pie de página (*Empresas*), desde la franja que aparece al terminar la
+carta y desde la sección *Visítenos* de `/informacion`. No va en los botones de arriba de la
+carta: con un tercero ya no caben en un renglón a 360 px.
+
+Sigue el sistema de la carta —terciopelo y oro, dos temas, Cormorant y Jost—. El único
+gesto grande es el titular; lo demás es sobrio a propósito: sin etiquetas en versalitas
+encima de los títulos, sin flechas en los botones, sin tarjetas repetidas y sin animaciones
+de entrada. La última palabra del titular va en cursiva dorada, y se parte en código, así
+que cambiar `hero.titulo` no obliga a tocar la página.
+
+### Empresas aliadas
+
+Se dan de alta en el arreglo `aliados` de `convenio.ts`. La sección cuenta las que tienen
+`visible: true` y siguen vigentes:
+
+- **5 o más** (`MIN_ALIADOS_VISIBLES`): muro. Con `autorizaLogo: true` y `logo`, el logo;
+  si no, el nombre en texto.
+- **Menos de 5:** no hay muro. Sale *«Sea de las primeras empresas aliadas»* con el botón
+  de WhatsApp. Dos logos sueltos se leen como «casi nadie se ha registrado».
+
+Los logos van en `public/aliados/`, **tal cual los entregó la empresa**: sin recolorear ni
+escala de grises, todos a 40 px de alto y con su `nombre` como texto alternativo. Van sobre
+una placa marfil fija en los dos temas, porque un logo en tinta oscura desaparecería sobre
+el terciopelo. Conviene pedir la versión para fondo claro.
+
+**La vigencia se evalúa al compilar**, con la fecha de Guadalajara, y el día de `vence`
+cuenta completo. Como el evento, una empresa vencida desaparece en el primer despliegue
+posterior a su fecha: si nadie despliega, sigue apareciendo.
+
+### La referencia del correo: `?e=`
+
+Cada correo lleva su liga, `cacherestaurante.com/empresas?e=mutuo`. El valor se lee en el
+navegador ([`src/scripts/convenio.ts`](src/scripts/convenio.ts)) y se agrega al final del
+mensaje de **todos** los botones de WhatsApp: *«… (Ref: mutuo)»*. Así Caché sabe de qué
+correo viene el registro **aunque no haya analítica**.
+
+Sólo se acepta `[a-z0-9-]{2,40}`; cualquier otra cosa se ignora como si no hubiera
+parámetro. No se guarda en ningún lado (ni cookie ni `localStorage`): para no perderlo al
+pasar a los términos y volver, las ligas entre las dos páginas lo llevan consigo
+(`data-conserva-ref`).
+
+Es independiente del `?p=` de `/89`, que sigue igual.
+
+### Los eventos
+
+| Evento              | Cuándo                         | Propiedades                                      |
+| ------------------- | ------------------------------ | ------------------------------------------------ |
+| `convenio_visita`   | cada carga de `/empresas`      | `ref`: el valor de `?e=`, o `directo`             |
+| `convenio_whatsapp` | clic en un botón de WhatsApp   | `ref`, y `boton`: `portada`, `aliados`, `cierre` o `terminos` |
+
+La pageview automática de PostHog ya trae la URL completa; los eventos dejan `ref` como
+propiedad propia para filtrar por correo sin escarbar en URLs. El clic sale con
+`send_instantly`, porque en el celular wa.me manda la página a segundo plano al abrir la app
+y un evento que espera el siguiente lote se puede perder. No hay cookies nuevas: PostHog
+usa la misma que en el resto del sitio.
+
+### Pendientes del negocio antes de publicar
+
+- Revisión legal de los términos. Plazos propuestos por confirmar: 7 días de aviso por
+  cambios y 5 días hábiles para retirar un logo.
+- Confirmar con la dueña la línea `intro`, la única que toca la historia de origen.
+- **El sitio no tiene aviso de privacidad**, y PostHog ya corre en todas las páginas
+  públicas. El brief pide resolverlo antes de usar analítica.
+- El convenio vence el **30 de noviembre de 2026** y la página no se apaga sola: antes de
+  esa fecha hay que actualizar `vigencia`, `reglas` y la pregunta del 30 de noviembre en
+  `convenio.ts`.
+
+En el Markdown de los términos, las tres líneas de *Contacto* llevan `\` al final: sin eso,
+Markdown las junta en un solo renglón.
 
 ---
 

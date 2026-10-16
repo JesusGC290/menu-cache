@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BotonTema from '../../components/BotonTema.astro';
+import PieSitio from '../../components/sitio/PieSitio.astro';
+import BotonWhatsapp from '../../components/empresas/BotonWhatsapp.astro';
+import { Content, frontmatter } from '../../data/terminos-convenio-empresas.md';
+import { franjaInicio, hero, seo } from '../../data/convenio';
+
+/**
+ * Términos y condiciones del convenio — `/empresas/terminos`
+ *
+ * El texto completo vive en `terminos-convenio-empresas.md`, junto a
+ * `convenio.ts`. Para cambiar una cláusula se edita el Markdown y nada más;
+ * esta página sólo le pone el marco y la tipografía.
+ */
+
+const foco = 'focus-visible:outline-acento focus-visible:outline-2 focus-visible:outline-offset-2';
+---
+
+<Layout title={`${frontmatter.titulo} · Caché Restaurante`} description={seo.descripcion}>
+  <div class="mx-auto flex max-w-xl items-center justify-between px-5 pt-5">
+    <a
+      href="/"
+      class={`font-display text-oro-degradado rounded-sm text-base tracking-[0.2em] uppercase ${foco}`}
+    >
+      Caché
+    </a>
+    <BotonTema />
+  </div>
+
+  <main class="mx-auto max-w-xl px-5 pt-10 pb-14 sm:pt-14">
+    <a
+      href="/empresas"
+      data-conserva-ref
+      class={`text-acento hover:text-acento-alto decoration-acento/50 rounded-sm text-[0.9rem] underline decoration-1 underline-offset-4 transition-colors ${foco}`}
+    >
+      {franjaInicio.titulo}
+    </a>
+
+    <article class="terminos mt-7">
+      <Content />
+    </article>
+
+    <div class="mt-12 flex justify-center">
+      <BotonWhatsapp texto={hero.cta} ubicacion="terminos" />
+    </div>
+  </main>
+
+  <PieSitio />
+</Layout>
+
+<style>
+  /* El texto largo del sitio (/informacion): Cormorant para los títulos,
+     Jost ligera en `suave` para el cuerpo. Los colores son los tokens
+     semánticos, así que funciona igual en los dos temas. */
+  .terminos :global(h1) {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 7vw, 2.4rem);
+    font-weight: 500;
+    line-height: 1.12;
+    color: var(--color-texto);
+    text-wrap: balance;
+  }
+
+  /* «Última actualización: …» */
+  .terminos :global(h1 + p) {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--color-tenue);
+  }
+
+  .terminos :global(h2) {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-acento) 18%, transparent);
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--color-texto);
+  }
+
+  .terminos :global(p),
+  .terminos :global(li) {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--color-suave);
+  }
+
+  .terminos :global(h2 + p),
+  .terminos :global(h2 + ol),
+  .terminos :global(h2 + ul) {
+    margin-top: 0.75rem;
+  }
+
+  .terminos :global(p + p),
+  .terminos :global(p + ul),
+  .terminos :global(ul + p) {
+    margin-top: 0.9rem;
+  }
+
+  .terminos :global(ol),
+  .terminos :global(ul) {
+    padding-left: 1.4rem;
+  }
+  .terminos :global(ol) {
+    list-style: decimal;
+  }
+  .terminos :global(ul) {
+    list-style: disc;
+  }
+  .terminos :global(li + li) {
+    margin-top: 0.5rem;
+  }
+  .terminos :global(li::marker) {
+    color: var(--color-acento);
+  }
+</style>

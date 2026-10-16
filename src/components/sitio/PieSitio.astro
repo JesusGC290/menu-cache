@@ -4,6 +4,13 @@ import Floron from '../Floron.astro';
 import { negocio } from '../../data/negocio';
 
 const anio = new Date().getFullYear();
+
+// El pie también va en /empresas, donde un `#la-casa` suelto no lleva a ningún
+// lado. En /informacion se queda el ancla sola: en producción esa página vive
+// en `/informacion/`, y una liga a `/informacion#…` la recargaría con un
+// redirect en lugar de sólo bajar.
+const enInformacion = Astro.url.pathname.replace(/\/$/, '') === '/informacion';
+const informacion = enInformacion ? '' : '/informacion';
 ---
 
 <footer class="mx-auto max-w-xl px-5 pb-14">
@@ -23,11 +30,14 @@ const anio = new Date().getFullYear();
       <a href="/" class="text-suave/80 hover:text-acento text-[0.74rem] tracking-[0.1em] uppercase transition-colors">
         Carta
       </a>
-      <a href="#la-casa" class="text-suave/80 hover:text-acento text-[0.74rem] tracking-[0.1em] uppercase transition-colors">
+      <a href={`${informacion}#la-casa`} class="text-suave/80 hover:text-acento text-[0.74rem] tracking-[0.1em] uppercase transition-colors">
         La casa
       </a>
-      <a href="#visitanos" class="text-suave/80 hover:text-acento text-[0.74rem] tracking-[0.1em] uppercase transition-colors">
+      <a href={`${informacion}#visitanos`} class="text-suave/80 hover:text-acento text-[0.74rem] tracking-[0.1em] uppercase transition-colors">
         Visítenos
+      </a>
+      <a href="/empresas" class="text-suave/80 hover:text-acento text-[0.74rem] tracking-[0.1em] uppercase transition-colors">
+        Empresas
       </a>
       <a
         href={negocio.instagram.url}

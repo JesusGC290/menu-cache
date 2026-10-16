@@ -10,6 +10,7 @@ import { menus } from '../data/menu';
 import { negocio } from '../data/negocio';
 import DatosEstructurados from '../components/sitio/DatosEstructurados.astro';
 import AnuncioEvento from '../components/evento/AnuncioEvento.astro';
+import FranjaEmpresas from '../components/sitio/FranjaEmpresas.astro';
 import { evento, eventoVigente } from '../data/evento';
 
 const anio = new Date().getFullYear();
@@ -183,6 +184,9 @@ const anio = new Date().getFullYear();
         </div>
       ))
     }
+
+    {/* Al terminar la carta, no antes: quien vino a pedir no la tiene enfrente */}
+    <FranjaEmpresas class="mt-14" />
 
     <!-- ═══════════ Cierre ═══════════ -->
     <footer class="mt-16">

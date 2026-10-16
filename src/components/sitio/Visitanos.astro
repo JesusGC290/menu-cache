@@ -1,5 +1,6 @@
 ---
 import Floron from '../Floron.astro';
+import FranjaEmpresas from './FranjaEmpresas.astro';
 import { negocio } from '../../data/negocio';
 
 // Menudo sólo en fin de semana: el dato sale de la carta, no se teclea aparte.
@@ -118,4 +119,6 @@ const menudo = menus
       </dd>
     </div>
   </dl>
+
+  <FranjaEmpresas class="mt-10" nivel={3} />
 </section>

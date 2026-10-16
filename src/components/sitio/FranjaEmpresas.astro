@@ -1,0 +1,37 @@
+---
+import { franjaInicio } from '../../data/convenio';
+
+/**
+ * Invitación corta al convenio de empresas. Va al terminar la carta, donde no
+ * le estorba a quien vino a pedir, y en «Visítenos» de /informacion.
+ *
+ * `nivel` es el del título: dentro de una sección que ya tiene su h2 va h3.
+ */
+interface Props {
+  class?: string;
+  nivel?: 2 | 3;
+}
+const { class: className = '', nivel = 2 } = Astro.props;
+const Titulo = nivel === 3 ? 'h3' : 'h2';
+---
+
+<aside
+  aria-labelledby="franja-empresas"
+  class={`border-acento/25 bg-superficie/25 rounded-lg border px-5 py-6 text-center ${className}`}
+>
+  <Titulo
+    id="franja-empresas"
+    class="font-display text-texto text-[1.4rem] leading-snug font-medium"
+  >
+    {franjaInicio.titulo}
+  </Titulo>
+  <p class="text-suave mx-auto mt-1.5 max-w-[34ch] text-[0.9rem] leading-relaxed font-light">
+    {franjaInicio.texto}
+  </p>
+  <a
+    href={franjaInicio.href}
+    class="border-acento/45 text-acento hover:bg-acento/10 hover:border-acento/75 focus-visible:outline-acento mt-4 inline-flex items-center justify-center rounded-full border px-5 py-2.5 text-[0.74rem] tracking-[0.12em] uppercase transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4"
+  >
+    {franjaInicio.cta}
+  </a>
+</aside>
